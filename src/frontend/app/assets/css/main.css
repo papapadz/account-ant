@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-app: #020617;
+    --bg-surface: #0F172A;
+    --bg-sidebar: #0B1120;
+    --bg-card: #0F172A;
+    --bg-input: #020617;
+    --bg-modal: #0F172A;
+    --bg-table-header: #0B1120;
+    --bg-table-hover: rgba(30, 41, 59, 0.4);
+    --border-color: #1E293B;
+    --border-color-light: #334155;
+    --text-main: #F8FAFC;
+    --text-muted: #94A3B8;
+    --text-sub: #64748B;
+    --color-primary: #10B981;
+  }
+
+  html.light {
+    --bg-app: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --bg-sidebar: #F1F5F9;
+    --bg-card: #FFFFFF;
+    --bg-input: #FFFFFF;
+    --bg-modal: #FFFFFF;
+    --bg-table-header: #F1F5F9;
+    --bg-table-hover: #F8FAFC;
+    --border-color: #E2E8F0;
+    --border-color-light: #CBD5E1;
+    --text-main: #0F172A;
+    --text-muted: #475569;
+    --text-sub: #64748B;
+    --color-primary: #059669;
+  }
+
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+/* Dynamic Surface Utility Classes */
+.glass-panel,
+.glass-card {
+  background-color: var(--bg-surface);
+  border-color: var(--border-color);
+  color: var(--text-main);
+  transition: all 0.2s ease-in-out;
+}
+
+.glass-card:hover {
+  border-color: var(--color-primary);
+}
+
+/* High Contrast Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  user-select: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-sub);
+  background-color: var(--bg-sidebar);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.input-field {
+  width: 100%;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  color: var(--text-main);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+}

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('person_affiliations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('person_id');
             $table->foreign('person_id')->references('id')->on('people');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->nullOnDelete();

@@ -1,7 +1,10 @@
 {
-  "name": "frontend",
+  "name": "accountant-frontend",
   "type": "module",
   "private": true,
+  "engines": {
+    "node": ">=20.17.0"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -10,7 +13,15 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@oxc-parser/binding-win32-x64-msvc": "^0.140.0",
+    "@rolldown/binding-win32-x64-msvc": "^1.2.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vueuse/core": "^14.3.0",
+    "lucide-vue-next": "^1.0.0",
     "nuxt": "^4.5.0",
+    "oxc-parser": "^0.60.0",
+    "rolldown": "^1.2.0",
+    "tailwindcss": "^4.3.3",
     "vue": "^3.5.40",
     "vue-router": "^5.2.0"
   }
