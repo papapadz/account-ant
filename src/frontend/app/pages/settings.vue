@@ -13,36 +13,7 @@
     </div>
 
     <!-- Tab Navigation -->
-    <div class="flex items-center gap-2 border-b border-[var(--border-color)] pb-3">
-      <button
-        @click="activeTab = 'profile'"
-        class="px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer"
-        :class="activeTab === 'profile' ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'"
-      >
-        Personal Profile (`Person`)
-      </button>
-      <button
-        @click="activeTab = 'company'"
-        class="px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer"
-        :class="activeTab === 'company' ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'"
-      >
-        Company Settings (`Company`)
-      </button>
-      <button
-        @click="activeTab = 'affiliation'"
-        class="px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer"
-        :class="activeTab === 'affiliation' ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'"
-      >
-        Position & Role (`Affiliation`)
-      </button>
-      <button
-        @click="activeTab = 'api'"
-        class="px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer"
-        :class="activeTab === 'api' ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'"
-      >
-        Backend API Settings
-      </button>
-    </div>
+    <UiTabs v-model="activeTab" :items="settingsTabs" variant="underline" />
 
     <!-- Tab 1: Profile -->
     <div v-if="activeTab === 'profile'" class="glass-card p-6 rounded-xl border border-[var(--border-color)] space-y-4 max-w-2xl">
@@ -92,7 +63,7 @@
       </ClientOnly>
 
       <div class="pt-4 border-t border-[var(--border-color)] flex justify-end">
-        <button @click="showSaveToast = true" class="btn-primary py-2 px-5 text-xs font-bold">Update Profile Details</button>
+        <UiButton variant="primary" size="sm" @click="handleUpdateProfile">Update Profile Details</UiButton>
       </div>
     </div>
 
@@ -134,7 +105,7 @@
       </ClientOnly>
 
       <div class="pt-4 border-t border-[var(--border-color)] flex justify-end">
-        <button @click="showSaveToast = true" class="btn-primary py-2 px-5 text-xs font-bold">Save Company Settings</button>
+        <UiButton variant="primary" size="sm" @click="handleUpdateCompany">Save Company Settings</UiButton>
       </div>
     </div>
 
@@ -177,7 +148,7 @@
       </ClientOnly>
 
       <div class="pt-4 border-t border-[var(--border-color)] flex justify-end">
-        <button @click="showSaveToast = true" class="btn-primary py-2 px-5 text-xs font-bold">Update Affiliation</button>
+        <UiButton variant="primary" size="sm" @click="showSaveToast = true">Update Affiliation</UiButton>
       </div>
     </div>
 
@@ -210,10 +181,10 @@
       </div>
 
       <div class="pt-4 border-t border-[var(--border-color)] flex items-center justify-between">
-        <button @click="testConnection" class="btn-secondary py-2 px-4 text-xs">
+        <UiButton variant="secondary" size="sm" @click="testConnection">
           <span>Test API Endpoint Connection</span>
-        </button>
-        <button @click="showSaveToast = true" class="btn-primary py-2 px-5 text-xs font-bold">Save API Settings</button>
+        </UiButton>
+        <UiButton variant="primary" size="sm" @click="showSaveToast = true">Save API Settings</UiButton>
       </div>
     </div>
 
@@ -232,6 +203,13 @@ const auth = useAuth()
 const api = useApi()
 
 const activeTab = ref<'profile' | 'company' | 'affiliation' | 'api'>('profile')
+
+const settingsTabs = [
+  { value: 'profile', label: 'Personal Profile (Person)' },
+  { value: 'company', label: 'Company Settings (Company)' },
+  { value: 'affiliation', label: 'Position & Role (Affiliation)' },
+  { value: 'api', label: 'Backend API Settings' },
+]
 const apiUrl = ref('http://localhost:8000/api')
 const showSaveToast = ref(false)
 
@@ -249,6 +227,37 @@ const testConnection = async () => {
     alert('API Endpoint connected successfully!')
   } catch {
     alert('Backend API is currently running in local offline demo mode (Fallback active).')
+  }
+}
+
+const handleUpdateProfile = async () => {
+  try {
+    await auth.updateProfile({
+      first_name: auth.currentPerson.value.first_name,
+      last_name: auth.currentPerson.value.last_name,
+      middle_name: auth.currentPerson.value.middle_name,
+      civil_status: auth.currentPerson.value.civil_status,
+      gender: auth.currentPerson.value.gender,
+      birth_date: auth.currentPerson.value.birth_date,
+    })
+    showSaveToast.value = true
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to update profile.')
+  }
+}
+
+const handleUpdateCompany = async () => {
+  try {
+    await auth.updateCompany({
+      business_name: auth.currentCompany.value.business_name,
+      business_description: auth.currentCompany.value.business_description,
+      business_scope: auth.currentCompany.value.business_scope,
+      city_id: auth.currentCompany.value.city_id,
+      is_government: auth.currentCompany.value.is_government,
+    })
+    showSaveToast.value = true
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to update company.')
   }
 }
 </script>
