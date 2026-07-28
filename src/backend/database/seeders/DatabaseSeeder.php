@@ -15,15 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::firstOrCreate(
-            ['email' => 'admin@accountant.io'],
-            [
-                'password' => bcrypt('password'),
-            ]
-        );
-
         $this->call([
             AddressSeeder::class,
+            UserSeeder::class,
             HrSeeder::class,
             AccountingSeeder::class,
             ProjectSeeder::class,
@@ -31,3 +25,4 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
+
