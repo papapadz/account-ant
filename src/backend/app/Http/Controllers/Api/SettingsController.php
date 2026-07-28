@@ -20,11 +20,16 @@ class SettingsController extends Controller
             'birth_date' => 'nullable|date',
         ]);
 
-        $person = Person::first() ?? Person::create([
+        $user = $request->user();
+        $person = $user->person ?? Person::first() ?? Person::create([
             'first_name' => 'Alexander',
-            'last_name' => 'Sterling',
+            'last_name' => 'Vance',
             'civil_status' => 'Single',
         ]);
+
+        if (!$user->person_id) {
+            $user->update(['person_id' => $person->id]);
+        }
 
         $person->update($validated);
 
@@ -44,8 +49,9 @@ class SettingsController extends Controller
             'is_government' => 'nullable|boolean',
         ]);
 
-        $company = Company::first() ?? Company::create([
-            'business_name' => 'Apex Financial Technologies Inc.',
+        $user = $request->user();
+        $company = $user->personAffiliation?->company ?? Company::first() ?? Company::create([
+            'business_name' => 'AccountAnt Tech Solutions Inc.',
             'business_description' => 'Automated Ledger System',
             'city_id' => 1,
         ]);

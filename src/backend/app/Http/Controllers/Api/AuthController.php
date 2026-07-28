@@ -21,22 +21,33 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::with(['person', 'personAffiliation.company', 'personAffiliation.position'])
+            ->where('email', $request->email)
+            ->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            // Fallback for dev/demo login if initial user not seeded yet
+            // Dev fallback if user doesn't exist yet for admin@accountant.io
             if ($user === null && $request->email === 'admin@accountant.io') {
+                $person = Person::create([
+                    'first_name' => 'Alexander',
+                    'last_name' => 'Vance',
+                    'civil_status' => 'Single',
+                    'gender' => 'Male',
+                ]);
+
                 $user = User::create([
-                    'name' => 'Alexander Sterling',
+                    'person_id' => $person->id,
                     'email' => 'admin@accountant.io',
                     'password' => Hash::make('password'),
                 ]);
+
+                $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
             } else {
-                return response()->json(['message' => 'Invalid authentication credentials.'], 401);
+                return response()->json(['message' => 'Invalid email or password.'], 401);
             }
         }
 
-        $token = bin2hex(random_bytes(32));
+        $token = $user->createToken('auth-token')->plainTextToken;
 
         return response()->json([
             'message' => 'Authentication successful',
@@ -103,11 +114,13 @@ class AuthController extends Controller
             // 5. Create User
             $userData = $request->input('user');
             $user = User::create([
-                'name' => "{$person->first_name} {$person->last_name}",
+                'person_id' => $person->id,
                 'email' => $userData['email'],
                 'password' => Hash::make($userData['password']),
                 'person_affiliations_id' => $affiliation->id,
             ]);
+
+            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
 
             return [
                 'user' => $user,
@@ -129,7 +142,10 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        $user = User::first();
+        $user = $request->user();
+        if ($user) {
+            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
+        }
         return response()->json(['user' => $user]);
     }
 }
