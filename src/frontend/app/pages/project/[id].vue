@@ -159,16 +159,17 @@
         default-sort-order="desc"
         :default-page-size="5"
         :custom-sort-value="getTransactionSortValue"
+        @row-click="handleTransactionRowClick"
       >
         <!-- Cell: Date -->
         <template #cell-date="{ value }">
-          <span class="font-mono text-[var(--text-muted)] text-xs whitespace-nowrap">{{ value }}</span>
+          <span class="font-mono text-[var(--text-main)] text-sm font-medium whitespace-nowrap">{{ value }}</span>
         </template>
 
         <!-- Cell: Type -->
         <template #cell-type="{ value }">
           <span
-            class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border select-none"
+            class="px-2.5 py-1 rounded-md text-xs font-extrabold uppercase tracking-wider border select-none inline-block"
             :class="value === 'debit' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'"
           >
             {{ value }}
@@ -177,27 +178,41 @@
 
         <!-- Cell: Fund Source -->
         <template #cell-fund="{ item }">
-          <span class="font-medium text-[var(--text-main)] text-xs whitespace-nowrap">
+          <span class="font-semibold text-[var(--text-main)] text-sm whitespace-nowrap">
             {{ getFundSourceName(item.fund_source_id) }}
           </span>
         </template>
 
         <!-- Cell: Category / Account Item -->
         <template #cell-category="{ item }">
-          <span class="font-bold text-[var(--text-main)] text-xs whitespace-nowrap">
+          <span class="font-bold text-[var(--text-main)] text-sm whitespace-nowrap">
             {{ getCategoryName(item.category_id) }}
           </span>
         </template>
 
         <!-- Cell: Note / Description -->
-        <template #cell-note="{ value }">
-          <span class="text-[var(--text-muted)] text-xs max-w-xs truncate block">{{ value || '—' }}</span>
+        <template #cell-note="{ value, item }">
+          <div class="flex items-center gap-2 max-w-sm">
+            <span class="text-[var(--text-main)] text-sm font-medium truncate block">{{ value || '—' }}</span>
+            <button
+              v-if="item.items && item.items.length > 0"
+              type="button"
+              @click.stop="openItemDetailsModal(item)"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-extrabold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-all cursor-pointer whitespace-nowrap shrink-0 shadow-sm"
+              title="Click to view itemized breakdown"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+              ({{ item.items.length }} items)
+            </button>
+          </div>
         </template>
 
         <!-- Cell: Amount -->
         <template #cell-amount="{ item }">
           <span
-            class="font-mono font-bold text-xs whitespace-nowrap"
+            class="font-mono font-extrabold text-sm sm:text-base whitespace-nowrap"
             :class="item.type === 'debit' ? 'text-blue-400' : 'text-amber-400'"
           >
             {{ item.type === 'debit' ? '-' : '+' }}{{ currencyStore.formatCurrency(item.amount) }}
@@ -360,17 +375,166 @@
           </select>
         </div>
 
+        <!-- 4. Itemized Breakdown Toggle -->
+        <div class="flex items-center justify-between p-3 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)]">
+          <div class="flex items-center gap-2.5">
+            <div class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-[var(--text-main)] block">Itemized Line Items</span>
+              <span class="text-[11px] text-[var(--text-muted)] block">Break down entry by item, quantity, unit & price</span>
+            </div>
+          </div>
+          <button
+            type="button"
+            @click="toggleItemizedMode"
+            class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+            :class="isItemizedMode ? 'bg-emerald-500' : 'bg-slate-700'"
+          >
+            <span
+              class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+              :class="isItemizedMode ? 'translate-x-4' : 'translate-x-0'"
+            />
+          </button>
+        </div>
+
+        <!-- Dynamic Itemized Rows Section -->
+        <div v-if="isItemizedMode" class="space-y-3 p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Line Items Breakdown</span>
+            <span class="text-xs font-mono font-bold text-[var(--text-main)] bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
+              Subtotal Sum: {{ currencyStore.formatCurrency(itemizedTotal) }}
+            </span>
+          </div>
+
+          <div class="space-y-2.5 max-h-60 overflow-y-auto pr-1">
+            <div
+              v-for="(row, idx) in itemizedRows"
+              :key="row.id"
+              class="p-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] space-y-2"
+            >
+              <div class="grid grid-cols-12 gap-2 items-center">
+                <!-- Description -->
+                <div class="col-span-12 sm:col-span-4">
+                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Item / Description</label>
+                  <input
+                    v-model="row.description"
+                    type="text"
+                    required
+                    placeholder="e.g. Portland Cement"
+                    class="w-full rounded bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  />
+                </div>
+
+                <!-- Qty -->
+                <div class="col-span-6 sm:col-span-2">
+                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Qty</label>
+                  <input
+                    v-model.number="row.quantity"
+                    type="number"
+                    step="0.01"
+                    min="0.01"
+                    required
+                    placeholder="1"
+                    class="w-full rounded bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500 font-mono"
+                  />
+                </div>
+
+                <!-- Unit -->
+                <div class="col-span-6 sm:col-span-2">
+                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit</label>
+                  <select
+                    v-model="row.unit"
+                    class="w-full rounded bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  >
+                    <option v-for="u in standardUnits" :key="u" :value="u">{{ u }}</option>
+                  </select>
+                </div>
+
+                <!-- Price -->
+                <div class="col-span-9 sm:col-span-3">
+                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit Price ($)</label>
+                  <input
+                    v-model.number="row.price"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    required
+                    placeholder="0.00"
+                    class="w-full rounded bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500 font-mono"
+                  />
+                </div>
+
+                <!-- Remove Row Button -->
+                <div class="col-span-3 sm:col-span-1 flex justify-end pt-3 sm:pt-0">
+                  <button
+                    type="button"
+                    @click="removeItemizedRow(idx)"
+                    class="p-1.5 text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded transition-colors cursor-pointer"
+                    title="Remove item row"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Optional Custom Unit Input -->
+              <div v-if="row.unit === 'custom'" class="pt-1">
+                <input
+                  v-model="row.customUnit"
+                  type="text"
+                  placeholder="Type custom unit (e.g. roll, pallet, box)..."
+                  class="w-full rounded bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-2.5 py-1 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                />
+              </div>
+
+              <!-- Line Subtotal calculation line -->
+              <div class="flex justify-end text-[11px] text-[var(--text-muted)] font-mono">
+                Subtotal: <span class="font-bold text-emerald-400 ml-1">{{ currencyStore.formatCurrency((Number(row.quantity) || 0) * (Number(row.price) || 0)) }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center pt-1">
+            <UiButton type="button" variant="secondary" size="sm" @click="addItemizedRow">
+              <template #icon-left>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+              </template>
+              Add Line Item
+            </UiButton>
+          </div>
+        </div>
+
         <!-- 5. Amount & Date -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <UiInput
-            v-model="journalForm.amount"
-            type="number"
-            step="0.01"
-            min="0.01"
-            label="Amount"
-            placeholder="1500.00"
-            :required="true"
-          />
+          <div>
+            <UiInput
+              v-if="!isItemizedMode"
+              v-model="journalForm.amount"
+              type="number"
+              step="0.01"
+              min="0.01"
+              label="Amount"
+              placeholder="1500.00"
+              :required="true"
+            />
+            <div v-else class="space-y-1.5">
+              <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                Total Amount (Auto-Calculated)
+              </label>
+              <div class="w-full rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono font-bold text-base px-3 py-2 flex items-center justify-between">
+                <span>{{ currencyStore.formatCurrency(itemizedTotal) }}</span>
+                <span class="text-[10px] text-emerald-500/80 uppercase font-sans">Locked</span>
+              </div>
+            </div>
+          </div>
 
           <UiInput
             v-model="journalForm.date"
@@ -403,6 +567,67 @@
           </UiButton>
         </div>
       </form>
+    </Modal>
+
+    <!-- MODAL: View Itemized Transaction Details -->
+    <Modal
+      :is-open="isViewItemsModalOpen"
+      title="Transaction & Line Item Details"
+      @close="isViewItemsModalOpen = false"
+    >
+      <div v-if="selectedTransactionForItems" class="space-y-4">
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] space-y-2.5 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-[var(--text-main)]">{{ selectedTransactionForItems.note || 'Journal Transaction' }}</span>
+            <span class="font-mono font-extrabold text-base" :class="selectedTransactionForItems.type === 'debit' ? 'text-blue-400' : 'text-amber-400'">
+              {{ selectedTransactionForItems.type === 'debit' ? '-' : '+' }}{{ currencyStore.formatCurrency(selectedTransactionForItems.amount) }}
+            </span>
+          </div>
+          <div class="flex flex-wrap items-center gap-4 text-xs text-[var(--text-muted)] font-mono pt-1 border-t border-[var(--border-color)]/60">
+            <span>Date: <strong class="text-[var(--text-main)]">{{ selectedTransactionForItems.date }}</strong></span>
+            <span>Category: <strong class="text-[var(--text-main)]">{{ getCategoryName(selectedTransactionForItems.category_id) }}</strong></span>
+            <span>Fund: <strong class="text-[var(--text-main)]">{{ getFundSourceName(selectedTransactionForItems.fund_source_id) }}</strong></span>
+          </div>
+        </div>
+
+        <div v-if="selectedTransactionForItems.items && selectedTransactionForItems.items.length > 0" class="border border-[var(--border-color)] rounded-xl overflow-hidden shadow-sm">
+          <table class="w-full text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-[var(--bg-sidebar)] text-[var(--text-main)] text-xs font-bold uppercase tracking-wider border-b border-[var(--border-color)] select-none">
+                <th class="py-3 px-4 text-left">Item / Description</th>
+                <th class="py-3 px-4 text-right">Qty</th>
+                <th class="py-3 px-4 text-left">Unit</th>
+                <th class="py-3 px-4 text-right">Unit Price</th>
+                <th class="py-3 px-4 text-right">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border-color)] font-medium">
+              <tr v-for="(it, i) in selectedTransactionForItems.items" :key="i" class="hover:bg-[var(--bg-table-hover)] transition-colors">
+                <td class="py-3 px-4 text-[var(--text-main)] font-semibold">{{ it.description }}</td>
+                <td class="py-3 px-4 text-right font-mono text-[var(--text-main)]">{{ it.quantity }}</td>
+                <td class="py-3 px-4 text-left text-[var(--text-muted)] font-mono text-xs">{{ it.unit }}</td>
+                <td class="py-3 px-4 text-right font-mono text-[var(--text-main)]">{{ currencyStore.formatCurrency(it.price) }}</td>
+                <td class="py-3 px-4 text-right font-mono font-bold text-emerald-400">{{ currencyStore.formatCurrency(it.subtotal) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div v-else class="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] text-center text-sm text-[var(--text-muted)] space-y-1">
+          <p class="text-[var(--text-main)] font-medium">No itemized line items attached to this transaction.</p>
+          <p class="text-xs">Recorded as a single ledger entry with total amount of <strong class="text-emerald-400 font-mono font-bold">{{ currencyStore.formatCurrency(selectedTransactionForItems.amount) }}</strong>.</p>
+        </div>
+
+        <div class="flex justify-between items-center text-xs sm:text-sm pt-2 font-mono border-t border-[var(--border-color)]">
+          <span class="text-[var(--text-muted)]">Total Line Items: <strong class="text-[var(--text-main)]">{{ selectedTransactionForItems.items?.length || 0 }}</strong></span>
+          <span class="font-bold text-[var(--text-main)]">Grand Total: <strong class="text-emerald-400 text-base">{{ currencyStore.formatCurrency(selectedTransactionForItems.amount) }}</strong></span>
+        </div>
+
+        <div class="pt-2 flex justify-end">
+          <UiButton type="button" variant="secondary" size="sm" @click="isViewItemsModalOpen = false">
+            Close
+          </UiButton>
+        </div>
+      </div>
     </Modal>
 
     <!-- MODAL: Add Fund Source -->
@@ -640,7 +865,7 @@
     </Modal>
 
     <!-- Floating Switcher for UI Prototype Variants -->
-    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 border border-slate-700/80 rounded-full px-4 py-2 flex items-center gap-3 shadow-2xl z-50">
+    <!-- <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 border border-slate-700/80 rounded-full px-4 py-2 flex items-center gap-3 shadow-2xl z-50">
       <button
         type="button"
         @click="cycleVariant(-1)"
@@ -666,7 +891,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
-    </div>
+    </div> -->
   </div>
 
   <div v-else class="glass-card rounded-xl border border-[var(--border-color)] p-12 text-center">
@@ -772,6 +997,69 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleKeyDown)
 })
 
+interface ItemizedRow {
+  id: string
+  description: string
+  quantity: number | ''
+  unit: string
+  customUnit?: string
+  price: number | ''
+}
+
+const standardUnits = ['pcs', 'bags', 'hrs', 'cu m', 'kg', 'sq m', 'set', 'tons', 'lot', 'custom']
+
+const isItemizedMode = ref(false)
+const itemizedRows = ref<ItemizedRow[]>([
+  { id: '1', description: '', quantity: 1, unit: 'pcs', price: '' }
+])
+
+const isViewItemsModalOpen = ref(false)
+const selectedTransactionForItems = ref<any>(null)
+
+const openItemDetailsModal = (tx: any) => {
+  selectedTransactionForItems.value = tx
+  isViewItemsModalOpen.value = true
+}
+
+const handleTransactionRowClick = (item: any) => {
+  if (item) {
+    openItemDetailsModal(item)
+  }
+}
+
+const toggleItemizedMode = () => {
+  isItemizedMode.value = !isItemizedMode.value
+  if (isItemizedMode.value && itemizedRows.value.length === 0) {
+    addItemizedRow()
+  }
+}
+
+const addItemizedRow = () => {
+  itemizedRows.value.push({
+    id: String(Date.now() + Math.random()),
+    description: '',
+    quantity: 1,
+    unit: 'pcs',
+    price: ''
+  })
+}
+
+const removeItemizedRow = (index: number) => {
+  if (itemizedRows.value.length > 1) {
+    itemizedRows.value.splice(index, 1)
+  } else {
+    itemizedRows.value[0] = { id: String(Date.now()), description: '', quantity: 1, unit: 'pcs', price: '' }
+  }
+}
+
+const itemizedTotal = computed(() => {
+  return itemizedRows.value.reduce((total, row) => {
+    const qty = Number(row.quantity) || 0
+    const prc = Number(row.price) || 0
+    return total + (qty * prc)
+  }, 0)
+})
+
 const journalForm = reactive({
   fund_source_id: '' as number | string,
   type: 'debit' as 'debit' | 'credit',
@@ -780,6 +1068,12 @@ const journalForm = reactive({
   amount: '' as string | number,
   date: new Date().toISOString().split('T')[0],
   description: '',
+})
+
+watch([isItemizedMode, itemizedTotal], ([isItemized, total]) => {
+  if (isItemized) {
+    journalForm.amount = total > 0 ? total.toFixed(2) : ''
+  }
 })
 
 const fundForm = reactive({
@@ -895,11 +1189,37 @@ const getTransactionSortValue = (item: any, key: string) => {
 }
 
 const handlePostJournalEntry = async () => {
-  if (!journalForm.fund_source_id || !journalForm.amount || !journalForm.description) return
+  if (!journalForm.fund_source_id || !journalForm.description) return
 
-  const numAmount = Number(journalForm.amount)
+  let numAmount = Number(journalForm.amount)
+  if (isItemizedMode.value) {
+    numAmount = itemizedTotal.value
+  }
+
+  if (!numAmount || numAmount <= 0) return
+
   const fundId = Number(journalForm.fund_source_id)
   const catId = Number(journalForm.category_id) || 1
+
+  let formattedItems: Array<{ description: string; quantity: number; unit: string; price: number; subtotal: number }> | undefined = undefined
+
+  if (isItemizedMode.value) {
+    const validRows = itemizedRows.value.filter(r => r.description && (Number(r.quantity) || 0) > 0 && (Number(r.price) || 0) >= 0)
+    if (validRows.length > 0) {
+      formattedItems = validRows.map(r => {
+        const qty = Number(r.quantity) || 0
+        const prc = Number(r.price) || 0
+        const actualUnit = r.unit === 'custom' ? (r.customUnit || 'unit') : r.unit
+        return {
+          description: r.description,
+          quantity: qty,
+          unit: actualUnit,
+          price: prc,
+          subtotal: Number((qty * prc).toFixed(2))
+        }
+      })
+    }
+  }
 
   try {
     await projectsStore.addTransaction({
@@ -910,6 +1230,7 @@ const handlePostJournalEntry = async () => {
       amount: numAmount,
       date: journalForm.date,
       note: journalForm.description,
+      items: formattedItems,
     })
 
     // Reset form & close modal
@@ -920,6 +1241,8 @@ const handlePostJournalEntry = async () => {
     journalForm.amount = ''
     journalForm.date = new Date().toISOString().split('T')[0]
     journalForm.description = ''
+    isItemizedMode.value = false
+    itemizedRows.value = [{ id: String(Date.now()), description: '', quantity: 1, unit: 'pcs', price: '' }]
     isPostJournalModalOpen.value = false
   } catch (err: any) {
     alert(err?.data?.message || err?.message || 'Failed to post transaction.')

@@ -55,7 +55,7 @@
           </tr>
         </thead>
 
-        <tbody v-if="paginatedItems.length > 0" class="divide-y divide-[var(--border-color)] text-[13px]">
+        <tbody v-if="paginatedItems.length > 0" class="divide-y divide-[var(--border-color)] text-sm font-medium">
           <tr
             v-for="(item, index) in paginatedItems"
             :key="item.id || index"
@@ -65,7 +65,7 @@
             <td
               v-for="col in columns"
               :key="col.key"
-              class="py-4 px-5 lg:px-6 align-middle"
+              class="py-4.5 px-5 lg:px-6 align-middle"
               :class="col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'"
             >
               <slot :name="`cell-${col.key}`" :item="item" :index="index" :value="getItemValue(item, col.key)">

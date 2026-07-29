@@ -50,4 +50,9 @@ class LedgerAccountItem extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function items()
+    {
+        return $this->hasMany(JournalEntryItem::class, 'ledger_account_item_id');
+    }
 }

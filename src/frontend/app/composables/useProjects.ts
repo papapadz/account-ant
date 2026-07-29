@@ -55,6 +55,14 @@ export interface ExpenseCategory {
   created_at: string
 }
 
+export interface TransactionItem {
+  description: string
+  quantity: number
+  unit: string
+  price: number
+  subtotal: number
+}
+
 export interface Transaction {
   id: number
   project_id: number
@@ -64,6 +72,7 @@ export interface Transaction {
   amount: number
   date: string
   note?: string
+  items?: TransactionItem[]
   created_at: string
 }
 
@@ -167,6 +176,15 @@ export const useProjects = () => {
 
       if (rp.journal_entries) {
         for (const je of rp.journal_entries) {
+          const rawItems = je.items || je.journal_entry_items || []
+          const items: TransactionItem[] | undefined = rawItems.length > 0 ? rawItems.map((i: any) => ({
+            description: i.description || i.item_name || 'Line Item',
+            quantity: Number(i.quantity) || 1,
+            unit: i.unit || 'pcs',
+            price: Number(i.price ?? i.unit_price) || 0,
+            subtotal: Number(i.subtotal ?? (Number(i.quantity || 1) * Number(i.price ?? i.unit_price ?? 0))),
+          })) : undefined
+
           mappedTxs.push({
             id: je.id,
             project_id: je.project_id,
@@ -176,6 +194,7 @@ export const useProjects = () => {
             amount: Number(je.amount),
             date: je.created_at?.split(' ')[0] || je.created_at || new Date().toISOString().split('T')[0],
             note: je.description,
+            items,
             created_at: je.created_at,
           })
         }
@@ -417,6 +436,7 @@ export const useProjects = () => {
     amount: number
     date: string
     note: string
+    items?: TransactionItem[]
   }) => {
     const accountingStore = useAccounting()
     if (accountingStore.accountItems.value.length === 0) {
@@ -436,6 +456,7 @@ export const useProjects = () => {
           amount: tx.amount,
           transaction_type: tx.type,
           description: tx.note,
+          items: tx.items,
         }
       })
     } catch (err) {
@@ -443,7 +464,7 @@ export const useProjects = () => {
     }
 
     // Push local transaction optimistically if not already present
-    const newTx = {
+    const newTx: Transaction = {
       id: Date.now(),
       project_id: tx.project_id,
       fund_source_id: tx.fund_source_id,
@@ -452,6 +473,7 @@ export const useProjects = () => {
       amount: Number(tx.amount),
       date: tx.date || new Date().toISOString().split('T')[0],
       note: tx.note,
+      items: tx.items ? [...tx.items] : undefined,
       created_at: new Date().toISOString(),
     }
 

@@ -15,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index(): JsonResponse
     {
-        $projects = Project::with(['city', 'projectFunds.fundAccount', 'journalEntries'])
+        $projects = Project::with(['city', 'projectFunds.fundAccount', 'journalEntries.items'])
             ->latest()
             ->get();
 
@@ -68,7 +68,8 @@ class ProjectController extends Controller
             'projectFunds.fundAccount',
             'journalEntries.ledgerAccount',
             'journalEntries.accountItem',
-            'journalEntries.fundAccount'
+            'journalEntries.fundAccount',
+            'journalEntries.items'
         ])->findOrFail($id);
 
         return response()->json([

@@ -20,3 +20,9 @@
 | **Over-Budget Warning** | Visual indicator triggered when net expenses posted against a project exceed its total allocated budget. |
 | **Button Component (`Button.vue`)** | The canonical Vue component (`src/frontend/app/components/ui/Button.vue`) encapsulating standardized variants (`primary`, `secondary`, `outline`, `danger`, `ghost`), micro-animations, loading spinners, and semantic HTML button behavior across all pages and modals. |
 | **Tabs Component (`Tabs.vue`)** | The canonical Vue component (`src/frontend/app/components/ui/Tabs.vue`) providing responsive, touch-friendly tab navigation across 3 visual variants (`segmented`, `pills`, `underline`) with smooth active indicator transitions, badge counters, and keyboard navigation. |
+| **Itemized Journal Entry** | A `Project Journal Entry` containing a granular list of individual item line rows (`Itemized Breakdown`), each with description, quantity, unit, and unit price, where entry total is calculated as the sum of line subtotals. |
+| **Item Breakdown Modal** | Interactive popover/modal launched by clicking an entry's `(N items)` badge in the transactions data table to view line item details. |
+| **`JournalEntryItem` Model** | Eloquent model representing child line items (`journal_entry_items` table) with SoftDeletes support, linked to parent `LedgerAccountItem`. |
+| **Atomic Journal Transaction** | Wrapping parent `LedgerAccountItem` creation and child `JournalEntryItem` row insertion inside `DB::transaction()` to ensure all-or-nothing database persistence. |
+
+

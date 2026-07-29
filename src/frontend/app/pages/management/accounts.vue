@@ -67,26 +67,34 @@
     </ClientOnly>
 
     <!-- Create Modal -->
-    <Modal :isOpen="isModalOpen" title="Create New Ledger Account" @close="isModalOpen = false">
+    <Modal :isOpen="isModalOpen" title="Create New Ledger Account" @close="closeModal">
       <form @submit.prevent="handleCreateAccount" class="space-y-4">
+        <!-- Error Alert Banner -->
+        <div v-if="errorMessage" class="p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-start gap-2">
+          <svg class="w-4 h-4 text-rose-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="break-words">{{ errorMessage }}</span>
+        </div>
+
         <div>
           <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Account Code *</label>
-          <input v-model="newAcc.account_code" type="text" required placeholder="1030-PREPAID" class="input-field font-mono" />
+          <input v-model="newAcc.account_code" type="text" required placeholder="1030-PREPAID" :disabled="isSubmitting" class="input-field font-mono" />
         </div>
 
         <div>
           <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Account Name *</label>
-          <input v-model="newAcc.account_name" type="text" required placeholder="Prepaid Software Subscriptions" class="input-field" />
+          <input v-model="newAcc.account_name" type="text" required placeholder="Prepaid Software Subscriptions" :disabled="isSubmitting" class="input-field" />
         </div>
 
         <div>
           <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
-          <textarea v-model="newAcc.description" rows="3" placeholder="Account purpose..." class="input-field"></textarea>
+          <textarea v-model="newAcc.description" rows="3" placeholder="Account purpose..." :disabled="isSubmitting" class="input-field"></textarea>
         </div>
 
         <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
-          <UiButton type="button" variant="secondary" size="sm" @click="isModalOpen = false">Cancel</UiButton>
-          <UiButton type="submit" variant="primary" size="sm">Save Ledger Account</UiButton>
+          <UiButton type="button" variant="secondary" size="sm" :disabled="isSubmitting" @click="closeModal">Cancel</UiButton>
+          <UiButton type="submit" variant="primary" size="sm" :loading="isSubmitting" :disabled="isSubmitting">Save Ledger Account</UiButton>
         </div>
       </form>
     </Modal>
@@ -96,7 +104,16 @@
 <script setup lang="ts">
 const accounting = useAccounting()
 const isModalOpen = ref(false)
+const isSubmitting = ref(false)
+const errorMessage = ref('')
 const searchQuery = ref('')
+
+const closeModal = () => {
+  if (!isSubmitting.value) {
+    isModalOpen.value = false
+    errorMessage.value = ''
+  }
+}
 
 const filteredAccounts = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
@@ -116,11 +133,20 @@ const newAcc = reactive({
   ledger_account_id: 1,
 })
 
-const handleCreateAccount = () => {
-  accounting.addLedgerAccount({ ...newAcc })
-  isModalOpen.value = false
-  newAcc.account_code = ''
-  newAcc.account_name = ''
-  newAcc.description = ''
+const handleCreateAccount = async () => {
+  isSubmitting.value = true
+  errorMessage.value = ''
+  try {
+    await accounting.addLedgerAccount({ ...newAcc })
+    isModalOpen.value = false
+    newAcc.account_code = ''
+    newAcc.account_name = ''
+    newAcc.description = ''
+  } catch (err: any) {
+    console.error('Failed to create ledger account:', err)
+    errorMessage.value = err?.data?.message || err?.statusMessage || err?.message || 'Failed to create ledger account. Please check inputs and try again.'
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
