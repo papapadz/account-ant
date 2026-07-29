@@ -19,6 +19,7 @@ class FundAccountController extends Controller
                 'fund_code' => 'FND-101',
                 'fund_name' => 'General Operating Fund',
                 'description' => 'Primary corporate liquidity and daily operational expenses',
+                'amount' => 500000.00,
                 'user_id' => 1,
                 'ledger_account_id' => 10,
             ]);
@@ -27,6 +28,7 @@ class FundAccountController extends Controller
                 'fund_code' => 'FND-202',
                 'fund_name' => 'Capital Expenditure & R&D Fund',
                 'description' => 'Reserved capital for software automation & infrastructure expansion',
+                'amount' => 750000.00,
                 'user_id' => 1,
                 'ledger_account_id' => 20,
             ]);
@@ -42,7 +44,8 @@ class FundAccountController extends Controller
             'fund_code' => 'required|string|max:20',
             'fund_name' => 'required|string|max:100',
             'description' => 'nullable|string|max:255',
-            'company_id' => 'nullable|integer',
+            'amount' => 'numeric|min:0',
+            'company_id' => 'integer',
         ]);
 
         $fund = FundAccount::create([
@@ -50,6 +53,7 @@ class FundAccountController extends Controller
             'fund_code' => $validated['fund_code'],
             'fund_name' => $validated['fund_name'],
             'description' => $validated['description'] ?? null,
+            'amount' => $validated['amount'] ?? 0.00,
             'user_id' => 1,
             'ledger_account_id' => 1,
         ]);

@@ -1,0 +1,771 @@
+{
+  "communities": {
+    "0": [
+      "accounting_ledgeraccountitem_ledgeraccountitem",
+      "accounting_ledgeraccountitem_ledgeraccountitem_accountitem",
+      "accounting_ledgeraccountitem_ledgeraccountitem_fundaccount",
+      "accounting_ledgeraccountitem_ledgeraccountitem_ledgeraccount",
+      "accounting_ledgeraccountitem_ledgeraccountitem_project",
+      "accounting_ledgeraccountitem_ledgeraccountitem_user",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller_index",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller_store",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller_summary",
+      "backend_app_http_controllers_api_ledgeraccountitemcontroller_php",
+      "backend_app_models_accounting_ledgeraccountitem_php",
+      "backend_database_seeders_ledgeritemseeder_php",
+      "seeders_ledgeritemseeder_ledgeritemseeder",
+      "seeders_ledgeritemseeder_ledgeritemseeder_run"
+    ],
+    "1": [
+      "accounting_projectfund_projectfund",
+      "accounting_projectfund_projectfund_fundaccount",
+      "accounting_projectfund_projectfund_project",
+      "accounting_projectfund_projectfund_user",
+      "api_projectcontroller_projectcontroller",
+      "api_projectcontroller_projectcontroller_addfund",
+      "api_projectcontroller_projectcontroller_destroy",
+      "api_projectcontroller_projectcontroller_index",
+      "api_projectcontroller_projectcontroller_show",
+      "api_projectcontroller_projectcontroller_store",
+      "backend_app_http_controllers_api_projectcontroller_php",
+      "backend_app_models_accounting_projectfund_php",
+      "backend_database_seeders_projectseeder_php",
+      "seeders_projectseeder_projectseeder",
+      "seeders_projectseeder_projectseeder_run"
+    ],
+    "2": [
+      "accounting_project_project",
+      "accounting_project_project_city",
+      "accounting_project_project_fundaccounts",
+      "accounting_project_project_getbudgetutilizedpercentageattribute",
+      "accounting_project_project_getisoverbudgetattribute",
+      "accounting_project_project_getrunningbalanceattribute",
+      "accounting_project_project_gettotalallocatedfundsattribute",
+      "accounting_project_project_gettotalcreditsattribute",
+      "accounting_project_project_gettotaldebitsattribute",
+      "accounting_project_project_gettotalexpensesattribute",
+      "accounting_project_project_journalentries",
+      "accounting_project_project_projectfunds",
+      "accounting_project_project_user",
+      "backend_app_models_accounting_project_php"
+    ],
+    "3": [
+      "address_country_country",
+      "address_region_region",
+      "address_state_state",
+      "address_subregion_subregion",
+      "backend_app_models_address_country_php",
+      "backend_app_models_address_region_php",
+      "backend_app_models_address_state_php",
+      "backend_app_models_address_subregion_php",
+      "backend_database_seeders_addressseeder_php",
+      "seeders_addressseeder_addressseeder",
+      "seeders_addressseeder_addressseeder_run"
+    ],
+    "4": [
+      "frontend_app_pages_project_id_vue",
+      "project_id_formataddress",
+      "project_id_getcategoryname",
+      "project_id_getfundsourcename",
+      "project_id_getfundsourcesortvalue",
+      "project_id_gettransactionsortvalue",
+      "project_id_handleaddfundsource",
+      "project_id_handlepostjournalentry"
+    ],
+    "5": [
+      "api_fundaccountcontroller_fundaccountcontroller",
+      "api_fundaccountcontroller_fundaccountcontroller_destroy",
+      "api_fundaccountcontroller_fundaccountcontroller_index",
+      "api_fundaccountcontroller_fundaccountcontroller_show",
+      "api_fundaccountcontroller_fundaccountcontroller_store",
+      "backend_app_http_controllers_api_fundaccountcontroller_php"
+    ],
+    "6": [
+      "accounting_ledgeraccount_ledgeraccount",
+      "accounting_ledgeraccount_ledgeraccount_accountitems",
+      "accounting_ledgeraccount_ledgeraccount_fundaccount",
+      "accounting_ledgeraccount_ledgeraccount_journalentries",
+      "accounting_ledgeraccount_ledgeraccount_user",
+      "backend_app_models_accounting_ledgeraccount_php"
+    ],
+    "7": [
+      "api_authcontroller_authcontroller",
+      "api_authcontroller_authcontroller_login",
+      "api_authcontroller_authcontroller_register",
+      "api_authcontroller_authcontroller_user",
+      "backend_app_http_controllers_api_authcontroller_php"
+    ],
+    "8": [
+      "api_ledgeraccountcontroller_ledgeraccountcontroller",
+      "api_ledgeraccountcontroller_ledgeraccountcontroller_destroy",
+      "api_ledgeraccountcontroller_ledgeraccountcontroller_index",
+      "api_ledgeraccountcontroller_ledgeraccountcontroller_store",
+      "backend_app_http_controllers_api_ledgeraccountcontroller_php"
+    ],
+    "9": [
+      "accounting_fundaccount_fundaccount",
+      "accounting_fundaccount_fundaccount_company",
+      "accounting_fundaccount_fundaccount_ledgeraccounts",
+      "accounting_fundaccount_fundaccount_user",
+      "backend_app_models_accounting_fundaccount_php"
+    ],
+    "10": [
+      "backend_app_models_hr_personaffiliation_php",
+      "hr_personaffiliation_personaffiliation",
+      "hr_personaffiliation_personaffiliation_company",
+      "hr_personaffiliation_personaffiliation_person",
+      "hr_personaffiliation_personaffiliation_position"
+    ],
+    "11": [
+      "frontend_pages_management_projects_id_vue",
+      "projects_id_getaccountcode",
+      "projects_id_getfundrunningbal",
+      "projects_id_handleallocatefund",
+      "projects_id_handlepostjournal"
+    ],
+    "12": [
+      "api_accountitemcontroller_accountitemcontroller",
+      "api_accountitemcontroller_accountitemcontroller_index",
+      "api_accountitemcontroller_accountitemcontroller_store",
+      "backend_app_http_controllers_api_accountitemcontroller_php"
+    ],
+    "13": [
+      "api_settingscontroller_settingscontroller",
+      "api_settingscontroller_settingscontroller_updatecompany",
+      "api_settingscontroller_settingscontroller_updateprofile",
+      "backend_app_http_controllers_api_settingscontroller_php"
+    ],
+    "14": [
+      "backend_app_models_user_php",
+      "models_user_user",
+      "models_user_user_casts",
+      "models_user_user_personaffiliation"
+    ],
+    "15": [
+      "backend_app_models_hr_company_php",
+      "hr_company_company",
+      "hr_company_company_creator",
+      "hr_company_company_fundaccounts"
+    ],
+    "16": [
+      "backend_app_providers_appserviceprovider_php",
+      "providers_appserviceprovider_appserviceprovider",
+      "providers_appserviceprovider_appserviceprovider_boot",
+      "providers_appserviceprovider_appserviceprovider_register"
+    ],
+    "17": [
+      "backend_database_factories_userfactory_php",
+      "factories_userfactory_userfactory",
+      "factories_userfactory_userfactory_definition",
+      "factories_userfactory_userfactory_unverified"
+    ],
+    "18": [
+      "frontend_pages_management_journal_vue",
+      "management_journal_getaccountcode",
+      "management_journal_getitemname",
+      "management_journal_handlecreateentry"
+    ],
+    "19": [
+      "api_citycontroller_citycontroller",
+      "api_citycontroller_citycontroller_index",
+      "backend_app_http_controllers_api_citycontroller_php"
+    ],
+    "20": [
+      "backend_app_models_person_php",
+      "models_person_person",
+      "models_person_person_affiliations"
+    ],
+    "21": [
+      "accounting_accountitem_accountitem",
+      "accounting_accountitem_accountitem_ledgeraccount",
+      "backend_app_models_accounting_accountitem_php"
+    ],
+    "22": [
+      "backend_database_migrations_0001_01_01_000000_create_users_table_php",
+      "migrations_0001_01_01_000000_create_users_table_down",
+      "migrations_0001_01_01_000000_create_users_table_up"
+    ],
+    "23": [
+      "backend_database_migrations_0001_01_01_000001_create_cache_table_php",
+      "migrations_0001_01_01_000001_create_cache_table_down",
+      "migrations_0001_01_01_000001_create_cache_table_up"
+    ],
+    "24": [
+      "backend_database_migrations_0001_01_01_000002_create_jobs_table_php",
+      "migrations_0001_01_01_000002_create_jobs_table_down",
+      "migrations_0001_01_01_000002_create_jobs_table_up"
+    ],
+    "25": [
+      "backend_database_migrations_2026_07_23_025942_create_regions_table_php",
+      "migrations_2026_07_23_025942_create_regions_table_down",
+      "migrations_2026_07_23_025942_create_regions_table_up"
+    ],
+    "26": [
+      "backend_database_migrations_2026_07_23_030017_create_sub_regions_table_php",
+      "migrations_2026_07_23_030017_create_sub_regions_table_down",
+      "migrations_2026_07_23_030017_create_sub_regions_table_up"
+    ],
+    "27": [
+      "backend_database_migrations_2026_07_23_030030_create_countries_table_php",
+      "migrations_2026_07_23_030030_create_countries_table_down",
+      "migrations_2026_07_23_030030_create_countries_table_up"
+    ],
+    "28": [
+      "backend_database_migrations_2026_07_23_030042_create_states_table_php",
+      "migrations_2026_07_23_030042_create_states_table_down",
+      "migrations_2026_07_23_030042_create_states_table_up"
+    ],
+    "29": [
+      "backend_database_migrations_2026_07_23_030052_create_cities_table_php",
+      "migrations_2026_07_23_030052_create_cities_table_down",
+      "migrations_2026_07_23_030052_create_cities_table_up"
+    ],
+    "30": [
+      "backend_database_migrations_2026_07_23_030114_create_people_table_php",
+      "migrations_2026_07_23_030114_create_people_table_down",
+      "migrations_2026_07_23_030114_create_people_table_up"
+    ],
+    "31": [
+      "backend_database_migrations_2026_07_23_030130_create_person_addresses_table_php",
+      "migrations_2026_07_23_030130_create_person_addresses_table_down",
+      "migrations_2026_07_23_030130_create_person_addresses_table_up"
+    ],
+    "32": [
+      "backend_database_migrations_2026_07_23_030207_create_companies_table_php",
+      "migrations_2026_07_23_030207_create_companies_table_down",
+      "migrations_2026_07_23_030207_create_companies_table_up"
+    ],
+    "33": [
+      "backend_database_migrations_2026_07_23_030253_create_positions_table_php",
+      "migrations_2026_07_23_030253_create_positions_table_down",
+      "migrations_2026_07_23_030253_create_positions_table_up"
+    ],
+    "34": [
+      "backend_database_migrations_2026_07_23_030316_create_person_affiliations_table_php",
+      "migrations_2026_07_23_030316_create_person_affiliations_table_down",
+      "migrations_2026_07_23_030316_create_person_affiliations_table_up"
+    ],
+    "35": [
+      "backend_database_migrations_2026_07_23_030603_add_person_affiliations_id_to_users_php",
+      "migrations_2026_07_23_030603_add_person_affiliations_id_to_users_down",
+      "migrations_2026_07_23_030603_add_person_affiliations_id_to_users_up"
+    ],
+    "36": [
+      "backend_database_migrations_2026_07_23_031053_create_fund_accounts_table_php",
+      "migrations_2026_07_23_031053_create_fund_accounts_table_down",
+      "migrations_2026_07_23_031053_create_fund_accounts_table_up"
+    ],
+    "37": [
+      "backend_database_migrations_2026_07_23_031704_create_ledger_accounts_table_php",
+      "migrations_2026_07_23_031704_create_ledger_accounts_table_down",
+      "migrations_2026_07_23_031704_create_ledger_accounts_table_up"
+    ],
+    "38": [
+      "backend_database_migrations_2026_07_23_031708_create_account_items_table_php",
+      "migrations_2026_07_23_031708_create_account_items_table_down",
+      "migrations_2026_07_23_031708_create_account_items_table_up"
+    ],
+    "39": [
+      "backend_database_migrations_2026_07_23_033118_create_ledger_account_items_table_php",
+      "migrations_2026_07_23_033118_create_ledger_account_items_table_down",
+      "migrations_2026_07_23_033118_create_ledger_account_items_table_up"
+    ],
+    "40": [
+      "backend_database_migrations_2026_07_23_093000_add_fund_account_id_to_ledger_account_items_table_php",
+      "migrations_2026_07_23_093000_add_fund_account_id_to_ledger_account_items_table_down",
+      "migrations_2026_07_23_093000_add_fund_account_id_to_ledger_account_items_table_up"
+    ],
+    "41": [
+      "backend_database_migrations_2026_07_24_000001_create_projects_table_php",
+      "migrations_2026_07_24_000001_create_projects_table_down",
+      "migrations_2026_07_24_000001_create_projects_table_up"
+    ],
+    "42": [
+      "backend_database_migrations_2026_07_24_000002_create_project_funds_table_php",
+      "migrations_2026_07_24_000002_create_project_funds_table_down",
+      "migrations_2026_07_24_000002_create_project_funds_table_up"
+    ],
+    "43": [
+      "backend_database_migrations_2026_07_24_000003_add_project_id_to_ledger_account_items_table_php",
+      "migrations_2026_07_24_000003_add_project_id_to_ledger_account_items_table_down",
+      "migrations_2026_07_24_000003_add_project_id_to_ledger_account_items_table_up"
+    ],
+    "44": [
+      "backend_database_migrations_2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable_php",
+      "migrations_2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable_down",
+      "migrations_2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable_up"
+    ],
+    "45": [
+      "backend_database_migrations_2026_07_28_000002_add_amount_to_fund_accounts_table_php",
+      "migrations_2026_07_28_000002_add_amount_to_fund_accounts_table_down",
+      "migrations_2026_07_28_000002_add_amount_to_fund_accounts_table_up"
+    ],
+    "46": [
+      "backend_database_seeders_accountingseeder_php",
+      "seeders_accountingseeder_accountingseeder",
+      "seeders_accountingseeder_accountingseeder_run"
+    ],
+    "47": [
+      "backend_database_seeders_databaseseeder_php",
+      "seeders_databaseseeder_databaseseeder",
+      "seeders_databaseseeder_databaseseeder_run"
+    ],
+    "48": [
+      "backend_database_seeders_hrseeder_php",
+      "seeders_hrseeder_hrseeder",
+      "seeders_hrseeder_hrseeder_run"
+    ],
+    "49": [
+      "backend_tests_feature_exampletest_php",
+      "feature_exampletest_exampletest",
+      "feature_exampletest_exampletest_test_the_application_returns_a_successful_response"
+    ],
+    "50": [
+      "backend_tests_unit_exampletest_php",
+      "unit_exampletest_exampletest",
+      "unit_exampletest_exampletest_test_that_true_is_true"
+    ],
+    "51": [
+      "composables_useaccounting_useaccounting",
+      "frontend_app_composables_useaccounting_ts",
+      "frontend_composables_useaccounting_ts"
+    ],
+    "52": [
+      "composables_useprojects_useprojects",
+      "frontend_app_composables_useprojects_ts",
+      "frontend_composables_useprojects_ts"
+    ],
+    "53": [
+      "frontend_pages_management_projects_index_vue",
+      "projects_index_getmetrics",
+      "projects_index_handlecreateproject"
+    ],
+    "54": [
+      "backend_app_http_controllers_controller_php",
+      "controllers_controller_controller"
+    ],
+    "55": [
+      "backend_app_models_personaddress_php",
+      "models_personaddress_personaddress"
+    ],
+    "56": [
+      "address_city_city",
+      "backend_app_models_address_city_php"
+    ],
+    "57": [
+      "backend_app_models_hr_position_php",
+      "hr_position_position"
+    ],
+    "58": [
+      "backend_tests_testcase_php",
+      "tests_testcase_testcase"
+    ],
+    "59": [
+      "frontend_app_components_ui_datatable_vue",
+      "ui_datatable_if"
+    ],
+    "60": [
+      "composables_useapi_useapi",
+      "frontend_app_composables_useapi_ts"
+    ],
+    "61": [
+      "composables_useauth_useauth",
+      "frontend_app_composables_useauth_ts"
+    ],
+    "62": [
+      "composables_usetheme_usetheme",
+      "frontend_app_composables_usetheme_ts"
+    ],
+    "63": [
+      "frontend_pages_index_vue",
+      "pages_index_formatcurrency"
+    ],
+    "64": [
+      "readme_laravel_framework",
+      "readme_nuxt_framework"
+    ],
+    "65": [
+      "backend_vite_config_js"
+    ],
+    "66": [
+      "backend_bootstrap_app_php"
+    ],
+    "67": [
+      "backend_bootstrap_providers_php"
+    ],
+    "68": [
+      "backend_bootstrap_cache_config_php"
+    ],
+    "69": [
+      "backend_bootstrap_cache_packages_php"
+    ],
+    "70": [
+      "backend_bootstrap_cache_services_php"
+    ],
+    "71": [
+      "backend_config_app_php"
+    ],
+    "72": [
+      "backend_config_auth_php"
+    ],
+    "73": [
+      "backend_config_cache_php"
+    ],
+    "74": [
+      "backend_config_database_php"
+    ],
+    "75": [
+      "backend_config_filesystems_php"
+    ],
+    "76": [
+      "backend_config_logging_php"
+    ],
+    "77": [
+      "backend_config_mail_php"
+    ],
+    "78": [
+      "backend_config_queue_php"
+    ],
+    "79": [
+      "backend_config_services_php"
+    ],
+    "80": [
+      "backend_config_session_php"
+    ],
+    "81": [
+      "backend_public_index_php"
+    ],
+    "82": [
+      "backend_resources_js_app_js"
+    ],
+    "83": [
+      "backend_resources_js_bootstrap_js"
+    ],
+    "84": [
+      "backend_resources_views_welcome_blade_php"
+    ],
+    "85": [
+      "backend_routes_api_php"
+    ],
+    "86": [
+      "backend_routes_console_php"
+    ],
+    "87": [
+      "backend_routes_web_php"
+    ],
+    "88": [
+      "backend_storage_framework_views_68dde76b13444c1e423ea05193bb319a_php"
+    ],
+    "89": [
+      "frontend_capacitor_config_ts"
+    ],
+    "90": [
+      "frontend_nuxt_config_ts"
+    ],
+    "91": [
+      "frontend_app_app_vue"
+    ],
+    "92": [
+      "frontend_app_components_kpicard_vue"
+    ],
+    "93": [
+      "frontend_app_components_modal_vue"
+    ],
+    "94": [
+      "frontend_app_components_dashboard_fundexpensepiechart_vue"
+    ],
+    "95": [
+      "frontend_app_components_dashboard_projectmonthlybarchart_vue"
+    ],
+    "96": [
+      "frontend_app_components_ui_badge_vue"
+    ],
+    "97": [
+      "frontend_app_components_ui_button_vue"
+    ],
+    "98": [
+      "frontend_app_components_ui_card_vue"
+    ],
+    "99": [
+      "frontend_app_components_ui_input_vue"
+    ],
+    "100": [
+      "frontend_app_components_ui_progressbar_vue"
+    ],
+    "101": [
+      "frontend_app_components_ui_tabs_vue"
+    ],
+    "102": [
+      "frontend_app_layouts_auth_vue"
+    ],
+    "103": [
+      "frontend_app_layouts_default_vue"
+    ],
+    "104": [
+      "frontend_app_pages_index_vue"
+    ],
+    "105": [
+      "frontend_app_pages_login_vue"
+    ],
+    "106": [
+      "frontend_app_pages_register_vue"
+    ],
+    "107": [
+      "frontend_app_pages_settings_vue"
+    ],
+    "108": [
+      "frontend_app_pages_management_accounts_vue"
+    ],
+    "109": [
+      "frontend_app_pages_management_funds_vue"
+    ],
+    "110": [
+      "frontend_app_pages_management_items_vue"
+    ],
+    "111": [
+      "frontend_app_pages_management_journal_vue"
+    ],
+    "112": [
+      "frontend_app_pages_projects_index_vue"
+    ],
+    "113": [
+      "frontend_app_pages_projects_id_vue"
+    ],
+    "114": [
+      "frontend_app_plugins_ionic_client_ts"
+    ],
+    "115": [
+      "frontend_components_appheader_vue"
+    ],
+    "116": [
+      "frontend_components_appsidebar_vue"
+    ],
+    "117": [
+      "frontend_components_prototypeswitcher_vue"
+    ],
+    "118": [
+      "frontend_pages_settings_vue"
+    ],
+    "119": [
+      "frontend_pages_management_accounts_vue"
+    ],
+    "120": [
+      "frontend_pages_management_funds_vue"
+    ],
+    "121": [
+      "frontend_pages_management_items_vue"
+    ]
+  },
+  "cohesion": {
+    "0": 0.15,
+    "1": 0.13,
+    "2": 0.24,
+    "3": 0.18,
+    "4": 0.32,
+    "5": 0.33,
+    "6": 0.33,
+    "7": 0.6,
+    "8": 0.4,
+    "9": 0.4,
+    "10": 0.4,
+    "11": 0.4,
+    "12": 0.5,
+    "13": 0.5,
+    "14": 0.5,
+    "15": 0.5,
+    "16": 0.5,
+    "17": 0.5,
+    "18": 0.5,
+    "19": 0.67,
+    "20": 0.67,
+    "21": 0.67,
+    "22": 0.67,
+    "23": 0.67,
+    "24": 0.67,
+    "25": 0.67,
+    "26": 0.67,
+    "27": 0.67,
+    "28": 0.67,
+    "29": 0.67,
+    "30": 0.67,
+    "31": 0.67,
+    "32": 0.67,
+    "33": 0.67,
+    "34": 0.67,
+    "35": 0.67,
+    "36": 0.67,
+    "37": 0.67,
+    "38": 0.67,
+    "39": 0.67,
+    "40": 0.67,
+    "41": 0.67,
+    "42": 0.67,
+    "43": 0.67,
+    "44": 0.67,
+    "45": 0.67,
+    "46": 0.67,
+    "47": 0.67,
+    "48": 0.67,
+    "49": 0.67,
+    "50": 0.67,
+    "51": 0.67,
+    "52": 0.67,
+    "53": 0.67,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0
+  },
+  "gods": [
+    {
+      "id": "accounting_project_project",
+      "label": "Project",
+      "degree": 13
+    },
+    {
+      "id": "accounting_ledgeraccountitem_ledgeraccountitem",
+      "label": "LedgerAccountItem",
+      "degree": 10
+    },
+    {
+      "id": "api_projectcontroller_projectcontroller",
+      "label": "ProjectController",
+      "degree": 6
+    },
+    {
+      "id": "accounting_projectfund_projectfund",
+      "label": "ProjectFund",
+      "degree": 6
+    },
+    {
+      "id": "api_fundaccountcontroller_fundaccountcontroller",
+      "label": "FundAccountController",
+      "degree": 5
+    },
+    {
+      "id": "accounting_ledgeraccount_ledgeraccount",
+      "label": "LedgerAccount",
+      "degree": 5
+    },
+    {
+      "id": "api_authcontroller_authcontroller",
+      "label": "AuthController",
+      "degree": 4
+    },
+    {
+      "id": "api_ledgeraccountcontroller_ledgeraccountcontroller",
+      "label": "LedgerAccountController",
+      "degree": 4
+    },
+    {
+      "id": "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller",
+      "label": "LedgerAccountItemController",
+      "degree": 4
+    },
+    {
+      "id": "accounting_fundaccount_fundaccount",
+      "label": "FundAccount",
+      "degree": 4
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Laravel Framework",
+      "target": "Nuxt 3 Framework",
+      "source_files": [
+        "src/backend/README.md",
+        "src/frontend/README.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source"
+    }
+  ],
+  "questions": [
+    {
+      "type": "verify_inferred",
+      "question": "Are the 4 inferred relationships involving `LedgerAccountItem` (e.g. with `.index()` and `.store()`) actually correct?",
+      "why": "`LedgerAccountItem` has 4 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 2 inferred relationships involving `ProjectFund` (e.g. with `.addFund()` and `.run()`) actually correct?",
+      "why": "`ProjectFund` has 2 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Controller`, `PersonAddress`, `City` to the rest of the system?",
+      "why": "7 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

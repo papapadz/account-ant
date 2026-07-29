@@ -1,6 +1,5 @@
 <template>
-  <NuxtLayout name="auth">
-    <div class="glass-card p-8 rounded-2xl border border-[var(--border-color)] shadow-2xl space-y-6">
+  <div class="glass-card p-8 rounded-2xl border border-[var(--border-color)] shadow-2xl space-y-6">
       <!-- Step Header Progress -->
       <div>
         <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
@@ -158,34 +157,34 @@
 
         <!-- Action Controls -->
         <div class="pt-6 border-t border-[var(--border-color)] flex items-center justify-between gap-3">
-          <button
+          <UiButton
             v-if="currentStep > 1"
             type="button"
+            variant="secondary"
+            size="md"
             @click="currentStep--"
-            class="btn-secondary py-2.5 px-4 text-xs"
           >
             &larr; Back
-          </button>
+          </UiButton>
           <div v-else></div>
 
-          <button
+          <UiButton
             type="submit"
-            :disabled="isSubmitting"
-            class="btn-primary py-2.5 px-6 text-xs font-bold shadow-lg shadow-emerald-500/20"
+            variant="primary"
+            size="md"
+            :loading="isSubmitting"
           >
-            <span v-if="isSubmitting">Registering Entity...</span>
-            <span v-else-if="currentStep < 4">Continue &rarr;</span>
+            <span v-if="currentStep < 4">Continue &rarr;</span>
             <span v-else>Complete Onboarding & Launch &rarr;</span>
-          </button>
+          </UiButton>
         </div>
       </form>
     </div>
-  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  layout: false,
+  layout: 'auth',
 })
 
 const auth = useAuth()

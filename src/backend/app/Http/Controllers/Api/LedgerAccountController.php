@@ -41,14 +41,14 @@ class LedgerAccountController extends Controller
             'account_code' => 'required|string|max:20',
             'account_name' => 'required|string|max:100',
             'description' => 'nullable|string|max:255',
-            'fund_account_id' => 'required|integer',
+            'fund_account_id' => 'nullable|integer',
         ]);
 
         $account = LedgerAccount::create([
             'account_code' => $validated['account_code'],
             'account_name' => $validated['account_name'],
             'description' => $validated['description'] ?? null,
-            'fund_account_id' => $validated['fund_account_id'],
+            'fund_account_id' => $validated['fund_account_id'] ?? null,
             'user_id' => 1,
             'ledger_account_id' => 1,
         ]);

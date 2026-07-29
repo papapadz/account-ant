@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen bg-[var(--bg-app)] text-[var(--text-main)] flex items-center justify-center p-4 relative overflow-hidden font-sans transition-colors duration-200">
+  <div class="w-full h-full min-h-screen bg-[var(--bg-app)] text-[var(--text-main)] flex items-center justify-center p-4 relative overflow-hidden font-sans transition-colors duration-200">
     <!-- Ambient Background Glow Effects -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-    <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
+    <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
     <div class="w-full max-w-xl z-10">
       <!-- Brand Header -->

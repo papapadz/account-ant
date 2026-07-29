@@ -1,7 +1,26 @@
+export interface StateModel {
+  id: number
+  name: string
+  country_code?: string
+}
+
+export interface CityModel {
+  id: number
+  name: string
+  state_id: number
+  state_code?: string
+  state?: StateModel
+}
+
 export interface ProjectAddress {
   street: string
   city: string
   zip_code: string
+  state_id?: number
+  city_id?: number
+  house_number?: string
+  village?: string
+  barangay?: string
 }
 
 export interface Project {
@@ -14,6 +33,7 @@ export interface Project {
   start_date: string
   status: 'active' | 'on-hold' | 'completed'
   created_at: string
+  city_id?: number
 }
 
 export interface FundSource {
@@ -30,6 +50,8 @@ export interface ExpenseCategory {
   name: string
   code?: string
   status: 'active' | 'archived'
+  ledger_account_id?: number
+  transaction_type?: 'debit' | 'credit'
   created_at: string
 }
 
@@ -53,17 +75,63 @@ export const useProjects = () => {
   const fundSources = useState<FundSource[]>('construction_fund_sources', () => [])
   const categories = useState<ExpenseCategory[]>('construction_categories', () => [])
   const transactions = useState<Transaction[]>('construction_transactions', () => [])
+  const cities = useState<CityModel[]>('address_cities', () => [])
+  const states = useState<StateModel[]>('address_states', () => [])
+
+  const fetchCities = async () => {
+    try {
+      const res = await api.request<any>('/cities')
+      const rawCities = res.data || res || []
+      cities.value = rawCities.map((c: any) => ({
+        id: c.id,
+        name: c.name,
+        state_id: c.state_id,
+        state_code: c.state_code,
+        state: c.state ? { id: c.state.id, name: c.state.name, country_code: c.state.country_code } : undefined
+      }))
+
+      const stateMap = new Map<number, StateModel>()
+      for (const c of rawCities) {
+        if (c.state && c.state.id) {
+          stateMap.set(c.state.id, { id: c.state.id, name: c.state.name, country_code: c.state.country_code })
+        } else if (c.state_id) {
+          stateMap.set(c.state_id, { id: c.state_id, name: c.state_code || `State #${c.state_id}` })
+        }
+      }
+      if (stateMap.size === 0) {
+        stateMap.set(1, { id: 1, name: 'Metro Manila', country_code: 'PH' })
+      }
+      states.value = Array.from(stateMap.values())
+    } catch (err) {
+      console.error('Failed to fetch cities:', err)
+      states.value = [{ id: 1, name: 'Metro Manila', country_code: 'PH' }]
+      cities.value = [
+        { id: 1, name: 'Quezon City', state_id: 1, state_code: 'MM' },
+        { id: 2, name: 'Taguig City (BGC)', state_id: 1, state_code: 'MM' },
+        { id: 3, name: 'Pasig City (Ortigas)', state_id: 1, state_code: 'MM' },
+        { id: 4, name: 'Cebu City', state_id: 1, state_code: 'MM' },
+        { id: 5, name: 'Davao City', state_id: 1, state_code: 'MM' },
+      ]
+    }
+  }
 
   const mapProjectFromBackend = (p: any): Project => {
+    const cityName = p.city?.name || p.barangay || 'City Center'
     return {
       id: p.id,
       name: p.name,
       description: p.description,
       budget: Number(p.budget),
+      city_id: p.city_id,
       address: {
         street: p.street || '',
-        city: p.barangay || '',
+        city: cityName,
         zip_code: p.zip || '',
+        state_id: p.city?.state_id || 1,
+        city_id: p.city_id,
+        barangay: p.barangay || '',
+        house_number: p.house_number || '',
+        village: p.village || '',
       },
       client_name: p.client_name,
       start_date: p.start_date,
@@ -127,6 +195,8 @@ export const useProjects = () => {
       name: item.item_name,
       code: item.item_code,
       status: 'active',
+      ledger_account_id: item.ledger_account_id,
+      transaction_type: item.transaction_type || 'debit',
       created_at: new Date().toISOString(),
     }))
   }
@@ -164,7 +234,10 @@ export const useProjects = () => {
   }
 
   const getProjectActiveFundBalance = (projectId: number): number => {
-    return getProjectTotalFunds(projectId) - getProjectTotalSpent(projectId)
+    const totalFunds = getProjectTotalFunds(projectId)
+    const totalCredits = getProjectTotalCredits(projectId)
+    const totalDebits = getProjectTotalDebits(projectId)
+    return (totalFunds + totalCredits) - totalDebits
   }
 
   const getProjectRemainingBalance = (projectId: number): number => {
@@ -178,10 +251,16 @@ export const useProjects = () => {
       .reduce((sum, t) => sum + Number(t.amount), 0)
   }
 
+  const getFundSourceCredits = (fundSourceId: number): number => {
+    return transactions.value
+      .filter(t => t.fund_source_id === fundSourceId && t.type === 'credit')
+      .reduce((sum, t) => sum + Number(t.amount), 0)
+  }
+
   const getFundSourceRemaining = (fundSourceId: number): number => {
     const fund = fundSources.value.find(f => f.id === fundSourceId)
     if (!fund) return 0
-    return Number(fund.amount) - getFundSourceSpent(fundSourceId)
+    return Number(fund.amount) + getFundSourceCredits(fundSourceId) - getFundSourceSpent(fundSourceId)
   }
 
   const getFundSourceUsagePercentage = (fundSourceId: number): number => {
@@ -205,18 +284,60 @@ export const useProjects = () => {
     return totalAppManagedFunds.value - totalAppSpent.value
   })
 
+  const getFundProjectExpenses = (fundAccountId: number) => {
+    // Aggregates expenses per project for the given fund
+    if (!fundAccountId) return []
+    const projectTxs = transactions.value.filter(t => t.fund_source_id === fundAccountId && t.type === 'debit')
+    const totalSpent = projectTxs.reduce((sum, t) => sum + Number(t.amount), 0)
+    
+    const projectMap = new Map<number, number>()
+    for (const tx of projectTxs) {
+      const cur = projectMap.get(tx.project_id) || 0
+      projectMap.set(tx.project_id, cur + Number(tx.amount))
+    }
+
+    return Array.from(projectMap.entries()).map(([pId, spent]) => {
+      const proj = projects.value.find(p => p.id === pId)
+      return {
+        projectId: pId,
+        projectName: proj ? proj.name : `Project #${pId}`,
+        amount: spent,
+        percentage: totalSpent > 0 ? Math.round((spent / totalSpent) * 100) : 0,
+      }
+    })
+  }
+
+  const getProjectMonthlyExpenses = (projectId: number) => {
+    // Array of 12 months for selected project
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const monthlyData = months.map((month, idx) => ({ month, monthIndex: idx + 1, amount: 0 }))
+
+    const projTxs = transactions.value.filter(t => t.project_id === projectId && t.type === 'debit')
+    for (const tx of projTxs) {
+      if (!tx.date) continue
+      const dateObj = new Date(tx.date)
+      const mIdx = dateObj.getMonth()
+      if (mIdx >= 0 && mIdx < 12) {
+        monthlyData[mIdx].amount += Number(tx.amount)
+      }
+    }
+
+    return monthlyData
+  }
+
   // --- Mutations ---
 
-  const addProject = async (project: Omit<Project, 'id' | 'created_at'>) => {
+  const addProject = async (project: Omit<Project, 'id' | 'created_at'> & { city_id?: number; state_id?: number }) => {
     const addr = typeof project.address === 'object' ? project.address : { street: '', city: '', zip_code: '' }
     
-    // Simple city mapping logic to link city string to seeded city IDs
-    let matchedCityId = 1
-    const cityLower = (addr.city || '').toLowerCase()
-    if (cityLower.includes('taguig')) matchedCityId = 2
-    else if (cityLower.includes('pasig')) matchedCityId = 3
-    else if (cityLower.includes('cebu')) matchedCityId = 4
-    else if (cityLower.includes('davao')) matchedCityId = 5
+    let matchedCityId = project.city_id || addr.city_id || 1
+    if (!project.city_id && !addr.city_id) {
+      const cityLower = (addr.city || '').toLowerCase()
+      if (cityLower.includes('taguig')) matchedCityId = 2
+      else if (cityLower.includes('pasig')) matchedCityId = 3
+      else if (cityLower.includes('cebu')) matchedCityId = 4
+      else if (cityLower.includes('davao')) matchedCityId = 5
+    }
 
     const body = {
       name: project.name,
@@ -226,8 +347,9 @@ export const useProjects = () => {
       client_name: project.client_name,
       is_government: false,
       city_id: matchedCityId,
+      house_number: addr.house_number || '',
       street: addr.street,
-      barangay: addr.city || 'Barangay Central',
+      barangay: addr.barangay || addr.city || 'Barangay Central',
       zip: addr.zip_code || '1000',
     }
 
@@ -303,21 +425,58 @@ export const useProjects = () => {
     const accountItem = accountingStore.accountItems.value.find(i => i.id === tx.category_id)
     const ledgerAccountId = accountItem?.ledger_account_id || 10
 
-    await api.request('/journal-entries', {
-      method: 'POST',
-      body: {
-        ledger_account_id: ledgerAccountId,
-        fund_account_id: tx.fund_source_id,
-        project_id: tx.project_id,
-        account_item_id: tx.category_id,
-        amount: tx.amount,
-        transaction_type: tx.type,
-        description: tx.note,
-      }
+    try {
+      await api.request('/journal-entries', {
+        method: 'POST',
+        body: {
+          ledger_account_id: ledgerAccountId,
+          fund_account_id: tx.fund_source_id,
+          project_id: tx.project_id,
+          account_item_id: tx.category_id,
+          amount: tx.amount,
+          transaction_type: tx.type,
+          description: tx.note,
+        }
+      })
+    } catch (err) {
+      console.warn('[addTransaction] API call failed or running in offline mode, applying local fallback:', err)
+    }
+
+    // Push local transaction optimistically if not already present
+    const newTx = {
+      id: Date.now(),
+      project_id: tx.project_id,
+      fund_source_id: tx.fund_source_id,
+      category_id: tx.category_id,
+      type: tx.type,
+      amount: Number(tx.amount),
+      date: tx.date || new Date().toISOString().split('T')[0],
+      note: tx.note,
+      created_at: new Date().toISOString(),
+    }
+
+    transactions.value.unshift(newTx)
+
+    // Also sync with accounting store journal entries
+    accountingStore.journalEntries.value.unshift({
+      id: newTx.id,
+      ledger_account_id: ledgerAccountId,
+      fund_account_id: tx.fund_source_id,
+      account_item_id: tx.category_id,
+      amount: Number(tx.amount),
+      transaction_type: tx.type,
+      description: tx.note,
+      user_id: 1,
+      created_at: newTx.created_at,
     })
 
-    await fetchProjects()
-    await accountingStore.fetchJournalEntries()
+    try {
+      await fetchProjects()
+      await accountingStore.fetchJournalEntries()
+      await accountingStore.fetchFundAccounts()
+    } catch (e) {
+      console.warn('[addTransaction] Background refresh warning:', e)
+    }
   }
 
   // Frontend helper stubs (no-ops for backend mode)
@@ -330,6 +489,9 @@ export const useProjects = () => {
     fundSources,
     categories,
     transactions,
+    cities,
+    states,
+    fetchCities,
     getProjectTotalFunds,
     getProjectTotalSpent,
     getProjectTotalDebits,
@@ -338,11 +500,14 @@ export const useProjects = () => {
     getProjectActiveFundBalance,
     getProjectRemainingBalance,
     getFundSourceSpent,
+    getFundSourceCredits,
     getFundSourceRemaining,
     getFundSourceUsagePercentage,
     totalAppManagedFunds,
     totalAppSpent,
     totalAppRemainingBalance,
+    getFundProjectExpenses,
+    getProjectMonthlyExpenses,
     fetchProjects,
     addProject,
     updateProject,

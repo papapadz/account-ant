@@ -13,5 +13,12 @@ class AccountItem extends Model
         'item_code',
         'item_name',
         'description',
+        'ledger_account_id',
+        'transaction_type',
     ];
+
+    public function ledgerAccount()
+    {
+        return $this->belongsTo(LedgerAccount::class, 'ledger_account_id');
+    }
 }

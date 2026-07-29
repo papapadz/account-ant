@@ -3,6 +3,10 @@
     "mtime": 1773507240.0,
     "hash": "e66bb13691f6184c762c196427d8e685"
   },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\scratch_query.php": {
+    "mtime": 1785228263.6864645,
+    "hash": "710a9fd2ad3f5dbf652b0d2b359c2977"
+  },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vite.config.js": {
     "mtime": 1773507240.0,
     "hash": "60c40741a9c5b915a5e5542cfb23bc25"
@@ -12,24 +16,24 @@
     "hash": "25a307335c0719bc9a91b3f7babd186d"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\AccountItemController.php": {
-    "mtime": 1784797469.2261431,
-    "hash": "15b7309ee88a010520a608d0c0f88c08"
+    "mtime": 1785287596.988613,
+    "hash": "116436d0e4112fa334286560ba498eae"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\AuthController.php": {
-    "mtime": 1784797454.3829465,
-    "hash": "2899588fda53f1b03ba78e0e38e9412b"
+    "mtime": 1785225563.6238945,
+    "hash": "8cdaa9c5333460999c95fa36b0777e41"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\CityController.php": {
     "mtime": 1784830150.2927034,
     "hash": "69712c46533007399d849883a68dc401"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\FundAccountController.php": {
-    "mtime": 1784797459.306359,
-    "hash": "8a887b9e2dbe534e303db55459f2be73"
+    "mtime": 1785229049.2459066,
+    "hash": "832bd7def940beb960c2c35551a604c8"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\LedgerAccountController.php": {
-    "mtime": 1784797464.1449192,
-    "hash": "6569c52018e69cb438cf362596680c63"
+    "mtime": 1785200184.2774825,
+    "hash": "6e4d1f8758d39ae982d95d007482b1cc"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\LedgerAccountItemController.php": {
     "mtime": 1784828040.6574688,
@@ -40,8 +44,8 @@
     "hash": "4e7aea4b4e2653d9b14311960c34bdef"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\SettingsController.php": {
-    "mtime": 1784797482.3329432,
-    "hash": "28a16aaff338daeea10f1a7044b87e1c"
+    "mtime": 1785225571.5744612,
+    "hash": "0460d6de7f049aed0e9da3271cd819ce"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Person.php": {
     "mtime": 1784797413.0775907,
@@ -52,20 +56,20 @@
     "hash": "ee18f84a991564ed4e99072a2573c32e"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\User.php": {
-    "mtime": 1784830041.4776046,
-    "hash": "f9c0a2af95c319228abcbe60c26ab8ac"
+    "mtime": 1785225480.6448574,
+    "hash": "30ede7c3a8f49e5adef9dfc7c88a3613"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\AccountItem.php": {
-    "mtime": 1784797442.6300352,
-    "hash": "79228fdc4a51c832805929a1ceaf1aea"
+    "mtime": 1785287592.4508204,
+    "hash": "6e61bc8fa587d264501c75d26f201215"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\FundAccount.php": {
-    "mtime": 1784797432.3187187,
-    "hash": "68d378877b99c840d6beabb5d78a0785"
+    "mtime": 1785201574.818665,
+    "hash": "6ce01ab9e03edda7df152ff967d07bcd"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\LedgerAccount.php": {
-    "mtime": 1784797438.0275898,
-    "hash": "edb5791f1e824c01e5fe556b7761f3c0"
+    "mtime": 1785200180.6336193,
+    "hash": "2a3e4e32370dc87edfa0ad5e677abd40"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\LedgerAccountItem.php": {
     "mtime": 1784827638.094053,
@@ -124,12 +128,12 @@
     "hash": "888c810b5a4720916f07aa05dd2c2dd3"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\cache\\packages.php": {
-    "mtime": 1784798425.9216158,
-    "hash": "54d6b5eeacd12e7c4c79f10e40df3a62"
+    "mtime": 1785223882.338553,
+    "hash": "53b5a2f85997c2ed6794a8d3dd3b7a1c"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\cache\\services.php": {
-    "mtime": 1784798425.8210974,
-    "hash": "00d1cd1c7e6be065402b565400ba950f"
+    "mtime": 1785223882.3635576,
+    "hash": "9250d9a5bd79ff41d9fd3875e7590281"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\config\\app.php": {
     "mtime": 1773507240.0,
@@ -142,6 +146,10 @@
   "C:\\laragon\\www\\account-ant\\src\\backend\\config\\cache.php": {
     "mtime": 1773507240.0,
     "hash": "022fdf20e95ddb79949954243e367003"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\cors.php": {
+    "mtime": 1785223874.6526663,
+    "hash": "af7de549074954dc1785b9cd3f4440f1"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\config\\database.php": {
     "mtime": 1773507240.0,
@@ -163,6 +171,10 @@
     "mtime": 1773507240.0,
     "hash": "f98ce92e7bf51db1fabaf8a30e12fc5a"
   },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\sanctum.php": {
+    "mtime": 1785223763.4005854,
+    "hash": "e3887ebee464a1b2c014cb16696a2b50"
+  },
   "C:\\laragon\\www\\account-ant\\src\\backend\\config\\services.php": {
     "mtime": 1773507240.0,
     "hash": "534a1b7af7009c373ea4ebfa18823d57"
@@ -172,8 +184,8 @@
     "hash": "6d9336e9ca1183588abbce7ff7a6f29a"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\factories\\UserFactory.php": {
-    "mtime": 1773507240.0,
-    "hash": "1c9f381f9c2bc3027971a3bfdbe99164"
+    "mtime": 1785225585.5994096,
+    "hash": "ea28a9b1a4f1bd90b7b7be845bc837c0"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\0001_01_01_000000_create_users_table.php": {
     "mtime": 1773507240.0,
@@ -228,8 +240,8 @@
     "hash": "b68e5fddd92ce6ed612a165b27e71e43"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030603_add_person_affiliations_id_to_users..php": {
-    "mtime": 1784775996.386061,
-    "hash": "1508533116ce70361401051b9823ce22"
+    "mtime": 1785216702.1840684,
+    "hash": "32b66cbfdb5d57be9d53d06c0d708bb6"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_031053_create_fund_accounts_table.php": {
     "mtime": 1784777375.70845,
@@ -263,17 +275,29 @@
     "mtime": 1784827624.6161788,
     "hash": "ac7e6b79c9ec3441d676afb9b2769e43"
   },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable.php": {
+    "mtime": 1785200165.8991327,
+    "hash": "1d8b679cfbe253e2bd5d7ed25e1dd5bd"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_28_000002_add_amount_to_fund_accounts_table.php": {
+    "mtime": 1785201569.2140675,
+    "hash": "2da58d4a1a6729732a031ca1e87c9b3c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_29_000001_add_transaction_type_to_account_items_table.php": {
+    "mtime": 1785287589.2197208,
+    "hash": "37f7fffd2ca21f573a4dad3092aaeb2f"
+  },
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\AccountingSeeder.php": {
-    "mtime": 1784829551.7214873,
-    "hash": "2ef974c5c5f35a8f8db34dd61dbc9cf6"
+    "mtime": 1785287600.9663074,
+    "hash": "ecd3a29ddf6a3447298406d3f93f3e2b"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\AddressSeeder.php": {
     "mtime": 1784830065.053104,
     "hash": "38381400683e30fb231b4ea65076632d"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\DatabaseSeeder.php": {
-    "mtime": 1784830037.575917,
-    "hash": "6117aa43746b19ee9ecf7888512d209d"
+    "mtime": 1785225621.2823575,
+    "hash": "9b7b1bbfaab181adeae1b47b9ad7f161"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\HrSeeder.php": {
     "mtime": 1784830098.8096397,
@@ -286,6 +310,10 @@
   "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\ProjectSeeder.php": {
     "mtime": 1784829556.5423355,
     "hash": "8842490e629230fec4c77e97e765da4c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\UserSeeder.php": {
+    "mtime": 1785216663.67606,
+    "hash": "db1fd3f7a7e3f460192c2f733e6b4455"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\public\\index.php": {
     "mtime": 1773507240.0,
@@ -304,8 +332,8 @@
     "hash": "f9f90b3bab40fd1d366e9b54466deac7"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\routes\\api.php": {
-    "mtime": 1784830160.089427,
-    "hash": "29dc2b21c96a135106c38841da7d2888"
+    "mtime": 1785225487.7006314,
+    "hash": "cc4077f2039f98786288d998ba08d45e"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\routes\\console.php": {
     "mtime": 1773507240.0,
@@ -315,13 +343,169 @@
     "mtime": 1773507240.0,
     "hash": "84625c52e743b1a4178bb27b7afb3615"
   },
-  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\68dde76b13444c1e423ea05193bb319a.php": {
-    "mtime": 1784830269.6792164,
-    "hash": "488cd1f775f86d18ffd6200f3c96b157"
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\00097f8c479816558fa0ae1fcd8c3a77.php": {
+    "mtime": 1785228972.1549902,
+    "hash": "1287789bcb57a62460e13c45c86b5611"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\009852fd1bd85e0598e7e3d79ecab2a2.php": {
+    "mtime": 1785228972.0844922,
+    "hash": "b629a8d2307d72fd6f98f4528fae4568"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\05333e099b0c6fe3bbb6c63c5759112a.php": {
+    "mtime": 1785228972.070989,
+    "hash": "4c79017916b8ce049377f6fff1ac547d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\0c5ea6cc516014be50a6596a51319ca5.php": {
+    "mtime": 1785228972.042223,
+    "hash": "6235416b60e6159714f7b38ebdd8322c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\0d5a29bbf0322f1a4f53cc42328b0a5c.php": {
+    "mtime": 1785228972.1679926,
+    "hash": "94aa657bf1de2d1bcaf0cd72b553ce4c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\0d5ae5187b8455e0fa80684b853ca0a6.php": {
+    "mtime": 1785228972.0869925,
+    "hash": "3063681e0677d2026238986cd2c8c6f6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\10b5640d4d4f2f7ede61383f71edb48e.php": {
+    "mtime": 1785228972.0929933,
+    "hash": "b38fb419f7118b4d7c212fa06dcc3694"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\10e26beebd809f3435b14ca2c15d28f1.php": {
+    "mtime": 1785228972.0819926,
+    "hash": "5a69398677abe756ceca509b00d0ad0f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\118cd7be2547d19118eb27536b8957a5.php": {
+    "mtime": 1785228972.1764934,
+    "hash": "865ee3f4299a3858fe2567a790f526ba"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\1196b9b78b9069fece98038ae31ce1a8.php": {
+    "mtime": 1785228972.1499894,
+    "hash": "36393ccc2e788450d704f114f9ce4055"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\1e388d3573634fc175dbe0078742f2d7.php": {
+    "mtime": 1785228972.1330018,
+    "hash": "6f56fef619b2ba44a053e47ee7a70a47"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\1ef729d6adac50527bcc8be1f0d16daa.php": {
+    "mtime": 1785228972.060727,
+    "hash": "593fca47c2802d30a2e93a146507dd6b"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\35e1622637994a50c24d0117243de592.php": {
+    "mtime": 1785228972.0799913,
+    "hash": "c7cf9f5731f97ad6752c81ebba853bf0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\378175baf44a51c09b20a2b1322ef29e.php": {
+    "mtime": 1785228972.152489,
+    "hash": "e01c931636fb9f08bf8cc0b3a7df6d5c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\382e7ba4ffebd5908e8f20726649bec8.php": {
+    "mtime": 1785228972.0667274,
+    "hash": "bc5dd8a2b1a34e36d952ee4103d0b835"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\3a0271e2d9a5b944c2d6c26814bd284c.php": {
+    "mtime": 1785228972.048724,
+    "hash": "dc91ab0ba5f62e99aa7992f7d39fb42b"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\3d95b8eda8c54f9f6487a3d43f677dec.php": {
+    "mtime": 1785228972.0512245,
+    "hash": "b491d462d6910f025157a6a02df88eff"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\415d643a226c2e4de16debd0a67d3821.php": {
+    "mtime": 1785228972.138001,
+    "hash": "0de03e73e3719df93eff1d70d6cd0a6c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\497301e992359e64b2704435fda06dc9.php": {
+    "mtime": 1785228972.1704922,
+    "hash": "134ad3f45528870bc40c9cf02358c74f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\4d63ddc4f20821f1af70b459059c888d.php": {
+    "mtime": 1785228972.0402224,
+    "hash": "28e8d20de3f6b555c3ae6418cbb685e6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\534587242c207f1bb72b315d83c6a421.php": {
+    "mtime": 1785228972.145036,
+    "hash": "9db060f7494e155fa43ea353ba84f106"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\54079d1113a9ae7e2c25be19929069d9.php": {
+    "mtime": 1785228972.044223,
+    "hash": "32adfe0f84dfc76ec0fd8523fd356e65"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\54a46fba65db9ea9fc5b5cf8d03d4993.php": {
+    "mtime": 1785228972.0642266,
+    "hash": "e3bf37800ac76f9b6110b6543f8a7bc7"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\552216fbd288e132274d9ff047335658.php": {
+    "mtime": 1785228972.0904932,
+    "hash": "2610d1b938d4619cc62a40b194eb17e6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\55fe0b25a94c7616b98f53a361852b73.php": {
+    "mtime": 1785228972.158991,
+    "hash": "5136cb16da55851338987934c63614f0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\6ba35735dfdeececfb7623bbfc28197e.php": {
+    "mtime": 1785228972.0567253,
+    "hash": "791b1d7d8d4437c0641287dc06546d27"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\6e13dd202b2bb640f51558158b778a96.php": {
+    "mtime": 1785228972.034222,
+    "hash": "14f3f7ba38cd06aa50a01d2e4792bb20"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\6fe2c24352d0eb27322932dec03e085c.php": {
+    "mtime": 1785228972.0254333,
+    "hash": "975124d4b18ce815043700b530a582b6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\7f841b06d8b82c3e8ed98192da1ef024.php": {
+    "mtime": 1785228972.0372224,
+    "hash": "2717460ead42e293d88169d749b0c63e"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\85ab330b0e190c6a1674383f92d3153f.php": {
+    "mtime": 1785228972.0774906,
+    "hash": "82e0f7c340b521049ae9646b823378a1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\90c00b695754ba1763c6d6fa917e12b8.php": {
+    "mtime": 1785228972.1799939,
+    "hash": "37da9e4621bf10c4180104451fa3565d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\a89d832ab375c541e9e5eec81885e095.php": {
+    "mtime": 1785228972.1644917,
+    "hash": "83a6773514a2b45cccee40994292d003"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\adb5fd25c45e8df3ca9178a1fec29c2f.php": {
+    "mtime": 1785228971.3988228,
+    "hash": "df54b686a5c850a7f2f9dc948dffc111"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\ae69d9002cb4a390077c4ffed8c13e20.php": {
+    "mtime": 1785228972.054225,
+    "hash": "d5f279c3cba0ee9390f2b05cd2eb5c30"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\c9a9742ddec122e11e9ed6b3bbdeec55.php": {
+    "mtime": 1785228972.1569903,
+    "hash": "c55a10cd3ddcdfa776ba8491e464649d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\cd97e0322b3bcdd242eb6e441ff20fa6.php": {
+    "mtime": 1785228972.1739929,
+    "hash": "9eaafe6293d55325b2802046a3a90403"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\d2c2140ce9241c94e341a9d603e2f8e9.php": {
+    "mtime": 1785228972.1619914,
+    "hash": "048531fe1d98dafa8e0ac0baf6bb5403"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\d8c95fe016b3abc402ae4b225b421e44.php": {
+    "mtime": 1785228972.0749905,
+    "hash": "181a0d3efa4a1a4b7798abf77ffea722"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\storage\\framework\\views\\ead26d1035a3293d561a49e9eb2fa394.php": {
+    "mtime": 1785228972.147989,
+    "hash": "05f7edf1b7c2e8916ad09cf848fd5e3b"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\tests\\TestCase.php": {
     "mtime": 1773507240.0,
     "hash": "7e567dc27e68d5b57bae16af07f68907"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\tests\\Feature\\AuthTest.php": {
+    "mtime": 1785225589.1565292,
+    "hash": "520d8c2adce588163f62bd703c89ff74"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\tests\\Feature\\ExampleTest.php": {
     "mtime": 1773507240.0,
@@ -464,8 +648,8 @@
     "hash": "c7acb9af19bb8c843bde30bdc380dca2"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\composer\\autoload_classmap.php": {
-    "mtime": 1784798013.2184663,
-    "hash": "0f1c4304a85654a9bc4d2f5d2b43f666"
+    "mtime": 1785223688.1734228,
+    "hash": "efe2f4962c88bd76fbe702da0fbdbdc2"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\composer\\autoload_files.php": {
     "mtime": 1784774985.9815538,
@@ -476,24 +660,24 @@
     "hash": "224007c97efb82c7b45b0e92f240af41"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\composer\\autoload_psr4.php": {
-    "mtime": 1784798013.2169647,
-    "hash": "162327d5be3439cd1e9e86c94d240f8b"
+    "mtime": 1785223688.1724231,
+    "hash": "50483f0fbd7e2117ecab0cfd1f15e81d"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\composer\\autoload_real.php": {
     "mtime": 1784774986.0065572,
     "hash": "f379a5422eaf54a1def95e03f5ab3ab3"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\composer\\autoload_static.php": {
-    "mtime": 1784798013.2469702,
-    "hash": "013c9013322ecd3b0d4f93b558b77e70"
+    "mtime": 1785223688.1964269,
+    "hash": "8bdc6c28f79b5de3bebea827c8a3b43b"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\composer\\ClassLoader.php": {
     "mtime": 1784774986.0070577,
     "hash": "80e3127bb630c512c42cfb51366ec09c"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\composer\\installed.php": {
-    "mtime": 1784798009.3552856,
-    "hash": "9d78951dfc0ea9cbd3996622540d5a68"
+    "mtime": 1785223682.9815943,
+    "hash": "d845c23946c995c6c0bac8485c2656af"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\composer\\InstalledVersions.php": {
     "mtime": 1784774974.7402508,
@@ -10674,6 +10858,66 @@
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sail\\src\\Console\\Concerns\\InteractsWithDockerComposeServices.php": {
     "mtime": 1784300975.0,
     "hash": "b8ad188a2a58554dfbfbc3780cf6627c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\config\\sanctum.php": {
+    "mtime": 1782239215.0,
+    "hash": "e3887ebee464a1b2c014cb16696a2b50"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Guard.php": {
+    "mtime": 1782239215.0,
+    "hash": "c22003e26a68cc853698c41ac5eec6df"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Sanctum.php": {
+    "mtime": 1782239215.0,
+    "hash": "f1febdf0e6d781ed18943a0cf92cd2f4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\SanctumServiceProvider.php": {
+    "mtime": 1782239215.0,
+    "hash": "5923c1b1f62b38eacbb59b3bb4da1d0e"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Console\\Commands\\PruneExpired.php": {
+    "mtime": 1782239215.0,
+    "hash": "a381f964ef052bed21be36858542a0c8"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Contracts\\HasAbilities.php": {
+    "mtime": 1782239215.0,
+    "hash": "d06822ea4527a3e4deba4520bb0f31a4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Exceptions\\MissingAbilityException.php": {
+    "mtime": 1782239215.0,
+    "hash": "109ff3360ac3a33c3705a8562227ad3c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Exceptions\\MissingScopeException.php": {
+    "mtime": 1782239215.0,
+    "hash": "09fbbadd20dcfcf8700699fce07b7aa0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Http\\Controllers\\CsrfCookieController.php": {
+    "mtime": 1782239215.0,
+    "hash": "8e942aa85f2e0472ff9983d922034a65"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\AuthenticateSession.php": {
+    "mtime": 1782239215.0,
+    "hash": "c0c203fbb8210bbc85111634593565a3"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\CheckAbilities.php": {
+    "mtime": 1782239215.0,
+    "hash": "bc382d5a4ad197b1d770fe0091d635d6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\CheckForAnyAbility.php": {
+    "mtime": 1782239215.0,
+    "hash": "80c1022a78811a1350d3bec33e8b83ca"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\CheckForAnyScope.php": {
+    "mtime": 1782239215.0,
+    "hash": "581a0ba46230c9b768f7d5bef649fa13"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\CheckScopes.php": {
+    "mtime": 1782239215.0,
+    "hash": "f32368edf5e23902b117c88d960e2d1f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php": {
+    "mtime": 1782239215.0,
+    "hash": "9569c0fc5edd787aca7f54fe359d4390"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\serializable-closure\\src\\SerializableClosure.php": {
     "mtime": 1784652562.0,
@@ -31195,173 +31439,153 @@
     "mtime": 1777181634.0,
     "hash": "1d1fd45ef831387e859b8a4c6156ac64"
   },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\capacitor.config.ts": {
+    "mtime": 1784882766.2990005,
+    "hash": "73cf7a55fc28e98af139d1460c1793b0"
+  },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\nuxt.config.ts": {
-    "mtime": 1784797402.2629888,
-    "hash": "f06ec5d848b64e6a4216f8bcf9d57d4b"
+    "mtime": 1785115061.5035038,
+    "hash": "b7561c23a83b61f804df547e023819ed"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\app.vue": {
-    "mtime": 1784793520.0020647,
-    "hash": "6e3173801c4a38306599c454c9f822e6"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\AppHeader.vue": {
-    "mtime": 1784799218.1139712,
-    "hash": "3f9cb91478ac232b92fcfb4a22a92ad5"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\AppSidebar.vue": {
-    "mtime": 1784826963.3182251,
-    "hash": "beb4692e874c92e7a4068def5fe9be01"
+    "mtime": 1785208358.288016,
+    "hash": "fbcfe5cd0eb420deae7eba9319dd71d7"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\KpiCard.vue": {
     "mtime": 1784826974.7457364,
     "hash": "386c8f4f33172dbe9bc41fb97d9682c2"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\Modal.vue": {
-    "mtime": 1784826969.2187648,
-    "hash": "ce1fbe236b78e254fc48c31b56c8a284"
+    "mtime": 1785206974.1866744,
+    "hash": "451474194f87563742ba701027186c84"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ProjectFormModal.vue": {
+    "mtime": 1785290255.845582,
+    "hash": "913d3012a340e2b6d82bcb60b988f8c1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\dashboard\\FundExpensePieChart.vue": {
+    "mtime": 1785295195.253674,
+    "hash": "3956a38c9bc958b9c533cf719bfc82bc"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\dashboard\\ProjectMonthlyBarChart.vue": {
+    "mtime": 1785294909.8663132,
+    "hash": "007552a459bdd873a71a45e0c3f1acf1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Badge.vue": {
+    "mtime": 1785130351.8088138,
+    "hash": "a88b340707e1717e4c4104ee0edec5be"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Button.vue": {
+    "mtime": 1785139647.7648604,
+    "hash": "10281af7c252cbdf091ec18b9c33686b"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Card.vue": {
+    "mtime": 1785131464.8343556,
+    "hash": "e93dc0e5d0031053926df860894ee0a0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\DataTable.vue": {
+    "mtime": 1785206969.1699986,
+    "hash": "9fda9f8d73bda7929d07ae3e969149b5"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Input.vue": {
+    "mtime": 1785130347.831367,
+    "hash": "d393c0556066337b97b0a6da40b3650b"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\ProgressBar.vue": {
+    "mtime": 1785130355.218469,
+    "hash": "7b7e4efe9595612ae00c270d5e9eaecd"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Tabs.vue": {
+    "mtime": 1785140303.9835587,
+    "hash": "b8c77af7bd021e155cf5619118dcc383"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useAccounting.ts": {
-    "mtime": 1784799225.9348483,
-    "hash": "21cfa6a0c0f6239879b9985e1d51fe26"
+    "mtime": 1785298111.855058,
+    "hash": "80d538ce7cbeeaccb455b68639397b80"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useApi.ts": {
-    "mtime": 1784796889.4865594,
-    "hash": "891435c47d64aa0bbb6604e3f4c28563"
+    "mtime": 1785224181.2720788,
+    "hash": "ecd6521e747ad824bb516ae8d5319316"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useAuth.ts": {
-    "mtime": 1784796894.7746289,
-    "hash": "a9cf2655aa2b22dd93f123c9e7a26608"
+    "mtime": 1785225654.9887073,
+    "hash": "ba9d6904154285343a4db75df21a0cef"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useCurrency.ts": {
+    "mtime": 1785229526.6747203,
+    "hash": "23cea994e547832d9ae90aa66cfe856f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useProjects.ts": {
+    "mtime": 1785298118.3796976,
+    "hash": "bbea44525e7687a816f67311259a9c6e"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useTheme.ts": {
     "mtime": 1784799204.704381,
     "hash": "e8a5bc528e866277f7e234260e53b9d0"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\layouts\\auth.vue": {
-    "mtime": 1784826956.6197305,
-    "hash": "4f1e0b5b6597645809a7247e5cf37c04"
+    "mtime": 1785207701.3806531,
+    "hash": "13660c9d590220fbebfb5bc6056f874b"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\layouts\\default.vue": {
-    "mtime": 1784826951.3506708,
-    "hash": "6887f846cb2ae779c2dd3c8d18f7956d"
+    "mtime": 1785294499.5515776,
+    "hash": "188e856cc557d28924875199f695c220"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\middleware\\auth.global.ts": {
+    "mtime": 1785225642.749106,
+    "hash": "73d1aeac5b757853e3b366c908542a5d"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\index.vue": {
-    "mtime": 1784826981.3609023,
-    "hash": "dff8a866b6885a7085f498a6bc8ca5f4"
+    "mtime": 1785290268.3242605,
+    "hash": "52ba816c9169e770639d5bb9487f1ed9"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\login.vue": {
-    "mtime": 1784827018.7919655,
-    "hash": "444bc0e61bfd091b2eae382d6165eb06"
+    "mtime": 1785225734.2094917,
+    "hash": "0fd6c05df3ac9513d6ea1c19c8523b8f"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\register.vue": {
-    "mtime": 1784827025.1250806,
-    "hash": "b65b61519a4788f63efec08560ed4160"
+    "mtime": 1785206847.5634968,
+    "hash": "39c290d51118f71da244f016c888f0fe"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\settings.vue": {
-    "mtime": 1784827014.170653,
-    "hash": "86459b25a0653ccef9c228f23f55af60"
+    "mtime": 1785225715.6380796,
+    "hash": "b981c8695efcb76734ae3c95c5ee4c9f"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\management\\accounts.vue": {
-    "mtime": 1784826999.9246457,
-    "hash": "07e562bbaeabdb89691491a50486371c"
+    "mtime": 1785296778.4073343,
+    "hash": "6fe7c81b410dcc94431f8c931e426885"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\management\\funds.vue": {
-    "mtime": 1784826994.467209,
-    "hash": "9d58c274d32b618ff9122dbac1e58dec"
+    "mtime": 1785298125.0543625,
+    "hash": "194a02c5bc5d7990d935f7e11c2fbb25"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\management\\items.vue": {
-    "mtime": 1784827006.1797457,
-    "hash": "490878ac87847159834bad488bfcf4d5"
+    "mtime": 1785296745.831068,
+    "hash": "d188523be1ea9b640ed5c075062cf8a9"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\management\\journal.vue": {
-    "mtime": 1784826988.9302335,
-    "hash": "12c1038d30f2da50ece79834b6ab6b83"
+    "mtime": 1785222792.1699297,
+    "hash": "8821a055f1d2642acb0832de56aea0ed"
   },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\components\\AppHeader.vue": {
-    "mtime": 1784793457.332124,
-    "hash": "f6491d52c8b03b1238bcf1b7a8a21e38"
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\project\\[id].vue": {
+    "mtime": 1785297962.4279618,
+    "hash": "d13124dc4304f7a814228f7733ea16c7"
   },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\components\\AppSidebar.vue": {
-    "mtime": 1784827696.8191538,
-    "hash": "83723dedcb0952d63ee7a747dd39f7cf"
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\projects\\index.vue": {
+    "mtime": 1785290262.5792577,
+    "hash": "6486ac5a0aab3b6baf2763ff786e6c32"
   },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\components\\KpiCard.vue": {
-    "mtime": 1784793461.6797965,
-    "hash": "36526b6ca9d8becb5f31c16be7562a46"
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\projects\\[id].vue": {
+    "mtime": 1785138423.0797486,
+    "hash": "b94e38c9485137f473f48f94d504daf0"
   },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\components\\Modal.vue": {
-    "mtime": 1784793465.7969387,
-    "hash": "adf55b370816e6826d7501ab0115c125"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\composables\\useAccounting.ts": {
-    "mtime": 1784830170.7403016,
-    "hash": "82f1e6bf2573829ac5d75df6e0acc54e"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\composables\\useApi.ts": {
-    "mtime": 1784793436.4048014,
-    "hash": "891435c47d64aa0bbb6604e3f4c28563"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\composables\\useAuth.ts": {
-    "mtime": 1784793440.9613812,
-    "hash": "a9cf2655aa2b22dd93f123c9e7a26608"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\composables\\useProjects.ts": {
-    "mtime": 1784830176.0587375,
-    "hash": "709e147ab0e3e70e5109be4834935a9b"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\layouts\\auth.vue": {
-    "mtime": 1784793473.0058477,
-    "hash": "f8a4b19a5060dfe4c5bc62a92c29eadc"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\layouts\\default.vue": {
-    "mtime": 1784793469.8168492,
-    "hash": "022ca517fc55ac43a8bc1208a38c2eba"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\index.vue": {
-    "mtime": 1784830183.8611107,
-    "hash": "8bb7ec88a2483ac933fe716b3afa0385"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\login.vue": {
-    "mtime": 1784793485.2981584,
-    "hash": "49d8eaa1a39d17390ee0a31a22503471"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\register.vue": {
-    "mtime": 1784793491.2699413,
-    "hash": "db79d556c9860f38a63728f6fd960900"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\settings.vue": {
-    "mtime": 1784793516.4096942,
-    "hash": "4f171816aeb0133871408a3cd7159a1c"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\management\\accounts.vue": {
-    "mtime": 1784830190.9098516,
-    "hash": "dd37da5688260b47283d5142684abed4"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\management\\funds.vue": {
-    "mtime": 1784830196.6758668,
-    "hash": "0ee5522339a4179c81a8f873ce80f02a"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\management\\items.vue": {
-    "mtime": 1784830201.5097175,
-    "hash": "a0f55d51fffb9cc0139dfdc4107d9e86"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\management\\journal.vue": {
-    "mtime": 1784830208.2824094,
-    "hash": "33d51611c27ef3d7b657e8fdc0238109"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\management\\projects\\index.vue": {
-    "mtime": 1784830216.4248424,
-    "hash": "9cec16bb3769a335c6d9ce1ca85e372c"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\management\\projects\\[id].vue": {
-    "mtime": 1784830223.590604,
-    "hash": "bc5e92920d48f10b3eea7aaab83d6de3"
-  },
-  "C:\\laragon\\www\\account-ant\\src\\frontend\\pages\\management\\projects\\_id_.vue": {
-    "mtime": 1784830228.3189378,
-    "hash": "bc5e92920d48f10b3eea7aaab83d6de3"
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\plugins\\ionic.client.ts": {
+    "mtime": 1785208363.13671,
+    "hash": "2faa1c70c727987e8d009b5e7efcf067"
   },
   "C:\\laragon\\www\\account-ant\\AGENTS.md": {
-    "mtime": 1784789762.0918756,
-    "hash": "f3586bb176fc7aff3e647fa2d8e3eeb4"
+    "mtime": 1785130397.0511754,
+    "hash": "88aa4d143353b80a6b25105c3b1916ef"
   },
   "C:\\laragon\\www\\account-ant\\LEAN-CTX.md": {
     "mtime": 1784789762.0913754,
@@ -31372,12 +31596,116 @@
     "hash": "97f3d56bb728b41c5397a7c57991f27c"
   },
   "C:\\laragon\\www\\account-ant\\docs\\glossary.md": {
-    "mtime": 1784827471.90198,
-    "hash": "1750805f79d56a4a5f9e20323c5c9bf6"
+    "mtime": 1785289463.118336,
+    "hash": "5dcdaaec1777d21bb6b10a733c618712"
   },
   "C:\\laragon\\www\\account-ant\\docs\\ADR\\0001-project-ledger-workflow.md": {
-    "mtime": 1784827467.4146066,
-    "hash": "c780fc55dc68888e0150c82317715ed7"
+    "mtime": 1785138253.317041,
+    "hash": "5aa4231d1c7eb608c43d46fc89c9133d"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0002-standardized-datatable-component-architecture.md": {
+    "mtime": 1785134352.6949935,
+    "hash": "7beacf695349a7b3e081453afa8fc80f"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0003-standardized-button-component-architecture.md": {
+    "mtime": 1785139597.337631,
+    "hash": "296aeaceab3212fd9d67a1496888ae57"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0004-standardized-tabs-component-architecture.md": {
+    "mtime": 1785140269.1254377,
+    "hash": "1043a6b1e4971d48885e56779c28d182"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0005-project-budget-vs-expenses-dashboard.md": {
+    "mtime": 1785140530.4293287,
+    "hash": "e7555c6380d9d45fcf1f109519153b9b"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0006-decoupling-ledger-accounts-and-linking-account-items.md": {
+    "mtime": 1785200120.7390878,
+    "hash": "cd44314b8e2a35d567475834ad723dd7"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0007-project-budgeting-cards-and-analytics-dashboard.md": {
+    "mtime": 1785201028.5173066,
+    "hash": "34eda78da9462380d5fd7c74267c3bc1"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0008-fund-account-amount-and-search-filtering.md": {
+    "mtime": 1785201533.1243043,
+    "hash": "e9947da1c74c2c79735884d0e3012d6f"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0009-ionic-core-web-component-hydration-and-app-visibility.md": {
+    "mtime": 1785206267.1101503,
+    "hash": "49e9555d2ef217639153058178aac874"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0010-user-authentication-and-person-delegation.md": {
+    "mtime": 1785216652.9115129,
+    "hash": "2a6a35b81c061cfc7b657be8ba81d034"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0011-account-item-transaction-types-and-ledger-account-reverse-selection.md": {
+    "mtime": 1785287511.716285,
+    "hash": "8b1026da2dde06495ef903913c7f8078"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0012-printable-project-balance-sheet-architecture.md": {
+    "mtime": 1785288919.2376175,
+    "hash": "ee5a971166824f506359db1a04573700"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0013-project-general-ledger-statement-and-date-formatting.md": {
+    "mtime": 1785289454.7269833,
+    "hash": "3146a9cc898e46c0f038aec3d651eb27"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0014-state-city-address-selection-and-projects-sidebar-navigation.md": {
+    "mtime": 1785290272.7835557,
+    "hash": "57ee7650c22d450d694330fe9263320e"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\agents\\domain.md": {
+    "mtime": 1784871404.0224633,
+    "hash": "35089ed6a70a657c91fd100ade31b642"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\agents\\issue-tracker.md": {
+    "mtime": 1784871400.427332,
+    "hash": "3cd8509285524d31a33279b8cb0870e5"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\agents\\wire-frontend-to-backend-prd.md": {
+    "mtime": 1785225438.245432,
+    "hash": "c6f0d151252e9fd6bada69b5b675f7d0"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-27-responsive-visually-appealing-tabs.md": {
+    "mtime": 1785140279.104189,
+    "hash": "77e65a1aaaf7acb1aeaa0615e1a01d62"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-27-standardize-ionic-buttons.md": {
+    "mtime": 1785139608.2469316,
+    "hash": "21c515a1d063056493836352c1e4c220"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-27-standardized-table-component.md": {
+    "mtime": 1785134512.8268442,
+    "hash": "0d4584707db5f4060c27271a4779b02e"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-28-fund-account-amount-and-search-filtering.md": {
+    "mtime": 1785201544.0742276,
+    "hash": "d3a10cbbb4021e2ecd0bb5093053149f"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-28-ledger-accounts-and-items-refactor.md": {
+    "mtime": 1785200134.3805656,
+    "hash": "876b6a06112c40045b68166cbb39caed"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-28-project-budgeting-cards-and-analytics-dashboard.md": {
+    "mtime": 1785201034.2473607,
+    "hash": "878d077a3821e4a2b9a0f0b852f2aca7"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-28-wire-frontend-to-backend.md": {
+    "mtime": 1785225429.0329766,
+    "hash": "8bcd8d5e1fb87cec84995ddf6f319e92"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-credit-debit-items-and-journal-auto-fill.md": {
+    "mtime": 1785287443.6791534,
+    "hash": "ec7d5b4343098e56422c58ebb75f98c9"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-project-accounting-ledger-print.md": {
+    "mtime": 1785289425.5711148,
+    "hash": "6c5b8ce6bbb8bac37ee6594e36f89435"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-project-balance-sheet-printing.md": {
+    "mtime": 1785288873.186577,
+    "hash": "d4fbd59dac96ec0c4c48835dce4375da"
   },
   "C:\\laragon\\www\\account-ant\\docs\\superpowers\\specs\\2026-07-24-db-seeder-and-frontend-wiring-spec.md": {
     "mtime": 1784829514.6343243,
@@ -31730,6 +32058,22 @@
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sail\\README.md": {
     "mtime": 1784300975.0,
     "hash": "1599d77d364d2884ac31b702a6bc304f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\LICENSE.md": {
+    "mtime": 1782239215.0,
+    "hash": "22b655dbcecf588cfc97ed44c9ac0729"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\README.md": {
+    "mtime": 1782239215.0,
+    "hash": "c5ba92935b5910e0898854dffd93a9d9"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\testbench.yaml": {
+    "mtime": 1782239215.0,
+    "hash": "3f09fdf71ef55e147b3d292b8b7d0b6a"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\sanctum\\UPGRADE.md": {
+    "mtime": 1782239215.0,
+    "hash": "a0c5df5fe6b95ae806c9635d59fa33ce"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\vendor\\laravel\\serializable-closure\\LICENSE.md": {
     "mtime": 1784652562.0,

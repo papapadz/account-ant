@@ -17,8 +17,13 @@ class FundAccount extends Model
         'fund_code',
         'fund_name',
         'description',
+        'amount',
         'user_id',
         'ledger_account_id',
+    ];
+
+    protected $casts = [
+        'amount' => 'decimal:2',
     ];
 
     public function company()

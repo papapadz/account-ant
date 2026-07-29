@@ -14,14 +14,16 @@
             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
             {{ title }}
           </h3>
-          <button
+          <UiButton
+            variant="ghost"
+            size="sm"
+            class="!p-1 text-[var(--text-muted)] hover:text-[var(--text-main)]"
             @click="close"
-            class="text-[var(--text-muted)] hover:text-[var(--text-main)] p-1 rounded-md hover:bg-[var(--bg-sidebar)] transition-colors cursor-pointer"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
-          </button>
+          </UiButton>
         </div>
 
         <!-- Modal Body -->

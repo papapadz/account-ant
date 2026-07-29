@@ -7,24 +7,39 @@
           <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 11h.01M7 15h.01M11 7h7M11 11h7M11 15h7M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z" />
           </svg>
-          Master Account Items Catalog
+          Account Items Management
         </h1>
-        <p class="text-xs text-[var(--text-muted)] mt-0.5">Standardized catalog of line items (`AccountItem` model) used in journal entries</p>
+        <p class="text-xs text-[var(--text-muted)] mt-0.5">Standardized catalog of line items mapped to ledger accounts</p>
       </div>
 
-      <button @click="isModalOpen = true" class="btn-primary">
+      <UiButton variant="primary" @click="isModalOpen = true">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
         </svg>
-        <span>+ Add Account Item</span>
-      </button>
+        <span>Add Account Item</span>
+      </UiButton>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="glass-card p-4 rounded-xl border border-[var(--border-color)]">
+      <div class="relative">
+        <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Search items by code, name, or description..."
+          class="input-field pl-9 text-xs"
+        />
+      </div>
     </div>
 
     <!-- Catalog Grid -->
     <ClientOnly>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div
-          v-for="item in accounting.accountItems.value"
+          v-for="item in filteredItems"
           :key="item.id"
           class="glass-card p-5 rounded-xl border border-[var(--border-color)] relative overflow-hidden flex flex-col justify-between"
         >
@@ -33,20 +48,28 @@
               <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 font-mono text-xs font-semibold">
                 {{ item.item_code }}
               </span>
-              <span class="text-[10px] text-[var(--text-muted)] font-mono">ID: #{{ item.id }}</span>
+              <div class="flex items-center gap-2">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border"
+                  :class="item.transaction_type === 'credit' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 'bg-blue-500/10 text-blue-400 border-blue-500/20'"
+                >
+                  {{ item.transaction_type === 'credit' ? 'Credit (Cr)' : 'Debit (Dr)' }}
+                </span>
+                <span class="text-[10px] text-[var(--text-muted)] font-mono">#{{ item.id }}</span>
+              </div>
             </div>
 
             <h3 class="text-sm font-bold text-[var(--text-main)] mt-1">
-              {{ item.item_name }}
+              {{ item.item_name }}  
             </h3>
             <p class="text-xs text-[var(--text-muted)] mt-1.5 leading-relaxed">
               {{ item.description || 'Standard accounting item.' }}
             </p>
+
           </div>
 
           <div class="pt-3 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-[11px] text-[var(--text-muted)]">
-            <span>Catalog Item</span>
-            <span class="text-emerald-500 font-semibold">Ready for Posting</span>
+            <span>{{ getLedgerAccountCode(item.ledger_account_id) }}</span>
           </div>
         </div>
       </div>
@@ -66,13 +89,49 @@
         </div>
 
         <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type *</label>
+          <div class="grid grid-cols-2 gap-3">
+            <UiButton
+              type="button"
+              :variant="newItem.transaction_type === 'debit' ? 'primary' : 'secondary'"
+              block
+              size="sm"
+              @click="newItem.transaction_type = 'debit'"
+            >
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              Debit (Expense)
+            </UiButton>
+            <UiButton
+              type="button"
+              :variant="newItem.transaction_type === 'credit' ? 'primary' : 'secondary'"
+              block
+              size="sm"
+              @click="newItem.transaction_type = 'credit'"
+            >
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              Credit (Income / Refund)
+            </UiButton>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Linked Ledger Account *</label>
+          <select v-model="newItem.ledger_account_id" required class="input-field">
+            <option :value="undefined" disabled>Select linked ledger account...</option>
+            <option v-for="acc in accounting.ledgerAccounts.value" :key="acc.id" :value="acc.id">
+              {{ acc.account_code }} - {{ acc.account_name }}
+            </option>
+          </select>
+        </div>
+
+        <div>
           <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
           <textarea v-model="newItem.description" rows="3" placeholder="Detailed description of the transaction line item..." class="input-field"></textarea>
         </div>
 
         <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
-          <button type="button" @click="isModalOpen = false" class="btn-secondary py-2 px-4 text-xs">Cancel</button>
-          <button type="submit" class="btn-primary py-2 px-5 text-xs font-bold">Save Account Item</button>
+          <UiButton type="button" variant="secondary" size="sm" @click="isModalOpen = false">Cancel</UiButton>
+          <UiButton type="submit" variant="primary" size="sm">Save Account Item</UiButton>
         </div>
       </form>
     </Modal>
@@ -82,12 +141,31 @@
 <script setup lang="ts">
 const accounting = useAccounting()
 const isModalOpen = ref(false)
+const searchQuery = ref('')
+
+const filteredItems = computed(() => {
+  const query = searchQuery.value.trim().toLowerCase()
+  if (!query) return accounting.accountItems.value
+  return accounting.accountItems.value.filter(item =>
+    item.item_code.toLowerCase().includes(query) ||
+    item.item_name.toLowerCase().includes(query) ||
+    (item.description && item.description.toLowerCase().includes(query))
+  )
+})
 
 const newItem = reactive({
   item_code: '',
   item_name: '',
   description: '',
+  ledger_account_id: undefined as number | undefined,
+  transaction_type: 'debit' as 'debit' | 'credit',
 })
+
+const getLedgerAccountCode = (ledgerAccountId?: number) => {
+  if (!ledgerAccountId) return 'N/A'
+  const acc = accounting.ledgerAccounts.value.find(a => a.id === ledgerAccountId)
+  return acc ? `${acc.account_code} (${acc.account_name})` : `#${ledgerAccountId}`
+}
 
 const handleCreateItem = () => {
   accounting.addAccountItem({ ...newItem })
@@ -95,5 +173,7 @@ const handleCreateItem = () => {
   newItem.item_code = ''
   newItem.item_name = ''
   newItem.description = ''
+  newItem.ledger_account_id = undefined
+  newItem.transaction_type = 'debit'
 }
 </script>

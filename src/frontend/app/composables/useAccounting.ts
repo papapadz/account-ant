@@ -27,6 +27,7 @@ export interface AccountItem {
   item_name: string
   description?: string
   ledger_account_id?: number
+  transaction_type?: 'debit' | 'credit'
 }
 
 export interface LedgerAccountItem {
@@ -64,6 +65,25 @@ export const useAccounting = () => {
   })
 
   const netLedgerBalance = computed(() => totalDebits.value - totalCredits.value)
+
+  const getFundAccountSpent = (fundAccountId: number): number => {
+    return journalEntries.value
+      .filter(e => e.fund_account_id === fundAccountId && e.transaction_type === 'debit')
+      .reduce((sum, e) => sum + Number(e.amount), 0)
+  }
+
+  const getFundAccountCredits = (fundAccountId: number): number => {
+    return journalEntries.value
+      .filter(e => e.fund_account_id === fundAccountId && e.transaction_type === 'credit')
+      .reduce((sum, e) => sum + Number(e.amount), 0)
+  }
+
+  const getFundAccountRemaining = (fundAccountId: number): number => {
+    const fund = fundAccounts.value.find(f => f.id === fundAccountId)
+    if (!fund) return 0
+    const initialAmount = Number(fund.amount) || 0
+    return initialAmount + getFundAccountCredits(fundAccountId) - getFundAccountSpent(fundAccountId)
+  }
 
   // Fetch actions
   const fetchFundAccounts = async () => {
@@ -142,5 +162,8 @@ export const useAccounting = () => {
     addLedgerAccount,
     addAccountItem,
     addJournalEntry,
+    getFundAccountSpent,
+    getFundAccountCredits,
+    getFundAccountRemaining,
   }
 }

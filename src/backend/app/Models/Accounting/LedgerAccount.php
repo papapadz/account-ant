@@ -34,4 +34,9 @@ class LedgerAccount extends Model
     {
         return $this->hasMany(LedgerAccountItem::class, 'ledger_account_id');
     }
+
+    public function accountItems()
+    {
+        return $this->hasMany(AccountItem::class, 'ledger_account_id');
+    }
 }

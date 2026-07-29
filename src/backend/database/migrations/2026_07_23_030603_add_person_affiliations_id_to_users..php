@@ -16,6 +16,10 @@ return new class extends Migration
                 $table->foreignId('person_id')->nullable()->after('id')->constrained('people')->nullOnDelete();
             }
 
+            if (! Schema::hasColumn('users', 'person_affiliations_id')) {
+                $table->foreignId('person_affiliations_id')->nullable()->after('person_id')->constrained('person_affiliations')->nullOnDelete();
+            }
+
             if (Schema::hasColumn('users', 'name')) {
                 $table->dropColumn('name');
             }
@@ -28,6 +32,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            if (Schema::hasColumn('users', 'person_affiliations_id')) {
+                $table->dropConstrainedForeignId('person_affiliations_id');
+            }
+
             if (Schema::hasColumn('users', 'person_id')) {
                 $table->dropConstrainedForeignId('person_id');
             }
@@ -37,4 +45,5 @@ return new class extends Migration
             }
         });
     }
+
 };

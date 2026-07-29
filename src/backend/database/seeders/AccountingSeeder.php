@@ -26,6 +26,7 @@ class AccountingSeeder extends Seeder
                 'company_id' => $company ? $company->id : 1,
                 'fund_name' => 'General Operating Fund',
                 'description' => 'Primary corporate liquidity and daily operational expenses',
+                'amount' => 500000.00,
                 'user_id' => $user->id,
                 'ledger_account_id' => 10,
             ]
@@ -37,6 +38,7 @@ class AccountingSeeder extends Seeder
                 'company_id' => $company ? $company->id : 1,
                 'fund_name' => 'Capital Expenditure & R&D Fund',
                 'description' => 'Reserved capital for software automation & infrastructure expansion',
+                'amount' => 750000.00,
                 'user_id' => $user->id,
                 'ledger_account_id' => 20,
             ]
@@ -48,6 +50,7 @@ class AccountingSeeder extends Seeder
                 'company_id' => $company ? $company->id : 1,
                 'fund_name' => 'Payroll Reserve Fund',
                 'description' => 'Dedicated fund for bi-weekly employee compensation & tax withholding',
+                'amount' => 300000.00,
                 'user_id' => $user->id,
                 'ledger_account_id' => 30,
             ]
@@ -113,30 +116,40 @@ class AccountingSeeder extends Seeder
                 'item_code' => 'ITEM-ACC-01',
                 'item_name' => 'Client Subscription Payment',
                 'description' => 'Enterprise tier automated ledger subscription',
+                'ledger_account_id' => 40,
+                'transaction_type' => 'credit',
             ],
             [
                 'id' => 2,
                 'item_code' => 'ITEM-EXP-02',
                 'item_name' => 'Cloud Hosting Infrastructure',
                 'description' => 'AWS/GCP GPU cluster monthly compute fee',
+                'ledger_account_id' => 20,
+                'transaction_type' => 'debit',
             ],
             [
                 'id' => 3,
                 'item_code' => 'ITEM-PAY-03',
                 'item_name' => 'Engineering Staff Payroll',
                 'description' => 'Monthly engineering team salary disbursement',
+                'ledger_account_id' => 30,
+                'transaction_type' => 'debit',
             ],
             [
                 'id' => 4,
                 'item_code' => 'ITEM-TAX-04',
                 'item_name' => 'Corporate Tax Withholding',
                 'description' => 'Quarterly state and federal tax remittance',
+                'ledger_account_id' => 10,
+                'transaction_type' => 'debit',
             ],
             [
                 'id' => 5,
                 'item_code' => 'ITEM-LIC-05',
                 'item_name' => 'Database Security License',
                 'description' => 'Annual database encryption key management service',
+                'ledger_account_id' => 20,
+                'transaction_type' => 'debit',
             ],
         ];
 

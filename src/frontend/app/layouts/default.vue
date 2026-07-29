@@ -175,7 +175,7 @@
           <ClientOnly>
             <div class="hidden sm:flex items-center gap-1.5 bg-[var(--bg-surface)] border border-[var(--border-color)] px-2.5 py-1 rounded-full text-xs">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-              <span class="font-mono font-bold text-emerald-400">${{ formatCurrency(netBalance) }}</span>
+              <span class="font-mono font-bold text-emerald-400">{{ currencyStore.formatCurrency(netBalance) }}</span>
             </div>
           </ClientOnly>
 
@@ -245,7 +245,7 @@ const route = useRoute()
 const auth = useAuth()
 const accounting = useAccounting()
 const theme = useTheme()
-
+const currencyStore = useCurrency()
 const isMobileMenuOpen = ref(false)
 
 onMounted(async () => {
@@ -257,6 +257,7 @@ onMounted(async () => {
     await accounting.fetchLedgerAccounts()
     await accounting.fetchAccountItems()
     await accounting.fetchJournalEntries()
+    await projectsStore.fetchCities()
     await projectsStore.fetchProjects()
   } catch (err) {
     console.error('Failed to load initial data:', err)
@@ -265,19 +266,25 @@ onMounted(async () => {
 
 // ── Mobile Navigation Tabs ──────────────────────────────────────────────────
 const tabs = [
-  { tab: 'dashboard', href: '/',                    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', label: 'Projects' },
+  { tab: 'dashboard', href: '/',                    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', label: 'Dashboard' },
+  { tab: 'projects',  href: '/projects',             icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m3 0h14M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4', label: 'Projects' },
   { tab: 'funds',     href: '/management/funds',    icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10', label: 'Funds' },
   { tab: 'accounts',  href: '/management/accounts', icon: 'M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z', label: 'Accounts' },
   { tab: 'settings',  href: '/settings',            icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z', label: 'Settings' },
 ] as const
 
-const isTabActive = (href: string) => route.path === href || (href === '/' && (route.path === '/' || route.path.startsWith('/project/')))
+const isTabActive = (href: string) => route.path === href || (href === '/projects' && (route.path.startsWith('/project/') || route.path.startsWith('/projects/')))
 
 // ── Drawer Nav Links ──────────────────────────────────────────────────────────
 const mainLinks = [
   {
     to: '/',
-    label: 'Projects Dashboard',
+    label: 'Dashboard',
+    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+  },
+  {
+    to: '/projects',
+    label: 'Projects',
     icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m3 0h14M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
   },
 ]
@@ -324,7 +331,8 @@ const netBalance = computed(() => accounting.netLedgerBalance.value || 0)
 const isDarkMode = computed(() => theme.isDark.value)
 
 const pageTitle = computed(() => {
-  if (route.path === '/projects' || route.path === '/') return 'Projects Dashboard'
+  if (route.path === '/') return 'Dashboard Overview'
+  if (route.path === '/projects') return 'Enterprise Projects'
   if (route.path.startsWith('/project/') || route.path.startsWith('/projects/')) return 'Project Management'
   switch (route.path) {
     case '/management/journal':    return 'Journal Transactions'
@@ -337,14 +345,9 @@ const pageTitle = computed(() => {
 })
 
 const currentPageGroup = computed(() => {
-  if (route.path === '/' || route.path.startsWith('/project')) return 'Projects'
+  if (route.path === '/' || route.path.startsWith('/project') || route.path.startsWith('/projects')) return 'Projects'
   if (route.path.startsWith('/management')) return 'Management'
   if (route.path === '/settings')           return 'Configuration'
   return 'Dashboard'
 })
-
-const formatCurrency = (val: number) => {
-  const num = typeof val === 'number' && !isNaN(val) ? val : 0
-  return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-}
 </script>
