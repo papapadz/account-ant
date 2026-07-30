@@ -20,8 +20,8 @@
       </UiButton>
     </div>
 
-    <!-- Search Bar -->
-    <div class="glass-card p-4 rounded-xl border border-[var(--border-color)]">
+    <!-- Search Bar + Status Filter -->
+    <div class="glass-card p-4 rounded-xl border border-[var(--border-color)] space-y-3">
       <div class="relative">
         <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -32,6 +32,23 @@
           placeholder="Search by account code, name, or description..."
           class="input-field pl-9 text-xs"
         />
+      </div>
+      <!-- Status Filter Chips -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">Filter:</span>
+        <button
+          v-for="chip in statusChips"
+          :key="chip.value"
+          type="button"
+          @click="statusFilter = chip.value"
+          class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-all duration-150 cursor-pointer"
+          :class="statusFilter === chip.value
+            ? 'bg-blue-500/20 text-blue-400 border-blue-500/30'
+            : 'bg-[var(--bg-surface)] text-[var(--text-muted)] border-[var(--border-color)] hover:border-blue-500/30'"
+        >
+          {{ chip.label }}
+          <span class="ml-1 opacity-60">({{ chip.count }})</span>
+        </button>
       </div>
     </div>
 
@@ -60,10 +77,16 @@
           </div>
 
           <div class="pt-4 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
-            <span class="text-blue-500 font-semibold">Active</span>
+            <UiStatusPill
+              :status="account.status || 'active'"
+              :options="ledgerStatusOptions"
+              @change="(s) => handleAccountStatusChange(account.id, s)"
+            />
+            <span v-if="statusChangeSuccess === account.id" class="text-[10px] text-emerald-400 font-semibold animate-pulse">Saved ✓</span>
           </div>
         </div>
       </div>
+      <p v-if="filteredAccounts.length === 0" class="text-center text-[var(--text-muted)] text-sm py-10">No accounts found for the selected filter.</p>
     </ClientOnly>
 
     <!-- Create Modal -->
@@ -107,6 +130,21 @@ const isModalOpen = ref(false)
 const isSubmitting = ref(false)
 const errorMessage = ref('')
 const searchQuery = ref('')
+const statusFilter = ref('active')
+const statusChangeSuccess = ref<number | null>(null)
+
+const ledgerStatusOptions = [
+  { value: 'active', label: 'Active' },
+  { value: 'inactive', label: 'Inactive' },
+  { value: 'archived', label: 'Archived' },
+]
+
+const statusChips = computed(() => [
+  { value: 'all', label: 'All', count: accounting.ledgerAccounts.value.length },
+  { value: 'active', label: 'Active', count: accounting.ledgerAccounts.value.filter(a => (a.status || 'active') === 'active').length },
+  { value: 'inactive', label: 'Inactive', count: accounting.ledgerAccounts.value.filter(a => a.status === 'inactive').length },
+  { value: 'archived', label: 'Archived', count: accounting.ledgerAccounts.value.filter(a => a.status === 'archived').length },
+])
 
 const closeModal = () => {
   if (!isSubmitting.value) {
@@ -117,8 +155,12 @@ const closeModal = () => {
 
 const filteredAccounts = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
-  if (!query) return accounting.ledgerAccounts.value
-  return accounting.ledgerAccounts.value.filter(account =>
+  let accounts = accounting.ledgerAccounts.value
+  if (statusFilter.value !== 'all') {
+    accounts = accounts.filter(a => (a.status || 'active') === statusFilter.value)
+  }
+  if (!query) return accounts
+  return accounts.filter(account =>
     account.account_code.toLowerCase().includes(query) ||
     account.account_name.toLowerCase().includes(query) ||
     (account.description && account.description.toLowerCase().includes(query))
@@ -147,6 +189,16 @@ const handleCreateAccount = async () => {
     errorMessage.value = err?.data?.message || err?.statusMessage || err?.message || 'Failed to create ledger account. Please check inputs and try again.'
   } finally {
     isSubmitting.value = false
+  }
+}
+
+const handleAccountStatusChange = async (id: number, newStatus: string) => {
+  try {
+    await accounting.updateLedgerAccountStatus(id, newStatus as 'active' | 'inactive' | 'archived')
+    statusChangeSuccess.value = id
+    setTimeout(() => { statusChangeSuccess.value = null }, 2000)
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to update status.')
   }
 }
 </script>

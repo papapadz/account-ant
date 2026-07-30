@@ -6,8 +6,8 @@
     </label>
 
     <div class="relative rounded-lg shadow-sm">
-      <div v-if="prefix" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[var(--text-muted)] text-sm font-mono">
-        {{ prefix }}
+      <div v-if="prefix || $slots['icon-left']" class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[var(--text-muted)] text-sm font-mono z-10">
+        <slot name="icon-left">{{ prefix }}</slot>
       </div>
 
       <input
@@ -20,13 +20,18 @@
         :step="step"
         :min="min"
         :max="max"
-        class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2 transition-all placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="input-field"
         :class="[
-          prefix ? 'pl-8' : '',
+          (prefix || $slots['icon-left']) ? '!pl-10' : '',
+          $slots['icon-right'] ? '!pr-10' : '',
           error ? 'border-rose-500 focus:ring-rose-500/50' : ''
         ]"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />
+
+      <div v-if="$slots['icon-right']" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[var(--text-muted)] text-sm z-10">
+        <slot name="icon-right" />
+      </div>
     </div>
 
     <p v-if="error" class="text-xs text-rose-400 mt-1">{{ error }}</p>

@@ -15,6 +15,7 @@ export interface LedgerAccount {
   account_code: string
   account_name: string
   description?: string
+  status?: 'active' | 'inactive' | 'archived'
   fund_account_id?: number
   user_id: number
   ledger_account_id?: number
@@ -26,6 +27,7 @@ export interface AccountItem {
   item_code: string
   item_name: string
   description?: string
+  status?: 'active' | 'inactive' | 'archived'
   ledger_account_id?: number
   transaction_type?: 'debit' | 'credit'
 }
@@ -38,6 +40,8 @@ export interface LedgerAccountItem {
   amount: number
   transaction_type: 'debit' | 'credit'
   description?: string
+  posting_date?: string
+  status?: 'posted' | 'void' | 'reconciled'
   user_id: number
   created_at: string
 }
@@ -146,6 +150,29 @@ export const useAccounting = () => {
     return created
   }
 
+  // Status Update Methods
+  const updateLedgerAccountStatus = async (id: number, status: 'active' | 'inactive' | 'archived') => {
+    const res = await api.request<{ data: LedgerAccount }>(`/ledger-accounts/${id}/status`, {
+      method: 'PATCH',
+      body: { status },
+    })
+    const updated = res.data || res
+    const idx = ledgerAccounts.value.findIndex(a => a.id === id)
+    if (idx !== -1) ledgerAccounts.value[idx] = { ...ledgerAccounts.value[idx], status }
+    return updated
+  }
+
+  const updateAccountItemStatus = async (id: number, status: 'active' | 'inactive' | 'archived') => {
+    const res = await api.request<{ data: AccountItem }>(`/account-items/${id}/status`, {
+      method: 'PATCH',
+      body: { status },
+    })
+    const updated = res.data || res
+    const idx = accountItems.value.findIndex(a => a.id === id)
+    if (idx !== -1) accountItems.value[idx] = { ...accountItems.value[idx], status }
+    return updated
+  }
+
   return {
     fundAccounts,
     ledgerAccounts,
@@ -165,5 +192,7 @@ export const useAccounting = () => {
     getFundAccountSpent,
     getFundAccountCredits,
     getFundAccountRemaining,
+    updateLedgerAccountStatus,
+    updateAccountItemStatus,
   }
 }

@@ -37,7 +37,7 @@ class AccountingSeeder extends Seeder
             [
                 'company_id' => $company ? $company->id : 1,
                 'fund_name' => 'Capital Expenditure & R&D Fund',
-                'description' => 'Reserved capital for software automation & infrastructure expansion',
+                'description' => 'Reserved capital',
                 'amount' => 750000.00,
                 'user_id' => $user->id,
                 'ledger_account_id' => 20,
@@ -49,7 +49,7 @@ class AccountingSeeder extends Seeder
             [
                 'company_id' => $company ? $company->id : 1,
                 'fund_name' => 'Payroll Reserve Fund',
-                'description' => 'Dedicated fund for bi-weekly employee compensation & tax withholding',
+                'description' => 'Dedicated fund for bi-weekly employee compensation',
                 'amount' => 300000.00,
                 'user_id' => $user->id,
                 'ledger_account_id' => 30,
@@ -62,7 +62,7 @@ class AccountingSeeder extends Seeder
                 'id' => 10,
                 'account_code' => '1010-CASH',
                 'account_name' => 'Cash & Cash Equivalents',
-                'description' => 'Operating bank deposits and liquid treasury holdings',
+                'description' => 'Cash, payments and received funds',
                 'fund_account_id' => $fund1->id,
                 'user_id' => $user->id,
                 'ledger_account_id' => 1,
@@ -78,9 +78,9 @@ class AccountingSeeder extends Seeder
             ],
             [
                 'id' => 20,
-                'account_code' => '1500-EQUIP',
-                'account_name' => 'Server & IT Infrastructure Assets',
-                'description' => 'Hardware, high-performance compute nodes & software licenses',
+                'account_code' => '1500-CONS-SUPP',
+                'account_name' => 'Construction Supplies and Equipment',
+                'description' => 'Construction supplies, items and equipment needed for projects',
                 'fund_account_id' => $fund2->id,
                 'user_id' => $user->id,
                 'ledger_account_id' => 2,
@@ -94,15 +94,6 @@ class AccountingSeeder extends Seeder
                 'user_id' => $user->id,
                 'ledger_account_id' => 3,
             ],
-            [
-                'id' => 40,
-                'account_code' => '4010-REV',
-                'account_name' => 'SaaS Subscription Revenue',
-                'description' => 'Recurring platform API usage revenue',
-                'fund_account_id' => $fund1->id,
-                'user_id' => $user->id,
-                'ledger_account_id' => 1,
-            ],
         ];
 
         foreach ($ledgerAccounts as $accData) {
@@ -110,45 +101,30 @@ class AccountingSeeder extends Seeder
         }
 
         // 3. Seed Account Items
+        $equipAcc = LedgerAccount::where('account_code', '1500-CONS-SUPP')->first();
+        $salaryAcc = LedgerAccount::where('account_code', '5010-SALARY')->first();
+        $cashAcc = LedgerAccount::where('account_code', '1010-CASH')->first();
+
         $items = [
             [
-                'id' => 1,
                 'item_code' => 'ITEM-ACC-01',
-                'item_name' => 'Client Subscription Payment',
-                'description' => 'Enterprise tier automated ledger subscription',
-                'ledger_account_id' => 40,
+                'item_name' => 'Client Payment',
+                'description' => 'Payment for work and services provided',
+                'ledger_account_id' => $cashAcc ? $cashAcc->id : LedgerAccount::first()->id,
                 'transaction_type' => 'credit',
             ],
             [
-                'id' => 2,
-                'item_code' => 'ITEM-EXP-02',
-                'item_name' => 'Cloud Hosting Infrastructure',
-                'description' => 'AWS/GCP GPU cluster monthly compute fee',
-                'ledger_account_id' => 20,
-                'transaction_type' => 'debit',
-            ],
-            [
-                'id' => 3,
                 'item_code' => 'ITEM-PAY-03',
                 'item_name' => 'Engineering Staff Payroll',
-                'description' => 'Monthly engineering team salary disbursement',
-                'ledger_account_id' => 30,
+                'description' => 'Monthly engineering team salaries',
+                'ledger_account_id' => $salaryAcc ? $salaryAcc->id : LedgerAccount::first()->id,
                 'transaction_type' => 'debit',
             ],
             [
-                'id' => 4,
-                'item_code' => 'ITEM-TAX-04',
-                'item_name' => 'Corporate Tax Withholding',
-                'description' => 'Quarterly state and federal tax remittance',
-                'ledger_account_id' => 10,
-                'transaction_type' => 'debit',
-            ],
-            [
-                'id' => 5,
-                'item_code' => 'ITEM-LIC-05',
-                'item_name' => 'Database Security License',
-                'description' => 'Annual database encryption key management service',
-                'ledger_account_id' => 20,
+                'item_code' => 'ITEM-EQUIP-01',
+                'item_name' => 'Construction Supplies and Equipment',
+                'description' => 'Construction supplies, items and equipment needed for projects',
+                'ledger_account_id' => $equipAcc ? $equipAcc->id : LedgerAccount::first()->id,
                 'transaction_type' => 'debit',
             ],
         ];

@@ -117,25 +117,24 @@
           </div>
 
           <!-- Financial Health Progress -->
-          <div class="mt-5 pt-4 border-t border-[var(--border-color)] space-y-3">
-            <div class="flex items-center justify-between text-xs">
-              <span class="text-[var(--text-muted)] font-medium">Budget Usage</span>
-              <span class="font-mono font-bold text-emerald-400">{{ getProjectUsagePercent(project.id) }}%</span>
-            </div>
-            <UiProgressBar
-              :value="getProjectUsagePercent(project.id)"
-              :variant="getProjectUsagePercent(project.id) > 90 ? 'rose' : getProjectUsagePercent(project.id) > 75 ? 'amber' : 'emerald'"
-              size="sm"
-            />
-
+          <div class="mt-4 space-y-3">
+            
             <div class="grid grid-cols-2 gap-2 pt-1">
               <div class="bg-[var(--bg-surface)] p-2 rounded-lg border border-[var(--border-color)]">
-                <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Total Funds</span>
-                <span class="text-xs font-bold font-mono text-[var(--text-main)]">{{ currencyStore.formatCurrency(projectsStore.getProjectTotalFunds(project.id)) }}</span>
+                <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Total Budget</span>
+                <span class="text-xs font-bold font-mono text-[var(--text-main)]">{{ currencyStore.formatCurrency(projectsStore.getProjectBudget(project.id)) }}</span>
               </div>
               <div class="bg-[var(--bg-surface)] p-2 rounded-lg border border-[var(--border-color)]">
                 <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Total Spent</span>
                 <span class="text-xs font-bold font-mono text-rose-400">{{ currencyStore.formatCurrency(projectsStore.getProjectTotalSpent(project.id)) }}</span>
+              </div>
+              <div class="bg-[var(--bg-surface)] p-2 rounded-lg border border-[var(--border-color)]">
+                <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Remaining Balance</span>
+                <span class="text-xs font-bold font-mono text-[var(--text-main)]">{{ currencyStore.formatCurrency(projectsStore.getProjectRemainingBalance(project.id)) }}</span>
+              </div>
+              <div class="bg-[var(--bg-surface)] p-2 rounded-lg border border-[var(--border-color)]">
+                <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Budget Utilization</span>
+                <span :class="['text-xs font-bold font-mono', getUsageTextColorClass(projectsStore.getProjectBudgetUtilization(project.id))]">{{ projectsStore.getProjectBudgetUtilization(project.id) }}%</span>
               </div>
             </div>
 
@@ -177,29 +176,17 @@
 
           <!-- Cell: Start Date -->
           <template #cell-start_date="{ value }">
-            <span class="font-mono text-[var(--text-muted)] text-xs">{{ value }}</span>
+            <span class="font-mono text-[var(--text-muted)] text-xs">{{ dateStore.formatISODate(value) }}</span>
           </template>
 
           <!-- Cell: Status -->
           <template #cell-status="{ value }">
-            <UiBadge
-              :variant="value === 'active' ? 'emerald' : value === 'on-hold' ? 'amber' : 'ghost'"
-              size="sm"
-            >
-              {{ value }}
-            </UiBadge>
+            <span class="font-mono text-[var(--text-muted)] text-xs">{{ value?.toUpperCase() }}</span>
           </template>
 
           <!-- Cell: Budget -->
           <template #cell-budget="{ value }">
             <span class="font-mono text-[var(--text-muted)]">{{ currencyStore.formatCurrency(value || 0) }}</span>
-          </template>
-
-          <!-- Cell: Total Funds -->
-          <template #cell-funds="{ item }">
-            <span class="font-mono font-semibold text-emerald-400">
-              {{ currencyStore.formatCurrency(projectsStore.getProjectTotalFunds(item.id)) }}
-            </span>
           </template>
 
           <!-- Cell: Total Spent -->
@@ -212,23 +199,18 @@
           <!-- Cell: Remaining -->
           <template #cell-remaining="{ item }">
             <span class="font-mono font-semibold text-blue-400">
-              {{ currencyStore.formatCurrency(projectsStore.getProjectRemainingBalance(item.id)) }}
+              {{ currencyStore.formatCurrency(projectsStore.getProjectBudgetBalance(item.id)) }}
             </span>
           </template>
 
           <!-- Cell: Usage Progress Bar -->
           <template #cell-usage="{ item }">
-            <div class="space-y-1">
-              <div class="flex justify-between text-[10px] font-mono text-[var(--text-muted)]">
-                <span>Usage</span>
-                <span>{{ getProjectUsagePercent(item.id) }}%</span>
-              </div>
-              <UiProgressBar
-                :value="getProjectUsagePercent(item.id)"
-                :variant="getProjectUsagePercent(item.id) > 90 ? 'rose' : getProjectUsagePercent(item.id) > 75 ? 'amber' : 'emerald'"
-                size="sm"
-              />
-            </div>
+            <span
+              class="font-mono font-semibold"
+              :class="getUsageTextColorClass(projectsStore.getProjectBudgetUtilization(item.id))"
+            >
+              {{ projectsStore.getProjectBudgetUtilization(item.id) }}%
+            </span>
           </template>
 
           <!-- Cell: Actions -->
@@ -266,6 +248,7 @@ const router = useRouter()
 const auth = useAuth()
 const projectsStore = useProjects()
 const currencyStore = useCurrency()
+const dateStore = useDate()
 
 const statusFilter = ref<'all' | 'active' | 'on-hold' | 'completed'>('all')
 const searchQuery = ref('')
@@ -282,15 +265,15 @@ const statusFilterTabs = computed<TabItem[]>(() => [
 ])
 
 const projectColumns: DataTableColumn[] = [
+  
+  { key: 'status', label: 'Status', sortable: true, align: 'center' },
   { key: 'name', label: 'Project & Location', sortable: true },
   { key: 'client_name', label: 'Client / Owner', sortable: true },
   { key: 'start_date', label: 'Start Date', sortable: true },
-  { key: 'status', label: 'Status', sortable: true },
   { key: 'budget', label: 'Max Budget', sortable: true, align: 'right' },
-  { key: 'funds', label: 'Total Funds', sortable: true, align: 'right' },
   { key: 'spent', label: 'Total Spent', sortable: true, align: 'right' },
   { key: 'remaining', label: 'Remaining', sortable: true, align: 'right' },
-  { key: 'usage', label: 'Usage', sortable: true, width: 'w-36' },
+  { key: 'usage', label: 'Usage', sortable: true, align: 'right' },
   { key: 'actions', label: 'Action', sortable: false, align: 'right' },
 ]
 
@@ -312,9 +295,8 @@ const filteredProjects = computed(() => {
 const getCustomSortValue = (item: any, key: string) => {
   switch (key) {
     case 'budget': return item.budget || 0
-    case 'funds': return projectsStore.getProjectTotalFunds(item.id)
     case 'spent': return projectsStore.getProjectTotalSpent(item.id)
-    case 'remaining': return projectsStore.getProjectRemainingBalance(item.id)
+    case 'remaining': return projectsStore.getProjectBudgetBalance(item.id)
     case 'usage': return getProjectUsagePercent(item.id)
     default: return undefined
   }
@@ -326,6 +308,12 @@ const getProjectUsagePercent = (projectId: number) => {
   if (baseLimit <= 0) return 0
   const spent = projectsStore.getProjectTotalSpent(projectId)
   return Math.min(Math.round((spent / baseLimit) * 100), 100)
+}
+
+const getUsageTextColorClass = (val: number) => {
+  if (val >= 90) return 'text-rose-400'
+  if (val >= 75) return 'text-amber-400'
+  return 'text-emerald-400'
 }
 
 const formatAddress = (address: any) => {

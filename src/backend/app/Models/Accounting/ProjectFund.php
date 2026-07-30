@@ -15,11 +15,13 @@ class ProjectFund extends Model
         'project_id',
         'fund_account_id',
         'initial_amount',
+        'date_received',
         'user_id',
     ];
 
     protected $casts = [
         'initial_amount' => 'decimal:2',
+        'date_received' => 'date:Y-m-d',
     ];
 
     public function project()

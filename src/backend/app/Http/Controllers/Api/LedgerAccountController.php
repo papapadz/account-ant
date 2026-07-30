@@ -59,6 +59,22 @@ class LedgerAccountController extends Controller
         ], 201);
     }
 
+    public function updateStatus(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:active,inactive,archived',
+        ]);
+
+        $account = LedgerAccount::findOrFail($id);
+        $account->update(['status' => $validated['status']]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Ledger account status updated successfully',
+            'data' => $account,
+        ]);
+    }
+
     public function destroy($id)
     {
         $account = LedgerAccount::findOrFail($id);

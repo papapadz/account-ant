@@ -15,6 +15,7 @@ class LedgerAccount extends Model
         'account_code',
         'account_name',
         'description',
+        'status',
         'fund_account_id',
         'user_id',
         'ledger_account_id',

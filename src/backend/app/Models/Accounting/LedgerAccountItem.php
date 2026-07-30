@@ -19,11 +19,14 @@ class LedgerAccountItem extends Model
         'amount',
         'transaction_type',
         'description',
+        'posting_date',
+        'status',
         'user_id',
     ];
 
     protected $casts = [
         'amount' => 'decimal:2',
+        'posting_date' => 'date:Y-m-d',
     ];
 
     public function ledgerAccount()

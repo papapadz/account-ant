@@ -16,7 +16,11 @@
         <div>
           <div class="flex items-center gap-2.5">
             <h1 class="text-2xl font-bold text-[var(--text-main)] tracking-tight">{{ project.name }}</h1>
-            <UiBadge :status="project.status" />
+            <UiStatusPill
+              :status="project.status || 'active'"
+              :options="projectStatusOptions"
+              @change="(s) => handleProjectStatusChange(s)"
+            />
           </div>
           <p v-if="project.description" class="text-xs text-[var(--text-main)] mt-1 font-medium">
             {{ project.description }}
@@ -70,12 +74,12 @@
     <!-- Core 4 Financial KPI Cards Grid -->
     <ClientOnly>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- 1. Net Ledger Balance -->
+        <!-- 1. Project Budget -->
         <KpiCard
-          title="Net Ledger Balance"
-          :value="`${currencyStore.formatCurrency(netLedgerBalance)}`"
-          subtitle="Total Credits minus Total Debits"
-          :type="netLedgerBalance >= 0 ? 'emerald' : 'rose'"
+          title="Project Budget"
+          :value="`${currencyStore.formatCurrency(projectBudget)}`"
+          subtitle="Allocated project target budget"
+          type="emerald"
         >
           <template #icon>
             <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,11 +93,11 @@
           title="Total Debits (Dr)"
           :value="`${currencyStore.formatCurrency(totalProjectDebits)}`"
           subtitle="Cumulative debited expenses"
-          type="blue"
+          type="amber"
         >
           <template #icon>
-            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
             </svg>
           </template>
         </KpiCard>
@@ -103,11 +107,11 @@
           title="Total Credits (Cr)"
           :value="`${currencyStore.formatCurrency(totalProjectCredits)}`"
           subtitle="Cumulative credited additions"
-          type="amber"
+          type="blue"
         >
           <template #icon>
-            <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
             </svg>
           </template>
         </KpiCard>
@@ -134,10 +138,10 @@
     <!-- TAB 1: Recent Journal Transactions DATATABLE -->
     <div v-if="activeTab === 'transactions'" class="space-y-4">
       <div class="flex items-center justify-between">
-        <div>
+        <!-- <div>
           <h2 class="text-base font-bold text-[var(--text-main)]">Recent Journal Transactions</h2>
           <p class="text-xs text-[var(--text-muted)]">Real-time debit and credit line items recorded for {{ project.name }}</p>
-        </div>
+        </div> -->
 
         <!-- <UiButton type="button" variant="primary" size="sm" @click="isPostJournalModalOpen = true">
           <template #icon-left>
@@ -153,17 +157,22 @@
         :items="projectTransactions"
         :columns="transactionColumns"
         :searchable="true"
-        search-placeholder="Search note, ledger account, or item name..."
-        :search-fields="['note', 'date']"
-        default-sort-key="date"
+        search-placeholder="Search note, date, ledger account, or item name..."
+        :search-fields="['note', 'posting_date', 'date']"
+        default-sort-key="posting_date"
         default-sort-order="desc"
         :default-page-size="5"
         :custom-sort-value="getTransactionSortValue"
         @row-click="handleTransactionRowClick"
       >
-        <!-- Cell: Date -->
-        <template #cell-date="{ value }">
-          <span class="font-mono text-[var(--text-main)] text-sm font-medium whitespace-nowrap">{{ value }}</span>
+        <!-- Cell: Posting Date -->
+        <template #cell-posting_date="{ item, value }">
+          <span class="font-mono text-[var(--text-main)] text-sm font-medium whitespace-nowrap">{{ dateStore.formatISODate(item.posting_date || value) }}</span>
+        </template>
+
+        <!-- Cell: Date (Fallback) -->
+        <template #cell-date="{ item, value }">
+          <span class="font-mono text-[var(--text-main)] text-sm font-medium whitespace-nowrap">{{ dateStore.formatISODate(item.posting_date || value) }}</span>
         </template>
 
         <!-- Cell: Type -->
@@ -219,6 +228,15 @@
           </span>
         </template>
 
+        <!-- Cell: Status -->
+        <template #cell-status="{ item }">
+          <UiStatusPill
+            :status="item.status || 'posted'"
+            :options="journalStatusOptions"
+            @change="(s) => handleJournalEntryStatusChange(item.id, s)"
+          />
+        </template>
+
         <template #empty>
           <div class="space-y-1 py-4">
             <p class="text-sm font-semibold text-[var(--text-main)]">No journal entries recorded yet</p>
@@ -264,7 +282,7 @@
 
         <!-- Cell: Date Received -->
         <template #cell-date_received="{ value }">
-          <span class="font-mono text-[var(--text-muted)] text-xs whitespace-nowrap">{{ value }}</span>
+          <span class="font-mono text-[var(--text-muted)] text-xs whitespace-nowrap">{{ dateStore.formatISODate(value) }}</span>
         </template>
 
         <!-- Cell: Initial Allocation -->
@@ -340,7 +358,7 @@
               :key="acc.id"
               :value="acc.id"
             >
-              [{{ acc.account_code }}] {{ acc.account_name }}
+              [{{ acc.account_code }}] {{ acc.account_name }} ({{ activeCategories.filter(c => c.ledger_account_id === acc.id).length }} items)
             </option>
           </select>
         </div>
@@ -612,10 +630,10 @@
             </tbody>
           </table>
         </div>
-        <div v-else class="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] text-center text-sm text-[var(--text-muted)] space-y-1">
+        <!-- <div v-else class="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] text-center text-sm text-[var(--text-muted)] space-y-1">
           <p class="text-[var(--text-main)] font-medium">No itemized line items attached to this transaction.</p>
           <p class="text-xs">Recorded as a single ledger entry with total amount of <strong class="text-emerald-400 font-mono font-bold">{{ currencyStore.formatCurrency(selectedTransactionForItems.amount) }}</strong>.</p>
-        </div>
+        </div> -->
 
         <div class="flex justify-between items-center text-xs sm:text-sm pt-2 font-mono border-t border-[var(--border-color)]">
           <span class="text-[var(--text-muted)]">Total Line Items: <strong class="text-[var(--text-main)]">{{ selectedTransactionForItems.items?.length || 0 }}</strong></span>
@@ -669,7 +687,7 @@
             >
               <option value="" disabled>Select an available fund account</option>
               <option v-for="fund in accountingStore.fundAccounts.value" :key="fund.id" :value="fund.fund_name">
-                {{ fund.fund_code }} - {{ fund.fund_name }} (Balance: {{ currencyStore.formatCurrency(fund.amount || 0) }})
+                {{ fund.fund_code }} - {{ fund.fund_name }} (Balance: {{ currencyStore.formatCurrency(accountingStore.getFundAccountRemaining(fund.id)) }})
               </option>
             </select>
           </div>
@@ -822,7 +840,7 @@
               </thead>
               <tbody class="divide-y divide-slate-200">
                 <tr v-for="item in chronologicalStatement" :key="item.id" class="hover:bg-slate-50">
-                  <td class="py-2 px-2 font-mono whitespace-nowrap text-slate-600">{{ item.date }}</td>
+                  <td class="py-2 px-2 font-mono whitespace-nowrap text-slate-600">{{ dateStore.formatISODate(item.rawDate || item.date) }}</td>
                   <td class="py-2 px-2 font-semibold text-slate-900">
                     {{ item.category_name }}
                     <div class="text-[10px] text-slate-500 font-normal truncate max-w-xs">{{ item.description }}</div>
@@ -912,6 +930,7 @@ const authStore = useAuth()
 const currencyStore = useCurrency()
 const projectsStore = useProjects()
 const accountingStore = useAccounting()
+const dateStore = useDate()
 
 const projectId = computed(() => Number(route.params.id))
 const project = computed(() => projectsStore.projects.value.find(p => p.id === projectId.value))
@@ -920,12 +939,42 @@ const activeTab = ref<'transactions' | 'funds'>('transactions')
 
 const projectTabs = computed<TabItem[]>(() => [
   { value: 'transactions', label: 'Recent Journal Transactions', badge: projectTransactions.value.length },
-  { value: 'funds', label: 'Allocated Fund Accounts', badge: projectFundSources.value.length },
+  // { value: 'funds', label: 'Allocated Fund Accounts', badge: projectFundSources.value.length },
 ])
 const isPostJournalModalOpen = ref(false)
 const isAddFundModalOpen = ref(false)
 const isPrintBalanceSheetModalOpen = ref(false)
 const statementDate = ref(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }))
+
+// Status change options
+const journalStatusOptions = [
+  { value: 'posted', label: 'Posted' },
+  { value: 'void', label: 'Void' },
+  { value: 'reconciled', label: 'Reconciled' },
+]
+
+const projectStatusOptions = [
+  { value: 'active', label: 'Active' },
+  { value: 'on-hold', label: 'On Hold' },
+  { value: 'completed', label: 'Completed' },
+]
+
+const handleJournalEntryStatusChange = async (id: number, newStatus: string) => {
+  try {
+    await projectsStore.updateJournalEntryStatus(id, newStatus as 'posted' | 'void' | 'reconciled')
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to update journal entry status.')
+  }
+}
+
+const handleProjectStatusChange = async (newStatus: string) => {
+  if (!project.value) return
+  try {
+    await projectsStore.updateProjectStatus(project.value.id, newStatus as 'active' | 'on-hold' | 'completed')
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to update project status.')
+  }
+}
 
 const router = useRouter()
 
@@ -954,6 +1003,20 @@ watch(modalTab, () => {
 
 watch(isCreatingNewFund, () => {
   fundForm.name = ''
+})
+
+watch(isPostJournalModalOpen, async (isOpen) => {
+  if (isOpen) {
+    try {
+      await Promise.all([
+        accountingStore.fetchLedgerAccounts(),
+        accountingStore.fetchAccountItems(),
+        projectsStore.fetchProjects(),
+      ])
+    } catch (err) {
+      console.warn('[PostJournalModal] Warning fetching ledger accounts or items:', err)
+    }
+  }
 })
 
 const getVariantLabel = (v: string) => {
@@ -1066,7 +1129,7 @@ const journalForm = reactive({
   ledger_account_id: '' as number | string,
   category_id: '' as number | string,
   amount: '' as string | number,
-  date: new Date().toISOString().split('T')[0],
+  date: dateStore.formatISODate(new Date()),
   description: '',
 })
 
@@ -1079,17 +1142,18 @@ watch([isItemizedMode, itemizedTotal], ([isItemized, total]) => {
 const fundForm = reactive({
   name: '',
   amount: '' as string | number,
-  date_received: new Date().toISOString().split('T')[0],
+  date_received: dateStore.formatISODate(new Date()),
 })
 
 // Columns Definitions
 const transactionColumns: DataTableColumn[] = [
-  { key: 'date', label: 'Date', sortable: true, width: 'whitespace-nowrap' },
+  { key: 'posting_date', label: 'Posting Date', sortable: true, width: 'whitespace-nowrap' },
   { key: 'type', label: 'Type', sortable: true, width: 'w-24' },
   { key: 'category', label: 'Item Category', sortable: true, width: 'min-w-[160px]' },
   { key: 'fund', label: 'Fund Source', sortable: true, width: 'min-w-[180px]' },
   { key: 'note', label: 'Note / Description', sortable: true, width: 'min-w-[220px]' },
   { key: 'amount', label: 'Amount', sortable: true, align: 'right', width: 'min-w-[140px]' },
+  { key: 'status', label: 'Status', sortable: true, width: 'w-28' },
 ]
 
 const fundSourceColumns: DataTableColumn[] = [
@@ -1103,10 +1167,18 @@ const fundSourceColumns: DataTableColumn[] = [
 
 // Real-time Card Aggregations
 const totalProjectFunds = computed(() => projectsStore.getProjectTotalFunds(projectId.value))
+const projectBudget = computed(() => Number(project.value?.budget) || totalProjectFunds.value)
 const totalProjectDebits = computed(() => projectsStore.getProjectTotalDebits(projectId.value))
 const totalProjectCredits = computed(() => projectsStore.getProjectTotalCredits(projectId.value))
 const netLedgerBalance = computed(() => projectsStore.getProjectNetLedgerBalance(projectId.value))
-const activeFundAccountsBalance = computed(() => projectsStore.getProjectActiveFundBalance(projectId.value))
+const activeFundAccountsBalance = computed(() => {
+  if (projectFundSources.value.length === 0) {
+    return projectsStore.getProjectActiveFundBalance(projectId.value)
+  }
+  return projectFundSources.value.reduce((sum, f) => {
+    return sum + projectsStore.getFundSourceRemaining(f.id)
+  }, 0)
+})
 const isOverBudget = computed(() => activeFundAccountsBalance.value < 0)
 
 const projectFundSources = computed(() => {
@@ -1182,6 +1254,8 @@ const getFundSourceSortValue = (item: any, key: string) => {
 
 const getTransactionSortValue = (item: any, key: string) => {
   switch (key) {
+    case 'posting_date':
+    case 'date': return item.posting_date || item.date
     case 'category': return getCategoryName(item.category_id)
     case 'fund': return getFundSourceName(item.fund_source_id)
     default: return undefined
@@ -1239,7 +1313,7 @@ const handlePostJournalEntry = async () => {
     journalForm.ledger_account_id = ''
     journalForm.category_id = ''
     journalForm.amount = ''
-    journalForm.date = new Date().toISOString().split('T')[0]
+    journalForm.date = dateStore.formatISODate(new Date())
     journalForm.description = ''
     isItemizedMode.value = false
     itemizedRows.value = [{ id: String(Date.now()), description: '', quantity: 1, unit: 'pcs', price: '' }]
@@ -1265,7 +1339,7 @@ const handleAddFundSource = async () => {
     const existingFund = accountingStore.fundAccounts.value.find(
       f => f.fund_name === fundForm.name
     )
-    finalAmount = existingFund ? Number(existingFund.amount) || 0 : 0
+    finalAmount = existingFund ? Number(accountingStore.getFundAccountRemaining(existingFund.id)) || 0 : 0
   }
 
   try {
@@ -1273,11 +1347,13 @@ const handleAddFundSource = async () => {
       project_id: projectId.value,
       name: fundForm.name,
       amount: finalAmount,
+      date_received: fundForm.date_received,
+      date: fundForm.date_received,
     })
 
     fundForm.name = ''
     fundForm.amount = ''
-    fundForm.date_received = new Date().toISOString().split('T')[0]
+    fundForm.date_received = dateStore.formatISODate(new Date())
     isAddFundModalOpen.value = false
   } catch (err: any) {
     alert(err?.data?.message || err?.message || 'Failed to add fund source.')
@@ -1341,6 +1417,7 @@ const getLedgerCodeForCategory = (catId: number) => {
 const chronologicalStatement = computed(() => {
   const items: Array<{
     id: string | number
+    rawDate: string
     date: string
     type: 'allocation' | 'debit' | 'credit'
     category_name: string
@@ -1352,13 +1429,14 @@ const chronologicalStatement = computed(() => {
     running_balance: number
   }> = []
 
-  // 1. Opening Fund Allocations (Option A)
+  // 1. Opening Fund Allocations
   const funds = projectFundSources.value
   for (const f of funds) {
     const rawDate = f.date_received || project.value?.start_date || new Date().toISOString().split('T')[0]
     items.push({
       id: `FUND-${f.id}`,
-      date: formatDateMMDDYY(rawDate),
+      rawDate,
+      date: dateStore.formatISODate(rawDate),
       type: 'allocation',
       category_name: 'Opening Capital Allocation',
       ledger_code: '1010-CASH',
@@ -1374,9 +1452,11 @@ const chronologicalStatement = computed(() => {
   const txs = projectTransactions.value
   for (const t of txs) {
     const isDebit = t.type === 'debit'
+    const rawDate = t.posting_date || t.date || new Date().toISOString().split('T')[0]
     items.push({
       id: `TX-${t.id}`,
-      date: formatDateMMDDYY(t.date),
+      rawDate,
+      date: dateStore.formatISODate(rawDate),
       type: t.type,
       category_name: getCategoryName(t.category_id),
       ledger_code: getLedgerCodeForCategory(t.category_id),
@@ -1388,10 +1468,10 @@ const chronologicalStatement = computed(() => {
     })
   }
 
-  // Sort chronological (oldest date first)
-  items.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  // Sort chronological (oldest posting date first)
+  items.sort((a, b) => new Date(a.rawDate).getTime() - new Date(b.rawDate).getTime())
 
-  // Compute running balance chronologically
+  // Compute running balance chronologically: Running Balance = (Previous Balance) + Credit - Debit
   let balance = 0
   for (const item of items) {
     balance += item.credit_amount - item.debit_amount

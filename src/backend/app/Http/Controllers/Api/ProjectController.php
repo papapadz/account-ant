@@ -88,7 +88,11 @@ class ProjectController extends Controller
         $validated = $request->validate([
             'fund_account_id' => 'required|exists:fund_accounts,id',
             'initial_amount' => 'required|numeric|min:0',
+            'date_received' => 'nullable|date',
+            'date' => 'nullable|date',
         ]);
+
+        $dateReceived = $validated['date_received'] ?? $validated['date'] ?? now()->toDateString();
 
         // Prevent duplicate fund allocation or update existing
         $projectFund = ProjectFund::updateOrCreate(
@@ -98,6 +102,7 @@ class ProjectController extends Controller
             ],
             [
                 'initial_amount' => $validated['initial_amount'],
+                'date_received' => $dateReceived,
                 'user_id' => $request->user() ? $request->user()->id : 1,
             ]
         );
@@ -123,6 +128,26 @@ class ProjectController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Project deleted successfully',
+        ]);
+    }
+
+    /**
+     * Update the status of a project.
+     */
+    public function updateStatus(Request $request, string $id): JsonResponse
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:active,on-hold,completed',
+        ]);
+
+        $project = Project::findOrFail($id);
+        $project->update(['status' => $validated['status']]);
+        $project->load(['city', 'projectFunds.fundAccount']);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Project status updated successfully',
+            'data' => $project,
         ]);
     }
 }

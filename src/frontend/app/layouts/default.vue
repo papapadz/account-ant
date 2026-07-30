@@ -1,5 +1,9 @@
 <template>
-  <div class="flex h-screen w-screen overflow-hidden bg-[var(--bg-app)] text-[var(--text-main)] font-sans antialiased">
+  <div v-if="!showNavigation" class="w-full h-full min-h-screen bg-[var(--bg-app)] text-[var(--text-main)] font-sans antialiased">
+    <slot />
+  </div>
+
+  <div v-else class="flex h-screen w-screen overflow-hidden bg-[var(--bg-app)] text-[var(--text-main)] font-sans antialiased">
     <!-- Mobile Menu Backdrop -->
     <div
       v-if="isMobileMenuOpen"
@@ -16,10 +20,8 @@
       <div>
         <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--border-color)]">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-blue-600 flex items-center justify-center text-slate-950 font-bold shrink-0 shadow-lg shadow-emerald-500/20">
-              <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div class="w-10 h-10 rounded-xl overflow-hidden shrink-0 shadow-lg shadow-emerald-500/20 border border-[var(--border-color)] bg-[var(--bg-surface)] flex items-center justify-center p-1">
+              <img src="~/assets/img/logo.png" alt="AccountAnt Logo" class="w-full h-full object-contain" />
             </div>
             <div>
               <h1 class="font-bold text-[var(--text-main)] tracking-tight text-base flex items-center gap-1.5 leading-tight">
@@ -247,6 +249,9 @@ const accounting = useAccounting()
 const theme = useTheme()
 const currencyStore = useCurrency()
 const isMobileMenuOpen = ref(false)
+
+const isAuthRoute = computed(() => route.path === '/login' || route.path === '/register')
+const showNavigation = computed(() => auth.isAuthenticated.value && !isAuthRoute.value)
 
 onMounted(async () => {
   theme.initTheme()

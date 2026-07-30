@@ -91,6 +91,9 @@
     <!-- Visual Analytics Row: Charts -->
     <ClientOnly>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Fund Source Line Chart -->
+        <DashboardFundSourceLineChart />
+
         <!-- Fund Expense Pie Chart -->
         <DashboardFundExpensePieChart />
 

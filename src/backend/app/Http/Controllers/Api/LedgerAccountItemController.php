@@ -32,6 +32,8 @@ class LedgerAccountItemController extends Controller
             'amount' => 'required|numeric|min:0.01',
             'transaction_type' => 'required|in:debit,credit',
             'description' => 'nullable|string|max:255',
+            'posting_date' => 'nullable|date',
+            'date' => 'nullable|date',
             'items' => 'nullable|array',
             'items.*.description' => 'required|string|max:255',
             'items.*.quantity' => 'required|numeric|min:0.01',
@@ -55,6 +57,8 @@ class LedgerAccountItemController extends Controller
         }
 
         $entry = DB::transaction(function () use ($validated, $request) {
+            $postingDate = $validated['posting_date'] ?? $validated['date'] ?? now()->toDateString();
+
             $newEntry = LedgerAccountItem::create([
                 'ledger_account_id' => $validated['ledger_account_id'],
                 'fund_account_id' => $validated['fund_account_id'] ?? null,
@@ -63,6 +67,7 @@ class LedgerAccountItemController extends Controller
                 'amount' => $validated['amount'],
                 'transaction_type' => $validated['transaction_type'],
                 'description' => $validated['description'] ?? null,
+                'posting_date' => $postingDate,
                 'user_id' => $request->user() ? $request->user()->id : 1,
             ]);
 
@@ -100,6 +105,22 @@ class LedgerAccountItemController extends Controller
             'total_debits' => $debits,
             'total_credits' => $credits,
             'net_balance' => $debits - $credits,
+        ]);
+    }
+
+    public function updateStatus(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:posted,void,reconciled',
+        ]);
+
+        $entry = LedgerAccountItem::findOrFail($id);
+        $entry->update(['status' => $validated['status']]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Journal entry status updated successfully',
+            'data' => $entry,
         ]);
     }
 }

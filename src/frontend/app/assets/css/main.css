@@ -113,7 +113,8 @@ ion-page,
   right: 0;
   bottom: 0;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   contain: layout size style;
   overflow: hidden;
   z-index: 0;

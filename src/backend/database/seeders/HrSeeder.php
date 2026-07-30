@@ -17,12 +17,12 @@ class HrSeeder extends Seeder
         $user = User::first();
         $city = City::first();
 
-        $company = Company::firstOrCreate(
-            ['business_name' => 'AccountAnt Tech Solutions Inc.'],
+         $company = Company::firstOrCreate(
+            ['business_name' => 'ABC Construction'],
             [
-                'business_description' => 'Enterprise Financial Ledger & Cloud Automation Provider',
+                'business_description' => 'Construction Company',
                 'city_id' => $city ? $city->id : 1,
-                'business_classification' => 'Financial Technology',
+                'business_classification' => 'Construction',
                 'business_scope' => 'National',
                 'street' => '5th Avenue',
                 'building_number' => 'Floor 18',

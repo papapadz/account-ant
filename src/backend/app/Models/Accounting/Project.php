@@ -20,6 +20,7 @@ class Project extends Model
         'budget',
         'start_date',
         'end_date',
+        'status',
         'client_name',
         'is_government',
         'city_id',

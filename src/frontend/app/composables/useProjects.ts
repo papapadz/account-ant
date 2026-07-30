@@ -71,6 +71,8 @@ export interface Transaction {
   type: 'debit' | 'credit' // debit = spent/expense, credit = added/refund
   amount: number
   date: string
+  posting_date?: string
+  status?: 'posted' | 'void' | 'reconciled'
   note?: string
   items?: TransactionItem[]
   created_at: string
@@ -168,7 +170,7 @@ export const useProjects = () => {
             project_id: pf.project_id,
             name: pf.fund_account?.fund_name || 'Allocated Fund',
             amount: Number(pf.initial_amount),
-            date_received: pf.created_at?.split('T')[0] || new Date().toISOString().split('T')[0],
+            date_received: pf.date_received || pf.created_at?.split('T')[0] || new Date().toISOString().split('T')[0],
             created_at: pf.created_at,
           })
         }
@@ -185,6 +187,7 @@ export const useProjects = () => {
             subtotal: Number(i.subtotal ?? (Number(i.quantity || 1) * Number(i.price ?? i.unit_price ?? 0))),
           })) : undefined
 
+          const postingDateVal = je.posting_date || je.created_at?.split(' ')[0] || je.created_at?.split('T')[0] || new Date().toISOString().split('T')[0]
           mappedTxs.push({
             id: je.id,
             project_id: je.project_id,
@@ -192,7 +195,9 @@ export const useProjects = () => {
             category_id: je.account_item_id,
             type: je.transaction_type,
             amount: Number(je.amount),
-            date: je.created_at?.split(' ')[0] || je.created_at || new Date().toISOString().split('T')[0],
+            date: postingDateVal,
+            posting_date: postingDateVal,
+            status: je.status || 'posted',
             note: je.description,
             items,
             created_at: je.created_at,
@@ -253,14 +258,37 @@ export const useProjects = () => {
   }
 
   const getProjectActiveFundBalance = (projectId: number): number => {
-    const totalFunds = getProjectTotalFunds(projectId)
-    const totalCredits = getProjectTotalCredits(projectId)
-    const totalDebits = getProjectTotalDebits(projectId)
-    return (totalFunds + totalCredits) - totalDebits
+    const projectFunds = fundSources.value.filter(f => f.project_id === projectId)
+    if (projectFunds.length === 0) {
+      const totalFunds = getProjectTotalFunds(projectId)
+      const totalCredits = getProjectTotalCredits(projectId)
+      const totalDebits = getProjectTotalDebits(projectId)
+      return (totalFunds + totalCredits) - totalDebits
+    }
+    return projectFunds.reduce((sum, f) => sum + getFundSourceRemaining(f.id), 0)
   }
 
   const getProjectRemainingBalance = (projectId: number): number => {
     return getProjectActiveFundBalance(projectId)
+  }
+
+  const getProjectBudget = (projectId: number): number => {
+    const project = projects.value.find(p => p.id === projectId)
+    return project?.budget || 0
+  }
+
+  const getProjectBudgetBalance = (projectId: number): number => {
+    const project = projects.value.find(p => p.id === projectId)
+    if (project?.budget)
+      return project?.budget - getProjectTotalSpent(projectId) || 0
+    else return 0
+  }
+
+  const getProjectBudgetUtilization = (projectId: number): number => {
+    const project = projects.value.find(p => p.id === projectId)
+    if (project?.budget)
+      return Number(((project?.budget - getProjectBudgetBalance(projectId)) / project?.budget * 100).toFixed(2))
+    else return 0
   }
 
   // Fund Source Level Aggregations
@@ -308,7 +336,7 @@ export const useProjects = () => {
     if (!fundAccountId) return []
     const projectTxs = transactions.value.filter(t => t.fund_source_id === fundAccountId && t.type === 'debit')
     const totalSpent = projectTxs.reduce((sum, t) => sum + Number(t.amount), 0)
-    
+
     const projectMap = new Map<number, number>()
     for (const tx of projectTxs) {
       const cur = projectMap.get(tx.project_id) || 0
@@ -333,8 +361,9 @@ export const useProjects = () => {
 
     const projTxs = transactions.value.filter(t => t.project_id === projectId && t.type === 'debit')
     for (const tx of projTxs) {
-      if (!tx.date) continue
-      const dateObj = new Date(tx.date)
+      const txDateStr = tx.posting_date || tx.date
+      if (!txDateStr) continue
+      const dateObj = new Date(txDateStr)
       const mIdx = dateObj.getMonth()
       if (mIdx >= 0 && mIdx < 12) {
         monthlyData[mIdx].amount += Number(tx.amount)
@@ -348,7 +377,7 @@ export const useProjects = () => {
 
   const addProject = async (project: Omit<Project, 'id' | 'created_at'> & { city_id?: number; state_id?: number }) => {
     const addr = typeof project.address === 'object' ? project.address : { street: '', city: '', zip_code: '' }
-    
+
     let matchedCityId = project.city_id || addr.city_id || 1
     if (!project.city_id && !addr.city_id) {
       const cityLower = (addr.city || '').toLowerCase()
@@ -390,7 +419,7 @@ export const useProjects = () => {
     await fetchProjects()
   }
 
-  const addFundSource = async (fund: { project_id: number; name: string; amount: number }) => {
+  const addFundSource = async (fund: { project_id: number; name: string; amount: number; date_received?: string; date?: string }) => {
     const accountingStore = useAccounting()
     if (accountingStore.fundAccounts.value.length === 0) {
       await accountingStore.fetchFundAccounts()
@@ -422,6 +451,8 @@ export const useProjects = () => {
       body: {
         fund_account_id: fundAccountId,
         initial_amount: fund.amount,
+        date_received: fund.date_received || fund.date,
+        date: fund.date_received || fund.date,
       }
     })
 
@@ -456,6 +487,8 @@ export const useProjects = () => {
           amount: tx.amount,
           transaction_type: tx.type,
           description: tx.note,
+          posting_date: tx.date,
+          date: tx.date,
           items: tx.items,
         }
       })
@@ -464,6 +497,7 @@ export const useProjects = () => {
     }
 
     // Push local transaction optimistically if not already present
+    const txDateVal = tx.date || new Date().toISOString().split('T')[0]
     const newTx: Transaction = {
       id: Date.now(),
       project_id: tx.project_id,
@@ -471,7 +505,8 @@ export const useProjects = () => {
       category_id: tx.category_id,
       type: tx.type,
       amount: Number(tx.amount),
-      date: tx.date || new Date().toISOString().split('T')[0],
+      date: txDateVal,
+      posting_date: txDateVal,
       note: tx.note,
       items: tx.items ? [...tx.items] : undefined,
       created_at: new Date().toISOString(),
@@ -502,9 +537,9 @@ export const useProjects = () => {
   }
 
   // Frontend helper stubs (no-ops for backend mode)
-  const addCategory = () => {}
-  const updateCategory = () => {}
-  const toggleArchiveCategory = () => {}
+  const addCategory = () => { }
+  const updateCategory = () => { }
+  const toggleArchiveCategory = () => { }
 
   return {
     projects,
@@ -525,6 +560,9 @@ export const useProjects = () => {
     getFundSourceCredits,
     getFundSourceRemaining,
     getFundSourceUsagePercentage,
+    getProjectBudget,
+    getProjectBudgetBalance,
+    getProjectBudgetUtilization,
     totalAppManagedFunds,
     totalAppSpent,
     totalAppRemainingBalance,
@@ -538,5 +576,29 @@ export const useProjects = () => {
     addCategory,
     updateCategory,
     toggleArchiveCategory,
+    updateJournalEntryStatus,
+    updateProjectStatus,
+  }
+
+  async function updateJournalEntryStatus(id: number, status: 'posted' | 'void' | 'reconciled') {
+    const res = await api.request<any>(`/journal-entries/${id}/status`, {
+      method: 'PATCH',
+      body: { status },
+    })
+    // Optimistically update local transaction state
+    const idx = transactions.value.findIndex(t => t.id === id)
+    if (idx !== -1) transactions.value[idx] = { ...transactions.value[idx], status }
+    return res.data || res
+  }
+
+  async function updateProjectStatus(id: number, status: 'active' | 'on-hold' | 'completed') {
+    const res = await api.request<any>(`/projects/${id}/status`, {
+      method: 'PATCH',
+      body: { status },
+    })
+    const idx = projects.value.findIndex(p => p.id === id)
+    if (idx !== -1) projects.value[idx] = { ...projects.value[idx], status }
+    return res.data || res
   }
 }
+

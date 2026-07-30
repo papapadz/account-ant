@@ -13,6 +13,7 @@ class AccountItem extends Model
         'item_code',
         'item_name',
         'description',
+        'status',
         'ledger_account_id',
         'transaction_type',
     ];

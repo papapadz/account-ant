@@ -32,12 +32,17 @@ class LedgerItemSeeder extends Seeder
         $project1 = Project::where('name', 'LIKE', '%Smart Transit%')->first();
         $project2 = Project::where('name', 'LIKE', '%FinTech%')->first();
 
+        $fallbackLedgerId = LedgerAccount::first()?->id;
+        $fallbackFundId = FundAccount::first()?->id;
+        $fallbackItemId = AccountItem::first()?->id;
+        $fallbackProjectId = Project::first()?->id;
+
         $entries = [
             [
-                'ledger_account_id' => $cashAcc ? $cashAcc->id : 10,
-                'fund_account_id' => $fund1 ? $fund1->id : 1,
+                'ledger_account_id' => $cashAcc ? $cashAcc->id : $fallbackLedgerId,
+                'fund_account_id' => $fund1 ? $fund1->id : $fallbackFundId,
                 'project_id' => null,
-                'account_item_id' => $itemSub ? $itemSub->id : 1,
+                'account_item_id' => $itemSub ? $itemSub->id : $fallbackItemId,
                 'amount' => 125000.00,
                 'transaction_type' => 'debit',
                 'description' => 'Enterprise license payment received from FinCorp Ltd',
@@ -45,10 +50,10 @@ class LedgerItemSeeder extends Seeder
                 'created_at' => '2026-07-20 09:30:00',
             ],
             [
-                'ledger_account_id' => $revAcc ? $revAcc->id : 40,
-                'fund_account_id' => $fund1 ? $fund1->id : 1,
+                'ledger_account_id' => $revAcc ? $revAcc->id : $fallbackLedgerId,
+                'fund_account_id' => $fund1 ? $fund1->id : $fallbackFundId,
                 'project_id' => null,
-                'account_item_id' => $itemSub ? $itemSub->id : 1,
+                'account_item_id' => $itemSub ? $itemSub->id : $fallbackItemId,
                 'amount' => 125000.00,
                 'transaction_type' => 'credit',
                 'description' => 'Recognized SaaS revenue from FinCorp contract',
@@ -56,10 +61,10 @@ class LedgerItemSeeder extends Seeder
                 'created_at' => '2026-07-20 09:30:00',
             ],
             [
-                'ledger_account_id' => $equipAcc ? $equipAcc->id : 20,
-                'fund_account_id' => $fund2 ? $fund2->id : 2,
-                'project_id' => $project1 ? $project1->id : 1,
-                'account_item_id' => $itemHost ? $itemHost->id : 2,
+                'ledger_account_id' => $equipAcc ? $equipAcc->id : $fallbackLedgerId,
+                'fund_account_id' => $fund2 ? $fund2->id : $fallbackFundId,
+                'project_id' => $project1 ? $project1->id : $fallbackProjectId,
+                'account_item_id' => $itemHost ? $itemHost->id : $fallbackItemId,
                 'amount' => 85000.00,
                 'transaction_type' => 'debit',
                 'description' => 'Transit fare processing server rack deployment for QC Central station',
@@ -67,10 +72,10 @@ class LedgerItemSeeder extends Seeder
                 'created_at' => '2026-07-15 10:00:00',
             ],
             [
-                'ledger_account_id' => $cashAcc ? $cashAcc->id : 10,
-                'fund_account_id' => $fund1 ? $fund1->id : 1,
-                'project_id' => $project1 ? $project1->id : 1,
-                'account_item_id' => $itemSub ? $itemSub->id : 1,
+                'ledger_account_id' => $cashAcc ? $cashAcc->id : $fallbackLedgerId,
+                'fund_account_id' => $fund1 ? $fund1->id : $fallbackFundId,
+                'project_id' => $project1 ? $project1->id : $fallbackProjectId,
+                'account_item_id' => $itemSub ? $itemSub->id : $fallbackItemId,
                 'amount' => 150000.00,
                 'transaction_type' => 'debit',
                 'description' => 'Initial government milestone grant payment received',
@@ -78,10 +83,10 @@ class LedgerItemSeeder extends Seeder
                 'created_at' => '2026-07-05 14:30:00',
             ],
             [
-                'ledger_account_id' => $salaryAcc ? $salaryAcc->id : 30,
-                'fund_account_id' => $fund1 ? $fund1->id : 1,
-                'project_id' => $project2 ? $project2->id : 2,
-                'account_item_id' => $itemPay ? $itemPay->id : 3,
+                'ledger_account_id' => $salaryAcc ? $salaryAcc->id : $fallbackLedgerId,
+                'fund_account_id' => $fund1 ? $fund1->id : $fallbackFundId,
+                'project_id' => $project2 ? $project2->id : $fallbackProjectId,
+                'account_item_id' => $itemPay ? $itemPay->id : $fallbackItemId,
                 'amount' => 40000.00,
                 'transaction_type' => 'debit',
                 'description' => 'AI model fine-tuning team engineering sprint compensation',

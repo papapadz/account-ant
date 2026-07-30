@@ -47,6 +47,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/journal-entries/summary', [LedgerAccountItemController::class, 'summary']);
     Route::apiResource('journal-entries', LedgerAccountItemController::class);
 
+    // Status Update Routes
+    Route::patch('/ledger-accounts/{id}/status', [LedgerAccountController::class, 'updateStatus']);
+    Route::patch('/account-items/{id}/status', [AccountItemController::class, 'updateStatus']);
+    Route::patch('/journal-entries/{id}/status', [LedgerAccountItemController::class, 'updateStatus']);
+    Route::patch('/projects/{id}/status', [ProjectController::class, 'updateStatus']);
+
     // Settings Routes
     Route::prefix('settings')->group(function () {
         Route::put('/profile', [SettingsController::class, 'updateProfile']);
