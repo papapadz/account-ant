@@ -94,7 +94,6 @@ class LedgerAccountItemTest extends TestCase
             'name' => 'City Bridge Rehabilitation',
             'client_name' => 'Department of Public Works',
             'start_date' => '2026-01-15',
-            'status' => 'active',
             'barangay' => 'Central',
             'zip' => '1000',
         ]);

@@ -9,7 +9,7 @@
           </svg>
           Monthly Project Expense
         </h3>
-        <p class="text-[11px] text-[var(--text-muted)] mt-0.5">Monthly debit breakdown for selected project</p>
+        <p class="text-[11px] text-[var(--text-muted)] mt-0.5">Monthly outflow breakdown for selected project</p>
       </div>
 
       <select

@@ -36,14 +36,22 @@ export interface LedgerAccountItem {
   id: number
   ledger_account_id: number
   fund_account_id?: number
+  project_id?: number
   account_item_id: number
   amount: number
   transaction_type: 'debit' | 'credit'
   description?: string
   posting_date?: string
   status?: 'posted' | 'void' | 'reconciled'
+  is_paid?: boolean
   user_id: number
   created_at: string
+  project?: {
+    id: number
+    name?: string
+    project_name?: string
+  }
+  items?: any[]
 }
 
 export const useAccounting = () => {
@@ -70,9 +78,28 @@ export const useAccounting = () => {
 
   const netLedgerBalance = computed(() => totalDebits.value - totalCredits.value)
 
+  const totalUnpaidBalance = computed(() => {
+    return journalEntries.value
+      .filter(e => e.transaction_type === 'debit' && e.is_paid === false)
+      .reduce((sum, e) => sum + Number(e.amount), 0)
+  })
+
+  const getFundAccountUnpaidBalance = (fundAccountId: number): number => {
+    return journalEntries.value
+      .filter(e => e.fund_account_id === fundAccountId && e.transaction_type === 'debit' && e.is_paid === false)
+      .reduce((sum, e) => sum + Number(e.amount), 0)
+  }
+
+  const getTotalUnpaidBalance = (fundAccountId?: number): number => {
+    if (fundAccountId !== undefined && fundAccountId !== null) {
+      return getFundAccountUnpaidBalance(fundAccountId)
+    }
+    return totalUnpaidBalance.value
+  }
+
   const getFundAccountSpent = (fundAccountId: number): number => {
     return journalEntries.value
-      .filter(e => e.fund_account_id === fundAccountId && e.transaction_type === 'debit')
+      .filter(e => e.fund_account_id === fundAccountId && e.transaction_type === 'debit' && e.is_paid !== false)
       .reduce((sum, e) => sum + Number(e.amount), 0)
   }
 
@@ -173,6 +200,17 @@ export const useAccounting = () => {
     return updated
   }
 
+  const updateJournalEntryPaymentStatus = async (id: number, is_paid: boolean) => {
+    const res = await api.request<{ data: LedgerAccountItem }>(`/journal-entries/${id}/is-paid`, {
+      method: 'PATCH',
+      body: { is_paid },
+    })
+    const updated = res.data || res
+    const idx = journalEntries.value.findIndex(e => e.id === id)
+    if (idx !== -1) journalEntries.value[idx] = { ...journalEntries.value[idx], is_paid }
+    return updated
+  }
+
   return {
     fundAccounts,
     ledgerAccounts,
@@ -181,6 +219,9 @@ export const useAccounting = () => {
     totalDebits,
     totalCredits,
     netLedgerBalance,
+    totalUnpaidBalance,
+    getFundAccountUnpaidBalance,
+    getTotalUnpaidBalance,
     fetchFundAccounts,
     fetchLedgerAccounts,
     fetchAccountItems,
@@ -194,5 +235,6 @@ export const useAccounting = () => {
     getFundAccountRemaining,
     updateLedgerAccountStatus,
     updateAccountItemStatus,
+    updateJournalEntryPaymentStatus,
   }
 }

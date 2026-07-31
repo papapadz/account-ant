@@ -70,7 +70,7 @@
                   class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border"
                   :class="item.transaction_type === 'credit' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 'bg-blue-500/10 text-blue-400 border-blue-500/20'"
                 >
-                  {{ item.transaction_type === 'credit' ? 'Credit (Cr)' : 'Debit (Dr)' }}
+                  {{ item.transaction_type === 'credit' ? 'Inflow' : 'Outflow' }}
                 </span>
                 <span class="text-[10px] text-[var(--text-muted)] font-mono">#{{ item.id }}</span>
               </div>
@@ -86,11 +86,6 @@
 
           <div class="pt-3 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-[11px] text-[var(--text-muted)]">
             <span>{{ getLedgerAccountCode(item.ledger_account_id) }}</span>
-            <UiStatusPill
-              :status="item.status || 'active'"
-              :options="itemStatusOptions"
-              @change="(s) => handleItemStatusChange(item.id, s)"
-            />
           </div>
         </div>
       </div>
@@ -132,7 +127,7 @@
               @click="newItem.transaction_type = 'debit'"
             >
               <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-              Debit (Expense)
+              Outflow (Expense)
             </UiButton>
             <UiButton
               type="button"
@@ -142,7 +137,7 @@
               @click="newItem.transaction_type = 'credit'"
             >
               <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-              Credit (Income / Refund)
+              Inflow (Income / Refund)
             </UiButton>
           </div>
         </div>

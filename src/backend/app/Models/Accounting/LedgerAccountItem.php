@@ -21,12 +21,14 @@ class LedgerAccountItem extends Model
         'description',
         'posting_date',
         'status',
+        'is_paid',
         'user_id',
     ];
 
     protected $casts = [
         'amount' => 'decimal:2',
         'posting_date' => 'date:Y-m-d',
+        'is_paid' => 'boolean',
     ];
 
     public function ledgerAccount()

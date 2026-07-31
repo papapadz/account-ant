@@ -73,6 +73,7 @@ export interface Transaction {
   date: string
   posting_date?: string
   status?: 'posted' | 'void' | 'reconciled'
+  is_paid?: boolean
   note?: string
   items?: TransactionItem[]
   created_at: string
@@ -198,6 +199,7 @@ export const useProjects = () => {
             date: postingDateVal,
             posting_date: postingDateVal,
             status: je.status || 'posted',
+            is_paid: je.is_paid !== undefined && je.is_paid !== null ? Boolean(je.is_paid) : true,
             note: je.description,
             items,
             created_at: je.created_at,
@@ -229,14 +231,18 @@ export const useProjects = () => {
 
   // Project Level Aggregations
   const getProjectTotalFunds = (projectId: number): number => {
-    return fundSources.value
-      .filter(f => f.project_id === projectId)
-      .reduce((sum, f) => sum + Number(f.amount), 0)
+    return getProjectBudget(projectId)
   }
 
   const getProjectTotalSpent = (projectId: number): number => {
     return transactions.value
       .filter(t => t.project_id === projectId && t.type === 'debit')
+      .reduce((sum, t) => sum + Number(t.amount), 0)
+  }
+
+  const getProjectUnpaidBalance = (projectId: number): number => {
+    return transactions.value
+      .filter(t => t.project_id === projectId && t.type === 'debit' && t.is_paid === false)
       .reduce((sum, t) => sum + Number(t.amount), 0)
   }
 
@@ -251,25 +257,23 @@ export const useProjects = () => {
   }
 
   const getProjectNetLedgerBalance = (projectId: number): number => {
-    const totalFunds = getProjectTotalFunds(projectId)
+    const budget = getProjectBudget(projectId)
     const totalCredits = getProjectTotalCredits(projectId)
     const totalDebits = getProjectTotalDebits(projectId)
-    return (totalFunds + totalCredits) - totalDebits
+    return (budget + totalCredits) - totalDebits
   }
 
-  const getProjectActiveFundBalance = (projectId: number): number => {
+  const getProjectTotalFundAccountsBalance = (projectId: number): number => {
     const projectFunds = fundSources.value.filter(f => f.project_id === projectId)
-    if (projectFunds.length === 0) {
-      const totalFunds = getProjectTotalFunds(projectId)
-      const totalCredits = getProjectTotalCredits(projectId)
-      const totalDebits = getProjectTotalDebits(projectId)
-      return (totalFunds + totalCredits) - totalDebits
-    }
     return projectFunds.reduce((sum, f) => sum + getFundSourceRemaining(f.id), 0)
   }
 
+  const getProjectActiveFundBalance = (projectId: number): number => {
+    return getProjectNetLedgerBalance(projectId)
+  }
+
   const getProjectRemainingBalance = (projectId: number): number => {
-    return getProjectActiveFundBalance(projectId)
+    return getProjectNetLedgerBalance(projectId)
   }
 
   const getProjectBudget = (projectId: number): number => {
@@ -294,7 +298,13 @@ export const useProjects = () => {
   // Fund Source Level Aggregations
   const getFundSourceSpent = (fundSourceId: number): number => {
     return transactions.value
-      .filter(t => t.fund_source_id === fundSourceId && t.type === 'debit')
+      .filter(t => t.fund_source_id === fundSourceId && t.type === 'debit' && t.is_paid !== false)
+      .reduce((sum, t) => sum + Number(t.amount), 0)
+  }
+
+  const getFundSourceUnpaidBalance = (fundSourceId: number): number => {
+    return transactions.value
+      .filter(t => t.fund_source_id === fundSourceId && t.type === 'debit' && t.is_paid === false)
       .reduce((sum, t) => sum + Number(t.amount), 0)
   }
 
@@ -330,6 +340,19 @@ export const useProjects = () => {
   const totalAppRemainingBalance = computed(() => {
     return totalAppManagedFunds.value - totalAppSpent.value
   })
+
+  const totalAppUnpaidBalance = computed(() => {
+    return transactions.value
+      .filter(t => t.type === 'debit' && t.is_paid === false)
+      .reduce((sum, t) => sum + Number(t.amount), 0)
+  })
+
+  const getTotalUnpaidBalance = (projectId?: number): number => {
+    if (projectId !== undefined && projectId !== null) {
+      return getProjectUnpaidBalance(projectId)
+    }
+    return totalAppUnpaidBalance.value
+  }
 
   const getFundProjectExpenses = (fundAccountId: number) => {
     // Aggregates expenses per project for the given fund
@@ -467,6 +490,7 @@ export const useProjects = () => {
     amount: number
     date: string
     note: string
+    is_paid?: boolean
     items?: TransactionItem[]
   }) => {
     const accountingStore = useAccounting()
@@ -475,6 +499,8 @@ export const useProjects = () => {
     }
     const accountItem = accountingStore.accountItems.value.find(i => i.id === tx.category_id)
     const ledgerAccountId = accountItem?.ledger_account_id || 10
+
+    const isPaidVal = tx.is_paid !== undefined ? tx.is_paid : true
 
     try {
       await api.request('/journal-entries', {
@@ -489,6 +515,7 @@ export const useProjects = () => {
           description: tx.note,
           posting_date: tx.date,
           date: tx.date,
+          is_paid: isPaidVal,
           items: tx.items,
         }
       })
@@ -507,6 +534,7 @@ export const useProjects = () => {
       amount: Number(tx.amount),
       date: txDateVal,
       posting_date: txDateVal,
+      is_paid: isPaidVal,
       note: tx.note,
       items: tx.items ? [...tx.items] : undefined,
       created_at: new Date().toISOString(),
@@ -523,6 +551,7 @@ export const useProjects = () => {
       amount: Number(tx.amount),
       transaction_type: tx.type,
       description: tx.note,
+      is_paid: isPaidVal,
       user_id: 1,
       created_at: newTx.created_at,
     })
@@ -551,12 +580,15 @@ export const useProjects = () => {
     fetchCities,
     getProjectTotalFunds,
     getProjectTotalSpent,
+    getProjectUnpaidBalance,
     getProjectTotalDebits,
     getProjectTotalCredits,
     getProjectNetLedgerBalance,
+    getProjectTotalFundAccountsBalance,
     getProjectActiveFundBalance,
     getProjectRemainingBalance,
     getFundSourceSpent,
+    getFundSourceUnpaidBalance,
     getFundSourceCredits,
     getFundSourceRemaining,
     getFundSourceUsagePercentage,
@@ -566,6 +598,8 @@ export const useProjects = () => {
     totalAppManagedFunds,
     totalAppSpent,
     totalAppRemainingBalance,
+    totalAppUnpaidBalance,
+    getTotalUnpaidBalance,
     getFundProjectExpenses,
     getProjectMonthlyExpenses,
     fetchProjects,
@@ -577,6 +611,7 @@ export const useProjects = () => {
     updateCategory,
     toggleArchiveCategory,
     updateJournalEntryStatus,
+    updateJournalEntryPaymentStatus,
     updateProjectStatus,
   }
 
@@ -588,6 +623,24 @@ export const useProjects = () => {
     // Optimistically update local transaction state
     const idx = transactions.value.findIndex(t => t.id === id)
     if (idx !== -1) transactions.value[idx] = { ...transactions.value[idx], status }
+    return res.data || res
+  }
+
+  async function updateJournalEntryPaymentStatus(id: number, is_paid: boolean, fund_source_id?: number) {
+    const body: any = { is_paid }
+    if (fund_source_id) body.fund_source_id = fund_source_id
+    const res = await api.request<any>(`/journal-entries/${id}/is-paid`, {
+      method: 'PATCH',
+      body,
+    })
+    const idx = transactions.value.findIndex(t => t.id === id)
+    if (idx !== -1) {
+      transactions.value[idx] = {
+        ...transactions.value[idx],
+        is_paid,
+        ...(fund_source_id ? { fund_source_id } : {}),
+      }
+    }
     return res.data || res
   }
 

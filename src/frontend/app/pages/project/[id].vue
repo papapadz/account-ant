@@ -90,9 +90,9 @@
 
         <!-- 2. Total Debits (Dr) -->
         <KpiCard
-          title="Total Debits (Dr)"
+          title="Total Outflow"
           :value="`${currencyStore.formatCurrency(totalProjectDebits)}`"
-          subtitle="Cumulative debited expenses"
+          :subtitle="`Accounts Payable: ${currencyStore.formatCurrency(projectsStore.getProjectUnpaidBalance(projectId))}`"
           type="amber"
         >
           <template #icon>
@@ -104,7 +104,7 @@
 
         <!-- 3. Total Credits (Cr) -->
         <KpiCard
-          title="Total Credits (Cr)"
+          title="Total Inflow"
           :value="`${currencyStore.formatCurrency(totalProjectCredits)}`"
           subtitle="Cumulative credited additions"
           type="blue"
@@ -181,7 +181,7 @@
             class="px-2.5 py-1 rounded-md text-xs font-extrabold uppercase tracking-wider border select-none inline-block"
             :class="value === 'debit' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'"
           >
-            {{ value }}
+            {{ value=='debit'?'OUTFLOW':'INFLOW' }}
           </span>
         </template>
 
@@ -194,9 +194,17 @@
 
         <!-- Cell: Category / Account Item -->
         <template #cell-category="{ item }">
-          <span class="font-bold text-[var(--text-main)] text-sm whitespace-nowrap">
-            {{ getCategoryName(item.category_id) }}
-          </span>
+          <div class="flex flex-col gap-1">
+            <span class="font-bold text-[var(--text-main)] text-sm whitespace-nowrap">
+              {{ getCategoryName(item.category_id) }}
+            </span>
+            <span
+              v-if="item.is_paid === false"
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-amber-500/15 text-amber-400 border border-amber-500/30 select-none whitespace-nowrap self-start"
+            >
+              Accounts Payable (Unpaid)
+            </span>
+          </div>
         </template>
 
         <!-- Cell: Note / Description -->
@@ -224,23 +232,14 @@
             class="font-mono font-extrabold text-sm sm:text-base whitespace-nowrap"
             :class="item.type === 'debit' ? 'text-blue-400' : 'text-amber-400'"
           >
-            {{ item.type === 'debit' ? '-' : '+' }}{{ currencyStore.formatCurrency(item.amount) }}
+            {{ item.type === 'debit' ? currencyStore.formatCurrency(-item.amount) : currencyStore.formatCurrency(item.amount) }}
           </span>
-        </template>
-
-        <!-- Cell: Status -->
-        <template #cell-status="{ item }">
-          <UiStatusPill
-            :status="item.status || 'posted'"
-            :options="journalStatusOptions"
-            @change="(s) => handleJournalEntryStatusChange(item.id, s)"
-          />
         </template>
 
         <template #empty>
           <div class="space-y-1 py-4">
             <p class="text-sm font-semibold text-[var(--text-main)]">No journal entries recorded yet</p>
-            <p class="text-xs text-[var(--text-muted)]">Click "Post Journal Entry" to record debits or credits for this project</p>
+            <p class="text-xs text-[var(--text-muted)]">Click "Post Journal Entry" to record outflows or inflows for this project</p>
           </div>
         </template>
       </UiDataTable>
@@ -374,7 +373,7 @@
               class="px-2 py-0.5 rounded text-[10px] font-bold uppercase border select-none"
               :class="journalForm.type === 'debit' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'"
             >
-              Direction: {{ journalForm.type === 'debit' ? 'Debit (Dr)' : 'Credit (Cr)' }}
+              {{ journalForm.type === 'debit' ? 'OUTFLOW' : 'INFLOW' }}
             </span>
           </div>
           <select
@@ -576,6 +575,56 @@
           />
         </div>
 
+        <!-- 4. Payment Status Toggle (is_paid) -->
+        <div class="space-y-2 p-3 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)]">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div
+                class="p-1.5 rounded-lg border transition-colors duration-200"
+                :class="journalForm.is_paid ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'"
+              >
+                <svg v-if="journalForm.is_paid" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-[var(--text-main)]">Payment Status</span>
+                  <span
+                    class="px-2 py-0.5 rounded text-[10px] font-bold uppercase border select-none transition-colors duration-200"
+                    :class="journalForm.is_paid ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/10 text-amber-400 border-amber-500/30'"
+                  >
+                    {{ journalForm.is_paid ? 'Paid / Settled' : 'Accounts Payable (Unpaid)' }}
+                  </span>
+                </div>
+                <span class="text-[11px] text-[var(--text-muted)] block">
+                  {{ journalForm.is_paid ? 'Immediate cash outflow from Fund Account' : 'Accrued liability / project expense commitment' }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Toggle Switch -->
+            <button
+              type="button"
+              @click="journalForm.is_paid = !journalForm.is_paid"
+              class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+              :class="journalForm.is_paid ? 'bg-emerald-500' : 'bg-amber-500'"
+              :aria-checked="journalForm.is_paid"
+              role="switch"
+              title="Toggle Payment Status"
+            >
+              <span
+                class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                :class="journalForm.is_paid ? 'translate-x-4' : 'translate-x-0'"
+              />
+            </button>
+          </div>
+
+        </div>
+
         <div class="pt-4 border-t border-[var(--border-color)] flex justify-end gap-3">
           <UiButton type="button" variant="secondary" @click="isPostJournalModalOpen = false">
             Cancel
@@ -598,13 +647,84 @@
           <div class="flex items-center justify-between">
             <span class="font-bold text-sm text-[var(--text-main)]">{{ selectedTransactionForItems.note || 'Journal Transaction' }}</span>
             <span class="font-mono font-extrabold text-base" :class="selectedTransactionForItems.type === 'debit' ? 'text-blue-400' : 'text-amber-400'">
-              {{ selectedTransactionForItems.type === 'debit' ? '-' : '+' }}{{ currencyStore.formatCurrency(selectedTransactionForItems.amount) }}
+              {{ selectedTransactionForItems.type === 'debit' ? currencyStore.formatCurrency(-selectedTransactionForItems.amount) : currencyStore.formatCurrency(selectedTransactionForItems.amount) }}
             </span>
           </div>
           <div class="flex flex-wrap items-center gap-4 text-xs text-[var(--text-muted)] font-mono pt-1 border-t border-[var(--border-color)]/60">
             <span>Date: <strong class="text-[var(--text-main)]">{{ selectedTransactionForItems.date }}</strong></span>
             <span>Category: <strong class="text-[var(--text-main)]">{{ getCategoryName(selectedTransactionForItems.category_id) }}</strong></span>
             <span>Fund: <strong class="text-[var(--text-main)]">{{ getFundSourceName(selectedTransactionForItems.fund_source_id) }}</strong></span>
+          </div>
+        </div>
+
+        <!-- Payment & Fund Source Settlement Card -->
+        <div class="p-3.5 rounded-xl border transition-all shadow-sm" :class="modalIsPaid ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-amber-500/10 border-amber-500/25'">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="p-2 rounded-lg border shrink-0" :class="modalIsPaid ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/20 text-amber-400 border-amber-500/30'">
+                <svg v-if="modalIsPaid" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider block" :class="modalIsPaid ? 'text-emerald-400' : 'text-amber-400'">
+                  Payment Status: {{ modalIsPaid ? 'Paid / Settled' : 'Accounts Payable (Unpaid)' }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Toggle switch (only enabled if entry is currently unpaid) -->
+            <button
+              v-if="selectedTransactionForItems.is_paid === false"
+              type="button"
+              @click="modalIsPaid = !modalIsPaid"
+              class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+              :class="modalIsPaid ? 'bg-emerald-500' : 'bg-amber-500/40'"
+              :aria-checked="modalIsPaid"
+              title="Toggle to mark as paid"
+            >
+              <span
+                class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                :class="modalIsPaid ? 'translate-x-4' : 'translate-x-0'"
+              />
+            </button>
+          </div>
+
+          <!-- Fund source selector & commit action when toggled to true -->
+          <div v-if="selectedTransactionForItems.is_paid === false && modalIsPaid" class="pt-3 mt-3 border-t border-[var(--border-color)]/50 space-y-3">
+            <div class="space-y-1">
+              <label class="block text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
+                Fund Source Account to Deduct From <span class="text-rose-400">*</span>
+              </label>
+              <select
+                v-model="selectedFundSourceId"
+                class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 font-medium"
+              >
+                <option v-for="fund in projectFundSources" :key="fund.id" :value="fund.id">
+                  {{ fund.name }} (Available: {{ currencyStore.formatCurrency(projectsStore.getFundSourceRemaining(fund.id)) }})
+                </option>
+              </select>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <span class="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Commits {{ currencyStore.formatCurrency(selectedTransactionForItems.amount) }} deduction.
+              </span>
+              <UiButton
+                type="button"
+                variant="primary"
+                size="sm"
+                :loading="isSavingPaymentStatus"
+                @click="handleSavePaymentStatusInModal"
+              >
+                Save & Commit to Fund Source
+              </UiButton>
+            </div>
           </div>
         </div>
 
@@ -833,8 +953,8 @@
                   <th class="py-2 px-2 text-left">Item/Description</th>
                   <th class="py-2 px-2 text-left">Account</th>
                   <th class="py-2 px-2 text-left">Fund</th>
-                  <th class="py-2 px-2 text-right">Debit</th>
-                  <th class="py-2 px-2 text-right">Credit</th>
+                  <th class="py-2 px-2 text-right">Outflow</th>
+                  <th class="py-2 px-2 text-right">Inflow</th>
                   <th class="py-2 px-2 text-right">Running Balance</th>
                 </tr>
               </thead>
@@ -864,11 +984,11 @@
           <!-- Financial Aggregations Footer -->
           <div class="mt-6 pt-4 border-t-2 border-slate-900 grid grid-cols-3 gap-4 text-xs font-mono">
             <div class="bg-slate-50 p-3 rounded border border-slate-200">
-              <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Debits (Expenses)</span>
+              <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Outflow</span>
               <span class="text-sm font-bold text-rose-700">{{ currencyStore.formatCurrency(totalProjectDebits) }}</span>
             </div>
             <div class="bg-slate-50 p-3 rounded border border-slate-200">
-              <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Credits / Funds</span>
+              <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Inflow</span>
               <span class="text-sm font-bold text-emerald-700">{{ currencyStore.formatCurrency(totalProjectFunds + totalProjectCredits) }}</span>
             </div>
             <div class="bg-slate-900 text-white p-3 rounded border border-slate-900">
@@ -1078,10 +1198,36 @@ const itemizedRows = ref<ItemizedRow[]>([
 
 const isViewItemsModalOpen = ref(false)
 const selectedTransactionForItems = ref<any>(null)
+const modalIsPaid = ref(false)
+const selectedFundSourceId = ref<number | null>(null)
+const isSavingPaymentStatus = ref(false)
 
 const openItemDetailsModal = (tx: any) => {
   selectedTransactionForItems.value = tx
+  modalIsPaid.value = tx.is_paid !== false
+  selectedFundSourceId.value = tx.fund_source_id || (projectFundSources.value[0]?.id ?? null)
   isViewItemsModalOpen.value = true
+}
+
+const handleSavePaymentStatusInModal = async () => {
+  if (!selectedTransactionForItems.value) return
+  isSavingPaymentStatus.value = true
+  try {
+    const targetId = selectedTransactionForItems.value.id
+    const newPaidStatus = modalIsPaid.value
+    const fundId = selectedFundSourceId.value ?? selectedTransactionForItems.value.fund_source_id
+    await projectsStore.updateJournalEntryPaymentStatus(targetId, newPaidStatus, fundId)
+    
+    selectedTransactionForItems.value = {
+      ...selectedTransactionForItems.value,
+      is_paid: newPaidStatus,
+      fund_source_id: fundId,
+    }
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to update payment status.')
+  } finally {
+    isSavingPaymentStatus.value = false
+  }
 }
 
 const handleTransactionRowClick = (item: any) => {
@@ -1131,6 +1277,7 @@ const journalForm = reactive({
   amount: '' as string | number,
   date: dateStore.formatISODate(new Date()),
   description: '',
+  is_paid: true,
 })
 
 watch([isItemizedMode, itemizedTotal], ([isItemized, total]) => {
@@ -1153,7 +1300,6 @@ const transactionColumns: DataTableColumn[] = [
   { key: 'fund', label: 'Fund Source', sortable: true, width: 'min-w-[180px]' },
   { key: 'note', label: 'Note / Description', sortable: true, width: 'min-w-[220px]' },
   { key: 'amount', label: 'Amount', sortable: true, align: 'right', width: 'min-w-[140px]' },
-  { key: 'status', label: 'Status', sortable: true, width: 'w-28' },
 ]
 
 const fundSourceColumns: DataTableColumn[] = [
@@ -1171,15 +1317,8 @@ const projectBudget = computed(() => Number(project.value?.budget) || totalProje
 const totalProjectDebits = computed(() => projectsStore.getProjectTotalDebits(projectId.value))
 const totalProjectCredits = computed(() => projectsStore.getProjectTotalCredits(projectId.value))
 const netLedgerBalance = computed(() => projectsStore.getProjectNetLedgerBalance(projectId.value))
-const activeFundAccountsBalance = computed(() => {
-  if (projectFundSources.value.length === 0) {
-    return projectsStore.getProjectActiveFundBalance(projectId.value)
-  }
-  return projectFundSources.value.reduce((sum, f) => {
-    return sum + projectsStore.getFundSourceRemaining(f.id)
-  }, 0)
-})
-const isOverBudget = computed(() => activeFundAccountsBalance.value < 0)
+const activeFundAccountsBalance = computed(() => projectsStore.getProjectTotalFundAccountsBalance(projectId.value))
+const isOverBudget = computed(() => netLedgerBalance.value < 0)
 
 const projectFundSources = computed(() => {
   return projectsStore.fundSources.value.filter(f => f.project_id === projectId.value)
@@ -1224,8 +1363,23 @@ watch(() => journalForm.category_id, (newCatId) => {
     if (cat.ledger_account_id && !journalForm.ledger_account_id) {
       journalForm.ledger_account_id = cat.ledger_account_id
     }
+    const nameLower = (cat.name || '').toLowerCase()
+    const codeLower = (cat.code || '').toLowerCase()
+    if (nameLower.includes('accounts payable') || nameLower.includes('payable') || codeLower.includes('ap')) {
+      journalForm.is_paid = false
+    } else {
+      journalForm.is_paid = true
+    }
   }
 })
+
+const handleMarkAsPaid = async (id: number) => {
+  try {
+    await projectsStore.updateJournalEntryPaymentStatus(id, true)
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to update payment status.')
+  }
+}
 
 const formatAddress = (address: any) => {
   if (!address) return 'N/A'
@@ -1304,6 +1458,7 @@ const handlePostJournalEntry = async () => {
       amount: numAmount,
       date: journalForm.date,
       note: journalForm.description,
+      is_paid: journalForm.is_paid,
       items: formattedItems,
     })
 
@@ -1315,6 +1470,7 @@ const handlePostJournalEntry = async () => {
     journalForm.amount = ''
     journalForm.date = dateStore.formatISODate(new Date())
     journalForm.description = ''
+    journalForm.is_paid = true
     isItemizedMode.value = false
     itemizedRows.value = [{ id: String(Date.now()), description: '', quantity: 1, unit: 'pcs', price: '' }]
     isPostJournalModalOpen.value = false
@@ -1429,24 +1585,22 @@ const chronologicalStatement = computed(() => {
     running_balance: number
   }> = []
 
-  // 1. Opening Fund Allocations
-  const funds = projectFundSources.value
-  for (const f of funds) {
-    const rawDate = f.date_received || project.value?.start_date || new Date().toISOString().split('T')[0]
-    items.push({
-      id: `FUND-${f.id}`,
-      rawDate,
-      date: dateStore.formatISODate(rawDate),
-      type: 'allocation',
-      category_name: 'Opening Capital Allocation',
-      ledger_code: '1010-CASH',
-      fund_code: getFundSourceCode(f.id),
-      description: `Initial fund allocation for ${f.name}`,
-      debit_amount: 0,
-      credit_amount: Number(f.amount),
-      running_balance: 0,
-    })
-  }
+  // 1. Initial Project Budget Allocation
+  const rawDate = project.value?.start_date || new Date().toISOString().split('T')[0]
+  const projectBudget = Number(project.value?.budget || 0)
+  items.push({
+    id: `BUDGET-${project.value?.id || 'ALLOCATION'}`,
+    rawDate,
+    date: dateStore.formatISODate(rawDate),
+    type: 'allocation',
+    category_name: 'Initial Project Budget Allocation',
+    ledger_code: '1000-BUDGET',
+    fund_code: 'BUDGET',
+    description: `Initial project budget allocation for ${project.value?.name || 'Project'}`,
+    debit_amount: 0,
+    credit_amount: projectBudget,
+    running_balance: 0,
+  })
 
   // 2. Journal Transactions
   const txs = projectTransactions.value

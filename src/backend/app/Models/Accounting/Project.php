@@ -97,7 +97,7 @@ class Project extends Model
 
     public function getRunningBalanceAttribute(): float
     {
-        return $this->getTotalAllocatedFundsAttribute() - $this->getTotalExpensesAttribute();
+        return (float) $this->budget - $this->getTotalExpensesAttribute();
     }
 
     public function getBudgetUtilizedPercentageAttribute(): float

@@ -6,7 +6,11 @@ export const useCurrency = () => {
     const formatCurrency = (val: number | string) => {
         const numval = Number(val)
         const num = typeof numval === 'number' && !isNaN(numval) ? numval : 0
-        return currency.value + num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        const formatted = currency.value + Math.abs(num).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        if (num < 0) {
+            return `(${formatted})`
+        }
+        return formatted
     }
 
     const applyCurrency = (mode: CurrencySign) => {

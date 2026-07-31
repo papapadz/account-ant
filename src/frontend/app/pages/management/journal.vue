@@ -9,7 +9,7 @@
           </svg>
           Journal Ledger Transactions (`LedgerAccountItem`)
         </h1>
-        <p class="text-xs text-[var(--text-muted)] mt-0.5">Post and view double-entry debit and credit journal entries with dedicated fund sources</p>
+        <p class="text-xs text-[var(--text-muted)] mt-0.5">Post and view double-entry outflow and inflow journal entries with dedicated fund sources</p>
       </div>
 
       <UiButton variant="primary" @click="isModalOpen = true">
@@ -25,18 +25,18 @@
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-[var(--bg-surface)] border border-[var(--border-color)] p-4 rounded-xl flex items-center justify-between">
           <div>
-            <span class="text-[11px] text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Total Debits</span>
+            <span class="text-[11px] text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Total Outflows</span>
             <span class="text-xl font-bold font-mono-num text-blue-500">{{ currencyStore.formatCurrency(accounting.totalDebits.value) }}</span>
           </div>
-          <div class="w-8 h-8 rounded bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold text-xs">Dr</div>
+          <div class="w-8 h-8 rounded bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold text-xs">Out</div>
         </div>
 
         <div class="bg-[var(--bg-surface)] border border-[var(--border-color)] p-4 rounded-xl flex items-center justify-between">
           <div>
-            <span class="text-[11px] text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Total Credits</span>
+            <span class="text-[11px] text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Total Inflows</span>
             <span class="text-xl font-bold font-mono-num text-amber-500">{{ currencyStore.formatCurrency(accounting.totalCredits.value) }}</span>
           </div>
-          <div class="w-8 h-8 rounded bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold text-xs">Cr</div>
+          <div class="w-8 h-8 rounded bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold text-xs">In</div>
         </div>
 
         <div class="bg-[var(--bg-surface)] border border-[var(--border-color)] p-4 rounded-xl flex items-center justify-between">
@@ -142,7 +142,7 @@
               block
               @click="newEntry.transaction_type = 'debit'"
             >
-              Debit Entry (Dr)
+              Outflow Entry
             </UiButton>
             <UiButton
               type="button"
@@ -150,7 +150,7 @@
               block
               @click="newEntry.transaction_type = 'credit'"
             >
-              Credit Entry (Cr)
+              Inflow Entry
             </UiButton>
           </div>
         </div>
@@ -217,8 +217,8 @@ const filterType = ref<'all' | 'debit' | 'credit'>('all')
 
 const journalFilterTabs = computed<TabItem[]>(() => [
   { value: 'all', label: 'All', badge: accounting.journalEntries.value.length },
-  { value: 'debit', label: 'Debits (Dr)' },
-  { value: 'credit', label: 'Credits (Cr)' },
+  { value: 'debit', label: 'Outflows' },
+  { value: 'credit', label: 'Inflows' },
 ])
 const isModalOpen = ref(false)
 
@@ -228,8 +228,8 @@ const journalColumns: DataTableColumn[] = [
   { key: 'ledger_account_id', label: 'Ledger Account', width: 'min-w-[150px]' },
   { key: 'account_item_id', label: 'Catalog Item', width: 'min-w-[180px]' },
   { key: 'transaction_type', label: 'Type', width: 'w-24' },
-  { key: 'debit', label: 'Debit (Dr)', align: 'right', width: 'min-w-[130px]' },
-  { key: 'credit', label: 'Credit (Cr)', align: 'right', width: 'min-w-[130px]' },
+  { key: 'debit', label: 'Outflow', align: 'right', width: 'min-w-[130px]' },
+  { key: 'credit', label: 'Inflow', align: 'right', width: 'min-w-[130px]' },
   { key: 'description', label: 'Description', width: 'min-w-[200px]' },
   { key: 'created_at', label: 'Timestamp', align: 'right', width: 'min-w-[130px]' },
 ]

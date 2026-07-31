@@ -51,6 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/ledger-accounts/{id}/status', [LedgerAccountController::class, 'updateStatus']);
     Route::patch('/account-items/{id}/status', [AccountItemController::class, 'updateStatus']);
     Route::patch('/journal-entries/{id}/status', [LedgerAccountItemController::class, 'updateStatus']);
+    Route::patch('/journal-entries/{id}/is-paid', [LedgerAccountItemController::class, 'updatePaymentStatus']);
     Route::patch('/projects/{id}/status', [ProjectController::class, 'updateStatus']);
 
     // Settings Routes

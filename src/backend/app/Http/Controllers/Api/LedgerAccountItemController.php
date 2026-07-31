@@ -34,6 +34,7 @@ class LedgerAccountItemController extends Controller
             'description' => 'nullable|string|max:255',
             'posting_date' => 'nullable|date',
             'date' => 'nullable|date',
+            'is_paid' => 'nullable|boolean',
             'items' => 'nullable|array',
             'items.*.description' => 'required|string|max:255',
             'items.*.quantity' => 'required|numeric|min:0.01',
@@ -68,6 +69,7 @@ class LedgerAccountItemController extends Controller
                 'transaction_type' => $validated['transaction_type'],
                 'description' => $validated['description'] ?? null,
                 'posting_date' => $postingDate,
+                'is_paid' => isset($validated['is_paid']) ? (bool) $validated['is_paid'] : true,
                 'user_id' => $request->user() ? $request->user()->id : 1,
             ]);
 
@@ -121,6 +123,31 @@ class LedgerAccountItemController extends Controller
             'status' => 'success',
             'message' => 'Journal entry status updated successfully',
             'data' => $entry,
+        ]);
+    }
+
+    public function updatePaymentStatus(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
+        $validated = $request->validate([
+            'is_paid' => 'required|boolean',
+            'fund_source_id' => 'nullable|integer',
+            'fund_account_id' => 'nullable|integer',
+        ]);
+
+        $entry = LedgerAccountItem::findOrFail($id);
+        $updateData = ['is_paid' => $validated['is_paid']];
+        
+        $fundSourceId = $validated['fund_source_id'] ?? $validated['fund_account_id'] ?? null;
+        if ($fundSourceId) {
+            $updateData['fund_account_id'] = $fundSourceId;
+        }
+
+        $entry->update($updateData);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Journal entry payment status updated successfully',
+            'data' => $entry->fresh(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'items']),
         ]);
     }
 }

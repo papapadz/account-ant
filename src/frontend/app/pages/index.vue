@@ -50,7 +50,7 @@
         <KpiCard
           title="Total Spent"
           :value="`${currencyStore.formatCurrency(totalAppSpent)}`"
-          subtitle="Cumulative posted debits"
+          subtitle="Cumulative posted outflows"
           type="rose"
         >
           <template #icon>
