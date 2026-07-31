@@ -806,8 +806,13 @@
               required
             >
               <option value="" disabled>Select an available fund account</option>
-              <option v-for="fund in accountingStore.fundAccounts.value" :key="fund.id" :value="fund.fund_name">
-                {{ fund.fund_code }} - {{ fund.fund_name }} (Balance: {{ currencyStore.formatCurrency(accountingStore.getFundAccountRemaining(fund.id)) }})
+              <option
+                v-for="fund in accountingStore.fundAccounts.value"
+                :key="fund.id"
+                :value="fund.fund_name"
+                :disabled="isFundAlreadySelected(fund.id)"
+              >
+                {{ fund.fund_code }} - {{ fund.fund_name }} (Balance: {{ currencyStore.formatCurrency(accountingStore.getFundAccountRemaining(fund.id)) }}){{ isFundAlreadySelected(fund.id) ? ' (Already added to project)' : '' }}
               </option>
             </select>
           </div>
@@ -822,8 +827,13 @@
                 required
               >
                 <option value="" disabled>Select an available fund account</option>
-                <option v-for="fund in accountingStore.fundAccounts.value" :key="fund.id" :value="fund.fund_name">
-                  {{ fund.fund_code }} - {{ fund.fund_name }} (Balance: {{ currencyStore.formatCurrency(fund.amount || 0) }})
+                <option
+                  v-for="fund in accountingStore.fundAccounts.value"
+                  :key="fund.id"
+                  :value="fund.fund_name"
+                  :disabled="isFundAlreadySelected(fund.id)"
+                >
+                  {{ fund.fund_code }} - {{ fund.fund_name }} (Balance: {{ currencyStore.formatCurrency(fund.amount || 0) }}){{ isFundAlreadySelected(fund.id) ? ' (Already added to project)' : '' }}
                 </option>
               </select>
             </div>
@@ -855,8 +865,13 @@
                 required
               >
                 <option value="" disabled>Select an available fund account</option>
-                <option v-for="fund in accountingStore.fundAccounts.value" :key="fund.id" :value="fund.fund_name">
-                  {{ fund.fund_code }} - {{ fund.fund_name }} (Balance: {{ currencyStore.formatCurrency(fund.amount || 0) }})
+                <option
+                  v-for="fund in accountingStore.fundAccounts.value"
+                  :key="fund.id"
+                  :value="fund.fund_name"
+                  :disabled="isFundAlreadySelected(fund.id)"
+                >
+                  {{ fund.fund_code }} - {{ fund.fund_name }} (Balance: {{ currencyStore.formatCurrency(fund.amount || 0) }}){{ isFundAlreadySelected(fund.id) ? ' (Already added to project)' : '' }}
                 </option>
               </select>
             </div>
@@ -1323,6 +1338,10 @@ const isOverBudget = computed(() => netLedgerBalance.value < 0)
 const projectFundSources = computed(() => {
   return projectsStore.fundSources.value.filter(f => f.project_id === projectId.value)
 })
+
+const isFundAlreadySelected = (fundAccountId: number) => {
+  return projectFundSources.value.some(pf => pf.id === fundAccountId || (pf as any).fund_account_id === fundAccountId)
+}
 
 const projectTransactions = computed(() => {
   return projectsStore.transactions.value.filter(t => t.project_id === projectId.value)
