@@ -40,8 +40,8 @@
     "hash": "9d9ce3ef96346d3b14ca87ea35942dca"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\ProjectController.php": {
-    "mtime": 1785400976.9903655,
-    "hash": "70e26d6176ac974eca053960556ffa59"
+    "mtime": 1785487680.531765,
+    "hash": "fd6ef8f214e07b51808b1e620d3ad232"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\SettingsController.php": {
     "mtime": 1785225571.5744612,
@@ -31572,8 +31572,8 @@
     "hash": "dbd2238d24e10df4b5caa0dbb945f6da"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useProjects.ts": {
-    "mtime": 1785481920.2570674,
-    "hash": "16edfe739b28ca1507fefc61dceea2aa"
+    "mtime": 1785487692.8483036,
+    "hash": "b1b77f733e9a1ddae99e80aea6cd1821"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useTheme.ts": {
     "mtime": 1784799204.704381,
@@ -31628,8 +31628,8 @@
     "hash": "db7eed32496282c5d33e9887abd8e4ae"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\project\\[id].vue": {
-    "mtime": 1785486596.9560688,
-    "hash": "c0035f44bf1fd3c3cdd8d1b73aac8848"
+    "mtime": 1785488184.5460458,
+    "hash": "f0040468de3e6fa1d4eca69bd41aa44a"
   },
   "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\projects\\index.vue": {
     "mtime": 1785395079.4632437,
@@ -31742,6 +31742,10 @@
   "C:\\laragon\\www\\account-ant\\docs\\ADR\\0019-disable-already-selected-project-fund-sources.md": {
     "mtime": 1785486572.868034,
     "hash": "0a5a8306a6d8c1dc42a8c196ab7f1bdd"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0020-remove-initial-balance-and-budget-allocation-on-fund-sources.md": {
+    "mtime": 1785487570.749758,
+    "hash": "9916954741b18e9fe8b8a2c92b46c574"
   },
   "C:\\laragon\\www\\account-ant\\docs\\agents\\domain.md": {
     "mtime": 1784871404.0224633,

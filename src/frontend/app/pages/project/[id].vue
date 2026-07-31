@@ -35,7 +35,7 @@
             <span>•</span>
             <span>Client: <strong class="text-[var(--text-main)] font-semibold">{{ project.client_name }}</strong></span>
             <span>•</span>
-            <span class="font-mono">Started {{ project.start_date }}</span>
+            <span class="font-mono">Started {{ dateStore.formatISODate(project.start_date) }}</span>
           </p>
         </div>
 
@@ -1004,12 +1004,12 @@
             </div>
             <div class="bg-slate-50 p-3 rounded border border-slate-200">
               <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Inflow</span>
-              <span class="text-sm font-bold text-emerald-700">{{ currencyStore.formatCurrency(totalProjectFunds + totalProjectCredits) }}</span>
+              <span class="text-sm font-bold text-emerald-700">{{ currencyStore.formatCurrency(totalProjectCredits) }}</span>
             </div>
             <div class="bg-slate-900 text-white p-3 rounded border border-slate-900">
               <span class="text-[10px] font-sans uppercase font-bold text-slate-400 block">Net Balance Position</span>
-              <span class="text-sm font-extrabold" :class="netLedgerBalance < 0 ? 'text-rose-400' : 'text-emerald-400'">
-                {{ currencyStore.formatCurrency(netLedgerBalance) }}
+              <span class="text-sm font-extrabold" :class="printableNetBalance < 0 ? 'text-rose-400' : 'text-emerald-400'">
+                {{ currencyStore.formatCurrency(printableNetBalance) }}
               </span>
             </div>
           </div>
@@ -1334,6 +1334,8 @@ const totalProjectCredits = computed(() => projectsStore.getProjectTotalCredits(
 const netLedgerBalance = computed(() => projectsStore.getProjectNetLedgerBalance(projectId.value))
 const activeFundAccountsBalance = computed(() => projectsStore.getProjectTotalFundAccountsBalance(projectId.value))
 const isOverBudget = computed(() => netLedgerBalance.value < 0)
+// Net balance based solely on journal transactions (no synthetic initial balance) — used in printed ledger footer
+const printableNetBalance = computed(() => totalProjectCredits.value - totalProjectDebits.value)
 
 const projectFundSources = computed(() => {
   return projectsStore.fundSources.value.filter(f => f.project_id === projectId.value)
@@ -1498,6 +1500,7 @@ const handlePostJournalEntry = async () => {
   }
 }
 
+
 const handleAddFundSource = async () => {
   if (!fundForm.name) return
 
@@ -1507,21 +1510,12 @@ const handleAddFundSource = async () => {
 
   if (isNew && !fundForm.amount) return
 
-  let finalAmount = 0
-  if (isNew) {
-    finalAmount = Number(fundForm.amount)
-  } else {
-    const existingFund = accountingStore.fundAccounts.value.find(
-      f => f.fund_name === fundForm.name
-    )
-    finalAmount = existingFund ? Number(accountingStore.getFundAccountRemaining(existingFund.id)) || 0 : 0
-  }
-
   try {
     await projectsStore.addFundSource({
       project_id: projectId.value,
       name: fundForm.name,
-      amount: finalAmount,
+      // Only pass amount when creating a brand-new fund account (sets its balance); omit for existing links
+      ...(isNew ? { amount: Number(fundForm.amount) } : {}),
       date_received: fundForm.date_received,
       date: fundForm.date_received,
     })
@@ -1589,12 +1583,13 @@ const getLedgerCodeForCategory = (catId: number) => {
   return '1000-GENERAL'
 }
 
+
 const chronologicalStatement = computed(() => {
   const items: Array<{
     id: string | number
     rawDate: string
     date: string
-    type: 'allocation' | 'debit' | 'credit'
+    type: 'debit' | 'credit'
     category_name: string
     ledger_code: string
     fund_code: string
@@ -1604,24 +1599,7 @@ const chronologicalStatement = computed(() => {
     running_balance: number
   }> = []
 
-  // 1. Initial Project Budget Allocation
-  const rawDate = project.value?.start_date || new Date().toISOString().split('T')[0]
-  const projectBudget = Number(project.value?.budget || 0)
-  items.push({
-    id: `BUDGET-${project.value?.id || 'ALLOCATION'}`,
-    rawDate,
-    date: dateStore.formatISODate(rawDate),
-    type: 'allocation',
-    category_name: 'Initial Project Budget Allocation',
-    ledger_code: '1000-BUDGET',
-    fund_code: 'BUDGET',
-    description: `Initial project budget allocation for ${project.value?.name || 'Project'}`,
-    debit_amount: 0,
-    credit_amount: projectBudget,
-    running_balance: 0,
-  })
-
-  // 2. Journal Transactions
+  // Journal Transactions — only actual posted entries, no synthetic opening balance
   const txs = projectTransactions.value
   for (const t of txs) {
     const isDebit = t.type === 'debit'

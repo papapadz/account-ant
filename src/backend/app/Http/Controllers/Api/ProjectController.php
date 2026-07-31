@@ -87,12 +87,13 @@ class ProjectController extends Controller
 
         $validated = $request->validate([
             'fund_account_id' => 'required|exists:fund_accounts,id',
-            'initial_amount' => 'required|numeric|min:0',
+            'initial_amount' => 'nullable|numeric|min:0',
             'date_received' => 'nullable|date',
             'date' => 'nullable|date',
         ]);
 
         $dateReceived = $validated['date_received'] ?? $validated['date'] ?? now()->toDateString();
+        $initialAmount = isset($validated['initial_amount']) ? (float) $validated['initial_amount'] : 0.00;
 
         // Prevent duplicate fund allocation or update existing
         $projectFund = ProjectFund::updateOrCreate(
@@ -101,7 +102,7 @@ class ProjectController extends Controller
                 'fund_account_id' => $validated['fund_account_id'],
             ],
             [
-                'initial_amount' => $validated['initial_amount'],
+                'initial_amount' => $initialAmount,
                 'date_received' => $dateReceived,
                 'user_id' => $request->user() ? $request->user()->id : 1,
             ]
@@ -111,7 +112,7 @@ class ProjectController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Fund source allocated to project successfully',
+            'message' => 'Fund source linked to project successfully',
             'data' => $projectFund,
             'project' => $project,
         ]);

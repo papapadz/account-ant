@@ -317,13 +317,20 @@ export const useProjects = () => {
   const getFundSourceRemaining = (fundSourceId: number): number => {
     const fund = fundSources.value.find(f => f.id === fundSourceId)
     if (!fund) return 0
-    return Number(fund.amount) + getFundSourceCredits(fundSourceId) - getFundSourceSpent(fundSourceId)
+    const accountingStore = useAccounting()
+    const acctFund = accountingStore.fundAccounts.value.find(f => f.id === fundSourceId)
+    const baseAmount = Number(fund.amount) > 0 ? Number(fund.amount) : (acctFund ? Number(acctFund.amount) || 0 : 0)
+    return baseAmount + getFundSourceCredits(fundSourceId) - getFundSourceSpent(fundSourceId)
   }
 
   const getFundSourceUsagePercentage = (fundSourceId: number): number => {
     const fund = fundSources.value.find(f => f.id === fundSourceId)
-    if (!fund || fund.amount <= 0) return 0
-    return Math.min(Math.round((getFundSourceSpent(fundSourceId) / fund.amount) * 100), 100)
+    if (!fund) return 0
+    const accountingStore = useAccounting()
+    const acctFund = accountingStore.fundAccounts.value.find(f => f.id === fundSourceId)
+    const baseAmount = Number(fund.amount) > 0 ? Number(fund.amount) : (acctFund ? Number(acctFund.amount) || 0 : 0)
+    if (baseAmount <= 0) return 0
+    return Math.min(Math.round((getFundSourceSpent(fundSourceId) / baseAmount) * 100), 100)
   }
 
   // Overall App Metrics Across All Projects
@@ -442,7 +449,7 @@ export const useProjects = () => {
     await fetchProjects()
   }
 
-  const addFundSource = async (fund: { project_id: number; name: string; amount: number; date_received?: string; date?: string }) => {
+  const addFundSource = async (fund: { project_id: number; name: string; amount?: number; date_received?: string; date?: string }) => {
     const accountingStore = useAccounting()
     if (accountingStore.fundAccounts.value.length === 0) {
       await accountingStore.fetchFundAccounts()
@@ -460,7 +467,7 @@ export const useProjects = () => {
         body: {
           fund_code: generatedCode,
           fund_name: fund.name,
-          amount: fund.amount,
+          amount: fund.amount || 0,
           description: `Automatically created fund source for project #${fund.project_id}`,
         }
       })
@@ -473,7 +480,7 @@ export const useProjects = () => {
       method: 'POST',
       body: {
         fund_account_id: fundAccountId,
-        initial_amount: fund.amount,
+        initial_amount: 0,
         date_received: fund.date_received || fund.date,
         date: fund.date_received || fund.date,
       }
