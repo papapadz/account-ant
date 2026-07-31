@@ -13,27 +13,27 @@ class FundAccountController extends Controller
         $funds = FundAccount::with(['company', 'user'])->get();
 
         // Seed fallback data if table is currently empty
-        if ($funds->isEmpty()) {
-            FundAccount::create([
-                'company_id' => 1,
-                'fund_code' => 'FND-101',
-                'fund_name' => 'General Operating Fund',
-                'description' => 'Primary corporate liquidity and daily operational expenses',
-                'amount' => 500000.00,
-                'user_id' => 1,
-                'ledger_account_id' => 10,
-            ]);
-            FundAccount::create([
-                'company_id' => 1,
-                'fund_code' => 'FND-202',
-                'fund_name' => 'Capital Expenditure & R&D Fund',
-                'description' => 'Reserved capital for software automation & infrastructure expansion',
-                'amount' => 750000.00,
-                'user_id' => 1,
-                'ledger_account_id' => 20,
-            ]);
-            $funds = FundAccount::with(['company', 'user'])->get();
-        }
+        // if ($funds->isEmpty()) {
+        //     FundAccount::create([
+        //         'company_id' => 1,
+        //         'fund_code' => 'FND-101',
+        //         'fund_name' => 'General Operating Fund',
+        //         'description' => 'Primary corporate liquidity and daily operational expenses',
+        //         'amount' => 500000.00,
+        //         'user_id' => 1,
+        //         'ledger_account_id' => 10,
+        //     ]);
+        //     FundAccount::create([
+        //         'company_id' => 1,
+        //         'fund_code' => 'FND-202',
+        //         'fund_name' => 'Capital Expenditure & R&D Fund',
+        //         'description' => 'Reserved capital for software automation & infrastructure expansion',
+        //         'amount' => 750000.00,
+        //         'user_id' => 1,
+        //         'ledger_account_id' => 20,
+        //     ]);
+        //     $funds = FundAccount::with(['company', 'user'])->get();
+        // }
 
         return response()->json($funds);
     }

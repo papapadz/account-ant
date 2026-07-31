@@ -30,9 +30,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^6.1.0",
-    "@oxc-parser/binding-win32-x64-msvc": "^0.140.0",
     "@oxc-parser/wasm": "^0.60.0",
-    "@rolldown/binding-win32-x64-msvc": "^1.2.0",
     "oxc-parser": "^0.140.0",
     "rolldown": "^1.2.0"
   }

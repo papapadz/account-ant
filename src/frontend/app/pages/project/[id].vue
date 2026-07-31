@@ -65,7 +65,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
               </svg>
             </template>
-            Print Accounting Ledger
+            Print Ledger
           </UiButton>
         </div>
       </div>
@@ -76,9 +76,9 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- 1. Project Budget -->
         <KpiCard
-          title="Project Budget"
-          :value="`${currencyStore.formatCurrency(projectBudget)}`"
-          subtitle="Allocated project target budget"
+          title="Remaining Project Budget"
+          :value="`${currencyStore.formatCurrency(projectsStore.getProjectBudgetBalance(projectId))}`"
+          :subtitle="`Project Budget: ${currencyStore.formatCurrency(projectBudget)}`"
           type="emerald"
         >
           <template #icon>
@@ -1480,6 +1480,12 @@ const chronologicalStatement = computed(() => {
 
   return items
 })
+
+const getUsageTextColorClass = (val: number) => {
+  if (val >= 90) return 'text-rose-400'
+  if (val >= 75) return 'text-amber-400'
+  return 'text-emerald-400'
+}
 
 const triggerPrint = () => {
   window.print()

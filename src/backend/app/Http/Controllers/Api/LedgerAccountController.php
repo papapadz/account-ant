@@ -12,25 +12,25 @@ class LedgerAccountController extends Controller
     {
         $accounts = LedgerAccount::with('fundAccount')->get();
 
-        if ($accounts->isEmpty()) {
-            LedgerAccount::create([
-                'account_code' => '1010-CASH',
-                'account_name' => 'Cash & Cash Equivalents',
-                'description' => 'Operating bank deposits and liquid treasury holdings',
-                'fund_account_id' => 1,
-                'user_id' => 1,
-                'ledger_account_id' => 1,
-            ]);
-            LedgerAccount::create([
-                'account_code' => '4010-REV',
-                'account_name' => 'SaaS Subscription Revenue',
-                'description' => 'Recurring platform API usage revenue',
-                'fund_account_id' => 1,
-                'user_id' => 1,
-                'ledger_account_id' => 1,
-            ]);
-            $accounts = LedgerAccount::with('fundAccount')->get();
-        }
+        // if ($accounts->isEmpty()) {
+        //     LedgerAccount::create([
+        //         'account_code' => '1010-CASH',
+        //         'account_name' => 'Cash & Cash Equivalents',
+        //         'description' => 'Operating bank deposits and liquid treasury holdings',
+        //         'fund_account_id' => 1,
+        //         'user_id' => 1,
+        //         'ledger_account_id' => 1,
+        //     ]);
+        //     LedgerAccount::create([
+        //         'account_code' => '4010-REV',
+        //         'account_name' => 'SaaS Subscription Revenue',
+        //         'description' => 'Recurring platform API usage revenue',
+        //         'fund_account_id' => 1,
+        //         'user_id' => 1,
+        //         'ledger_account_id' => 1,
+        //     ]);
+        //     $accounts = LedgerAccount::with('fundAccount')->get();
+        // }
 
         return response()->json($accounts);
     }

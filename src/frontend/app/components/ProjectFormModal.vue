@@ -1,5 +1,5 @@
 <template>
-  <Modal :isOpen="isOpen" title="Create New Enterprise Project" @close="$emit('close')">
+  <Modal :isOpen="isOpen" title="Create New Project" @close="$emit('close')">
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <div>
         <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project Name *</label>

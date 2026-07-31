@@ -30,6 +30,8 @@
     <p class="text-xs text-[var(--text-muted)] mt-2 flex items-center gap-1">
       <span>{{ subtitle }}</span>
     </p>
+
+    <slot name="footer"></slot>
   </div>
 </template>
 

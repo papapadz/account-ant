@@ -12,38 +12,38 @@ class AccountItemController extends Controller
     {
         $items = AccountItem::with('ledgerAccount')->get();
 
-        if ($items->isEmpty()) {
-            $revAcc = \App\Models\Accounting\LedgerAccount::where('account_code', '4010-REV')->first()
-                ?? \App\Models\Accounting\LedgerAccount::first();
-            $equipAcc = \App\Models\Accounting\LedgerAccount::where('account_code', '1500-EQUIP')->first()
-                ?? \App\Models\Accounting\LedgerAccount::first();
+        // if ($items->isEmpty()) {
+        //     $revAcc = \App\Models\Accounting\LedgerAccount::where('account_code', '4010-REV')->first()
+        //         ?? \App\Models\Accounting\LedgerAccount::first();
+        //     $equipAcc = \App\Models\Accounting\LedgerAccount::where('account_code', '1500-EQUIP')->first()
+        //         ?? \App\Models\Accounting\LedgerAccount::first();
 
-            if ($revAcc) {
-                AccountItem::firstOrCreate(
-                    ['item_code' => 'ITEM-ACC-01'],
-                    [
-                        'item_name' => 'Client Subscription Payment',
-                        'description' => 'Enterprise tier automated ledger subscription',
-                        'ledger_account_id' => $revAcc->id,
-                        'transaction_type' => 'credit'
-                    ]
-                );
-            }
+        //     if ($revAcc) {
+        //         AccountItem::firstOrCreate(
+        //             ['item_code' => 'ITEM-ACC-01'],
+        //             [
+        //                 'item_name' => 'Client Subscription Payment',
+        //                 'description' => 'Enterprise tier automated ledger subscription',
+        //                 'ledger_account_id' => $revAcc->id,
+        //                 'transaction_type' => 'credit'
+        //             ]
+        //         );
+        //     }
 
-            if ($equipAcc) {
-                AccountItem::firstOrCreate(
-                    ['item_code' => 'ITEM-EXP-02'],
-                    [
-                        'item_name' => 'Cloud Hosting Infrastructure',
-                        'description' => 'AWS/GCP GPU cluster monthly compute fee',
-                        'ledger_account_id' => $equipAcc->id,
-                        'transaction_type' => 'debit'
-                    ]
-                );
-            }
+        //     if ($equipAcc) {
+        //         AccountItem::firstOrCreate(
+        //             ['item_code' => 'ITEM-EXP-02'],
+        //             [
+        //                 'item_name' => 'Cloud Hosting Infrastructure',
+        //                 'description' => 'AWS/GCP GPU cluster monthly compute fee',
+        //                 'ledger_account_id' => $equipAcc->id,
+        //                 'transaction_type' => 'debit'
+        //             ]
+        //         );
+        //     }
 
-            $items = AccountItem::with('ledgerAccount')->get();
-        }
+        //     $items = AccountItem::with('ledgerAccount')->get();
+        // }
 
         return response()->json($items);
     }

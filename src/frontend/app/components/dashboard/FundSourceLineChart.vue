@@ -233,14 +233,14 @@ const monthlyData = computed(() => {
     result[i].amount = currentRunningBalance
   }
 
-  if (!hasRealActivity) {
-    const baseVal = targetFund === 'all' ? 1200000 : 350000
-    const dummyMultipliers = [0.45, 0.52, 0.60, 0.58, 0.72, 0.85, 0.78, 0.90, 0.95, 1.10, 1.05, 1.25]
-    return result.map((item, idx) => ({
-      ...item,
-      amount: Math.round(baseVal * dummyMultipliers[idx])
-    }))
-  }
+  // if (!hasRealActivity) {
+  //   const baseVal = targetFund === 'all' ? 1200000 : 350000
+  //   const dummyMultipliers = [0.45, 0.52, 0.60, 0.58, 0.72, 0.85, 0.78, 0.90, 0.95, 1.10, 1.05, 1.25]
+  //   return result.map((item, idx) => ({
+  //     ...item,
+  //     amount: Math.round(baseVal * dummyMultipliers[idx])
+  //   }))
+  // }
 
   return result
 })

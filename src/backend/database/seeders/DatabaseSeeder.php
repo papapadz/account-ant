@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             AddressSeeder::class,
             UserSeeder::class,
             HrSeeder::class,
-            AccountingSeeder::class,
+            // AccountingSeeder::class,
             // ProjectSeeder::class,
             // LedgerItemSeeder::class,
         ]);
