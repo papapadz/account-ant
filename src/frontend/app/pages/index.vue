@@ -94,6 +94,9 @@
         <!-- Fund Source Line Chart -->
         <DashboardFundSourceLineChart />
 
+        <!-- Ledger Expenses Pie Chart -->
+        <DashboardLedgerExpensePieChart />
+
         <!-- Fund Expense Pie Chart -->
         <DashboardFundExpensePieChart />
 

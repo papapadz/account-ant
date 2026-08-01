@@ -203,6 +203,10 @@ watch(() => props.isOpen, (newVal) => {
   }
 })
 
+watch([() => projectsStore.states.value, () => projectsStore.cities.value], () => {
+  initDefaults()
+}, { deep: true })
+
 const initDefaults = () => {
   if (projectsStore.states.value.length > 0 && !form.state_id) {
     form.state_id = projectsStore.states.value[0].id

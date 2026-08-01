@@ -1,23 +1,23 @@
 <template>
-  <div class="glass-card p-5 rounded-2xl border border-[var(--border-color)] flex flex-col justify-between space-y-4 col-span-1 lg:col-span-2">
+  <div class="glass-card p-5 rounded-2xl border border-[var(--border-color)] flex flex-col justify-between space-y-4 col-span-1 h-full">
     <!-- Header & Filter Toolbar -->
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-3 border-b border-[var(--border-color)]">
-      <div>
+      <div class="w-full md:w-auto">
         <h3 class="text-sm font-bold text-[var(--text-main)] tracking-tight flex items-center gap-2">
           <svg class="w-4.5 h-4.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
           </svg>
-          Fund Source Amount Trends (Jan – Dec)
+          Fund Source Amount 
         </h3>
         <p class="text-[11px] text-[var(--text-muted)] mt-0.5">
-          Monthly fund allocation and balance movement across the selected fiscal year
+          Monthly fund balance movement for the year
         </p>
       </div>
 
       <!-- Filters: Per Fund Source Account & Per Year -->
-      <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
         <!-- Fund Account Filter -->
-        <div class="flex items-center gap-1.5 min-w-[160px] flex-1 md:flex-none">
+        <div class="flex items-center gap-1.5 w-full sm:w-auto sm:min-w-[180px]">
           <span class="text-[11px] font-medium text-[var(--text-muted)] shrink-0">Account:</span>
           <select
             v-model="selectedFundId"
@@ -35,7 +35,7 @@
         </div>
 
         <!-- Year Filter -->
-        <div class="flex items-center gap-1.5 min-w-[110px]">
+        <div class="flex items-center gap-1.5 w-full sm:w-auto sm:min-w-[110px]">
           <span class="text-[11px] font-medium text-[var(--text-muted)] shrink-0">Year:</span>
           <select
             v-model="selectedYear"
@@ -50,28 +50,20 @@
     </div>
 
     <!-- Stats Summary Row -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-[var(--bg-surface)]/60 p-3 rounded-xl border border-[var(--border-color)]/70">
-      <div>
-        <span class="text-[10px] uppercase font-semibold text-[var(--text-muted)] tracking-wider block">Total Period Volume</span>
-        <span class="font-mono font-bold text-emerald-400 text-sm">{{ currencyStore.formatCurrency(periodTotalAmount) }}</span>
+      <div class="flex items-center justify-between text-xs text-[var(--text-muted)] px-1">
+        <div>
+          Fund Source Volume:
+          <span class="font-mono font-bold text-blue-400 ml-1">{{ currencyStore.formatCurrency(periodTotalAmount) }}</span>
+        </div>
+        <div>
+          Peak Month:
+          <span class="font-mono font-bold text-amber-400 ml-1">{{ peakMonthLabel }}</span>
+        </div>
       </div>
-      <div>
-        <span class="text-[10px] uppercase font-semibold text-[var(--text-muted)] tracking-wider block">Peak Month</span>
-        <span class="font-mono font-bold text-amber-400 text-sm">{{ peakMonthLabel }}</span>
-      </div>
-      <div>
-        <span class="text-[10px] uppercase font-semibold text-[var(--text-muted)] tracking-wider block">Monthly Average</span>
-        <span class="font-mono font-bold text-blue-400 text-sm">{{ currencyStore.formatCurrency(monthlyAverage) }}</span>
-      </div>
-      <div>
-        <span class="text-[10px] uppercase font-semibold text-[var(--text-muted)] tracking-wider block">Active Accounts</span>
-        <span class="font-mono font-bold text-[var(--text-main)] text-sm">{{ activeAccountsCount }} Sources</span>
-      </div>
-    </div>
 
     <!-- Line Chart Display -->
-    <div class="space-y-2">
-      <div class="relative w-full h-56 pt-6 pb-8 px-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] overflow-hidden flex flex-col justify-between select-none">
+    <div class="flex-1 w-full flex flex-col min-h-[220px]">
+      <div class="relative w-full flex-1 pt-6 pb-8 px-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] overflow-hidden flex flex-col justify-between select-none min-h-[180px]">
         <!-- SVG Grid & Line Chart -->
         <svg viewBox="0 0 600 180" class="w-full h-full overflow-visible" preserveAspectRatio="none">
           <defs>

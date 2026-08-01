@@ -361,30 +361,7 @@
     <!-- Post New Journal Entry Modal -->
     <Modal :isOpen="isPostJournalModalOpen" title="Post Double-Entry Journal Transaction" @close="isPostJournalModalOpen = false">
       <form @submit.prevent="handleCreateJournalEntry" class="space-y-4">
-        <!-- 1. Transaction Type -->
-        <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type *</label>
-          <div class="grid grid-cols-2 gap-3">
-            <UiButton
-              type="button"
-              :variant="newJournalEntry.transaction_type === 'debit' ? 'primary' : 'secondary'"
-              block
-              @click="newJournalEntry.transaction_type = 'debit'"
-            >
-              Outflow Entry
-            </UiButton>
-            <UiButton
-              type="button"
-              :variant="newJournalEntry.transaction_type === 'credit' ? 'primary' : 'secondary'"
-              block
-              @click="newJournalEntry.transaction_type = 'credit'"
-            >
-              Inflow Entry
-            </UiButton>
-          </div>
-        </div>
-
-        <!-- 2. Project Selection -->
+        <!-- 1. Project Selection -->
         <div>
           <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project (Optional)</label>
           <select v-model="newJournalEntry.project_id" class="input-field text-xs py-2 font-medium">
@@ -395,7 +372,7 @@
           </select>
         </div>
 
-        <!-- 3. Fund Source -->
+        <!-- 2. Fund Source Account -->
         <div>
           <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account *</label>
           <select v-model="newJournalEntry.fund_account_id" required class="input-field text-xs py-2 font-medium">
@@ -406,20 +383,9 @@
           </select>
         </div>
 
-        <!-- 4. Master Account Item -->
+        <!-- 3. Ledger Account -->
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Master Account Item *</label>
-          <select v-model="newJournalEntry.account_item_id" required class="input-field text-xs py-2 font-medium">
-            <option :value="undefined" disabled>-- Select Account Item --</option>
-            <option v-for="item in accounting.accountItems.value" :key="item.id" :value="item.id">
-              {{ item.item_code }} - {{ item.item_name }}
-            </option>
-          </select>
-        </div>
-
-        <!-- 5. Target Ledger Account -->
-        <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Target Ledger Account *</label>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Ledger Account *</label>
           <select v-model="newJournalEntry.ledger_account_id" required class="input-field text-xs py-2 font-medium">
             <option :value="undefined" disabled>-- Select Ledger Account --</option>
             <option v-for="acc in accounting.ledgerAccounts.value" :key="acc.id" :value="acc.id">
@@ -428,10 +394,21 @@
           </select>
         </div>
 
-        <!-- 6. Amount & Posting Date -->
+        <!-- 4. Ledger Account Item -->
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Ledger Account Item *</label>
+          <select v-model="newJournalEntry.account_item_id" required class="input-field text-xs py-2 font-medium">
+            <option :value="undefined" disabled>-- Select Account Item --</option>
+            <option v-for="item in filteredAccountItems" :key="item.id" :value="item.id">
+              {{ item.item_code }} - {{ item.item_name }} ({{ item.transaction_type === 'credit' ? 'Inflow' : 'Outflow' }})
+            </option>
+          </select>
+        </div>
+
+        <!-- 5. Amount & 6. Transaction Date -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Amount ($ USD) *</label>
+            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Amount ($ USD) *</label>
             <input
               v-model.number="newJournalEntry.amount"
               type="number"
@@ -442,7 +419,7 @@
             />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Posting Date *</label>
+            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Date *</label>
             <input
               v-model="newJournalEntry.posting_date"
               type="date"
@@ -452,28 +429,28 @@
           </div>
         </div>
 
-        <!-- 7. Entry Memo / Description -->
+        <!-- 7. Note / Description -->
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Entry Memo / Description</label>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Note / Description</label>
           <textarea v-model="newJournalEntry.description" rows="2" placeholder="Record purpose of journal entry..." class="input-field text-xs"></textarea>
         </div>
 
-        <!-- 8. Payment Status -->
+        <!-- 8. Payment status (is_paid) -->
         <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] flex items-center justify-between">
           <div>
             <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
             <span class="text-[10px] text-[var(--text-muted)] block">
-              {{ newJournalEntry.is_paid ? 'Immediate cash outflow from Fund Account' : 'Accrued liability / Accounts Payable (Unpaid)' }}
+              {{ paymentStatusSubtitle }}
             </span>
           </div>
           <UiButton
             type="button"
             size="sm"
             :variant="newJournalEntry.is_paid ? 'primary' : 'secondary'"
-            :class="newJournalEntry.is_paid ? '!bg-emerald-600 hover:!bg-emerald-500' : '!text-rose-400 border-rose-500/30'"
+            :class="newJournalEntry.is_paid ? '!bg-emerald-600 hover:!bg-emerald-500' : (newJournalEntry.transaction_type === 'credit' ? '!text-amber-400 border-amber-500/30' : '!text-rose-400 border-rose-500/30')"
             @click="newJournalEntry.is_paid = !newJournalEntry.is_paid"
           >
-            {{ newJournalEntry.is_paid ? 'Posted / Paid' : 'Payable (Unpaid)' }}
+            {{ paymentStatusButtonLabel }}
           </UiButton>
         </div>
 
@@ -517,14 +494,55 @@ const newJournalEntry = reactive({
   is_paid: true,
 })
 
+const filteredAccountItems = computed(() => {
+  if (!newJournalEntry.ledger_account_id) return accounting.accountItems.value
+  return accounting.accountItems.value.filter(item => item.ledger_account_id === newJournalEntry.ledger_account_id)
+})
+
+const paymentStatusSubtitle = computed(() => {
+  const isCredit = newJournalEntry.transaction_type === 'credit'
+  if (newJournalEntry.is_paid) {
+    return isCredit 
+      ? 'Immediate cash inflow to Fund Account' 
+      : 'Immediate cash outflow from Fund Account'
+  } else {
+    return isCredit 
+      ? 'Accrued asset / Accounts Receivable (Unpaid)' 
+      : 'Accrued liability / Accounts Payable (Unpaid)'
+  }
+})
+
+const paymentStatusButtonLabel = computed(() => {
+  if (newJournalEntry.is_paid) {
+    return 'Posted / Paid'
+  } else {
+    return newJournalEntry.transaction_type === 'credit' ? 'Receivable (Unpaid)' : 'Payable (Unpaid)'
+  }
+})
+
+watch(() => newJournalEntry.ledger_account_id, (newAccountId) => {
+  if (!newAccountId) {
+    newJournalEntry.account_item_id = undefined
+    return
+  }
+  if (newJournalEntry.account_item_id) {
+    const item = accounting.accountItems.value.find(i => i.id === Number(newJournalEntry.account_item_id))
+    if (item && item.ledger_account_id !== newAccountId) {
+      newJournalEntry.account_item_id = undefined
+    }
+  }
+})
+
 watch(() => newJournalEntry.account_item_id, (newItemId) => {
   if (!newItemId) return
   const item = accounting.accountItems.value.find(i => i.id === Number(newItemId))
-  if (item && item.ledger_account_id) {
-    newJournalEntry.ledger_account_id = item.ledger_account_id
-  }
-  if (item && item.transaction_type) {
-    newJournalEntry.transaction_type = item.transaction_type
+  if (item) {
+    if (item.ledger_account_id && newJournalEntry.ledger_account_id !== item.ledger_account_id) {
+      newJournalEntry.ledger_account_id = item.ledger_account_id
+    }
+    if (item.transaction_type) {
+      newJournalEntry.transaction_type = item.transaction_type
+    }
   }
 })
 
@@ -552,6 +570,12 @@ const handleCreateJournalEntry = async () => {
     isPostJournalModalOpen.value = false
     newJournalEntry.description = ''
     newJournalEntry.amount = 1000.00
+    newJournalEntry.project_id = null
+    newJournalEntry.fund_account_id = undefined
+    newJournalEntry.ledger_account_id = undefined
+    newJournalEntry.account_item_id = undefined
+    newJournalEntry.transaction_type = 'debit'
+    newJournalEntry.is_paid = true
   } catch (err: any) {
     console.error('Failed to create journal entry:', err)
     alert(err?.data?.message || err?.message || 'Failed to post journal entry.')

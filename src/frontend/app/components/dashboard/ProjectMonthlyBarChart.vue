@@ -1,8 +1,8 @@
 <template>
-  <div class="glass-card p-5 rounded-2xl border border-[var(--border-color)] flex flex-col justify-between space-y-4">
+  <div class="glass-card p-5 rounded-2xl border border-[var(--border-color)] flex flex-col justify-between space-y-4 h-full">
     <!-- Header & Project Selector -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-[var(--border-color)]">
-      <div>
+      <div class="w-full sm:w-auto">
         <h3 class="text-sm font-bold text-[var(--text-main)] tracking-tight flex items-center gap-2">
           <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -12,18 +12,31 @@
         <p class="text-[11px] text-[var(--text-muted)] mt-0.5">Monthly outflow breakdown for selected project</p>
       </div>
 
-      <select
-        v-model="selectedProjectId"
-        class="input-field text-xs !py-1.5 !px-2.5 max-w-xs font-medium"
-      >
-        <option v-for="project in projectsStore.projects.value" :key="project.id" :value="project.id">
-          {{ project.name }}
-        </option>
-      </select>
+      <!-- Filters: Project & Year -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+        <select
+          v-model="selectedProjectId"
+          class="input-field text-xs !py-1.5 !px-2.5 w-full sm:w-auto sm:max-w-xs font-medium"
+        >
+          <option value="all">All Projects</option>
+          <option v-for="project in projectsStore.projects.value" :key="project.id" :value="project.id">
+            {{ project.name }}
+          </option>
+        </select>
+
+        <select
+          v-model="selectedYear"
+          class="input-field text-xs !py-1.5 !px-2.5 w-full sm:w-auto sm:max-w-[90px] font-mono font-medium"
+        >
+          <option v-for="yr in availableYears" :key="yr" :value="yr">
+            {{ yr }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <!-- Monthly Bar Chart Component -->
-    <div class="space-y-4">
+    <div class="flex-1 flex flex-col justify-between space-y-4 min-h-[220px]">
       <!-- Top Stats Row -->
       <div class="flex items-center justify-between text-xs text-[var(--text-muted)] px-1">
         <div>
@@ -37,7 +50,7 @@
       </div>
 
       <!-- Bar Columns Grid -->
-      <div class="h-44 flex items-end justify-between gap-1.5 pt-6 pb-2 px-2 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] relative">
+      <div class="flex-1 min-h-[180px] flex items-end justify-between gap-1.5 pt-8 pb-2 px-2 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] relative">
         <!-- Horizontal Grid Lines -->
         <div class="absolute inset-x-0 top-1/4 border-b border-[var(--border-color)]/30 pointer-events-none"></div>
         <div class="absolute inset-x-0 top-2/4 border-b border-[var(--border-color)]/30 pointer-events-none"></div>
@@ -74,10 +87,53 @@
 const currencyStore = useCurrency()
 const projectsStore = useProjects()
 
-const selectedProjectId = ref<number>(1)
+const selectedProjectId = ref<number | 'all'>('all')
+const selectedYear = ref<number>(2026)
+
+onMounted(async () => {
+  if (projectsStore.projects.value.length === 0) {
+    await projectsStore.fetchProjects()
+  }
+})
+
+const availableYears = computed(() => {
+  const yearsSet = new Set<number>([2026, 2025, 2024])
+  for (const t of projectsStore.transactions.value) {
+    const txDateStr = t.posting_date || t.date
+    if (txDateStr) {
+      const yr = new Date(txDateStr).getFullYear()
+      if (!isNaN(yr)) yearsSet.add(yr)
+    }
+  }
+  return Array.from(yearsSet).sort((a, b) => b - a)
+})
 
 const monthlyData = computed(() => {
-  return projectsStore.getProjectMonthlyExpenses(selectedProjectId.value)
+  const targetProjectId = selectedProjectId.value
+  const targetYear = selectedYear.value
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const data = months.map((month, idx) => ({ month, monthIndex: idx + 1, amount: 0 }))
+
+  const filteredTxs = projectsStore.transactions.value.filter(t => {
+    if (targetProjectId !== 'all' && t.project_id !== targetProjectId) return false
+    if (t.type !== 'debit') return false
+    const dateStr = t.posting_date || t.date
+    if (!dateStr) return false
+    const txYear = new Date(dateStr).getFullYear()
+    return txYear === targetYear
+  })
+
+  for (const tx of filteredTxs) {
+    const txDateStr = tx.posting_date || tx.date
+    if (!txDateStr) continue
+    const dateObj = new Date(txDateStr)
+    const mIdx = dateObj.getMonth()
+    if (mIdx >= 0 && mIdx < 12) {
+      data[mIdx].amount += Number(tx.amount)
+    }
+  }
+
+  return data
 })
 
 const totalProjectExpense = computed(() => {
