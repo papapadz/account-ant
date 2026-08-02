@@ -1,7 +1,7 @@
 {
   "src/frontend/nuxt.config.ts": {
-    "mtime": 1785403025.254171,
-    "ast_hash": "b7561c23a83b61f804df547e023819ed",
+    "mtime": 1785574309.0724049,
+    "ast_hash": "6a26bbf94d2c36afc83b8c20c831f865",
     "semantic_hash": ""
   },
   "src/frontend/capacitor.config.ts": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/composables/useApi.ts": {
-    "mtime": 1785403025.2510207,
-    "ast_hash": "ecd6521e747ad824bb516ae8d5319316",
+    "mtime": 1785574323.6770654,
+    "ast_hash": "c6d9a0d62ec0da62bf7dd0b8bb632c68",
     "semantic_hash": ""
   },
   "src/frontend/app/composables/useCurrency.ts": {
@@ -165,8 +165,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/pages/ledgers.vue": {
-    "mtime": 1785570717.728944,
-    "ast_hash": "a5af1723780f1f2b03b9b50207bfadda",
+    "mtime": 1785570729.4210536,
+    "ast_hash": "d2f54a3d1b0d16ef5af7cdd1e1cf417d",
     "semantic_hash": ""
   },
   "src/frontend/app/pages/projects/index.vue": {
@@ -620,8 +620,8 @@
     "semantic_hash": ""
   },
   "src/backend/config/cors.php": {
-    "mtime": 1785403025.2386394,
-    "ast_hash": "af7de549074954dc1785b9cd3f4440f1",
+    "mtime": 1785571843.3245647,
+    "ast_hash": "4f6faf706b32c0cad9d36a13a69d4ee5",
     "semantic_hash": ""
   },
   "src/backend/config/logging.php": {
@@ -685,8 +685,8 @@
     "semantic_hash": ""
   },
   "src/backend/routes/web.php": {
-    "mtime": 1785403025.2440455,
-    "ast_hash": "84625c52e743b1a4178bb27b7afb3615",
+    "mtime": 1785573511.1374059,
+    "ast_hash": "4313e70fd26febf1df66796b815cd756",
     "semantic_hash": ""
   },
   "src/backend/routes/api.php": {
@@ -710,8 +710,8 @@
     "semantic_hash": ""
   },
   "src/backend/public/robots.txt": {
-    "mtime": 1785403025.2433708,
-    "ast_hash": "b6216d61c03e6ce0c9aea6ca7808f7ca",
+    "mtime": 1785574515.1765404,
+    "ast_hash": "243b03ecba82dde9612cd5163145a86d",
     "semantic_hash": ""
   },
   ".agents/skills/ui-ux-pro-max/scripts/core.py": {
@@ -745,8 +745,8 @@
     "semantic_hash": ""
   },
   "src/backend/composer.json": {
-    "mtime": 1785403025.237915,
-    "ast_hash": "1628db9128c72adf8b266ad1f151ecca",
+    "mtime": 1785573062.015179,
+    "ast_hash": "ab72407d61ac13ebfbcb9e0a9c9e0bfb",
     "semantic_hash": ""
   },
   "src/backend/database/json/countries.json": {
@@ -1532,6 +1532,301 @@
   ".scratch/pie-charts-others-grouping/issues/01-group-others-pie-charts.md": {
     "mtime": 1785568361.1822958,
     "ast_hash": "ac2861be33a64d172684a839297c9979",
+    "semantic_hash": ""
+  },
+  "src/backend/app/Providers/NativeAppServiceProvider.php": {
+    "mtime": 1785571757.1065512,
+    "ast_hash": "0aedc477131ba14aa49063cb3123f8f4",
+    "semantic_hash": ""
+  },
+  "src/backend/config/nativephp.php": {
+    "mtime": 1785571757.1055055,
+    "ast_hash": "a8a0116677bd7c6651c5e0acbcb96f0d",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-builder.mjs": {
+    "mtime": 1780030601.0,
+    "ast_hash": "67520629b655fc610533a7cefcbc8cc5",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/__mocks__/electron.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "5925d94fdda3e76a9fc1f211e2faa322",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/babel.config.js": {
+    "mtime": 1780030601.0,
+    "ast_hash": "ad492577373b703df27f01c7193b5f0a",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/index.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "453c748bd35b47d11103a15b4aaf1be5",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/Menubar.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "3aa29ab65178c3e3f152be05822ddfaf",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/ambient.d.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "298a4319de509837ccdb410d4539a407",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/index.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "4e7cf50df627d64e385b4da8232ee53d",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/types.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "4330828ffce8071b6aeb63cf82b221af",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/util/cleanOptions.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "5e2cd0c5da48011a3031b254ad6dd75a",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/util/getWindowPosition.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "f7c7e6a177e192c18212bee13df39ee1",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/libs/positioner/index.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "ae9ce2e9b710317bbe672b49af271ff7",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/preload/index.mts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "6d43b3c6e42e476b5081ad00f2fcdb5f",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/preload/livewire-dispatcher.js": {
+    "mtime": 1780030601.0,
+    "ast_hash": "35c28775e8160bf88b74d71fd1b336ed",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/ProcessResult.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "cc701106378a9da89e8ceadde75ae0c6",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "f4ca9f59a8f9f594cddb80a376c5e130",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/alert.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "cc1b8591fc96353dcece7dbefffc557c",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/app.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "613d6aeede95c2d0ffda6eaac656c772",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/autoUpdater.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "e6fb0853689c00753629c163db15c2f5",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/broadcasting.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "32763d7b9f934e978c79b9c998ed0caf",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/childProcess.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "d292eb03224892282ec52dc808c0e48e",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/clipboard.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "c04ef9e2baa18b022cf633f408954c7b",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/contextMenu.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "cb258b6c9d29ffbbc05df8c6212c5e7d",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/debug.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "1c94e06ed35b795535bc84f0a179d24a",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/dialog.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "8c774f9f15b9cf2b59486b28d91d178d",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/dock.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "419448828783283d2a00ffd08090ca0e",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/globalShortcut.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "3f8e6eb43e1206d90a2ee824650eaae6",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/helper/index.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "36ddb62543643fdc20636c2617f8a41d",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/menu.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "f0516378d6a8df52c8a059c1b22e455d",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/menuBar.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "ae8d853a3da4e97ddffdb42a8749252e",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/middleware.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "058ba9a9ba100630a16bb7d809d7314b",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/notification.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "a83abc58febe878c0a80a8786f815ee1",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/powerMonitor.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "58265138376c581742e4ce9c516c64bb",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/process.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "81f4ed7ba612da68a19c618f3273f77f",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/progressBar.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "9bda0373cad4f7f52704f539136e68f8",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/screen.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "d3fd8a305331c9eb9968dff7a525b373",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/settings.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "4110b5251c90a480eb1017454d363632",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/shell.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "7c9f566679fb1cbd7eab7c00ba724b22",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/system.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "946d12184dce93385e91c4face5e30f1",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/api/window.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "2829f1a9be9ae84a4cc3b431b76bfdda",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/childProcess.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "a7baaf2b4eee6e8817a72170b654c1c1",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/index.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "fa1cddbc8151a43d5f6b21562bbf477a",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/php.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "4695a87c08eb851639f412d33940a8e2",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/state.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "c14ac8d7cb941a81546c6574a2e66695",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/utils.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "7361662d12c758ef64732aa13495e782",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/server/webPreferences.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "1997bd3587b8b27ab2cc3d598f4691d9",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/tests/api.test.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "e22dbc3605802438c467abfad4326208",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/tests/mocking.test.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "b36b18782e80db723336aef0ace43ff5",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/tests/setup.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "03007d86169cfdca297eea285e135efa",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/tests/utils.test.ts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "9dc9caa3023a053be2a7e2d2b251e875",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/tsconfig.json": {
+    "mtime": 1780030601.0,
+    "ast_hash": "ddb00f78db3146c5cdb4cd86e1d44949",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/vitest.config.mts": {
+    "mtime": 1780030601.0,
+    "ast_hash": "2610a0caa65bdb383b0a17ddef424b35",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron.vite.config.mjs": {
+    "mtime": 1780030601.0,
+    "ast_hash": "b850b16df152899e8066b91e573838a6",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/eslint.config.js": {
+    "mtime": 1780030601.0,
+    "ast_hash": "379ced95fc2a5040ab16957702e05326",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/package.json": {
+    "mtime": 1785573446.0,
+    "ast_hash": "2813f97f53f20d4e1b4cbb575d11a399",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/php.js": {
+    "mtime": 1780030601.0,
+    "ast_hash": "1f1bdfc3e6fb78e43de80ab72ac16eb4",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/src/main/index.js": {
+    "mtime": 1780030601.0,
+    "ast_hash": "a624c663af11f9345bf4baeff24fe4af",
+    "semantic_hash": ""
+  },
+  "src/backend/nativephp/electron/electron-plugin/src/libs/positioner/README.md": {
+    "mtime": 1780030601.0,
+    "ast_hash": "e44ca9fbf36946ae0e629c889059af4c",
     "semantic_hash": ""
   }
 }

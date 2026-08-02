@@ -2,7 +2,7 @@ import type { FetchOptions } from 'ofetch'
 
 export const useApi = () => {
   const config = useRuntimeConfig()
-  const apiBase = config.public.apiBase || 'http://localhost:8000/api'
+  const apiBase = config.public.apiBase
   const tokenCookie = useCookie<string | null>('auth_token', { default: () => null })
 
   const request = async <T>(endpoint: string, options: FetchOptions = {}): Promise<T> => {

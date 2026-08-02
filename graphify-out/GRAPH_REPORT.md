@@ -1,23 +1,23 @@
 # Graph Report - account-ant  (2026-08-01)
 
 ## Corpus Check
-- 297 files · ~152,405 words
+- 394 files · ~183,241 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1731 nodes · 1833 edges · 248 communities (186 shown, 62 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 81 edges (avg confidence: 0.8)
+- 2688 nodes · 4951 edges · 342 communities (229 shown, 113 thin omitted)
+- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 551 edges (avg confidence: 0.78)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cc09db6c`
+- Built from commit: `121bf582`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - project/[id].vue
+- ProjectFund
 - Illuminate\Http\Request
-- Project
 - Illuminate\Database\Seeder
 - accounts.vue
 - useProjects.ts
@@ -197,51 +197,138 @@
 - handleTransactionRowClick
 - capacitor.config.ts
 - nuxt.config.ts
-- LedgerAccountItem
+- NativeAppServiceProvider
 - 01-group-others-pie-charts.md
+- CFINTcER.js
+- DI5qgYQd.js
+- setup
+- setup
+- php.ts
+- setup
+- CZ90y64g.js
+- B6EISGKZ.js
+- c
+- M6HudXea.js
+- api/childProcess.ts
+- vi
+- Project
+- NativePHP
+- B3vfnPtG.js
+- e
 - LedgerAccount
-- AccountItem
+- electron/package.json
+- s
+- Menubar
+- Cr
+- n
+- Ve
+- api.ts
+- state.ts
+- scripts
+- dependencies
+- compilerOptions
+- setup
+- require-dev
+- devDependencies
+- config
+- index.js
+- electron-builder.mjs
+- php.js
+- require
+- electron.ts
+- ambient.d.ts
+- ji
+- @babel/plugin-proposal-export-namespace-from
+- @babel/plugin-proposal-function-sent
+- @babel/plugin-proposal-numeric-separator
+- @babel/plugin-proposal-throw-expressions
+- @babel/plugin-transform-object-assign
+- @babel/preset-env
+- @babel/preset-typescript
+- cross-env
+- electron
+- electron-chromedriver
+- psr-4
+- @electron/notarize
+- post-create-project-cmd
+- extra
+- eslint
+- eslint-config-prettier
+- eslint-plugin-prettier
+- eslint-plugin-unicorn
+- electron-context-menu
+- @electron-toolkit/utils
+- globals
+- less
+- electron-window-state
+- prettier
+- prettier-plugin-organize-imports
+- @rushstack/eslint-patch
+- positioner/README.md
+- index.mts
+- livewire-dispatcher.js
+- server/childProcess.ts
+- express
+- stylelint
+- stylelint-config-recommended
+- stylelint-config-sass-guidelines
+- ts-node
+- tslib
+- @types/express
+- @types/node
+- @types/ps-node
+- typescript
+- typescript-eslint
+- @typescript-eslint/eslint-plugin
+- @typescript-eslint/parser
+- vite
+- vitest
+- vitest-mock-commonjs
+- @vue/eslint-config-prettier
+- fix-path
+- nodemon
+- tree-kill
 
 ## God Nodes (most connected - your core abstractions)
-1. `Project` - 25 edges
-2. `User` - 18 edges
-3. `Controller` - 17 edges
-4. `LedgerAccountItem` - 16 edges
-5. `FundAccount` - 14 edges
-6. `LedgerAccount` - 14 edges
-7. `Company` - 12 edges
-8. `What You Must Do When Invoked` - 12 edges
-9. `DesignSystemGenerator` - 11 edges
-10. `Person` - 11 edges
+1. `setup()` - 89 edges
+2. `setup()` - 51 edges
+3. `setup()` - 50 edges
+4. `e()` - 49 edges
+5. `P()` - 48 edges
+6. `I()` - 46 edges
+7. `z()` - 42 edges
+8. `u()` - 40 edges
+9. `wa()` - 39 edges
+10. `R()` - 38 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `AccountItemController` --inherits--> `Controller`  [EXTRACTED]
-  src/backend/app/Http/Controllers/Api/AccountItemController.php → src/backend/app/Http/Controllers/Controller.php
-- `AuthController` --inherits--> `Controller`  [EXTRACTED]
-  src/backend/app/Http/Controllers/Api/AuthController.php → src/backend/app/Http/Controllers/Controller.php
-- `FundAccountController` --inherits--> `Controller`  [EXTRACTED]
-  src/backend/app/Http/Controllers/Api/FundAccountController.php → src/backend/app/Http/Controllers/Controller.php
-- `LedgerAccountController` --inherits--> `Controller`  [EXTRACTED]
-  src/backend/app/Http/Controllers/Api/LedgerAccountController.php → src/backend/app/Http/Controllers/Controller.php
-- `LedgerAccountItemController` --inherits--> `Controller`  [EXTRACTED]
-  src/backend/app/Http/Controllers/Api/LedgerAccountItemController.php → src/backend/app/Http/Controllers/Controller.php
+- `State` --references--> `Menubar`  [EXTRACTED]
+  src/backend/nativephp/electron/electron-plugin/src/server/state.ts → src/backend/nativephp/electron/electron-plugin/src/libs/menubar/Menubar.ts
+- `setup()` --indirect_call--> `o()`  [INFERRED]
+  src/backend/public/_nuxt/-PIJGQ7c.js → src/backend/public/_nuxt/DI5qgYQd.js
+- `setup()` --indirect_call--> `s()`  [INFERRED]
+  src/backend/public/_nuxt/-PIJGQ7c.js → src/backend/public/_nuxt/DI5qgYQd.js
+- `y()` --indirect_call--> `f()`  [INFERRED]
+  src/backend/public/_nuxt/B6EISGKZ.js → src/backend/public/_nuxt/B3vfnPtG.js
+- `setup()` --indirect_call--> `f()`  [INFERRED]
+  src/backend/public/_nuxt/CVsRN15I.js → src/backend/public/_nuxt/B3vfnPtG.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (248 total, 62 thin omitted)
+## Communities (342 total, 113 thin omitted)
 
 ### Community 0 - "project/[id].vue"
 Cohesion: 0.03
 Nodes (49): accountingStore, activeCategories, activeFundAccountsBalance, activeTab, authStore, chronologicalStatement, companyNameHeader, currencyStore (+41 more)
 
-### Community 1 - "Illuminate\Http\Request"
-Cohesion: 0.27
-Nodes (4): Illuminate\Http\Request, CityController, SettingsController, Controller
+### Community 1 - "ProjectFund"
+Cohesion: 0.22
+Nodes (3): AccountItem, ProjectFund, LedgerItemSeeder
 
-### Community 2 - "Project"
-Cohesion: 0.18
-Nodes (3): Illuminate\Http\JsonResponse, ProjectController, Project
+### Community 2 - "Illuminate\Http\Request"
+Cohesion: 0.11
+Nodes (9): Illuminate\Http\Request, AccountItemController, JsonResponse, CityController, LedgerAccountItemController, JsonResponse, SettingsController, Controller (+1 more)
 
 ### Community 3 - "Illuminate\Database\Seeder"
 Cohesion: 0.14
@@ -264,12 +351,12 @@ Cohesion: 0.04
 Nodes (45): @capacitor/cli, @capacitor/core, @ionic/vue, lucide-vue-next, nuxt, ofetch, oxc-parser, @oxc-parser/wasm (+37 more)
 
 ### Community 8 - "User"
-Cohesion: 0.10
-Nodes (12): Illuminate\Foundation\Auth\User, Illuminate\Notifications\Notifiable, Laravel\Sanctum\HasApiTokens, AuthController, Company, PersonAffiliation, Person, User (+4 more)
+Cohesion: 0.11
+Nodes (11): Illuminate\Foundation\Auth\User, Illuminate\Notifications\Notifiable, Laravel\Sanctum\HasApiTokens, AuthController, Company, PersonAffiliation, Person, User (+3 more)
 
 ### Community 10 - "composer.json"
-Cohesion: 0.05
-Nodes (41): framework, laravel, pestphp/pest-plugin, php-http/discovery, autoload, autoload-dev, psr-4, psr-4 (+33 more)
+Cohesion: 0.14
+Nodes (13): framework, laravel, autoload-dev, psr-4, description, keywords, license, minimum-stability (+5 more)
 
 ### Community 11 - "Issue tracker: GitHub"
 Cohesion: 0.06
@@ -288,8 +375,8 @@ Cohesion: 0.07
 Nodes (29): Accessibility, Available Domains, Available Stacks, Common Rules for Professional UI, Example Workflow, How to Use This Skill, Icons & Visual Elements, Interaction (+21 more)
 
 ### Community 15 - "scripts"
-Cohesion: 0.08
-Nodes (26): Composer\\Config::disableProcessTimeout, composer install, Illuminate\\Foundation\\ComposerScripts::postAutoloadDump, Illuminate\\Foundation\\ComposerScripts::prePackageUninstall, npm install, npm run build, npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others, @php artisan config:clear --ansi (+18 more)
+Cohesion: 0.12
+Nodes (17): Composer\\Config::disableProcessTimeout, Illuminate\\Foundation\\ComposerScripts::postAutoloadDump, Illuminate\\Foundation\\ComposerScripts::prePackageUninstall, npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others, npx concurrently -k -c \"#93c5fd,#c4b5fd\" \"php artisan native:run --no-interaction\" \"npm run dev\" --names=app,vite, @php artisan config:clear --ansi, @php artisan native:install --force --quiet --publish, @php artisan package:discover --ansi (+9 more)
 
 ### Community 16 - "What You Must Do When Invoked"
 Cohesion: 0.08
@@ -305,11 +392,11 @@ Nodes (21): accounting, auth, companyInitials, companyName, companyScope, curren
 
 ### Community 20 - "devDependencies"
 Cohesion: 0.10
-Nodes (19): axios, concurrently, laravel-vite-plugin, devDependencies, axios, concurrently, laravel-vite-plugin, tailwindcss (+11 more)
+Nodes (19): concurrently, laravel-vite-plugin, devDependencies, axios, concurrently, laravel-vite-plugin, tailwindcss, @tailwindcss/vite (+11 more)
 
 ### Community 21 - "TestCase"
-Cohesion: 0.24
-Nodes (5): Illuminate\Foundation\Testing\RefreshDatabase, Illuminate\Foundation\Testing\TestCase, AuthTest, ExampleTest, TestCase
+Cohesion: 0.23
+Nodes (6): Illuminate\Foundation\Testing\RefreshDatabase, Illuminate\Foundation\Testing\TestCase, AuthTest, ExampleTest, LedgerAccountItemTest, TestCase
 
 ### Community 22 - "ProjectFormModal.vue"
 Cohesion: 0.22
@@ -344,8 +431,8 @@ Cohesion: 0.17
 Nodes (11): Chart the map, Fog of war, Invocation, Out of scope, Plan, don't do, Refer by name, The Map, The map body (+3 more)
 
 ### Community 62 - "Illuminate\Database\Eloquent\Model"
-Cohesion: 0.20
-Nodes (7): Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\Model, Illuminate\Database\Eloquent\SoftDeletes, JournalEntryItem, ProjectFund, Position, PersonAddress
+Cohesion: 0.24
+Nodes (6): Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\Model, Illuminate\Database\Eloquent\SoftDeletes, JournalEntryItem, Position, PersonAddress
 
 ### Community 63 - "ADR 0002: Standardized Data Table Component & Dual-Mode Responsive Architecture"
 Cohesion: 0.17
@@ -715,37 +802,181 @@ Nodes (3): props, sizeClasses, variantClasses
 Cohesion: 0.67
 Nodes (3): getCategoryName(), getFundSourceName(), getTransactionSortValue()
 
-### Community 244 - "LedgerAccountItem"
-Cohesion: 0.20
-Nodes (3): LedgerAccountItemController, JsonResponse, LedgerAccountItem
+### Community 247 - "CFINTcER.js"
+Cohesion: 0.06
+Nodes (135): c(), $a(), Ai(), ao(), ar(), at(), Ba(), bi() (+127 more)
 
-### Community 246 - "LedgerAccount"
+### Community 248 - "DI5qgYQd.js"
+Cohesion: 0.04
+Nodes (46): Aa(), Ae(), W(), _a(), ca(), componentOnReady(), connectedCallback(), constructor() (+38 more)
+
+### Community 249 - "setup"
+Cohesion: 0.08
+Nodes (46): An(), be(), Bt(), deleteProperty(), Dn(), Do(), gn(), Gt() (+38 more)
+
+### Community 250 - "setup"
+Cohesion: 0.11
+Nodes (35): f(), setup(), setup(), Bn(), e(), ge(), ke(), Wn() (+27 more)
+
+### Community 251 - "php.ts"
+Cohesion: 0.15
+Nodes (27): startPhpProcess(), argumentEnv, bootstrapCache, callPhp(), callPhpSync(), canBindToPort(), databaseFile, databasePath (+19 more)
+
+### Community 252 - "setup"
+Cohesion: 0.26
+Nodes (33): D(), E(), H(), T(), N(), setup(), setup(), setup() (+25 more)
+
+### Community 253 - "CZ90y64g.js"
+Cohesion: 0.11
+Nodes (26): entries(), ft(), kt(), lt(), reduceRight(), st(), [Symbol.iterator](), values() (+18 more)
+
+### Community 254 - "B6EISGKZ.js"
+Cohesion: 0.15
+Nodes (26): b(), C(), F(), g(), h(), I(), j(), K() (+18 more)
+
+### Community 255 - "c"
+Cohesion: 0.14
+Nodes (25): p(), U(), ba(), cn(), fi(), fn(), fo(), get() (+17 more)
+
+### Community 256 - "M6HudXea.js"
+Cohesion: 0.14
+Nodes (15): Oe(), addHooks(), callHookParallel(), callHookWith(), deprecateHook(), deprecateHooks(), hook(), hookOnce() (+7 more)
+
+### Community 257 - "api/childProcess.ts"
+Cohesion: 0.20
+Nodes (14): APIProcess, getProcess(), getSettings(), router, startProcess(), stopAllProcesses(), stopProcess(), startAPIServer() (+6 more)
+
+### Community 258 - "vi"
+Cohesion: 0.16
+Nodes (18): gi(), Jt(), Oi(), Ro(), zn(), ai(), ci(), Dr() (+10 more)
+
+### Community 259 - "Project"
+Cohesion: 0.17
+Nodes (3): Illuminate\Http\JsonResponse, ProjectController, Project
+
+### Community 261 - "B3vfnPtG.js"
+Cohesion: 0.27
+Nodes (14): b(), C(), I(), L(), m(), R(), S(), v() (+6 more)
+
+### Community 263 - "LedgerAccount"
 Cohesion: 0.24
 Nodes (3): LedgerAccountController, JsonResponse, LedgerAccount
 
-### Community 247 - "AccountItem"
+### Community 264 - "electron/package.json"
+Cohesion: 0.15
+Nodes (12): author, description, engines, node, exports, homepage, imports, #plugin (+4 more)
+
+### Community 265 - "s"
+Cohesion: 0.22
+Nodes (13): setup(), ga(), ha(), jn(), mn(), ni(), qn(), s() (+5 more)
+
+### Community 266 - "Menubar"
+Cohesion: 0.12
+Nodes (9): menubar(), Menubar, Options, cleanOptions(), getWindowPosition(), taskbarLocation, trayToScreenRects(), WindowPosition (+1 more)
+
+### Community 267 - "Cr"
+Cohesion: 0.24
+Nodes (11): mr(), ur(), yr(), Cr(), Er(), Hr(), qr(), Sr() (+3 more)
+
+### Community 268 - "n"
+Cohesion: 0.24
+Nodes (10): dep(), it(), on(), sn(), Tn(), Ui(), lo(), n() (+2 more)
+
+### Community 269 - "Ve"
+Cohesion: 0.22
+Nodes (9): dirty(), run(), runIfDirty(), Ve(), ze(), mounted(), updated(), Do() (+1 more)
+
+### Community 270 - "api.ts"
+Cohesion: 0.08
+Nodes (20): router, router, router, router, router, router, router, router (+12 more)
+
+### Community 271 - "state.ts"
+Cohesion: 0.14
+Nodes (16): router, compileMenu(), TODO: Bring a window to the front?, triggerMenuItemEvent(), buildMenu(), eventsForTray(), router, settingsStore (+8 more)
+
+### Community 272 - "scripts"
+Cohesion: 0.07
+Nodes (29): scripts, build, build:all, build:linux, build:linux-arm64, build:linux-x64, build:mac, build:mac-arm64 (+21 more)
+
+### Community 273 - "dependencies"
+Cohesion: 0.08
+Nodes (25): body-parser, @electron/remote, electron-store, @electron-toolkit/preload, electron-updater, fs-extra, get-port, kill-sync (+17 more)
+
+### Community 274 - "compilerOptions"
+Cohesion: 0.09
+Nodes (22): dom, es2019, node, ../node_modules/@types, ./src/**/*.mts, ./src/**/*.ts, compilerOptions, allowSyntheticDefaultImports (+14 more)
+
+### Community 275 - "setup"
 Cohesion: 0.25
-Nodes (4): AccountItemController, JsonResponse, AccountItem, LedgerItemSeeder
+Nodes (8): composer install, npm install, npm run build, @php artisan key:generate, @php artisan migrate --force, @php -r \"file_exists('.env') || copy('.env.example', '.env');\, post-root-package-install, setup
+
+### Community 276 - "require-dev"
+Cohesion: 0.25
+Nodes (8): require-dev, fakerphp/faker, laravel/pail, laravel/pint, laravel/sail, mockery/mockery, nunomaduro/collision, phpunit/phpunit
+
+### Community 277 - "devDependencies"
+Cohesion: 0.18
+Nodes (11): @babel/plugin-proposal-decorators, electron-builder, electron-vite, @eslint/js, rimraf, devDependencies, @babel/plugin-proposal-decorators, electron-builder (+3 more)
+
+### Community 278 - "config"
+Cohesion: 0.29
+Nodes (7): pestphp/pest-plugin, php-http/discovery, config, allow-plugins, optimize-autoloader, preferred-install, sort-packages
+
+### Community 279 - "index.js"
+Cohesion: 0.33
+Nodes (5): appPath, buildPath, certificate, defaultIcon, phpBinary
+
+### Community 280 - "electron-builder.mjs"
+Cohesion: 0.40
+Nodes (4): isDarwin, isLinux, isWindows, updaterConfig
+
+### Community 281 - "php.js"
+Cohesion: 0.40
+Nodes (4): binaryDestDir, binarySrcDir, isBuilding, platform
+
+### Community 282 - "require"
+Cohesion: 0.29
+Nodes (7): require, laravel/framework, laravel/sanctum, laravel/tinker, nativephp/desktop, php, symfony/filesystem
+
+### Community 283 - "electron.ts"
+Cohesion: 0.50
+Nodes (3): app, electron, powerMonitor
+
+### Community 285 - "ji"
+Cohesion: 0.33
+Nodes (6): Fr(), Ii(), ji(), Nr(), Pr(), ri()
+
+### Community 296 - "psr-4"
+Cohesion: 0.40
+Nodes (5): autoload, psr-4, App\\, Database\\Factories\\, Database\\Seeders\\
+
+### Community 298 - "post-create-project-cmd"
+Cohesion: 0.50
+Nodes (4): @php artisan key:generate --ansi, @php artisan migrate --graceful --ansi, @php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\, post-create-project-cmd
+
+### Community 299 - "extra"
+Cohesion: 0.67
+Nodes (3): extra, laravel, dont-discover
 
 ## Knowledge Gaps
-- **888 isolated node(s):** `$schema`, `name`, `type`, `description`, `laravel` (+883 more)
+- **1038 isolated node(s):** `$schema`, `name`, `type`, `description`, `laravel` (+1033 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **62 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **113 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Project` connect `Project` to `User`, `Illuminate\Database\Seeder`, `Illuminate\Database\Eloquent\Model`, `AccountItem`?**
+- **Why does `dependencies` connect `dependencies` to `electron/package.json`, `electron-context-menu`, `@electron-toolkit/utils`, `fix-path`, `electron-window-state`, `nodemon`, `tree-kill`, `express`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **Why does `LedgerAccountItem` connect `LedgerAccountItem` to `Illuminate\Database\Eloquent\Model`, `AccountItem`?**
-  _High betweenness centrality (0.001) - this node is a cross-community bridge._
-- **Why does `User` connect `User` to `Illuminate\Database\Seeder`, `TestCase`, `Illuminate\Database\Eloquent\Model`, `AccountItem`?**
-  _High betweenness centrality (0.001) - this node is a cross-community bridge._
-- **Are the 9 inferred relationships involving `Project` (e.g. with `.addFund()` and `.destroy()`) actually correct?**
-  _`Project` has 9 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 9 inferred relationships involving `User` (e.g. with `.login()` and `.register()`) actually correct?**
-  _`User` has 9 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `$schema`, `name`, `type` to the rest of the system?**
-  _888 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `project/[id].vue` be split into smaller, more focused modules?**
-  _Cohesion score 0.030303030303030304 - nodes in this community are weakly interconnected._
+- **Why does `devDependencies` connect `devDependencies` to `electron/package.json`, `@babel/plugin-proposal-export-namespace-from`, `@babel/plugin-proposal-function-sent`, `@babel/plugin-proposal-numeric-separator`, `@babel/plugin-proposal-throw-expressions`, `@babel/plugin-transform-object-assign`, `@babel/preset-env`, `@babel/preset-typescript`, `cross-env`, `electron`, `electron-chromedriver`, `@electron/notarize`, `eslint`, `eslint-config-prettier`, `eslint-plugin-prettier`, `eslint-plugin-unicorn`, `globals`, `less`, `prettier`, `prettier-plugin-organize-imports`, `@rushstack/eslint-patch`, `stylelint`, `stylelint-config-recommended`, `stylelint-config-sass-guidelines`, `ts-node`, `tslib`, `@types/express`, `@types/node`, `@types/ps-node`, `typescript`, `typescript-eslint`, `@typescript-eslint/eslint-plugin`, `@typescript-eslint/parser`, `vite`, `vitest`, `vitest-mock-commonjs`, `@vue/eslint-config-prettier`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **Why does `setup()` connect `setup` to `vi`, `e`, `s`, `n`, `Ve`, `CFINTcER.js`, `DI5qgYQd.js`, `setup`, `ji`, `setup`, `CZ90y64g.js`, `B6EISGKZ.js`, `c`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **Are the 82 inferred relationships involving `setup()` (e.g. with `T()` and `An()`) actually correct?**
+  _`setup()` has 82 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 48 inferred relationships involving `setup()` (e.g. with `E()` and `H()`) actually correct?**
+  _`setup()` has 48 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 12 inferred relationships involving `setup()` (e.g. with `f()` and `at()`) actually correct?**
+  _`setup()` has 12 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 13 inferred relationships involving `e()` (e.g. with `setup()` and `setup()`) actually correct?**
+  _`e()` has 13 INFERRED edges - model-reasoned connections that need verification._
