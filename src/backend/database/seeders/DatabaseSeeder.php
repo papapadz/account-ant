@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             WorldAddressSeeder::class,
             UserSeeder::class,
             HrSeeder::class,
-            AccountingSeeder::class,
-            ProjectSeeder::class,
+            //AccountingSeeder::class,
+            //ProjectSeeder::class,
             // LedgerItemSeeder::class,
         ]);
     }

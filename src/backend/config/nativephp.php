@@ -162,9 +162,14 @@ return [
     /**
      * Define your own scripts to run before and after the build process.
      */
-    'prebuild' => [],
+    'prebuild' => [
+        'php artisan optimize:clear'
+    ],
 
-    'postbuild' => [],
+    'postbuild' => [
+        'php artisan native:migrate:fresh',
+        'php artisan native:seed'
+    ],
 
     /**
      * The NSIS installer configuration for Windows builds.
