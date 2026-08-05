@@ -2,9 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Native\Desktop\Facades\Window;
 use Native\Desktop\Contracts\ProvidesPhpIni;
 
@@ -17,7 +14,7 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function boot(): void
     {
         Window::open()
-            ->title('Account-Ant - Accounting System')
+            ->title(config('app.name'))
             ->hideMenu()
             ->maximized();
     }
