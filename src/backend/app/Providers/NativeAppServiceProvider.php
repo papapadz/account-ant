@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Native\Desktop\Facades\Window;
 use Native\Desktop\Contracts\ProvidesPhpIni;
 
@@ -18,16 +20,6 @@ class NativeAppServiceProvider implements ProvidesPhpIni
             ->title('Account-Ant - Accounting System')
             ->hideMenu()
             ->maximized();
-
-        // Artisan::call('migrate', ['--force' => true]);
-        // $output = Artisan::output();
-
-        // if (!str_contains($output, 'Nothing to migrate')) {
-        //     Artisan::call('db:seed', [
-        //         '--class' => 'Database\\Seeders\\DatabaseSeeder',
-        //         '--force' => true,
-        //     ]);
-        // }
     }
 
     /**

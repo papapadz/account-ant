@@ -9,7 +9,6 @@ use App\Http\Controllers\Api\LedgerAccountItemController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | AccountAnt API Routes
@@ -19,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 // Health Check
 Route::get('/', function () {
     return response()->json([
-        'system' => 'AccountAnt Ledger System',
-        'version' => '1.0.0',
+        'system' => config('app.name'),
+        'version' => config('nativephp.version'),
         'status' => 'ONLINE',
     ]);
 });

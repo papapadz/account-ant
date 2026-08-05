@@ -20,8 +20,8 @@
     "hash": "19256eaac86c4015ab535f4d00acd1b4"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\AuthController.php": {
-    "mtime": 1785833508.70238,
-    "hash": "26c44f2ef95ffedeef5fce47bc8d365f"
+    "mtime": 1785895708.162336,
+    "hash": "e7fda29557a20eeeff23119020f3d105"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\CityController.php": {
     "mtime": 1784830150.2927034,
@@ -128,8 +128,8 @@
     "hash": "c0094f35cad6bba7636002a62186dae4"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Providers\\NativeAppServiceProvider.php": {
-    "mtime": 1785836586.046568,
-    "hash": "23317dc70055316999b5aa24bccb80b6"
+    "mtime": 1785894158.7606754,
+    "hash": "0a54eda7a0ae60bde0ce97032c3573dd"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\app.php": {
     "mtime": 1784797493.198327,
@@ -140,11 +140,11 @@
     "hash": "888c810b5a4720916f07aa05dd2c2dd3"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\cache\\packages.php": {
-    "mtime": 1785836900.9930909,
+    "mtime": 1785895391.69273,
     "hash": "1c1bf1745aab5525bfb4ec58424e4f68"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\cache\\services.php": {
-    "mtime": 1785836901.0265956,
+    "mtime": 1785895391.7397382,
     "hash": "e0572b6f76c98cd96b167a0ea96d20a9"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\config\\app.php": {
@@ -748,8 +748,8 @@
     "hash": "f9f90b3bab40fd1d366e9b54466deac7"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\routes\\api.php": {
-    "mtime": 1785828629.587788,
-    "hash": "6289d2fd74f76de00e9fae42fc8899cf"
+    "mtime": 1785895784.560081,
+    "hash": "d273fa507fb2d979a43e134f3d6a51d8"
   },
   "C:\\laragon\\www\\account-ant\\src\\backend\\routes\\console.php": {
     "mtime": 1773507240.0,

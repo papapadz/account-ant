@@ -25,27 +25,8 @@ class AuthController extends Controller
             ->where('email', $request->email)
             ->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            // Dev fallback if user doesn't exist yet for admin@accountant.io
-            if ($user === null && $request->email === 'admin@accountant.io') {
-                $person = Person::create([
-                    'first_name' => 'Alexander',
-                    'last_name' => 'Vance',
-                    'civil_status' => 'Single',
-                    'gender' => 'Male',
-                ]);
-
-                $user = User::create([
-                    'person_id' => $person->id,
-                    'email' => 'admin@accountant.io',
-                    'password' => Hash::make('password'),
-                ]);
-
-                $user->load(['person', 'personAffiliation.company', 'personAffiliation.position', 'roles']);
-            } else {
-                return response()->json(['message' => 'Invalid email or password.'], 401);
-            }
-        }
+        if (!$user || !Hash::check($request->password, $user->password)) 
+            return response()->json(['message' => 'Invalid email or password.'], 401);
 
         $token = $user->createToken('auth-token')->plainTextToken;
 
