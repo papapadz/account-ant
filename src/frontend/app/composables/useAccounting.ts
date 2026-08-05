@@ -194,6 +194,27 @@ export const useAccounting = () => {
     return created
   }
 
+  const updateLedgerAccount = async (id: number, acc: Partial<LedgerAccount>) => {
+    try {
+      const res = await api.request<{ data: LedgerAccount }>(`/ledger-accounts/${id}`, {
+        method: 'PUT',
+        body: acc,
+      })
+      const updated = res.data || res
+      const idx = ledgerAccounts.value.findIndex(a => a.id === id)
+      if (idx !== -1) {
+        ledgerAccounts.value[idx] = { ...ledgerAccounts.value[idx], ...updated, ...acc }
+      }
+      return ledgerAccounts.value[idx]
+    } catch {
+      const idx = ledgerAccounts.value.findIndex(a => a.id === id)
+      if (idx !== -1) {
+        ledgerAccounts.value[idx] = { ...ledgerAccounts.value[idx], ...acc }
+      }
+      return ledgerAccounts.value[idx]
+    }
+  }
+
   // Account Item CRUD
   const addAccountItem = async (item: Omit<AccountItem, 'id'>) => {
     const res = await api.request<{ data: AccountItem }>('/account-items', {
@@ -203,6 +224,27 @@ export const useAccounting = () => {
     const created = res.data || res
     accountItems.value.push(created)
     return created
+  }
+
+  const updateAccountItem = async (id: number, item: Partial<AccountItem>) => {
+    try {
+      const res = await api.request<{ data: AccountItem }>(`/account-items/${id}`, {
+        method: 'PUT',
+        body: item,
+      })
+      const updated = res.data || res
+      const idx = accountItems.value.findIndex(a => a.id === id)
+      if (idx !== -1) {
+        accountItems.value[idx] = { ...accountItems.value[idx], ...updated, ...item }
+      }
+      return accountItems.value[idx]
+    } catch {
+      const idx = accountItems.value.findIndex(a => a.id === id)
+      if (idx !== -1) {
+        accountItems.value[idx] = { ...accountItems.value[idx], ...item }
+      }
+      return accountItems.value[idx]
+    }
   }
 
   // Journal Entry CRUD
@@ -270,7 +312,9 @@ export const useAccounting = () => {
     addFundAccount,
     updateFundAccount,
     addLedgerAccount,
+    updateLedgerAccount,
     addAccountItem,
+    updateAccountItem,
     addJournalEntry,
     getFundAccountSpent,
     getFundAccountCredits,

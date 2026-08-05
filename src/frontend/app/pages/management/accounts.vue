@@ -134,9 +134,22 @@
       <div v-if="selectedAccountForItems" class="space-y-5">
         <!-- Target Ledger Account Context -->
         <div class="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-xs flex items-center justify-between">
-          <div>
-            <span class="text-[var(--text-muted)] font-semibold uppercase tracking-wider block text-[10px]">Target Ledger Account</span>
-            <span class="font-bold text-[var(--text-main)] text-sm">{{ selectedAccountForItems.account_name }}</span>
+          <div class="flex items-center gap-2.5">
+            <div>
+              <span class="text-[var(--text-muted)] font-semibold uppercase tracking-wider block text-[10px]">Ledger Account</span>
+              <span class="font-bold text-[var(--text-main)] text-sm">{{ selectedAccountForItems.account_name }}</span>
+            </div>
+            <!-- Pencil Edit Button -->
+            <button
+              type="button"
+              @click="openEditAccountModal(selectedAccountForItems)"
+              title="Edit Ledger Account Details"
+              class="p-1 rounded-lg text-blue-400 hover:text-blue-300 hover:bg-blue-500/20 transition-all cursor-pointer flex items-center justify-center border border-blue-500/20"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+            </button>
           </div>
           <span class="px-2.5 py-1 rounded bg-blue-500/20 text-blue-400 font-mono font-bold text-xs">
             {{ selectedAccountForItems.account_code }}
@@ -269,6 +282,79 @@
         </form>
       </div>
     </Modal>
+
+    <!-- Edit Ledger Account Modal -->
+    <Modal :isOpen="isEditAccountModalOpen" title="Edit Ledger Account Details" @close="closeEditAccountModal">
+      <form @submit.prevent="handleSaveEditAccount" class="space-y-4">
+        <!-- Error Alert Banner -->
+        <div v-if="editAccErrorMessage" class="p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-start gap-2">
+          <svg class="w-4 h-4 text-rose-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="break-words">{{ editAccErrorMessage }}</span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Account Code *</label>
+          <input v-model="editAccForm.account_code" type="text" required placeholder="1030-PREPAID" :disabled="isSubmittingEditAcc" class="input-field font-mono text-xs" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Account Name *</label>
+          <input v-model="editAccForm.account_name" type="text" required placeholder="Account Name" :disabled="isSubmittingEditAcc" class="input-field text-xs" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <textarea v-model="editAccForm.description" rows="3" placeholder="Account purpose..." :disabled="isSubmittingEditAcc" class="input-field text-xs"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status</label>
+          <select v-model="editAccForm.status" :disabled="isSubmittingEditAcc" class="input-field text-xs py-1.5 font-medium">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="archived">Archived</option>
+          </select>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
+          <UiButton type="button" variant="secondary" size="sm" :disabled="isSubmittingEditAcc" @click="closeEditAccountModal">Cancel</UiButton>
+          <UiButton type="submit" variant="primary" size="sm" :loading="isSubmittingEditAcc" :disabled="isSubmittingEditAcc">Save Changes</UiButton>
+        </div>
+      </form>
+    </Modal>
+
+    <!-- Notification Toast -->
+    <Transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="transform translate-y-4 opacity-0 scale-95"
+      enter-to-class="transform translate-y-0 opacity-100 scale-100"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="transform translate-y-0 opacity-100 scale-100"
+      leave-to-class="transform translate-y-4 opacity-0 scale-95"
+    >
+      <div
+        v-if="notification.show"
+        class="fixed bottom-6 right-6 px-4 py-3 rounded-xl shadow-2xl font-bold text-xs flex items-center gap-2.5 z-50 border backdrop-blur-md"
+        :class="notification.type === 'success'
+          ? 'bg-emerald-500/90 text-slate-950 border-emerald-400/40'
+          : 'bg-rose-500/90 text-white border-rose-400/40'"
+      >
+        <svg v-if="notification.type === 'success'" class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+        </svg>
+        <svg v-else class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{{ notification.message }}</span>
+        <button type="button" @click="notification.show = false" class="ml-2 opacity-70 hover:opacity-100">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -294,6 +380,37 @@ const isSubmittingItems = ref(false)
 const addItemErrorMessage = ref('')
 const selectedAccountForItems = ref<any | null>(null)
 const itemRows = ref<ItemRow[]>([])
+
+// Edit Account Modal state
+const isEditAccountModalOpen = ref(false)
+const isSubmittingEditAcc = ref(false)
+const editAccErrorMessage = ref('')
+const editAccForm = reactive({
+  id: 0,
+  account_code: '',
+  account_name: '',
+  description: '',
+  status: 'active' as 'active' | 'inactive' | 'archived',
+})
+
+// Toast Notification state
+const notification = reactive({
+  show: false,
+  type: 'success' as 'success' | 'error',
+  message: '',
+})
+
+let notificationTimeout: ReturnType<typeof setTimeout> | null = null
+
+const triggerNotification = (type: 'success' | 'error', message: string) => {
+  if (notificationTimeout) clearTimeout(notificationTimeout)
+  notification.type = type
+  notification.message = message
+  notification.show = true
+  notificationTimeout = setTimeout(() => {
+    notification.show = false
+  }, 4000)
+}
 
 onMounted(() => {
   if (accounting.accountItems.value.length === 0) {
@@ -326,8 +443,8 @@ const openAddItemModal = (account: any) => {
   isAddItemModalOpen.value = true
 }
 
-const closeAddItemModal = () => {
-  if (!isSubmittingItems.value) {
+const closeAddItemModal = (force = false) => {
+  if (force || !isSubmittingItems.value) {
     isAddItemModalOpen.value = false
     selectedAccountForItems.value = null
     itemRows.value = []
@@ -371,10 +488,15 @@ const handleSaveAccountItems = async () => {
       })
     }
     await accounting.fetchAccountItems()
-    closeAddItemModal()
+    const savedCount = itemRows.value.length
+    isSubmittingItems.value = false
+    closeAddItemModal(true)
+    triggerNotification('success', `Successfully added ${savedCount} account item${savedCount > 1 ? 's' : ''}!`)
   } catch (err: any) {
     console.error('Failed to save account items:', err)
-    addItemErrorMessage.value = err?.data?.message || err?.statusMessage || err?.message || 'Failed to save account items. Please check inputs and try again.'
+    const msg = err?.data?.message || err?.statusMessage || err?.message || 'Failed to save account items. Please check inputs and try again.'
+    addItemErrorMessage.value = msg
+    triggerNotification('error', msg)
   } finally {
     isSubmittingItems.value = false
   }
@@ -446,6 +568,61 @@ const handleAccountStatusChange = async (id: number, newStatus: string) => {
     setTimeout(() => { statusChangeSuccess.value = null }, 2000)
   } catch (err: any) {
     alert(err?.data?.message || err?.message || 'Failed to update status.')
+  }
+}
+
+const openEditAccountModal = (account: any) => {
+  if (!account) return
+  editAccForm.id = account.id
+  editAccForm.account_code = account.account_code || ''
+  editAccForm.account_name = account.account_name || ''
+  editAccForm.description = account.description || ''
+  editAccForm.status = account.status || 'active'
+  editAccErrorMessage.value = ''
+  isEditAccountModalOpen.value = true
+}
+
+const closeEditAccountModal = () => {
+  if (!isSubmittingEditAcc.value) {
+    isEditAccountModalOpen.value = false
+    editAccErrorMessage.value = ''
+  }
+}
+
+const handleSaveEditAccount = async () => {
+  if (!editAccForm.id) return
+  if (!editAccForm.account_code.trim() || !editAccForm.account_name.trim()) {
+    editAccErrorMessage.value = 'Account Code and Account Name are required.'
+    return
+  }
+
+  isSubmittingEditAcc.value = true
+  editAccErrorMessage.value = ''
+
+  try {
+    const updated = await accounting.updateLedgerAccount(editAccForm.id, {
+      account_code: editAccForm.account_code.trim(),
+      account_name: editAccForm.account_name.trim(),
+      description: editAccForm.description.trim() || undefined,
+      status: editAccForm.status,
+    })
+
+    if (selectedAccountForItems.value && selectedAccountForItems.value.id === editAccForm.id) {
+      selectedAccountForItems.value.account_code = editAccForm.account_code.trim()
+      selectedAccountForItems.value.account_name = editAccForm.account_name.trim()
+      selectedAccountForItems.value.description = editAccForm.description.trim()
+      selectedAccountForItems.value.status = editAccForm.status
+    }
+
+    closeEditAccountModal()
+    triggerNotification('success', 'Ledger account updated successfully!')
+  } catch (err: any) {
+    console.error('Failed to update ledger account:', err)
+    const msg = err?.data?.message || err?.statusMessage || err?.message || 'Failed to update ledger account.'
+    editAccErrorMessage.value = msg
+    triggerNotification('error', msg)
+  } finally {
+    isSubmittingEditAcc.value = false
   }
 }
 </script>

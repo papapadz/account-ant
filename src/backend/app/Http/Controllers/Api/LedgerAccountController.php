@@ -59,6 +59,25 @@ class LedgerAccountController extends Controller
         ], 201);
     }
 
+    public function update(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
+        $validated = $request->validate([
+            'account_code' => 'sometimes|required|string|max:20',
+            'account_name' => 'sometimes|required|string|max:100',
+            'description' => 'nullable|string|max:255',
+            'status' => 'nullable|in:active,inactive,archived',
+        ]);
+
+        $account = LedgerAccount::findOrFail($id);
+        $account->update($validated);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Ledger account updated successfully',
+            'data' => $account,
+        ]);
+    }
+
     public function updateStatus(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $validated = $request->validate([

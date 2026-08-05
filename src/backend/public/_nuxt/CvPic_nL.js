@@ -1,0 +1,1 @@
+import{I as e,P as t,b as n,p as r}from"./CFINTcER.js";import{c as i,l as a}from"#entry";var o=n({__name:`[id]`,setup(n){let o=i(),s=a();return t(()=>{s.replace(`/project/${o.params.id}`)}),(t,n)=>(e(),r(`div`))}});export{o as default};

@@ -108,6 +108,17 @@
           </select>
         </div>
 
+        <!-- Year Filter Dropdown -->
+        <div class="flex items-center gap-2 min-w-[140px] flex-1 sm:flex-none">
+          <label class="text-xs font-semibold text-[var(--text-muted)] whitespace-nowrap">Year:</label>
+          <select v-model="selectedYear" class="input-field text-xs py-1.5 font-medium cursor-pointer">
+            <option :value="null">All Years</option>
+            <option v-for="yr in availableYears" :key="yr" :value="yr">
+              {{ yr }}
+            </option>
+          </select>
+        </div>
+
         <!-- Status Filter Dropdown -->
         <!-- <div class="flex items-center gap-2 min-w-[170px] flex-1 sm:flex-none">
           <label class="text-xs font-semibold text-[var(--text-muted)] whitespace-nowrap">Status:</label>
@@ -122,7 +133,7 @@
 
       <div class="flex items-center gap-2">
         <UiButton
-          v-if="selectedProjectId !== null || selectedAccountId !== null || selectedStatus !== 'posted' || filterType !== 'all'"
+          v-if="selectedProjectId !== null || selectedAccountId !== null || selectedYear !== null || selectedStatus !== 'posted' || filterType !== 'all'"
           variant="ghost"
           size="sm"
           class="text-xs text-rose-400 hover:text-rose-300"
@@ -511,7 +522,26 @@ const projectsStore = useProjects()
 const filterType = ref<'all' | 'debit' | 'credit'>('all')
 const selectedProjectId = ref<number | null>(null)
 const selectedAccountId = ref<number | null>(null)
+const selectedYear = ref<number | null>(null)
 const selectedStatus = ref<'posted' | 'all' | 'reconciled' | 'void'>('posted')
+
+const availableYears = computed<number[]>(() => {
+  const yearsSet = new Set<number>()
+  const currentYr = new Date().getFullYear()
+  yearsSet.add(currentYr)
+
+  accounting.journalEntries.value.forEach((entry) => {
+    const rawDate = entry.posting_date || entry.created_at
+    if (rawDate) {
+      const yr = parseInt(rawDate.slice(0, 4), 10)
+      if (!isNaN(yr)) {
+        yearsSet.add(yr)
+      }
+    }
+  })
+
+  return Array.from(yearsSet).sort((a, b) => b - a)
+})
 
 const isModalOpen = ref(false)
 const selectedEntry = ref<any>(null)
@@ -702,6 +732,16 @@ const filteredEntries = computed(() => {
       return false
     }
 
+    // Year filter
+    if (selectedYear.value !== null) {
+      const rawDate = entry.posting_date || entry.created_at
+      if (!rawDate) return false
+      const entryYr = parseInt(rawDate.slice(0, 4), 10)
+      if (entryYr !== Number(selectedYear.value)) {
+        return false
+      }
+    }
+
     return true
   }).map(entry => ({
     ...entry,
@@ -735,6 +775,7 @@ const resetFilters = () => {
   filterType.value = 'all'
   selectedProjectId.value = null
   selectedAccountId.value = null
+  selectedYear.value = null
   selectedStatus.value = 'posted'
 }
 
