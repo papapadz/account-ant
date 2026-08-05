@@ -63,4 +63,59 @@ class SettingsController extends Controller
             'company' => $company,
         ]);
     }
+
+    public function downloadBackup(Request $request)
+    {
+        $format = $request->query('format', 'sqlite');
+
+        if ($format === 'json') {
+            $data = [
+                'exported_at' => now()->toIso8601String(),
+                'system' => 'AccountAnt Ledger System',
+                'version' => '1.0.0',
+                'fund_accounts' => \App\Models\Accounting\FundAccount::all(),
+                'ledger_accounts' => \App\Models\Accounting\LedgerAccount::all(),
+                'account_items' => \App\Models\Accounting\AccountItem::all(),
+                'journal_entries' => \App\Models\Accounting\LedgerAccountItem::all(),
+                'projects' => \App\Models\Project::all(),
+                'users' => \App\Models\User::all(),
+                'company' => \App\Models\HR\Company::first(),
+                'people' => \App\Models\Person::all(),
+            ];
+
+            $fileName = 'accountant-backup-' . date('Y-m-d_H-i-s') . '.json';
+            return response()->streamDownload(function () use ($data) {
+                echo json_encode($data, JSON_PRETTY_PRINT);
+            }, $fileName, [
+                'Content-Type' => 'application/json',
+            ]);
+        }
+
+        // Default: raw SQLite database file download
+        $possiblePaths = [
+            config('database.connections.nativephp.database'),
+            database_path('nativephp.sqlite'),
+            config('database.connections.sqlite.database'),
+            database_path('database.sqlite'),
+        ];
+
+        $dbPath = null;
+        foreach ($possiblePaths as $path) {
+            if ($path && file_exists($path) && filesize($path) > 0) {
+                $dbPath = $path;
+                break;
+            }
+        }
+
+        if ($dbPath) {
+            $fileName = 'accountant-sqlite-backup-' . date('Y-m-d_H-i-s') . '.sqlite';
+            return response()->download($dbPath, $fileName, [
+                'Content-Type' => 'application/x-sqlite3',
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Database file not found or empty.',
+        ], 404);
+    }
 }

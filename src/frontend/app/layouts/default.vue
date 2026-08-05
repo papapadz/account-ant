@@ -328,7 +328,7 @@ const userInitials = computed(() => {
   return `${f}${l}`.toUpperCase()
 })
 
-const netBalance = computed(() => accounting.netLedgerBalance.value || 0)
+const netBalance = computed(() => accounting.totalFundAccountsBalance.value || 0)
 const isDarkMode = computed(() => theme.isDark.value)
 
 const pageTitle = computed(() => {

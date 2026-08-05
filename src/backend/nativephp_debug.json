@@ -1,0 +1,44 @@
+{
+    "Environment": {
+        "PHP": {
+            "Version": "8.3.32",
+            "Path": "/Users/benpadz08/Library/Application Support/Herd/bin/php83"
+        },
+        "Laravel": {
+            "Version": "12.64.0",
+            "ConfigCached": true,
+            "RoutesCached": true,
+            "DebugEnabled": true
+        },
+        "Node": {
+            "Version": "v22.22.3",
+            "Path": "/Users/benpadz08/.local/bin/node"
+        },
+        "NPM": {
+            "Version": "10.9.8",
+            "Path": "/Users/benpadz08/.local/bin/npm"
+        },
+        "OperatingSystem": "Darwin",
+        "ElectronRoot": "nativephp/electron/"
+    },
+    "NativePHP": {
+        "Versions": {
+            "nativephp/desktop": "2.2.1.0",
+            "nativephp/php-bin": "1.2.0.0"
+        },
+        "Configuration": {
+            "Provider": "App\\Providers\\NativeAppServiceProvider",
+            "BuildHooks": {
+                "Pre": [
+                    "php artisan optimize"
+                ],
+                "Post": [
+                    "php artisan migrate:fresh --seed"
+                ]
+            },
+            "NotarizationEnabled": false,
+            "AzureTrustedSigningEnabled": false,
+            "CustomPHPBinary": false
+        }
+    }
+}

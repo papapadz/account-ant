@@ -29,7 +29,7 @@
         v-model="email"
         type="email"
         label="Email Address"
-        placeholder="admin@accountant.io"
+        placeholder="admin@account-ant.com"
         :required="true"
         :disabled="isLoading"
       >
@@ -118,7 +118,7 @@ definePageMeta({
 
 const auth = useAuth()
 
-const email = ref('admin@accountant.io')
+const email = ref('admin@account-ant.com')
 const password = ref('password')
 const showPassword = ref(false)
 const rememberMe = ref(true)
@@ -126,9 +126,9 @@ const isLoading = ref(false)
 const errorMessage = ref('')
 
 const demoPersonas = [
-  { label: 'Admin', role: 'Finance Director', email: 'admin@accountant.io', password: 'password' },
-  { label: 'Accountant', role: 'Senior Accountant', email: 'accountant@accountant.io', password: 'password' },
-  { label: 'Auditor', role: 'Internal Auditor', email: 'auditor@accountant.io', password: 'password' },
+  { label: 'Admin', role: 'Finance Director', email: 'admin@account-ant.com', password: 'password' },
+  // { label: 'Accountant', role: 'Senior Accountant', email: 'accountant@accountant.io', password: 'password' },
+  // { label: 'Auditor', role: 'Internal Auditor', email: 'auditor@accountant.io', password: 'password' },
 ]
 
 const selectPersona = (persona: { email: string; password: string }) => {

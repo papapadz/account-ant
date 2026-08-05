@@ -21,31 +21,12 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::with(['person', 'personAffiliation.company', 'personAffiliation.position'])
+        $user = User::with(['person', 'personAffiliation.company', 'personAffiliation.position', 'roles'])
             ->where('email', $request->email)
             ->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            // Dev fallback if user doesn't exist yet for admin@accountant.io
-            if ($user === null && $request->email === 'admin@accountant.io') {
-                $person = Person::create([
-                    'first_name' => 'Alexander',
-                    'last_name' => 'Vance',
-                    'civil_status' => 'Single',
-                    'gender' => 'Male',
-                ]);
-
-                $user = User::create([
-                    'person_id' => $person->id,
-                    'email' => 'admin@accountant.io',
-                    'password' => Hash::make('password'),
-                ]);
-
-                $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
-            } else {
-                return response()->json(['message' => 'Invalid email or password.'], 401);
-            }
-        }
+        if (!$user || !Hash::check($request->password, $user->password)) 
+            return response()->json(['message' => 'Invalid email or password.'], 401);
 
         $token = $user->createToken('auth-token')->plainTextToken;
 
@@ -120,7 +101,7 @@ class AuthController extends Controller
                 'person_affiliations_id' => $affiliation->id,
             ]);
 
-            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
+            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position', 'roles']);
 
             return [
                 'user' => $user,
@@ -144,7 +125,7 @@ class AuthController extends Controller
     {
         $user = $request->user();
         if ($user) {
-            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
+            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position', 'roles']);
         }
         return response()->json(['user' => $user]);
     }

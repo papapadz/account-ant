@@ -41,7 +41,8 @@
         <div
           v-for="fund in filteredFunds"
           :key="fund.id"
-          class="glass-card p-5 rounded-xl border border-[var(--border-color)] relative overflow-hidden flex flex-col justify-between group"
+          class="glass-card p-5 rounded-xl border border-[var(--border-color)] relative overflow-hidden flex flex-col justify-between group cursor-pointer hover:border-emerald-500/40 transition-all"
+          @click="openEditModal(fund)"
         >
           <div>
             <div class="flex items-center justify-between mb-3">
@@ -75,8 +76,11 @@
           </div>
 
           <div class="pt-4 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
-           
             <span class="text-emerald-500 font-semibold">Active</span>
+            <span class="text-xs font-bold text-emerald-400 group-hover:underline flex items-center gap-1">
+              <span>Edit Account</span>
+              <span>&rarr;</span>
+            </span>
           </div>
         </div>
       </div>
@@ -111,15 +115,81 @@
         </div>
       </form>
     </Modal>
+
+    <!-- Edit Modal -->
+    <Modal :isOpen="isEditModalOpen" title="Edit Fund Account" @close="isEditModalOpen = false">
+      <form @submit.prevent="handleUpdateFund" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Code *</label>
+          <input v-model="editingFund.fund_code" type="text" required placeholder="FND-404" class="input-field font-mono" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Name *</label>
+          <input v-model="editingFund.fund_name" type="text" required placeholder="Special Operating & Liquidity Reserve" class="input-field" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Initial Capital / Fund Amount *</label>
+          <input v-model.number="editingFund.amount" type="number" step="1000" required class="input-field font-mono font-bold text-emerald-400" />
+        </div>
+
+        <!-- Live Adjustment Indicator -->
+        <div v-if="amountDifference !== 0" class="p-3 rounded-lg border text-xs space-y-1" :class="amountDifference > 0 ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-rose-500/10 border-rose-500/30 text-rose-400'">
+          <div class="font-bold flex items-center justify-between">
+            <span>Adjustment Detected:</span>
+            <span class="font-mono font-bold">{{ amountDifference > 0 ? '+' : '' }}{{ currencyStore.formatCurrency(amountDifference) }}</span>
+          </div>
+          <p class="text-[11px] opacity-90">
+            An automated journal entry (<strong>{{ amountDifference > 0 ? 'Credit / Fund Addition' : 'Debit / Fund Reduction' }}</strong>) will be posted for <strong>Update in Fund Amount</strong>.
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <textarea v-model="editingFund.description" rows="3" placeholder="Specify purpose of this fund account..." class="input-field"></textarea>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
+          <UiButton type="button" variant="secondary" size="sm" @click="isEditModalOpen = false">Cancel</UiButton>
+          <UiButton type="submit" variant="primary" size="sm">Save Changes</UiButton>
+        </div>
+      </form>
+    </Modal>
+
+    <!-- Toast Notification -->
+    <div
+      v-if="showToast"
+      class="fixed bottom-6 right-6 bg-emerald-500 text-slate-950 px-4 py-3 rounded-xl shadow-2xl font-bold text-xs flex items-center gap-2.5 z-50 animate-bounce"
+    >
+      <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+      </svg>
+      <span>{{ toastMessage }}</span>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { FundAccount } from '~/composables/useAccounting'
+
 const auth = useAuth()
 const currencyStore = useCurrency()
 const accounting = useAccounting()
+
 const isModalOpen = ref(false)
+const isEditModalOpen = ref(false)
 const searchQuery = ref('')
+const showToast = ref(false)
+const toastMessage = ref('')
+
+watch(showToast, (val) => {
+  if (val) {
+    setTimeout(() => {
+      showToast.value = false
+    }, 3000)
+  }
+})
 
 const filteredFunds = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
@@ -140,6 +210,29 @@ const newFund = reactive({
   user_id: 1,
 })
 
+const editingFund = reactive({
+  id: 0,
+  fund_code: '',
+  fund_name: '',
+  description: '',
+  amount: 0,
+  originalAmount: 0,
+})
+
+const amountDifference = computed(() => {
+  return (editingFund.amount || 0) - editingFund.originalAmount
+})
+
+const openEditModal = (fund: FundAccount) => {
+  editingFund.id = fund.id
+  editingFund.fund_code = fund.fund_code
+  editingFund.fund_name = fund.fund_name
+  editingFund.description = fund.description || ''
+  editingFund.amount = Number(fund.amount) || 0
+  editingFund.originalAmount = Number(fund.amount) || 0
+  isEditModalOpen.value = true
+}
+
 const handleCreateFund = () => {
   accounting.addFundAccount({
     ...newFund,
@@ -151,5 +244,49 @@ const handleCreateFund = () => {
   newFund.fund_name = ''
   newFund.description = ''
   newFund.amount = 500000.00
+
+  toastMessage.value = 'Fund account created successfully!'
+  showToast.value = true
+}
+
+const handleUpdateFund = async () => {
+  const diff = amountDifference.value
+  const newAmount = Number(editingFund.amount) || 0
+
+  await accounting.updateFundAccount(editingFund.id, {
+    fund_code: editingFund.fund_code,
+    fund_name: editingFund.fund_name,
+    description: editingFund.description,
+    amount: newAmount,
+  })
+
+  // If amount changed, automatically record a journal entry for the difference
+  if (diff !== 0) {
+    const isAddition = diff > 0
+    const absDiff = Math.abs(diff)
+    const formattedDiff = currencyStore.formatCurrency(absDiff)
+    const formattedOld = currencyStore.formatCurrency(editingFund.originalAmount)
+    const formattedNew = currencyStore.formatCurrency(newAmount)
+
+    const firstLedgerId = accounting.ledgerAccounts.value[0]?.id || 1
+    const firstItemId = accounting.accountItems.value[0]?.id || 1
+
+    await accounting.addJournalEntry({
+      fund_account_id: editingFund.id,
+      ledger_account_id: firstLedgerId,
+      account_item_id: firstItemId,
+      amount: absDiff,
+      transaction_type: isAddition ? 'credit' : 'debit',
+      description: `Update in Fund Amount (${isAddition ? 'Addition' : 'Reduction'}): ${isAddition ? '+' : '-'}${formattedDiff} (From ${formattedOld} to ${formattedNew})`,
+      posting_date: new Date().toISOString().split('T')[0],
+      status: 'posted',
+      is_paid: true,
+      user_id: auth.currentUser.value?.id || 1,
+    })
+  }
+
+  isEditModalOpen.value = false
+  toastMessage.value = 'Fund account changes saved successfully!'
+  showToast.value = true
 }
 </script>
