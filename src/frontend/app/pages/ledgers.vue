@@ -408,7 +408,7 @@
         <!-- 5. Amount & 6. Transaction Date -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Amount ($ USD) *</label>
+            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Amount*</label>
             <input
               v-model.number="newJournalEntry.amount"
               type="number"

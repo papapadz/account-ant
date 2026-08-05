@@ -37,7 +37,7 @@
         <KpiCard
           title="Total Managed Funds"
           :value="`${currencyStore.formatCurrency(totalAppManagedFunds)}`"
-          subtitle="Across all project sources"
+          subtitle="Total fund accounts balance"
           type="emerald"
         >
           <template #icon>
@@ -162,16 +162,18 @@
 const router = useRouter()
 const auth = useAuth()
 const projectsStore = useProjects()
+const accounting = useAccounting()
 const currencyStore = useCurrency()
 
 const isCreateModalOpen = ref(false)
 
 const companyName = computed(() => auth.currentCompany.value?.business_name || 'Apex Technologies')
-const totalAppManagedFunds = computed(() => projectsStore.totalAppManagedFunds.value)
+const totalAppManagedFunds = computed(() => accounting.totalFundAccountsBalance.value || 0)
 const totalAppSpent = computed(() => projectsStore.totalAppSpent.value)
-const totalAppRemainingBalance = computed(() => projectsStore.totalAppRemainingBalance.value)
+const totalAppRemainingBalance = computed(() => totalAppManagedFunds.value - totalAppSpent.value)
 const totalProjectsCount = computed(() => projectsStore.projects.value.length)
 const activeProjectsCount = computed(() => projectsStore.projects.value.filter(p => p.status === 'active').length)
+
 
 const activeProjectsPreview = computed(() => {
   return projectsStore.projects.value.filter(p => p.status === 'active').slice(0, 3)

@@ -21,7 +21,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::with(['person', 'personAffiliation.company', 'personAffiliation.position'])
+        $user = User::with(['person', 'personAffiliation.company', 'personAffiliation.position', 'roles'])
             ->where('email', $request->email)
             ->first();
 
@@ -41,7 +41,7 @@ class AuthController extends Controller
                     'password' => Hash::make('password'),
                 ]);
 
-                $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
+                $user->load(['person', 'personAffiliation.company', 'personAffiliation.position', 'roles']);
             } else {
                 return response()->json(['message' => 'Invalid email or password.'], 401);
             }
@@ -120,7 +120,7 @@ class AuthController extends Controller
                 'person_affiliations_id' => $affiliation->id,
             ]);
 
-            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
+            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position', 'roles']);
 
             return [
                 'user' => $user,
@@ -144,7 +144,7 @@ class AuthController extends Controller
     {
         $user = $request->user();
         if ($user) {
-            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position']);
+            $user->load(['person', 'personAffiliation.company', 'personAffiliation.position', 'roles']);
         }
         return response()->json(['user' => $user]);
     }

@@ -1,2087 +1,1230 @@
 {
-  "src/frontend/nuxt.config.ts": {
-    "mtime": 1785574309.0724049,
-    "ast_hash": "6a26bbf94d2c36afc83b8c20c831f865",
-    "semantic_hash": ""
-  },
-  "src/frontend/capacitor.config.ts": {
-    "mtime": 1785403025.2540808,
-    "ast_hash": "73cf7a55fc28e98af139d1460c1793b0",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/app.vue": {
-    "mtime": 1785403025.2458873,
-    "ast_hash": "fbcfe5cd0eb420deae7eba9319dd71d7",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/middleware/auth.global.ts": {
-    "mtime": 1785403025.251829,
-    "ast_hash": "73d1aeac5b757853e3b366c908542a5d",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/composables/useAccounting.ts": {
-    "mtime": 1785489250.9973204,
-    "ast_hash": "9d1adf1d13e7214a5fb08a232c551037",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/composables/useDate.ts": {
-    "mtime": 1785403025.2514982,
-    "ast_hash": "dbd2238d24e10df4b5caa0dbb945f6da",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/composables/useAuth.ts": {
-    "mtime": 1785403025.2512407,
-    "ast_hash": "ba9d6904154285343a4db75df21a0cef",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/composables/useTheme.ts": {
-    "mtime": 1785403025.251623,
-    "ast_hash": "e8a5bc528e866277f7e234260e53b9d0",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/composables/useProjects.ts": {
-    "mtime": 1785489250.9975085,
-    "ast_hash": "b1b77f733e9a1ddae99e80aea6cd1821",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/composables/useApi.ts": {
-    "mtime": 1785574323.6770654,
-    "ast_hash": "c6d9a0d62ec0da62bf7dd0b8bb632c68",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/composables/useCurrency.ts": {
-    "mtime": 1785489250.997393,
-    "ast_hash": "1cc5c208522c72a223abc054a3cca37a",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/plugins/ionic.client.ts": {
-    "mtime": 1785403025.254038,
-    "ast_hash": "2faa1c70c727987e8d009b5e7efcf067",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/KpiCard.vue": {
-    "mtime": 1785420526.260305,
-    "ast_hash": "285fd28e270348d0f19458fe5f799da4",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ProjectFormModal.vue": {
-    "mtime": 1785569550.703735,
-    "ast_hash": "a3f5a90b6f96998a395d6da54a98f8c7",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/Modal.vue": {
-    "mtime": 1785403025.2489328,
-    "ast_hash": "451474194f87563742ba701027186c84",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ui/Tabs.vue": {
-    "mtime": 1785403025.2507114,
-    "ast_hash": "b8c77af7bd021e155cf5619118dcc383",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ui/Card.vue": {
-    "mtime": 1785403025.2499068,
-    "ast_hash": "e93dc0e5d0031053926df860894ee0a0",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ui/StatusPill.vue": {
-    "mtime": 1785403025.250495,
-    "ast_hash": "92735ff29d3164aca3c7f8fe3cccaa98",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ui/ProgressBar.vue": {
-    "mtime": 1785403025.2502809,
-    "ast_hash": "59e3dd4fce18f731fa23244287d71acb",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ui/DataTable.vue": {
-    "mtime": 1785403025.2500155,
-    "ast_hash": "ab1e75cc0e6c7ef45a5f97c65fa26722",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ui/Badge.vue": {
-    "mtime": 1785403025.2498212,
-    "ast_hash": "a88b340707e1717e4c4104ee0edec5be",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ui/Button.vue": {
-    "mtime": 1785403025.2498646,
-    "ast_hash": "10281af7c252cbdf091ec18b9c33686b",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/ui/Input.vue": {
-    "mtime": 1785403025.2500656,
-    "ast_hash": "45155854d6396678930547cce594f446",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/dashboard/LedgerExpensePieChart.vue": {
-    "mtime": 1785568342.917284,
-    "ast_hash": "d15c9311a367096376889de236066b43",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/dashboard/FundExpensePieChart.vue": {
-    "mtime": 1785568353.7243376,
-    "ast_hash": "985077ce60f8f4f7be5fb97b6464f176",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/dashboard/ProjectMonthlyBarChart.vue": {
-    "mtime": 1785567889.2765775,
-    "ast_hash": "3f759e0f0637589fcda06dc5521e7dca",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/components/dashboard/FundSourceLineChart.vue": {
-    "mtime": 1785568349.37376,
-    "ast_hash": "482d968c196142506144c9a6c1d4d7a3",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/layouts/auth.vue": {
-    "mtime": 1785403025.2517045,
-    "ast_hash": "2ada33f32d170e2055a8646322d70068",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/layouts/default.vue": {
-    "mtime": 1785489250.9976478,
-    "ast_hash": "a9add0a7702f6b55ab50f94e895b172b",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/index.vue": {
-    "mtime": 1785565114.1745272,
-    "ast_hash": "0835de3d9cf97b6c25d2d7d14a23af68",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/settings.vue": {
-    "mtime": 1785403025.2539673,
-    "ast_hash": "b981c8695efcb76734ae3c95c5ee4c9f",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/login.vue": {
-    "mtime": 1785403025.2524765,
-    "ast_hash": "265f7567981507227bcd4720166ca995",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/register.vue": {
-    "mtime": 1785403025.253781,
-    "ast_hash": "39c290d51118f71da244f016c888f0fe",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/ledgers.vue": {
-    "mtime": 1785570729.4210536,
-    "ast_hash": "d2f54a3d1b0d16ef5af7cdd1e1cf417d",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/projects/index.vue": {
-    "mtime": 1785403025.2535708,
-    "ast_hash": "668ac10646d26b3b5e997d36ce06c8d4",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/projects/[id].vue": {
-    "mtime": 1785403025.253477,
-    "ast_hash": "b94e38c9485137f473f48f94d504daf0",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/management/funds.vue": {
-    "mtime": 1785403025.2529497,
-    "ast_hash": "194a02c5bc5d7990d935f7e11c2fbb25",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/management/items.vue": {
-    "mtime": 1785489250.9981878,
-    "ast_hash": "920028e0c8bd7cf6ba51f05cc16f7157",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/management/journal.vue": {
-    "mtime": 1785489250.9983535,
-    "ast_hash": "db7eed32496282c5d33e9887abd8e4ae",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/management/accounts.vue": {
-    "mtime": 1785489250.998022,
-    "ast_hash": "58b7e6b2d33524beaa76770433662eb0",
-    "semantic_hash": ""
-  },
-  "src/frontend/app/pages/project/[id].vue": {
-    "mtime": 1785489250.9985378,
-    "ast_hash": "f0040468de3e6fa1d4eca69bd41aa44a",
-    "semantic_hash": ""
-  },
-  "src/backend/scratch_query.php": {
-    "mtime": 1785403025.2441127,
-    "ast_hash": "710a9fd2ad3f5dbf652b0d2b359c2977",
-    "semantic_hash": ""
-  },
-  "src/backend/vite.config.js": {
-    "mtime": 1785403025.2456474,
-    "ast_hash": "60c40741a9c5b915a5e5542cfb23bc25",
-    "semantic_hash": ""
-  },
-  "src/backend/artisan": {
-    "mtime": 1785403025.2376642,
-    "ast_hash": "e66bb13691f6184c762c196427d8e685",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_031053_create_fund_accounts_table.php": {
-    "mtime": 1785403025.2408974,
-    "ast_hash": "f10d6182fe4507c1a6fb2a7ab60d2295",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030017_create_sub_regions_table.php": {
-    "mtime": 1785403025.2401419,
-    "ast_hash": "1818e847922b1974adfe5d94d7cd687c",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_30_000002_add_date_received_to_project_funds_table.php": {
-    "mtime": 1785403025.2417576,
-    "ast_hash": "99d3d657e105ab9d80eb0f885ddbd847",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030114_create_people_table.php": {
-    "mtime": 1785403025.2405486,
-    "ast_hash": "6324a094ce836771bd80ce5fac255eb6",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable.php": {
-    "mtime": 1785403025.2413855,
-    "ast_hash": "1d8b679cfbe253e2bd5d7ed25e1dd5bd",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/0001_01_01_000000_create_users_table.php": {
-    "mtime": 1785403025.2399623,
-    "ast_hash": "138280095e9d19f2ba6fb830415602e2",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_24_000002_create_project_funds_table.php": {
-    "mtime": 1785403025.2412624,
-    "ast_hash": "ad017ea7f66df0cd07c1314e611f67f1",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_093000_add_fund_account_id_to_ledger_account_items_table.php": {
-    "mtime": 1785403025.2411416,
-    "ast_hash": "23756b15a3ccd2b16396f207136e78b3",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_025942_create_regions_table.php": {
-    "mtime": 1785403025.2401,
-    "ast_hash": "aa93789e4d01e8392fd272404c3fea66",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/0001_01_01_000001_create_cache_table.php": {
-    "mtime": 1785403025.2400107,
-    "ast_hash": "f3f38b41650112a6282c8dd1f635afb0",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_031708_create_account_items_table.php": {
-    "mtime": 1785403025.241014,
-    "ast_hash": "2772e7604f10be4b18f1f2197886d622",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_28_000002_add_amount_to_fund_accounts_table.php": {
-    "mtime": 1785403025.24144,
-    "ast_hash": "2da58d4a1a6729732a031ca1e87c9b3c",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_30_000004_add_status_to_account_items_table.php": {
-    "mtime": 1785403025.2418797,
-    "ast_hash": "bdc8af4ca838b4043c8c4b23e02002e5",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_29_000002_create_journal_entry_items_table.php": {
-    "mtime": 1785403025.241633,
-    "ast_hash": "538977864319869ec7be2622f7ffa2b2",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_033118_create_ledger_account_items_table.php": {
-    "mtime": 1785403025.241076,
-    "ast_hash": "a30a9a1be7444fc4fbe16c9a5be9705e",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030042_create_states_table.php": {
-    "mtime": 1785403025.2404191,
-    "ast_hash": "30c35d22c27058d66089db0db709032f",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/0001_01_01_000002_create_jobs_table.php": {
-    "mtime": 1785403025.2400525,
-    "ast_hash": "ead9cce2650b36345454f85e8c0214a0",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030603_add_person_affiliations_id_to_users..php": {
-    "mtime": 1785403025.2408395,
-    "ast_hash": "32b66cbfdb5d57be9d53d06c0d708bb6",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_31_000001_add_is_paid_to_ledger_account_items_table.php": {
-    "mtime": 1785489250.9955592,
-    "ast_hash": "6d7aa7fda0c24af54c7780349c04eff2",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030207_create_companies_table.php": {
-    "mtime": 1785403025.2406695,
-    "ast_hash": "8717bc5e01c2b16e0b9adf37d60569b7",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_30_000003_add_status_to_ledger_accounts_table.php": {
-    "mtime": 1785403025.2418187,
-    "ast_hash": "78bc7ff05b066076b9251b21c5fc7634",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_30_000005_add_status_to_ledger_account_items_table.php": {
-    "mtime": 1785403025.2419515,
-    "ast_hash": "6443ea7fd0743fb96d229506f0f85958",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030052_create_cities_table.php": {
-    "mtime": 1785403025.240482,
-    "ast_hash": "b0d88f65159181881ac39309f497ee1c",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030253_create_positions_table.php": {
-    "mtime": 1785403025.240725,
-    "ast_hash": "4893b2ae0a8079a07b6bcc905ff95fec",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_29_000001_add_transaction_type_to_account_items_table.php": {
-    "mtime": 1785403025.24156,
-    "ast_hash": "37f7fffd2ca21f573a4dad3092aaeb2f",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_24_000003_add_project_id_to_ledger_account_items_table.php": {
-    "mtime": 1785403025.2413256,
-    "ast_hash": "ac7e6b79c9ec3441d676afb9b2769e43",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_30_000001_add_posting_date_to_ledger_account_items_table.php": {
-    "mtime": 1785403025.2416909,
-    "ast_hash": "38080c7f20ddd75d51a798e83da7a8dc",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_24_000001_create_projects_table.php": {
-    "mtime": 1785403025.2412019,
-    "ast_hash": "3b63c3b626dcdc07f136f72f160c5ef0",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030130_create_person_addresses_table.php": {
-    "mtime": 1785403025.2406075,
-    "ast_hash": "e73dc9c137d1d7d58fb58f92e4c8a11f",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030316_create_person_affiliations_table.php": {
-    "mtime": 1785403025.2407842,
-    "ast_hash": "b68e5fddd92ce6ed612a165b27e71e43",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_031704_create_ledger_accounts_table.php": {
-    "mtime": 1785403025.2409565,
-    "ast_hash": "ee871b6413a05e8ae5a3dfd0204d4b81",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_23_030030_create_countries_table.php": {
-    "mtime": 1785403025.2403653,
-    "ast_hash": "1625a30552c00c7eb72e62b84157c734",
-    "semantic_hash": ""
-  },
-  "src/backend/database/seeders/HrSeeder.php": {
-    "mtime": 1785403025.2424436,
-    "ast_hash": "64e5f5bc717a823a6a5cf343c4d35a4b",
-    "semantic_hash": ""
-  },
-  "src/backend/database/seeders/UserSeeder.php": {
-    "mtime": 1785403025.2429926,
-    "ast_hash": "db1fd3f7a7e3f460192c2f733e6b4455",
-    "semantic_hash": ""
-  },
-  "src/backend/database/seeders/AccountingSeeder.php": {
-    "mtime": 1785403025.2422388,
-    "ast_hash": "d898879f6722e0e3b1f341bd2d2cdb87",
-    "semantic_hash": ""
-  },
-  "src/backend/database/seeders/LedgerItemSeeder.php": {
-    "mtime": 1785403025.2426937,
-    "ast_hash": "fa1ba33970bc8f5e143124d1769284ee",
-    "semantic_hash": ""
-  },
-  "src/backend/database/seeders/AddressSeeder.php": {
-    "mtime": 1785403025.242305,
-    "ast_hash": "38381400683e30fb231b4ea65076632d",
-    "semantic_hash": ""
-  },
-  "src/backend/database/seeders/ProjectSeeder.php": {
-    "mtime": 1785403025.2427557,
-    "ast_hash": "8842490e629230fec4c77e97e765da4c",
-    "semantic_hash": ""
-  },
-  "src/backend/database/seeders/WorldAddressSeeder.php": {
-    "mtime": 1785489250.996238,
-    "ast_hash": "f651d7a68cfa53babbed4c483450edb3",
-    "semantic_hash": ""
-  },
-  "src/backend/database/seeders/DatabaseSeeder.php": {
-    "mtime": 1785489250.9961004,
-    "ast_hash": "ca98093a541b6797afdfef19b5e1e6a4",
-    "semantic_hash": ""
-  },
-  "src/backend/database/factories/UserFactory.php": {
-    "mtime": 1785403025.2398694,
-    "ast_hash": "ea28a9b1a4f1bd90b7b7be845bc837c0",
-    "semantic_hash": ""
-  },
-  "src/backend/bootstrap/app.php": {
-    "mtime": 1785403025.2377493,
-    "ast_hash": "51148adc94a59f5352b0386f30b33f7b",
-    "semantic_hash": ""
-  },
-  "src/backend/bootstrap/providers.php": {
-    "mtime": 1785403025.2378626,
-    "ast_hash": "888c810b5a4720916f07aa05dd2c2dd3",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Providers/AppServiceProvider.php": {
-    "mtime": 1785403025.2376077,
-    "ast_hash": "c0094f35cad6bba7636002a62186dae4",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/PersonAddress.php": {
-    "mtime": 1785403025.2374673,
-    "ast_hash": "ee18f84a991564ed4e99072a2573c32e",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/User.php": {
-    "mtime": 1785403025.2375224,
-    "ast_hash": "30ede7c3a8f49e5adef9dfc7c88a3613",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Person.php": {
-    "mtime": 1785403025.237415,
-    "ast_hash": "a488431ba36f995a6b6e66d370efedee",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Accounting/LedgerAccount.php": {
-    "mtime": 1785403025.2367296,
-    "ast_hash": "64c468866c77f994869af6b7e97c7229",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Accounting/LedgerAccountItem.php": {
-    "mtime": 1785489250.9937055,
-    "ast_hash": "98cedc0fa8cc7e1cac7fcabd560f8ed5",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Accounting/JournalEntryItem.php": {
-    "mtime": 1785403025.2366781,
-    "ast_hash": "fd46f7aaf3ac7f584badf0c8092e0c29",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Accounting/Project.php": {
-    "mtime": 1785489250.9938045,
-    "ast_hash": "1e527dc7e3247dfc982806c63c28ab5d",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Accounting/ProjectFund.php": {
-    "mtime": 1785403025.2368872,
-    "ast_hash": "314fbb2aab9b38d6285aac7ff5a6dfc8",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Accounting/FundAccount.php": {
-    "mtime": 1785403025.236627,
-    "ast_hash": "6ce01ab9e03edda7df152ff967d07bcd",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Accounting/AccountItem.php": {
-    "mtime": 1785403025.2365665,
-    "ast_hash": "83b1e51139a56f91000c8a64a2cd66f4",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Address/Region.php": {
-    "mtime": 1785403025.2370756,
-    "ast_hash": "2c86f932aa6a08e4809713d6db050e86",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Address/Country.php": {
-    "mtime": 1785403025.2370236,
-    "ast_hash": "193d9c8740daac2bdee5789fb8112984",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Address/City.php": {
-    "mtime": 1785569511.323696,
-    "ast_hash": "60bb4a8059fb97483dcf2c8347117832",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Address/State.php": {
-    "mtime": 1785403025.2371259,
-    "ast_hash": "4bb4f80b5737c900ae5b1d588c33ffb6",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/Address/SubRegion.php": {
-    "mtime": 1785403025.2371738,
-    "ast_hash": "5cf8e0b6b6029dc0f2c44eb61a669ceb",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/HR/Position.php": {
-    "mtime": 1785403025.2373643,
-    "ast_hash": "5aebe4e8d4f3ce6fde6e5ce563742cd1",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/HR/PersonAffiliation.php": {
-    "mtime": 1785403025.237316,
-    "ast_hash": "65723450271a981457255a6d7e7abfb1",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Models/HR/Company.php": {
-    "mtime": 1785403025.2372615,
-    "ast_hash": "475a0d9e26d19989b7c8b0142ad95091",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Controller.php": {
-    "mtime": 1785403025.236445,
-    "ast_hash": "25a307335c0719bc9a91b3f7babd186d",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Api/ProjectController.php": {
-    "mtime": 1785489250.993417,
-    "ast_hash": "fd6ef8f214e07b51808b1e620d3ad232",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Api/FundAccountController.php": {
-    "mtime": 1785419162.7258642,
-    "ast_hash": "35c5993d9eb75af207dc25b3fe0453b9",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Api/LedgerAccountItemController.php": {
-    "mtime": 1785489250.9931836,
-    "ast_hash": "9d9ce3ef96346d3b14ca87ea35942dca",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Api/AuthController.php": {
-    "mtime": 1785403025.2357297,
-    "ast_hash": "8cdaa9c5333460999c95fa36b0777e41",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Api/CityController.php": {
-    "mtime": 1785403025.2357845,
-    "ast_hash": "69712c46533007399d849883a68dc401",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Api/SettingsController.php": {
-    "mtime": 1785403025.2363954,
-    "ast_hash": "0460d6de7f049aed0e9da3271cd819ce",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Api/LedgerAccountController.php": {
-    "mtime": 1785419177.3252444,
-    "ast_hash": "a32f56ff42dae4821fd309c718d6b27a",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Http/Controllers/Api/AccountItemController.php": {
-    "mtime": 1785419791.9358428,
-    "ast_hash": "19256eaac86c4015ab535f4d00acd1b4",
-    "semantic_hash": ""
-  },
-  "src/backend/config/sanctum.php": {
-    "mtime": 1785403025.2394497,
-    "ast_hash": "e3887ebee464a1b2c014cb16696a2b50",
-    "semantic_hash": ""
-  },
-  "src/backend/config/auth.php": {
-    "mtime": 1785403025.238545,
-    "ast_hash": "26354511ab860b301f2a3554bc388b91",
-    "semantic_hash": ""
-  },
-  "src/backend/config/app.php": {
-    "mtime": 1785403025.238495,
-    "ast_hash": "276578ad68424be59d0998379ae7d4cb",
-    "semantic_hash": ""
-  },
-  "src/backend/config/mail.php": {
-    "mtime": 1785403025.2391863,
-    "ast_hash": "18601a927b48d38337ba2077426a7d60",
-    "semantic_hash": ""
-  },
-  "src/backend/config/services.php": {
-    "mtime": 1785403025.239496,
-    "ast_hash": "534a1b7af7009c373ea4ebfa18823d57",
-    "semantic_hash": ""
-  },
-  "src/backend/config/database.php": {
-    "mtime": 1785403025.2388508,
-    "ast_hash": "3cd69c7ecc842e4552e44eade546d91f",
-    "semantic_hash": ""
-  },
-  "src/backend/config/cache.php": {
-    "mtime": 1785403025.238588,
-    "ast_hash": "022fdf20e95ddb79949954243e367003",
-    "semantic_hash": ""
-  },
-  "src/backend/config/session.php": {
-    "mtime": 1785403025.2397113,
-    "ast_hash": "6d9336e9ca1183588abbce7ff7a6f29a",
-    "semantic_hash": ""
-  },
-  "src/backend/config/queue.php": {
-    "mtime": 1785403025.2394025,
-    "ast_hash": "f98ce92e7bf51db1fabaf8a30e12fc5a",
-    "semantic_hash": ""
-  },
-  "src/backend/config/cors.php": {
-    "mtime": 1785571843.3245647,
-    "ast_hash": "4f6faf706b32c0cad9d36a13a69d4ee5",
-    "semantic_hash": ""
-  },
-  "src/backend/config/logging.php": {
-    "mtime": 1785403025.2391346,
-    "ast_hash": "d8255a5c07d3da72c7c9363f0c44bddd",
-    "semantic_hash": ""
-  },
-  "src/backend/config/filesystems.php": {
-    "mtime": 1785403025.238916,
-    "ast_hash": "bde1aa1027f0448f17348dbd93f3d7ea",
-    "semantic_hash": ""
-  },
-  "src/backend/resources/js/bootstrap.js": {
-    "mtime": 1785403025.243654,
-    "ast_hash": "78f909acc19aea4717eddca5a87c1ba3",
-    "semantic_hash": ""
-  },
-  "src/backend/resources/js/app.js": {
-    "mtime": 1785403025.243598,
-    "ast_hash": "1ccf2b9101110f40ecaab1608a6f91cf",
-    "semantic_hash": ""
-  },
-  "src/backend/resources/views/welcome.blade.php": {
-    "mtime": 1785403025.2438264,
-    "ast_hash": "f9f90b3bab40fd1d366e9b54466deac7",
-    "semantic_hash": ""
-  },
-  "src/backend/tests/TestCase.php": {
-    "mtime": 1785403025.2454984,
-    "ast_hash": "7e567dc27e68d5b57bae16af07f68907",
-    "semantic_hash": ""
-  },
-  "src/backend/tests/Unit/ExampleTest.php": {
-    "mtime": 1785403025.2455893,
-    "ast_hash": "3f679e9508c834f0ad95943455fcd836",
-    "semantic_hash": ""
-  },
-  "src/backend/tests/Feature/AuthTest.php": {
-    "mtime": 1785403025.245137,
-    "ast_hash": "520d8c2adce588163f62bd703c89ff74",
-    "semantic_hash": ""
-  },
-  "src/backend/tests/Feature/ExampleTest.php": {
-    "mtime": 1785403025.2452013,
-    "ast_hash": "0f4d91c9c5bbcd4e2f46cf885acb7fb6",
-    "semantic_hash": ""
-  },
-  "src/backend/tests/Feature/LedgerAccountItemTest.php": {
-    "mtime": 1785489250.9969544,
-    "ast_hash": "543c8888541309fee393d061f6d4af6e",
-    "semantic_hash": ""
-  },
-  "src/backend/public/index.php": {
-    "mtime": 1785403025.2433145,
-    "ast_hash": "d8eda274115af5fd2aaa8230af329ef7",
-    "semantic_hash": ""
-  },
-  "src/backend/routes/console.php": {
-    "mtime": 1785403025.243991,
-    "ast_hash": "3c6ce2e6d16444282b24a9aa63885563",
-    "semantic_hash": ""
-  },
-  "src/backend/routes/web.php": {
-    "mtime": 1785573511.1374059,
-    "ast_hash": "4313e70fd26febf1df66796b815cd756",
-    "semantic_hash": ""
-  },
-  "src/backend/routes/api.php": {
-    "mtime": 1785489250.996741,
-    "ast_hash": "3d7de6387674a5eb6bd981aa13f813a9",
-    "semantic_hash": ""
-  },
-  "src/frontend/README.md": {
-    "mtime": 1785403025.2458148,
-    "ast_hash": "884261092c8d74ec62c5c0860a38bc9d",
-    "semantic_hash": ""
-  },
-  "src/frontend/public/robots.txt": {
-    "mtime": 1785403025.2549644,
-    "ast_hash": "243b03ecba82dde9612cd5163145a86d",
-    "semantic_hash": ""
-  },
-  "src/backend/README.md": {
-    "mtime": 1785403025.2352436,
-    "ast_hash": "c9fd29cc7c9057820aebcdcd6bbddca3",
-    "semantic_hash": ""
-  },
-  "src/backend/public/robots.txt": {
-    "mtime": 1785574663.7751856,
-    "ast_hash": "243b03ecba82dde9612cd5163145a86d",
-    "semantic_hash": ""
-  },
-  ".agents/skills/ui-ux-pro-max/scripts/core.py": {
-    "mtime": 1785403024.2199993,
-    "ast_hash": "3df4734a785963a8242a56c1b926adfd",
-    "semantic_hash": ""
-  },
-  ".agents/skills/ui-ux-pro-max/scripts/design_system.py": {
-    "mtime": 1785403024.2200727,
-    "ast_hash": "08f84d04608a19049c90fc2b1ef314f9",
-    "semantic_hash": ""
-  },
-  ".agents/skills/ui-ux-pro-max/scripts/search.py": {
-    "mtime": 1785403024.2202506,
-    "ast_hash": "b1b950ac688b71ddfbbf4092c058cafa",
-    "semantic_hash": ""
-  },
-  ".claude/settings.json": {
-    "mtime": 1785562904.290629,
-    "ast_hash": "ff451d0b76332153877efab63ca153d6",
-    "semantic_hash": ""
-  },
-  ".claude/settings.local.json": {
-    "mtime": 1785403024.2207057,
-    "ast_hash": "0099a2e348a3b97fd83b8be57dfd8bfb",
-    "semantic_hash": ""
-  },
-  "skills-lock.json": {
-    "mtime": 1785403025.2348983,
-    "ast_hash": "be771dcb15bcd9d35b2eacf010270319",
-    "semantic_hash": ""
-  },
-  "src/backend/composer.json": {
-    "mtime": 1785573062.015179,
-    "ast_hash": "ab72407d61ac13ebfbcb9e0a9c9e0bfb",
-    "semantic_hash": ""
-  },
-  "src/backend/database/json/countries.json": {
-    "mtime": 1785489250.9942849,
-    "ast_hash": "49047d697d0805b11e0158867a13b285",
-    "semantic_hash": ""
-  },
-  "src/backend/database/json/refcitymun.json": {
-    "mtime": 1785489250.9946024,
-    "ast_hash": "fa59a3322d4c25bd152a665079c6bd39",
-    "semantic_hash": ""
-  },
-  "src/backend/database/json/refprovince.json": {
-    "mtime": 1785489250.994817,
-    "ast_hash": "ea1877c1b548cc3602dda19387358df5",
-    "semantic_hash": ""
-  },
-  "src/backend/database/json/refregion.json": {
-    "mtime": 1785489250.9948764,
-    "ast_hash": "f17865faaa63927576df6e9d678964f1",
-    "semantic_hash": ""
-  },
-  "src/backend/database/json/regions.json": {
-    "mtime": 1785489250.9949305,
-    "ast_hash": "8911f4b7395e33f4f2c873f95007ad53",
-    "semantic_hash": ""
-  },
-  "src/backend/database/json/subregions.json": {
-    "mtime": 1785489250.9954865,
-    "ast_hash": "37e3fde9303560e1ad3e04b8dde98d2e",
-    "semantic_hash": ""
-  },
-  "src/backend/database/migrations/2026_07_28_072900_create_personal_access_tokens_table.php": {
-    "mtime": 1785403025.241503,
-    "ast_hash": "eb77af89d184f92ec893eff344c34999",
-    "semantic_hash": ""
-  },
-  "src/backend/package.json": {
-    "mtime": 1785403025.243048,
-    "ast_hash": "07d7440dc017382991f9a7bd0151005a",
-    "semantic_hash": ""
-  },
-  "src/frontend/ionic.config.json": {
-    "mtime": 1785403025.2541258,
-    "ast_hash": "df9e568de95a6313c1a5c1eea492020b",
-    "semantic_hash": ""
-  },
-  "src/frontend/package.json": {
-    "mtime": 1785414462.4577045,
-    "ast_hash": "3ca75455cde4a5693606cd65c9149872",
-    "semantic_hash": ""
-  },
-  "src/frontend/tsconfig.json": {
-    "mtime": 1785403025.2550075,
-    "ast_hash": "1757ff6d01ee2065e2a4809bf8dc553d",
-    "semantic_hash": ""
-  },
-  ".agents/rules/graphify.md": {
-    "mtime": 1785403024.2135339,
-    "ast_hash": "a0ba2b649968c416a1f2ac2f40e4907d",
-    "semantic_hash": ""
-  },
-  ".agents/skills/grill-with-docs/SKILL.md": {
-    "mtime": 1785403024.213633,
-    "ast_hash": "7c5095d1b2c2ed9483df63c4622d05ea",
-    "semantic_hash": ""
-  },
-  ".agents/skills/grill-with-docs/agents/openai.yaml": {
-    "mtime": 1785403024.213702,
-    "ast_hash": "d50e6a6a53801a48192dde963945affc",
-    "semantic_hash": ""
-  },
-  ".agents/skills/handoff/SKILL.md": {
-    "mtime": 1785403024.213782,
-    "ast_hash": "4b41ddea5fe8bec9aaf6de6d00a70353",
-    "semantic_hash": ""
-  },
-  ".agents/skills/handoff/agents/openai.yaml": {
-    "mtime": 1785403024.2138574,
-    "ast_hash": "4be8ae2848843907cb2c73c3abed107c",
-    "semantic_hash": ""
-  },
-  ".agents/skills/implement/SKILL.md": {
-    "mtime": 1785403024.2139235,
-    "ast_hash": "7cc3e48c97c3a5f287601f87015d02b2",
-    "semantic_hash": ""
-  },
-  ".agents/skills/implement/agents/openai.yaml": {
-    "mtime": 1785403024.213992,
-    "ast_hash": "67981219ee02544ca054221195e85d41",
-    "semantic_hash": ""
-  },
-  ".agents/skills/nuxt-ionic-custom-ui/SKILL.md": {
-    "mtime": 1785403024.214175,
-    "ast_hash": "6a8f3db61bdcef43ed328d478757fa68",
-    "semantic_hash": ""
-  },
-  ".agents/skills/nuxt-ionic-custom-ui/references/components.md": {
-    "mtime": 1785403024.214391,
-    "ast_hash": "218f386c352e181f86ae00625aefc330",
-    "semantic_hash": ""
-  },
-  ".agents/skills/nuxt-ionic-custom-ui/references/ionic-retained.md": {
-    "mtime": 1785403024.2144558,
-    "ast_hash": "6417b56e79393e4ccce2352ec29115ed",
-    "semantic_hash": ""
-  },
-  ".agents/skills/nuxt-ionic-custom-ui/references/setup.md": {
-    "mtime": 1785403024.2145102,
-    "ast_hash": "40e937bf165e2f55670f165d1fad5869",
-    "semantic_hash": ""
-  },
-  ".agents/skills/prototype/LOGIC.md": {
-    "mtime": 1785403024.214735,
-    "ast_hash": "4c27a0861fb9d81e0a8bd36ef0dfc10b",
-    "semantic_hash": ""
-  },
-  ".agents/skills/prototype/SKILL.md": {
-    "mtime": 1785403024.2147827,
-    "ast_hash": "86d04d3f9b52f556aa71a2a2e4face89",
-    "semantic_hash": ""
-  },
-  ".agents/skills/prototype/UI.md": {
-    "mtime": 1785403024.2149658,
-    "ast_hash": "0531f4c5365f312b7faad44b88adcf38",
-    "semantic_hash": ""
-  },
-  ".agents/skills/prototype/agents/openai.yaml": {
-    "mtime": 1785403024.2150345,
-    "ast_hash": "f52e5df8465a544537396ffa1d2a11a4",
-    "semantic_hash": ""
-  },
-  ".agents/skills/setup-matt-pocock-skills/SKILL.md": {
-    "mtime": 1785403024.2152464,
-    "ast_hash": "d1fda98ba440baac8608638bd808cb4b",
-    "semantic_hash": ""
-  },
-  ".agents/skills/setup-matt-pocock-skills/agents/openai.yaml": {
-    "mtime": 1785403024.2153144,
-    "ast_hash": "a9d2c63bccc70831e36cc011557a6b38",
-    "semantic_hash": ""
-  },
-  ".agents/skills/setup-matt-pocock-skills/domain.md": {
-    "mtime": 1785403024.2153656,
-    "ast_hash": "35089ed6a70a657c91fd100ade31b642",
-    "semantic_hash": ""
-  },
-  ".agents/skills/setup-matt-pocock-skills/issue-tracker-github.md": {
-    "mtime": 1785403024.2154222,
-    "ast_hash": "3cd8509285524d31a33279b8cb0870e5",
-    "semantic_hash": ""
-  },
-  ".agents/skills/setup-matt-pocock-skills/issue-tracker-gitlab.md": {
-    "mtime": 1785403024.2154715,
-    "ast_hash": "f65c57249762602d86ca3af76ad77615",
-    "semantic_hash": ""
-  },
-  ".agents/skills/setup-matt-pocock-skills/issue-tracker-local.md": {
-    "mtime": 1785403024.2155178,
-    "ast_hash": "a0582fd1e4ef87730a00f437fc41a3ec",
-    "semantic_hash": ""
-  },
-  ".agents/skills/setup-matt-pocock-skills/triage-labels.md": {
-    "mtime": 1785403024.2155597,
-    "ast_hash": "22add54cb98451c55b20e6b7992d4a85",
-    "semantic_hash": ""
-  },
-  ".agents/skills/to-spec/SKILL.md": {
-    "mtime": 1785403024.2156303,
-    "ast_hash": "ea27053babcbd7e7524056f8219e76d0",
-    "semantic_hash": ""
-  },
-  ".agents/skills/to-spec/agents/openai.yaml": {
-    "mtime": 1785403024.2156954,
-    "ast_hash": "886d06b1f83b51e39bd2874b75730f87",
-    "semantic_hash": ""
-  },
-  ".agents/skills/to-tickets/SKILL.md": {
-    "mtime": 1785403024.215903,
-    "ast_hash": "17129aa76a67e96f192aeb8446cb71dd",
-    "semantic_hash": ""
-  },
-  ".agents/skills/to-tickets/agents/openai.yaml": {
-    "mtime": 1785403024.2159717,
-    "ast_hash": "6c4d19c426617a41441e84aacf2786d6",
-    "semantic_hash": ""
-  },
-  ".agents/skills/ui-ux-pro-max/SKILL.md": {
-    "mtime": 1785403024.2161124,
-    "ast_hash": "e745b5a6c71379800b232a1ba32d16ec",
-    "semantic_hash": ""
-  },
-  ".agents/skills/wayfinder/SKILL.md": {
-    "mtime": 1785403024.220425,
-    "ast_hash": "55b9736798c119cffa6ad6a830287a30",
-    "semantic_hash": ""
-  },
-  ".agents/skills/wayfinder/agents/openai.yaml": {
-    "mtime": 1785403024.220491,
-    "ast_hash": "05e37f0188c1e7d2f1cdf4143c0a5c75",
-    "semantic_hash": ""
-  },
-  ".agents/workflows/graphify.md": {
-    "mtime": 1785403024.2205634,
-    "ast_hash": "afa1ffc01aa56ac681c7335686f44767",
-    "semantic_hash": ""
-  },
-  ".claude/CLAUDE.md": {
-    "mtime": 1785562904.2901998,
-    "ast_hash": "9b31786b637be3c13978bec4c2330752",
-    "semantic_hash": ""
-  },
-  ".claude/rules/lean-ctx.md": {
-    "mtime": 1785403024.2206633,
-    "ast_hash": "ec3b392a1cd3180c494fe6736c9f07d7",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/SKILL.md": {
-    "mtime": 1785562904.2899024,
-    "ast_hash": "dfb0a6554c4af62df6effc61c6c7d245",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/references/add-watch.md": {
-    "mtime": 1785562612.6554394,
-    "ast_hash": "d59d027fe449f06aa03905a01184e779",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/references/exports.md": {
-    "mtime": 1785562612.655537,
-    "ast_hash": "9da2a2152e60a22f07f05fed5158f287",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/references/extraction-spec.md": {
-    "mtime": 1785562612.6556401,
-    "ast_hash": "42fef56a01698118f7fd722acdadea34",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/references/github-and-merge.md": {
-    "mtime": 1785562612.6557322,
-    "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/references/hooks.md": {
-    "mtime": 1785562612.655824,
-    "ast_hash": "3f545db6ce646650bb9de588f5512a27",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/references/query.md": {
-    "mtime": 1785562612.655945,
-    "ast_hash": "3c46f8ad006874260614ed8657d02307",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/references/transcribe.md": {
-    "mtime": 1785562612.656045,
-    "ast_hash": "67b6a5fa6c0974e18f60db9f8932fbd8",
-    "semantic_hash": ""
-  },
-  ".claude/skills/graphify/references/update.md": {
-    "mtime": 1785562612.6561854,
-    "ast_hash": "9378bd03d56baaf78bd738ab3848f142",
-    "semantic_hash": ""
-  },
-  ".scratch/account-items-fk-error/issues/01-fix-account-items-fk-constraint.md": {
-    "mtime": 1785403024.2209196,
-    "ast_hash": "2f843e5126f7ae3590c432708c37e11e",
-    "semantic_hash": ""
-  },
-  ".scratch/accountant-ui/issues/01-nuxt4-source-restructuring.md": {
-    "mtime": 1785403024.2210138,
-    "ast_hash": "77a9a88ecd1786402fbbc3d5ad6ce7c4",
-    "semantic_hash": ""
-  },
-  ".scratch/accountant-ui/issues/02-suppress-plugin-warnings.md": {
-    "mtime": 1785403024.2210639,
-    "ast_hash": "e8eb9a1f4fe87b732fe729aebbc08f3a",
-    "semantic_hash": ""
-  },
-  ".scratch/accountant-ui/issues/03-php82-artisan-migration.md": {
-    "mtime": 1785403024.2211056,
-    "ast_hash": "8590c4bbda9e1114e1fd6e68b70a6be1",
-    "semantic_hash": ""
-  },
-  ".scratch/accountant-ui/issues/04-e2e-api-integration.md": {
-    "mtime": 1785403024.221149,
-    "ast_hash": "956d63c7b7a8b2a61de14e39bf59effb",
-    "semantic_hash": ""
-  },
-  ".scratch/analytics-helpers/issues/01-implement-and-verify-analytics-helpers.md": {
-    "mtime": 1785403024.2212424,
-    "ast_hash": "752847c695097be3412c1773987ac1a0",
-    "semantic_hash": ""
-  },
-  ".scratch/change-status/spec.md": {
-    "mtime": 1785403024.221451,
-    "ast_hash": "2e2eea6d1e76b2ee47f9dd5f933da3c8",
-    "semantic_hash": ""
-  },
-  ".scratch/dead-center-login/issues/01-dead-center-login-card.md": {
-    "mtime": 1785403024.221552,
-    "ast_hash": "409dd1a4702849bba6bd82c73c3d21c5",
-    "semantic_hash": ""
-  },
-  ".scratch/desktop-login-card-centering/issues/01-fix-desktop-login-card-centering.md": {
-    "mtime": 1785403024.2216547,
-    "ast_hash": "d7649225905ff6c6f5e1b80100c2d587",
-    "semantic_hash": ""
-  },
-  ".scratch/dev-server-fix/issues/01-node-engine-compatibility.md": {
-    "mtime": 1785403024.2217448,
-    "ast_hash": "5c66c4697788a7fbcd2fd7f3faa96e84",
-    "semantic_hash": ""
-  },
-  ".scratch/dev-server-fix/issues/02-nuxt-plugin-warning-suppression.md": {
-    "mtime": 1785403024.2217875,
-    "ast_hash": "970b87b05a1061f3cb37ea3435d3b9f6",
-    "semantic_hash": ""
-  },
-  ".scratch/dev-server-fix/issues/03-dev-server-verification.md": {
-    "mtime": 1785403024.2218316,
-    "ast_hash": "06bd6fc76ae9eeed5fe9ab8d6ce8ad94",
-    "semantic_hash": ""
-  },
-  ".scratch/eager-load-journal-items/issues/01-fix-journal-entry-items-eager-loading.md": {
-    "mtime": 1785403024.2219265,
-    "ast_hash": "79b05ca40f1051c57f1f329f774da8c7",
-    "semantic_hash": ""
-  },
-  ".scratch/fund-source-line-chart-accounting/spec.md": {
-    "mtime": 1785403024.222,
-    "ast_hash": "ba94b2c8bb971e7ebeedbb3096a0ca0d",
-    "semantic_hash": ""
-  },
-  ".scratch/handoff.md": {
-    "mtime": 1785403024.2221828,
-    "ast_hash": "44f6177226578b3e6e44f4b712d4b40d",
-    "semantic_hash": ""
-  },
-  ".scratch/horizontal-login-centering/issues/01-fix-horizontal-centering-login.md": {
-    "mtime": 1785403024.2222748,
-    "ast_hash": "a52492d014b74adbbe015a2ed9beaa80",
-    "semantic_hash": ""
-  },
-  ".scratch/hydration-fix/issues/01-client-hydration-synchronization.md": {
-    "mtime": 1785403024.222363,
-    "ast_hash": "ca8b0d9338b94b38929f5da76869b4ee",
-    "semantic_hash": ""
-  },
-  ".scratch/hydration-fix/issues/02-standardized-formatting-helpers.md": {
-    "mtime": 1785403024.2224069,
-    "ast_hash": "555a3dd8df8ce68fc22d0f972470be0b",
-    "semantic_hash": ""
-  },
-  ".scratch/hydration-fix/issues/03-browser-hydration-console-audit.md": {
-    "mtime": 1785403024.2224524,
-    "ast_hash": "188bbd0a7b753dff6884b4cf30fb58a4",
-    "semantic_hash": ""
-  },
-  ".scratch/initial-page-load-fix/issues/01-fix-initial-page-load-rendering.md": {
-    "mtime": 1785403024.2225518,
-    "ast_hash": "329ff6848d29a2a7b849a24f04185926",
-    "semantic_hash": ""
-  },
-  ".scratch/itemized-modal-and-table-readability/issues/01-fix-itemized-modal-display-and-table-readability.md": {
-    "mtime": 1785403024.2226548,
-    "ast_hash": "849f143f7fa356c8d138f33bbb69dd30",
-    "semantic_hash": ""
-  },
-  ".scratch/ledger-account-error-handling/issues/01-fix-ledger-account-creation-error-handling.md": {
-    "mtime": 1785403024.2227502,
-    "ast_hash": "c0b306ebfcb135e48004455ece5aa9f6",
-    "semantic_hash": ""
-  },
-  ".scratch/line-chart-posting-date/spec.md": {
-    "mtime": 1785403024.2228189,
-    "ast_hash": "4a383a40525348a36db508548d24a3e1",
-    "semantic_hash": ""
-  },
-  ".scratch/modal-post-journal-ledger-items/spec.md": {
-    "mtime": 1785403024.2228935,
-    "ast_hash": "dfc68371a6b38cd8c33e8087d3eb9c12",
-    "semantic_hash": ""
-  },
-  ".scratch/nuxt-e1005-fix/issues/01-fix-nuxt-e1005-initialization-error.md": {
-    "mtime": 1785403024.222996,
-    "ast_hash": "39df253449cc5470503d90f489d3c28e",
-    "semantic_hash": ""
-  },
-  ".scratch/nuxt-repaint-fix/issues/01-disable-navigation-repaint.md": {
-    "mtime": 1785403024.2231011,
-    "ast_hash": "6ac2c475e6b4963d4f516d205750c55a",
-    "semantic_hash": ""
-  },
-  ".scratch/oxc-parser-fix/issues/01-oxc-walker-parser-resolution.md": {
-    "mtime": 1785403024.223203,
-    "ast_hash": "7bee50e17e0ce0a02fc1115cbf7f2d97",
-    "semantic_hash": ""
-  },
-  ".scratch/oxc-parser-fix/issues/02-package-lock-postinstall-verification.md": {
-    "mtime": 1785403024.223249,
-    "ast_hash": "95ee420237c7ab1bd7e4e662c55544ac",
-    "semantic_hash": ""
-  },
-  ".scratch/oxc-parser-fix/issues/03-dev-build-health-audit.md": {
-    "mtime": 1785403024.2232904,
-    "ast_hash": "7170d4ec92f97fed46c745f7fbb438e9",
-    "semantic_hash": ""
-  },
-  ".scratch/posting-date-database/spec.md": {
-    "mtime": 1785403024.2233636,
-    "ast_hash": "7729d5e5a3fc001442111a4905f368da",
-    "semantic_hash": ""
-  },
-  ".scratch/project-details-posting-date/spec.md": {
-    "mtime": 1785403024.2234385,
-    "ast_hash": "c37c601af40411ae517591a1f2ae8523",
-    "semantic_hash": ""
-  },
-  ".scratch/project-fund-date-received/spec.md": {
-    "mtime": 1785403024.2235036,
-    "ast_hash": "2e08ab6d732ef9ecc102615492c11894",
-    "semantic_hash": ""
-  },
-  ".scratch/project-ledger-workflow/issues/01-fix-nuxt3-dynamic-routing.md": {
-    "mtime": 1785403024.223609,
-    "ast_hash": "c770ff36c8cf44b6d52d94c02df1fec6",
-    "semantic_hash": ""
-  },
-  ".scratch/project-ledger-workflow/issues/02-update-journal-page-with-project-tagging.md": {
-    "mtime": 1785403024.2236562,
-    "ast_hash": "0baa6a59b579765cb4b6cad73844b931",
-    "semantic_hash": ""
-  },
-  ".scratch/project-ledger-workflow/issues/03-integrate-project-kpis-into-overview-dashboard.md": {
-    "mtime": 1785403024.2237086,
-    "ast_hash": "e04c543a48a7890d720327a0989c54e7",
-    "semantic_hash": ""
-  },
-  ".scratch/project-progress-bar/issues/01-fix-progress-bar-value-display.md": {
-    "mtime": 1785403024.2238119,
-    "ast_hash": "66ab3f711063abded53d30216c4d2c4f",
-    "semantic_hash": ""
-  },
-  ".scratch/project-progress-bar/issues/02-fix-defineprops-hoisting-and-value-prop.md": {
-    "mtime": 1785403024.223868,
-    "ast_hash": "87ed7ff1a04f79fbb66d6d978b310ba6",
-    "semantic_hash": ""
-  },
-  ".scratch/root-ui-fix/issues/01-fix-root-ui-visibility-and-dashboard.md": {
-    "mtime": 1785403024.2239606,
-    "ast_hash": "0baa86f84882f170ca677d27a6ad4537",
-    "semantic_hash": ""
-  },
-  ".scratch/root-ui-fix/issues/02-verify-root-dashboard-and-navigation.md": {
-    "mtime": 1785403024.2240055,
-    "ast_hash": "b3a6389a0c4483200b541d6313a513c7",
-    "semantic_hash": ""
-  },
-  ".scratch/running-balance-statement/spec.md": {
-    "mtime": 1785403024.224079,
-    "ast_hash": "e427681145b8ee3551ad6311149704ae",
-    "semantic_hash": ""
-  },
-  ".scratch/specs/login-card-centering-and-input-icons.md": {
-    "mtime": 1785403024.2241473,
-    "ast_hash": "4f4ca9a84c3a554de617240997faabac",
-    "semantic_hash": ""
-  },
-  ".scratch/specs/project-budget-and-active-fund-balance.md": {
-    "mtime": 1785403024.224194,
-    "ast_hash": "0c89f6e8f964fa9b0fbf3a94e72cd39a",
-    "semantic_hash": ""
-  },
-  ".scratch/theme-coverage-fix/issues/01-global-theme-css-tokens-app-shell.md": {
-    "mtime": 1785403024.2242868,
-    "ast_hash": "defad3337ac65594303f0d2dbbaf8238",
-    "semantic_hash": ""
-  },
-  ".scratch/theme-coverage-fix/issues/02-dashboard-core-components-theme.md": {
-    "mtime": 1785403024.2243326,
-    "ast_hash": "c8b6ab198c470caaa1ff4b9b242a9c65",
-    "semantic_hash": ""
-  },
-  ".scratch/theme-coverage-fix/issues/03-management-pages-auth-theme.md": {
-    "mtime": 1785403024.2243788,
-    "ast_hash": "daa2ea8fbc210dc6288eb57813a4e789",
-    "semantic_hash": ""
-  },
-  ".scratch/theme-coverage-fix/issues/04-full-app-theme-audit-build-verification.md": {
-    "mtime": 1785403024.2244213,
-    "ast_hash": "8bd667418c7e26ec7dd63e95a914982a",
-    "semantic_hash": ""
-  },
-  ".scratch/use-date-composable/spec-iso-format.md": {
-    "mtime": 1785403024.2244992,
-    "ast_hash": "0540c711977af35018f31965c63eb557",
-    "semantic_hash": ""
-  },
-  ".scratch/use-date-composable/spec.md": {
-    "mtime": 1785403024.2245448,
-    "ast_hash": "daabc9e67c0041e20870014effeab0ef",
-    "semantic_hash": ""
-  },
-  ".scratch/use-posting-date/spec.md": {
-    "mtime": 1785403024.224613,
-    "ast_hash": "429a6ae7e14dde7ad8ce0757cca7c365",
-    "semantic_hash": ""
-  },
-  ".scratch/vertical-login-centering/issues/01-fix-vertical-centering-login.md": {
-    "mtime": 1785403024.2247083,
-    "ast_hash": "38b19e4ca6bbda8c36ab5c0cb15c7302",
-    "semantic_hash": ""
-  },
-  ".scratch/vue-warnings-fix/issues/01-fix-vue-vnode-and-suspense-warnings.md": {
-    "mtime": 1785403024.2248034,
-    "ast_hash": "ea06aa8b9a1352a1aa9e7812986233ba",
-    "semantic_hash": ""
-  },
-  "AGENTS.md": {
-    "mtime": 1785563208.788363,
-    "ast_hash": "1ead7e5fc65f780c30ef359c05eccee4",
-    "semantic_hash": ""
-  },
-  "CLAUDE.md": {
-    "mtime": 1785562904.2904499,
-    "ast_hash": "82efb97a359f5c7290bf2513d14686be",
-    "semantic_hash": ""
-  },
-  "LEAN-CTX.md": {
-    "mtime": 1785563208.7819762,
-    "ast_hash": "16c9b1c8f64aee988e06b3cbcad2de6d",
-    "semantic_hash": ""
-  },
-  "README.md": {
-    "mtime": 1785403024.224974,
-    "ast_hash": "97f3d56bb728b41c5397a7c57991f27c",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0001-accounts-payable-fund-deduction-rule.md": {
-    "mtime": 1785489250.8974795,
-    "ast_hash": "c586b78f586d6a595c83294e231c29cf",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0001-project-ledger-workflow.md": {
-    "mtime": 1785403024.2250657,
-    "ast_hash": "5aa4231d1c7eb608c43d46fc89c9133d",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0002-posted-ledgers-tabular-view-and-navigation.md": {
-    "mtime": 1785489250.8975677,
-    "ast_hash": "5caf73fe7db6a6b875a494ad98ebec4b",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0002-standardized-datatable-component-architecture.md": {
-    "mtime": 1785403024.2251177,
-    "ast_hash": "7beacf695349a7b3e081453afa8fc80f",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0003-standardized-button-component-architecture.md": {
-    "mtime": 1785403024.2251625,
-    "ast_hash": "296aeaceab3212fd9d67a1496888ae57",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0004-standardized-tabs-component-architecture.md": {
-    "mtime": 1785403024.2252154,
-    "ast_hash": "1043a6b1e4971d48885e56779c28d182",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0005-project-budget-vs-expenses-dashboard.md": {
-    "mtime": 1785403024.2252648,
-    "ast_hash": "e7555c6380d9d45fcf1f109519153b9b",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0006-decoupling-ledger-accounts-and-linking-account-items.md": {
-    "mtime": 1785403024.2253168,
-    "ast_hash": "cd44314b8e2a35d567475834ad723dd7",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0007-project-budgeting-cards-and-analytics-dashboard.md": {
-    "mtime": 1785403024.2253678,
-    "ast_hash": "34eda78da9462380d5fd7c74267c3bc1",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0008-fund-account-amount-and-search-filtering.md": {
-    "mtime": 1785403024.2254202,
-    "ast_hash": "e9947da1c74c2c79735884d0e3012d6f",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0009-ionic-core-web-component-hydration-and-app-visibility.md": {
-    "mtime": 1785403024.2254713,
-    "ast_hash": "49e9555d2ef217639153058178aac874",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0010-user-authentication-and-person-delegation.md": {
-    "mtime": 1785403024.2255328,
-    "ast_hash": "2a6a35b81c061cfc7b657be8ba81d034",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0011-account-item-transaction-types-and-ledger-account-reverse-selection.md": {
-    "mtime": 1785403024.2255917,
-    "ast_hash": "8b1026da2dde06495ef903913c7f8078",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0012-printable-project-balance-sheet-architecture.md": {
-    "mtime": 1785403024.2256444,
-    "ast_hash": "ee5a971166824f506359db1a04573700",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0013-project-general-ledger-statement-and-date-formatting.md": {
-    "mtime": 1785403024.2257001,
-    "ast_hash": "3146a9cc898e46c0f038aec3d651eb27",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0014-state-city-address-selection-and-projects-sidebar-navigation.md": {
-    "mtime": 1785403024.2257557,
-    "ast_hash": "57ee7650c22d450d694330fe9263320e",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0015-itemized-journal-entry-breakdown.md": {
-    "mtime": 1785403024.2258136,
-    "ast_hash": "88f67495768af8829345143ba218525e",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0016-backend-itemized-journal-entry-database-architecture.md": {
-    "mtime": 1785403024.22587,
-    "ast_hash": "10fb460aeafd57c15c47973c8b7c97c7",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0017-project-budget-as-initial-ledger-allocation.md": {
-    "mtime": 1785489250.8976555,
-    "ast_hash": "6ccc74e7b5f642999608cb495c6c15af",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0018-multi-item-account-creation-modal-on-card-click.md": {
-    "mtime": 1785489250.8977306,
-    "ast_hash": "a4900702745fdea18eab069c2c9000d9",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0019-disable-already-selected-project-fund-sources.md": {
-    "mtime": 1785489250.8978078,
-    "ast_hash": "0a5a8306a6d8c1dc42a8c196ab7f1bdd",
-    "semantic_hash": ""
-  },
-  "docs/ADR/0020-remove-initial-balance-and-budget-allocation-on-fund-sources.md": {
-    "mtime": 1785489250.89787,
-    "ast_hash": "9916954741b18e9fe8b8a2c92b46c574",
-    "semantic_hash": ""
-  },
-  "docs/agents/domain.md": {
-    "mtime": 1785403024.225957,
-    "ast_hash": "35089ed6a70a657c91fd100ade31b642",
-    "semantic_hash": ""
-  },
-  "docs/agents/issue-tracker.md": {
-    "mtime": 1785403024.226014,
-    "ast_hash": "3cd8509285524d31a33279b8cb0870e5",
-    "semantic_hash": ""
-  },
-  "docs/agents/wire-frontend-to-backend-prd.md": {
-    "mtime": 1785403024.2262068,
-    "ast_hash": "c6f0d151252e9fd6bada69b5b675f7d0",
-    "semantic_hash": ""
-  },
-  "docs/glossary.md": {
-    "mtime": 1785403024.2262645,
-    "ast_hash": "70ac3271812563d9c75620b18cf96c06",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-27-responsive-visually-appealing-tabs.md": {
-    "mtime": 1785403024.2265785,
-    "ast_hash": "77e65a1aaaf7acb1aeaa0615e1a01d62",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-27-standardize-ionic-buttons.md": {
-    "mtime": 1785403024.226784,
-    "ast_hash": "21c515a1d063056493836352c1e4c220",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-27-standardized-table-component.md": {
-    "mtime": 1785403024.2269871,
-    "ast_hash": "0d4584707db5f4060c27271a4779b02e",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-28-fund-account-amount-and-search-filtering.md": {
-    "mtime": 1785403024.2271922,
-    "ast_hash": "d3a10cbbb4021e2ecd0bb5093053149f",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-28-ledger-accounts-and-items-refactor.md": {
-    "mtime": 1785403024.2272685,
-    "ast_hash": "876b6a06112c40045b68166cbb39caed",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-28-project-budgeting-cards-and-analytics-dashboard.md": {
-    "mtime": 1785403024.2274814,
-    "ast_hash": "878d077a3821e4a2b9a0f0b852f2aca7",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-28-wire-frontend-to-backend.md": {
-    "mtime": 1785403024.2275689,
-    "ast_hash": "8bcd8d5e1fb87cec84995ddf6f319e92",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-29-credit-debit-items-and-journal-auto-fill.md": {
-    "mtime": 1785403024.227741,
-    "ast_hash": "ec7d5b4343098e56422c58ebb75f98c9",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-29-hide-navbars-logged-out-and-fix-inputs.md": {
-    "mtime": 1785403024.2278042,
-    "ast_hash": "0b4a9fce16828b39f1e24540bb8f5e61",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-29-itemized-journal-entries-backend.md": {
-    "mtime": 1785403024.2278693,
-    "ast_hash": "5e416f5cf259218eddf28dc1f47ffa98",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-29-journal-entry-itemized-modal-click.md": {
-    "mtime": 1785403024.2279336,
-    "ast_hash": "20c8bafecf1449c3915c4c9ee37cf7ee",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-29-project-accounting-ledger-print.md": {
-    "mtime": 1785403024.2279956,
-    "ast_hash": "6c5b8ce6bbb8bac37ee6594e36f89435",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-29-project-balance-sheet-printing.md": {
-    "mtime": 1785403024.228201,
-    "ast_hash": "d4fbd59dac96ec0c4c48835dce4375da",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-fund-source-line-chart-accounting.md": {
-    "mtime": 1785403024.228263,
-    "ast_hash": "96e8f3ea09ff42c6f5f5f86e25371f02",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-fund-source-line-chart.md": {
-    "mtime": 1785403024.2283278,
-    "ast_hash": "20a2da30a7fc370db3034608be9e81a7",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-line-chart-posting-date.md": {
-    "mtime": 1785403024.2283869,
-    "ast_hash": "de125d10affcc4f0262d38986b9abd84",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-modal-post-journal-ledger-items.md": {
-    "mtime": 1785403024.2284493,
-    "ast_hash": "77b5d005bf85e41ba5c402b5a854eeb7",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-posting-date-database.md": {
-    "mtime": 1785403024.2285163,
-    "ast_hash": "ab2b31c5987f29e699e79b672fece0ed",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-project-fund-date-received.md": {
-    "mtime": 1785403024.2285886,
-    "ast_hash": "fba7e107e59f6a0b5fa0a66a4f2e129f",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-project-id-posting-date.md": {
-    "mtime": 1785403024.2286632,
-    "ast_hash": "def5f76ce4c54b744b1c8f00719716d2",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-running-balance-statement.md": {
-    "mtime": 1785403024.2287247,
-    "ast_hash": "17e2daf4254a1fe0853476a0ad6c81e9",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-07-30-use-posting-date.md": {
-    "mtime": 1785403024.2287962,
-    "ast_hash": "24d08c97ccb941b10819e9b4f0d6684d",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/specs/2026-07-24-db-seeder-and-frontend-wiring-spec.md": {
-    "mtime": 1785403024.2289083,
-    "ast_hash": "fc671b518168763e44e77ac25760c92c",
-    "semantic_hash": ""
-  },
-  ".scratch/pie-charts-others-grouping/issues/01-group-others-pie-charts.md": {
-    "mtime": 1785568361.1822958,
-    "ast_hash": "ac2861be33a64d172684a839297c9979",
-    "semantic_hash": ""
-  },
-  "src/backend/app/Providers/NativeAppServiceProvider.php": {
-    "mtime": 1785571757.1065512,
-    "ast_hash": "0aedc477131ba14aa49063cb3123f8f4",
-    "semantic_hash": ""
-  },
-  "src/backend/config/nativephp.php": {
-    "mtime": 1785579281.57017,
-    "ast_hash": "1324e708580b2f8b2e3a6f04c1efe924",
-    "semantic_hash": ""
-  },
-  "src/backend/nativephp/electron/electron-builder.mjs": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\artisan": {
+    "mtime": 1773507240.0,
+    "hash": "e66bb13691f6184c762c196427d8e685"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\scratch_query.php": {
+    "mtime": 1785228263.6864645,
+    "hash": "710a9fd2ad3f5dbf652b0d2b359c2977"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\vite.config.js": {
+    "mtime": 1773507240.0,
+    "hash": "60c40741a9c5b915a5e5542cfb23bc25"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Controller.php": {
+    "mtime": 1773507240.0,
+    "hash": "25a307335c0719bc9a91b3f7babd186d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\AccountItemController.php": {
+    "mtime": 1785474025.6914,
+    "hash": "19256eaac86c4015ab535f4d00acd1b4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\AuthController.php": {
+    "mtime": 1785833508.70238,
+    "hash": "26c44f2ef95ffedeef5fce47bc8d365f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\CityController.php": {
+    "mtime": 1784830150.2927034,
+    "hash": "69712c46533007399d849883a68dc401"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\FundAccountController.php": {
+    "mtime": 1785474025.6928997,
+    "hash": "35c5993d9eb75af207dc25b3fe0453b9"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\LedgerAccountController.php": {
+    "mtime": 1785474025.6939,
+    "hash": "a32f56ff42dae4821fd309c718d6b27a"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\LedgerAccountItemController.php": {
+    "mtime": 1785478204.3221278,
+    "hash": "9d9ce3ef96346d3b14ca87ea35942dca"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\ProjectController.php": {
+    "mtime": 1785487680.531765,
+    "hash": "fd6ef8f214e07b51808b1e620d3ad232"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Http\\Controllers\\Api\\SettingsController.php": {
+    "mtime": 1785828624.1356196,
+    "hash": "b314bacdaa77b2a008cb147d829144b0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\DeviceInfo.php": {
+    "mtime": 1785830485.4581385,
+    "hash": "e88311201465ac6844c20cf0d1f99be3"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Person.php": {
+    "mtime": 1784797413.0775907,
+    "hash": "a488431ba36f995a6b6e66d370efedee"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\PersonAddress.php": {
+    "mtime": 1784775690.2833304,
+    "hash": "ee18f84a991564ed4e99072a2573c32e"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\User.php": {
+    "mtime": 1785832129.7589035,
+    "hash": "8673f408d3ec97d1f92a42c5dff1edeb"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\AccountItem.php": {
+    "mtime": 1785400914.68512,
+    "hash": "83b1e51139a56f91000c8a64a2cd66f4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\FundAccount.php": {
+    "mtime": 1785201574.818665,
+    "hash": "6ce01ab9e03edda7df152ff967d07bcd"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\JournalEntryItem.php": {
+    "mtime": 1785308187.0636299,
+    "hash": "fd46f7aaf3ac7f584badf0c8092e0c29"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\LedgerAccount.php": {
+    "mtime": 1785400907.0732982,
+    "hash": "64c468866c77f994869af6b7e97c7229"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\LedgerAccountItem.php": {
+    "mtime": 1785475569.8175724,
+    "hash": "98cedc0fa8cc7e1cac7fcabd560f8ed5"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\Project.php": {
+    "mtime": 1785481900.0620475,
+    "hash": "1e527dc7e3247dfc982806c63c28ab5d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Accounting\\ProjectFund.php": {
+    "mtime": 1785399783.4591317,
+    "hash": "314fbb2aab9b38d6285aac7ff5a6dfc8"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Address\\City.php": {
+    "mtime": 1785803971.4245174,
+    "hash": "60bb4a8059fb97483dcf2c8347117832"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Address\\Country.php": {
+    "mtime": 1784775630.6042519,
+    "hash": "193d9c8740daac2bdee5789fb8112984"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Address\\Region.php": {
+    "mtime": 1784775582.8697493,
+    "hash": "2c86f932aa6a08e4809713d6db050e86"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Address\\State.php": {
+    "mtime": 1784775642.491294,
+    "hash": "4bb4f80b5737c900ae5b1d588c33ffb6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\Address\\SubRegion.php": {
+    "mtime": 1784775617.1427755,
+    "hash": "5cf8e0b6b6029dc0f2c44eb61a669ceb"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\HR\\Company.php": {
+    "mtime": 1784797417.6392531,
+    "hash": "475a0d9e26d19989b7c8b0142ad95091"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\HR\\PersonAffiliation.php": {
+    "mtime": 1784797427.2448373,
+    "hash": "65723450271a981457255a6d7e7abfb1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Models\\HR\\Position.php": {
+    "mtime": 1784797422.4458022,
+    "hash": "5aebe4e8d4f3ce6fde6e5ce563742cd1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Providers\\AppServiceProvider.php": {
+    "mtime": 1773507240.0,
+    "hash": "c0094f35cad6bba7636002a62186dae4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\app\\Providers\\NativeAppServiceProvider.php": {
+    "mtime": 1785836586.046568,
+    "hash": "23317dc70055316999b5aa24bccb80b6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\app.php": {
+    "mtime": 1784797493.198327,
+    "hash": "51148adc94a59f5352b0386f30b33f7b"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\providers.php": {
+    "mtime": 1773507240.0,
+    "hash": "888c810b5a4720916f07aa05dd2c2dd3"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\cache\\packages.php": {
+    "mtime": 1785836900.9930909,
+    "hash": "1c1bf1745aab5525bfb4ec58424e4f68"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\bootstrap\\cache\\services.php": {
+    "mtime": 1785836901.0265956,
+    "hash": "e0572b6f76c98cd96b167a0ea96d20a9"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\app.php": {
+    "mtime": 1785810746.9621656,
+    "hash": "b100709d18ca5570fb9fd8e3752155be"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\auth.php": {
+    "mtime": 1773507240.0,
+    "hash": "26354511ab860b301f2a3554bc388b91"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\bee.php": {
+    "mtime": 1785832407.969705,
+    "hash": "f79fc68b06fde45f42f95c2e27ce5254"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\cache.php": {
+    "mtime": 1773507240.0,
+    "hash": "022fdf20e95ddb79949954243e367003"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\cors.php": {
+    "mtime": 1785803971.4295177,
+    "hash": "4f6faf706b32c0cad9d36a13a69d4ee5"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\database.php": {
+    "mtime": 1785810352.892395,
+    "hash": "3cd69c7ecc842e4552e44eade546d91f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\filesystems.php": {
+    "mtime": 1773507240.0,
+    "hash": "bde1aa1027f0448f17348dbd93f3d7ea"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\logging.php": {
+    "mtime": 1773507240.0,
+    "hash": "d8255a5c07d3da72c7c9363f0c44bddd"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\mail.php": {
+    "mtime": 1773507240.0,
+    "hash": "18601a927b48d38337ba2077426a7d60"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\nativephp.php": {
+    "mtime": 1785836735.2164254,
+    "hash": "ba08177d562c507f29fa2294c9ee1eba"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\permission.php": {
+    "mtime": 1785832098.665921,
+    "hash": "4e1b4f3cf77c21e8b979bc511af1d4b8"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\queue.php": {
+    "mtime": 1773507240.0,
+    "hash": "f98ce92e7bf51db1fabaf8a30e12fc5a"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\sanctum.php": {
+    "mtime": 1785223763.4005854,
+    "hash": "e3887ebee464a1b2c014cb16696a2b50"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\services.php": {
+    "mtime": 1773507240.0,
+    "hash": "534a1b7af7009c373ea4ebfa18823d57"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\config\\session.php": {
+    "mtime": 1773507240.0,
+    "hash": "6d9336e9ca1183588abbce7ff7a6f29a"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\factories\\UserFactory.php": {
+    "mtime": 1785225585.5994096,
+    "hash": "ea28a9b1a4f1bd90b7b7be845bc837c0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\0001_01_01_000000_create_users_table.php": {
+    "mtime": 1773507240.0,
+    "hash": "138280095e9d19f2ba6fb830415602e2"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\0001_01_01_000001_create_cache_table.php": {
+    "mtime": 1773507240.0,
+    "hash": "f3f38b41650112a6282c8dd1f635afb0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\0001_01_01_000002_create_jobs_table.php": {
+    "mtime": 1773507240.0,
+    "hash": "ead9cce2650b36345454f85e8c0214a0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_025942_create_regions_table.php": {
+    "mtime": 1784775586.6872747,
+    "hash": "aa93789e4d01e8392fd272404c3fea66"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030017_create_sub_regions_table.php": {
+    "mtime": 1784775619.9119885,
+    "hash": "1818e847922b1974adfe5d94d7cd687c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030030_create_countries_table.php": {
+    "mtime": 1784775633.685142,
+    "hash": "1625a30552c00c7eb72e62b84157c734"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030042_create_states_table.php": {
+    "mtime": 1784775645.313298,
+    "hash": "30c35d22c27058d66089db0db709032f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030052_create_cities_table.php": {
+    "mtime": 1785833293.5413332,
+    "hash": "08d76dfd90572e4c1eca4b736b88e79a"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030114_create_people_table.php": {
+    "mtime": 1784775677.120916,
+    "hash": "6324a094ce836771bd80ce5fac255eb6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030130_create_person_addresses_table.php": {
+    "mtime": 1784775693.273432,
+    "hash": "e73dc9c137d1d7d58fb58f92e4c8a11f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030207_create_companies_table.php": {
+    "mtime": 1784775734.0393202,
+    "hash": "8717bc5e01c2b16e0b9adf37d60569b7"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030253_create_positions_table.php": {
+    "mtime": 1784775775.642885,
+    "hash": "4893b2ae0a8079a07b6bcc905ff95fec"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030316_create_person_affiliations_table.php": {
+    "mtime": 1784796743.041473,
+    "hash": "b68e5fddd92ce6ed612a165b27e71e43"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_030603_add_person_affiliations_id_to_users..php": {
+    "mtime": 1785216702.1840684,
+    "hash": "32b66cbfdb5d57be9d53d06c0d708bb6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_031053_create_fund_accounts_table.php": {
+    "mtime": 1784777375.70845,
+    "hash": "f10d6182fe4507c1a6fb2a7ab60d2295"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_031704_create_ledger_accounts_table.php": {
+    "mtime": 1784777373.8975117,
+    "hash": "ee871b6413a05e8ae5a3dfd0204d4b81"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_031708_create_account_items_table.php": {
+    "mtime": 1784777581.8616621,
+    "hash": "2772e7604f10be4b18f1f2197886d622"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_033118_create_ledger_account_items_table.php": {
+    "mtime": 1784777617.0896018,
+    "hash": "a30a9a1be7444fc4fbe16c9a5be9705e"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_23_093000_add_fund_account_id_to_ledger_account_items_table.php": {
+    "mtime": 1784799125.8698592,
+    "hash": "23756b15a3ccd2b16396f207136e78b3"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_24_000001_create_projects_table.php": {
+    "mtime": 1784827616.6971164,
+    "hash": "3b63c3b626dcdc07f136f72f160c5ef0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_24_000002_create_project_funds_table.php": {
+    "mtime": 1784827621.091059,
+    "hash": "ad017ea7f66df0cd07c1314e611f67f1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_24_000003_add_project_id_to_ledger_account_items_table.php": {
+    "mtime": 1784827624.6161788,
+    "hash": "ac7e6b79c9ec3441d676afb9b2769e43"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable.php": {
+    "mtime": 1785200165.8991327,
+    "hash": "1d8b679cfbe253e2bd5d7ed25e1dd5bd"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_28_000002_add_amount_to_fund_accounts_table.php": {
+    "mtime": 1785201569.2140675,
+    "hash": "2da58d4a1a6729732a031ca1e87c9b3c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_29_000001_add_transaction_type_to_account_items_table.php": {
+    "mtime": 1785287589.2197208,
+    "hash": "37f7fffd2ca21f573a4dad3092aaeb2f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_29_000002_create_journal_entry_items_table.php": {
+    "mtime": 1785308173.9552152,
+    "hash": "538977864319869ec7be2622f7ffa2b2"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_30_000001_add_posting_date_to_ledger_account_items_table.php": {
+    "mtime": 1785396347.8025508,
+    "hash": "38080c7f20ddd75d51a798e83da7a8dc"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_30_000002_add_date_received_to_project_funds_table.php": {
+    "mtime": 1785399773.3236947,
+    "hash": "99d3d657e105ab9d80eb0f885ddbd847"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_30_000003_add_status_to_ledger_accounts_table.php": {
+    "mtime": 1785400652.6011157,
+    "hash": "78bc7ff05b066076b9251b21c5fc7634"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_30_000004_add_status_to_account_items_table.php": {
+    "mtime": 1785400660.129809,
+    "hash": "bdc8af4ca838b4043c8c4b23e02002e5"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_30_000005_add_status_to_ledger_account_items_table.php": {
+    "mtime": 1785400667.7956398,
+    "hash": "6443ea7fd0743fb96d229506f0f85958"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_07_31_000001_add_is_paid_to_ledger_account_items_table.php": {
+    "mtime": 1785475563.894064,
+    "hash": "6d7aa7fda0c24af54c7780349c04eff2"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_08_04_155914_create_device_infos_table.php": {
+    "mtime": 1785830362.6158712,
+    "hash": "95d5e9398b963952d4684d4f1324b1da"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\migrations\\2026_08_04_162819_create_permission_tables.php": {
+    "mtime": 1785832098.6709225,
+    "hash": "d0ce4624021f5b3121a91c406a5f79f2"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\AccountingSeeder.php": {
+    "mtime": 1785402119.7910964,
+    "hash": "d898879f6722e0e3b1f341bd2d2cdb87"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\AddressSeeder.php": {
+    "mtime": 1784830065.053104,
+    "hash": "38381400683e30fb231b4ea65076632d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\DatabaseSeeder.php": {
+    "mtime": 1785832908.0826786,
+    "hash": "9e3601f875829ab5957c2c26e69fe720"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\DeviceInfoSeeder.php": {
+    "mtime": 1785830583.867576,
+    "hash": "2f2693b614b655c24114c447a6b7bb61"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\HrSeeder.php": {
+    "mtime": 1785832462.8353615,
+    "hash": "fa14e32a4d0c7c3216ea7d37f380f9ab"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\ProjectSeeder.php": {
+    "mtime": 1784829556.5423355,
+    "hash": "8842490e629230fec4c77e97e765da4c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\RolesSeeder.php": {
+    "mtime": 1785833280.0500736,
+    "hash": "39ca1155ebc63879af678a23ec7e43c1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\database\\seeders\\WorldAddressSeeder.php": {
+    "mtime": 1785486773.0247958,
+    "hash": "f651d7a68cfa53babbed4c483450edb3"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-builder.mjs": {
     "mtime": 1780030601.0,
-    "ast_hash": "67520629b655fc610533a7cefcbc8cc5",
-    "semantic_hash": ""
+    "hash": "67520629b655fc610533a7cefcbc8cc5"
   },
-  "src/backend/nativephp/electron/electron-plugin/__mocks__/electron.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron.vite.config.mjs": {
     "mtime": 1780030601.0,
-    "ast_hash": "5925d94fdda3e76a9fc1f211e2faa322",
-    "semantic_hash": ""
+    "hash": "b850b16df152899e8066b91e573838a6"
   },
-  "src/backend/nativephp/electron/electron-plugin/babel.config.js": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\eslint.config.js": {
     "mtime": 1780030601.0,
-    "ast_hash": "ad492577373b703df27f01c7193b5f0a",
-    "semantic_hash": ""
+    "hash": "379ced95fc2a5040ab16957702e05326"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/index.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\php.js": {
     "mtime": 1780030601.0,
-    "ast_hash": "453c748bd35b47d11103a15b4aaf1be5",
-    "semantic_hash": ""
+    "hash": "1f1bdfc3e6fb78e43de80ab72ac16eb4"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/Menubar.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\babel.config.js": {
     "mtime": 1780030601.0,
-    "ast_hash": "3aa29ab65178c3e3f152be05822ddfaf",
-    "semantic_hash": ""
+    "hash": "ad492577373b703df27f01c7193b5f0a"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/ambient.d.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\index.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "298a4319de509837ccdb410d4539a407",
-    "semantic_hash": ""
+    "hash": "453c748bd35b47d11103a15b4aaf1be5"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/index.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\libs\\menubar\\ambient.d.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "4e7cf50df627d64e385b4da8232ee53d",
-    "semantic_hash": ""
+    "hash": "298a4319de509837ccdb410d4539a407"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/types.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\libs\\menubar\\index.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "4330828ffce8071b6aeb63cf82b221af",
-    "semantic_hash": ""
+    "hash": "4e7cf50df627d64e385b4da8232ee53d"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/util/cleanOptions.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\libs\\menubar\\Menubar.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "5e2cd0c5da48011a3031b254ad6dd75a",
-    "semantic_hash": ""
+    "hash": "3aa29ab65178c3e3f152be05822ddfaf"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/libs/menubar/util/getWindowPosition.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\libs\\menubar\\types.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "f7c7e6a177e192c18212bee13df39ee1",
-    "semantic_hash": ""
+    "hash": "4330828ffce8071b6aeb63cf82b221af"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/libs/positioner/index.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\libs\\menubar\\util\\cleanOptions.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "ae9ce2e9b710317bbe672b49af271ff7",
-    "semantic_hash": ""
+    "hash": "5e2cd0c5da48011a3031b254ad6dd75a"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/preload/index.mts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\libs\\menubar\\util\\getWindowPosition.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "6d43b3c6e42e476b5081ad00f2fcdb5f",
-    "semantic_hash": ""
+    "hash": "f7c7e6a177e192c18212bee13df39ee1"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/preload/livewire-dispatcher.js": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\libs\\positioner\\index.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "35c28775e8160bf88b74d71fd1b336ed",
-    "semantic_hash": ""
+    "hash": "ae9ce2e9b710317bbe672b49af271ff7"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/ProcessResult.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\preload\\livewire-dispatcher.js": {
     "mtime": 1780030601.0,
-    "ast_hash": "cc701106378a9da89e8ceadde75ae0c6",
-    "semantic_hash": ""
+    "hash": "35c28775e8160bf88b74d71fd1b336ed"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "f4ca9f59a8f9f594cddb80a376c5e130",
-    "semantic_hash": ""
+    "hash": "f4ca9f59a8f9f594cddb80a376c5e130"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/alert.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\childProcess.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "cc1b8591fc96353dcece7dbefffc557c",
-    "semantic_hash": ""
+    "hash": "a7baaf2b4eee6e8817a72170b654c1c1"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/app.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\index.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "613d6aeede95c2d0ffda6eaac656c772",
-    "semantic_hash": ""
+    "hash": "fa1cddbc8151a43d5f6b21562bbf477a"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/autoUpdater.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\php.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "e6fb0853689c00753629c163db15c2f5",
-    "semantic_hash": ""
+    "hash": "4695a87c08eb851639f412d33940a8e2"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/broadcasting.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\ProcessResult.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "32763d7b9f934e978c79b9c998ed0caf",
-    "semantic_hash": ""
+    "hash": "cc701106378a9da89e8ceadde75ae0c6"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/childProcess.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\state.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "d292eb03224892282ec52dc808c0e48e",
-    "semantic_hash": ""
+    "hash": "c14ac8d7cb941a81546c6574a2e66695"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/clipboard.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\utils.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "c04ef9e2baa18b022cf633f408954c7b",
-    "semantic_hash": ""
+    "hash": "7361662d12c758ef64732aa13495e782"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/contextMenu.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\webPreferences.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "cb258b6c9d29ffbbc05df8c6212c5e7d",
-    "semantic_hash": ""
+    "hash": "1997bd3587b8b27ab2cc3d598f4691d9"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/debug.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\alert.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "1c94e06ed35b795535bc84f0a179d24a",
-    "semantic_hash": ""
+    "hash": "cc1b8591fc96353dcece7dbefffc557c"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/dialog.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\app.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "8c774f9f15b9cf2b59486b28d91d178d",
-    "semantic_hash": ""
+    "hash": "613d6aeede95c2d0ffda6eaac656c772"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/dock.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\autoUpdater.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "419448828783283d2a00ffd08090ca0e",
-    "semantic_hash": ""
+    "hash": "e6fb0853689c00753629c163db15c2f5"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/globalShortcut.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\broadcasting.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "3f8e6eb43e1206d90a2ee824650eaae6",
-    "semantic_hash": ""
+    "hash": "32763d7b9f934e978c79b9c998ed0caf"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/helper/index.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\childProcess.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "36ddb62543643fdc20636c2617f8a41d",
-    "semantic_hash": ""
+    "hash": "d292eb03224892282ec52dc808c0e48e"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/menu.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\clipboard.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "f0516378d6a8df52c8a059c1b22e455d",
-    "semantic_hash": ""
+    "hash": "c04ef9e2baa18b022cf633f408954c7b"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/menuBar.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\contextMenu.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "ae8d853a3da4e97ddffdb42a8749252e",
-    "semantic_hash": ""
+    "hash": "cb258b6c9d29ffbbc05df8c6212c5e7d"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/middleware.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\debug.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "058ba9a9ba100630a16bb7d809d7314b",
-    "semantic_hash": ""
+    "hash": "1c94e06ed35b795535bc84f0a179d24a"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/notification.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\dialog.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "a83abc58febe878c0a80a8786f815ee1",
-    "semantic_hash": ""
+    "hash": "8c774f9f15b9cf2b59486b28d91d178d"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/powerMonitor.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\dock.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "58265138376c581742e4ce9c516c64bb",
-    "semantic_hash": ""
+    "hash": "419448828783283d2a00ffd08090ca0e"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/process.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\globalShortcut.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "81f4ed7ba612da68a19c618f3273f77f",
-    "semantic_hash": ""
+    "hash": "3f8e6eb43e1206d90a2ee824650eaae6"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/progressBar.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\menu.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "9bda0373cad4f7f52704f539136e68f8",
-    "semantic_hash": ""
+    "hash": "f0516378d6a8df52c8a059c1b22e455d"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/screen.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\menuBar.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "d3fd8a305331c9eb9968dff7a525b373",
-    "semantic_hash": ""
+    "hash": "ae8d853a3da4e97ddffdb42a8749252e"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/settings.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\middleware.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "4110b5251c90a480eb1017454d363632",
-    "semantic_hash": ""
+    "hash": "058ba9a9ba100630a16bb7d809d7314b"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/shell.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\notification.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "7c9f566679fb1cbd7eab7c00ba724b22",
-    "semantic_hash": ""
+    "hash": "a83abc58febe878c0a80a8786f815ee1"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/system.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\powerMonitor.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "946d12184dce93385e91c4face5e30f1",
-    "semantic_hash": ""
+    "hash": "58265138376c581742e4ce9c516c64bb"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/api/window.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\process.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "2829f1a9be9ae84a4cc3b431b76bfdda",
-    "semantic_hash": ""
+    "hash": "81f4ed7ba612da68a19c618f3273f77f"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/childProcess.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\progressBar.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "a7baaf2b4eee6e8817a72170b654c1c1",
-    "semantic_hash": ""
+    "hash": "9bda0373cad4f7f52704f539136e68f8"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/index.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\screen.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "fa1cddbc8151a43d5f6b21562bbf477a",
-    "semantic_hash": ""
+    "hash": "d3fd8a305331c9eb9968dff7a525b373"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/php.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\settings.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "4695a87c08eb851639f412d33940a8e2",
-    "semantic_hash": ""
+    "hash": "4110b5251c90a480eb1017454d363632"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/state.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\shell.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "c14ac8d7cb941a81546c6574a2e66695",
-    "semantic_hash": ""
+    "hash": "7c9f566679fb1cbd7eab7c00ba724b22"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/utils.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\system.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "7361662d12c758ef64732aa13495e782",
-    "semantic_hash": ""
+    "hash": "946d12184dce93385e91c4face5e30f1"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/server/webPreferences.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\window.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "1997bd3587b8b27ab2cc3d598f4691d9",
-    "semantic_hash": ""
+    "hash": "2829f1a9be9ae84a4cc3b431b76bfdda"
   },
-  "src/backend/nativephp/electron/electron-plugin/tests/api.test.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\server\\api\\helper\\index.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "e22dbc3605802438c467abfad4326208",
-    "semantic_hash": ""
+    "hash": "36ddb62543643fdc20636c2617f8a41d"
   },
-  "src/backend/nativephp/electron/electron-plugin/tests/mocking.test.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\tests\\api.test.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "b36b18782e80db723336aef0ace43ff5",
-    "semantic_hash": ""
+    "hash": "e22dbc3605802438c467abfad4326208"
   },
-  "src/backend/nativephp/electron/electron-plugin/tests/setup.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\tests\\mocking.test.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "03007d86169cfdca297eea285e135efa",
-    "semantic_hash": ""
+    "hash": "b36b18782e80db723336aef0ace43ff5"
   },
-  "src/backend/nativephp/electron/electron-plugin/tests/utils.test.ts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\tests\\setup.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "9dc9caa3023a053be2a7e2d2b251e875",
-    "semantic_hash": ""
+    "hash": "03007d86169cfdca297eea285e135efa"
   },
-  "src/backend/nativephp/electron/electron-plugin/tsconfig.json": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\tests\\utils.test.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "ddb00f78db3146c5cdb4cd86e1d44949",
-    "semantic_hash": ""
+    "hash": "9dc9caa3023a053be2a7e2d2b251e875"
   },
-  "src/backend/nativephp/electron/electron-plugin/vitest.config.mts": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\__mocks__\\electron.ts": {
     "mtime": 1780030601.0,
-    "ast_hash": "2610a0caa65bdb383b0a17ddef424b35",
-    "semantic_hash": ""
+    "hash": "5925d94fdda3e76a9fc1f211e2faa322"
   },
-  "src/backend/nativephp/electron/electron.vite.config.mjs": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\src\\main\\index.js": {
     "mtime": 1780030601.0,
-    "ast_hash": "b850b16df152899e8066b91e573838a6",
-    "semantic_hash": ""
+    "hash": "a624c663af11f9345bf4baeff24fe4af"
   },
-  "src/backend/nativephp/electron/eslint.config.js": {
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\index.php": {
+    "mtime": 1773507240.0,
+    "hash": "d8eda274115af5fd2aaa8230af329ef7"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\4JxojC4t.js": {
+    "mtime": 1785834536.481799,
+    "hash": "9f92fd10e6608d8e4f85d01d09430df9"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\B5wQoAry.js": {
+    "mtime": 1785834536.4727976,
+    "hash": "c22ab9b405e23a056c53bf5f7999c2e5"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\B9GDIZ0P.js": {
+    "mtime": 1785834536.4832995,
+    "hash": "42e0b4bdc800b935024536313d610a8a"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\Bg1Lx8g6.js": {
+    "mtime": 1785834536.4787986,
+    "hash": "2368cb986d126058338dfa2b81550bc2"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\BoOoSHS6.js": {
+    "mtime": 1785834536.4848,
+    "hash": "6ee30d62a5438e261e84c4f0db28de46"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\Bpq1X59H.js": {
+    "mtime": 1785834536.4993021,
+    "hash": "a92a90012469c8955ef2387afb580008"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\BqAOuXmk.js": {
+    "mtime": 1785834536.4807987,
+    "hash": "04aac39f30afec79524839b11e7d5ba0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\BuDsHriU.js": {
+    "mtime": 1785834536.469297,
+    "hash": "a67d3835d9aa5cbeca57b0de16600ee4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\BvHsZ7hr.js": {
+    "mtime": 1785834536.4747975,
+    "hash": "3615e5dcac8034e848b349f309aa8ef4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\BZnj7tNU.js": {
+    "mtime": 1785834536.4682968,
+    "hash": "64139ed44b73715e6ea88ee2e6a5d586"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\CC7s5n-Z.js": {
+    "mtime": 1785834536.4772985,
+    "hash": "1aca6b7ea438f62f592e770f48c90b77"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\CGdRmF4e.js": {
+    "mtime": 1785834536.4652963,
+    "hash": "7574a51bc2b21726b9d9cd7bb652b043"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\CjgABXhi.js": {
+    "mtime": 1785834536.4637966,
+    "hash": "a0c10c290f4f505098e51ff80820797d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\CNs_Ozdc.js": {
+    "mtime": 1785834536.4712973,
+    "hash": "28c9c7cf5cf10373734d0a1bd3472966"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\CpcEjq-T.js": {
+    "mtime": 1785834536.4502945,
+    "hash": "15d39feb504a7ca7c42f0514232821b1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\CrU7_iTQ.js": {
+    "mtime": 1785834536.4567966,
+    "hash": "f3c8022861b920a2fcb6bc1371a19ae1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\CU8t30rq.js": {
+    "mtime": 1785834536.4943016,
+    "hash": "3995735702f0f9072b480bcc2607779c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\CXCJro8I.js": {
+    "mtime": 1785834536.4622953,
+    "hash": "a4577d6f59961b1e8664e6183ae011b4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\dbWoGNoj.js": {
+    "mtime": 1785834536.4517937,
+    "hash": "e3c1a7effa0b5b986e20c4fa1882c49e"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\DE9TVaJh.js": {
+    "mtime": 1785834536.459796,
+    "hash": "4df7d8e0973a71fbc88da1a48ba66948"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\DfCc2Ccv.js": {
+    "mtime": 1785834536.475798,
+    "hash": "99c45144d16db7280176186ef847d330"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\DFgJr8zN.js": {
+    "mtime": 1785834536.458795,
+    "hash": "045dc851830d9247270ad761202b3ea4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\DgFF3Gi-.js": {
+    "mtime": 1785834536.497802,
+    "hash": "ffb84a16dcd3f764a00747126a2231d9"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\DHFkkb_L.js": {
+    "mtime": 1785834536.4958014,
+    "hash": "251364c487188fd2d8c203739b52c498"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\DJY6MLtW.js": {
+    "mtime": 1785834536.4467928,
+    "hash": "b716f8d02814b8d9937c3ee4a269f7e6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\DmWRfCrd.js": {
+    "mtime": 1785834536.4667974,
+    "hash": "ddd8236eb5d19fa1d75c56035827a40d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\Dqlj7jrp.js": {
+    "mtime": 1785834536.4868004,
+    "hash": "fe6b58727a30d13e23c2112f1943f4db"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\Dq_Pq3_k.js": {
+    "mtime": 1785834536.4437926,
+    "hash": "e99ba7b766297c1e1397d5996e805cef"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\DVRUVuMS.js": {
+    "mtime": 1785834536.4337914,
+    "hash": "ad124fc53cdda9e37e7892b62d12b062"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\Dwu5kNcF.js": {
+    "mtime": 1785834536.453294,
+    "hash": "d7aef78aadcd320ad8a93767c0885d1d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\Dzs0phUr.js": {
+    "mtime": 1785834536.4612958,
+    "hash": "d8e5c7572089bf4f9d1f53ab95ea64fe"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\KkVnuh2l.js": {
+    "mtime": 1785834536.4372926,
+    "hash": "d0a63af30be8a92fdf75c69b089987ca"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\scZW-v-l.js": {
+    "mtime": 1785834536.4552946,
+    "hash": "fff3688d8e7320c03df0c970ff2a55db"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\TiRVCIx6.js": {
+    "mtime": 1785834536.440792,
+    "hash": "ceae9e334f24b1412882757419948b94"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\UWEIBm_-.js": {
+    "mtime": 1785834536.4452934,
+    "hash": "5d6f69e5559ab3bd6b245a50a127fd91"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\_nuxt\\YX-VhRw7.js": {
+    "mtime": 1785834536.441792,
+    "hash": "5664afd9be62bfc7b48511da7ecd7268"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\resources\\js\\app.js": {
+    "mtime": 1773507240.0,
+    "hash": "1ccf2b9101110f40ecaab1608a6f91cf"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\resources\\js\\bootstrap.js": {
+    "mtime": 1773507240.0,
+    "hash": "78f909acc19aea4717eddca5a87c1ba3"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\resources\\views\\welcome.blade.php": {
+    "mtime": 1773507240.0,
+    "hash": "f9f90b3bab40fd1d366e9b54466deac7"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\routes\\api.php": {
+    "mtime": 1785828629.587788,
+    "hash": "6289d2fd74f76de00e9fae42fc8899cf"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\routes\\console.php": {
+    "mtime": 1773507240.0,
+    "hash": "3c6ce2e6d16444282b24a9aa63885563"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\routes\\web.php": {
+    "mtime": 1785803971.544037,
+    "hash": "4313e70fd26febf1df66796b815cd756"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\tests\\TestCase.php": {
+    "mtime": 1773507240.0,
+    "hash": "7e567dc27e68d5b57bae16af07f68907"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\tests\\Feature\\AuthTest.php": {
+    "mtime": 1785225589.1565292,
+    "hash": "520d8c2adce588163f62bd703c89ff74"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\tests\\Feature\\ExampleTest.php": {
+    "mtime": 1773507240.0,
+    "hash": "0f4d91c9c5bbcd4e2f46cf885acb7fb6"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\tests\\Feature\\LedgerAccountItemTest.php": {
+    "mtime": 1785476437.662848,
+    "hash": "543c8888541309fee393d061f6d4af6e"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\tests\\Unit\\ExampleTest.php": {
+    "mtime": 1773507240.0,
+    "hash": "3f679e9508c834f0ad95943455fcd836"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\capacitor.config.ts": {
+    "mtime": 1784882766.2990005,
+    "hash": "73cf7a55fc28e98af139d1460c1793b0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\nuxt.config.ts": {
+    "mtime": 1785834354.645498,
+    "hash": "eaf2c61445d181ccf4509f0464e369b1"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\app.vue": {
+    "mtime": 1785208358.288016,
+    "hash": "fbcfe5cd0eb420deae7eba9319dd71d7"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\KpiCard.vue": {
+    "mtime": 1785474025.6973999,
+    "hash": "285fd28e270348d0f19458fe5f799da4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\Modal.vue": {
+    "mtime": 1785206974.1866744,
+    "hash": "451474194f87563742ba701027186c84"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ProjectFormModal.vue": {
+    "mtime": 1785803971.5450382,
+    "hash": "a3f5a90b6f96998a395d6da54a98f8c7"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\dashboard\\FundExpensePieChart.vue": {
+    "mtime": 1785803971.5465384,
+    "hash": "985077ce60f8f4f7be5fb97b6464f176"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\dashboard\\FundSourceLineChart.vue": {
+    "mtime": 1785803971.5475388,
+    "hash": "482d968c196142506144c9a6c1d4d7a3"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\dashboard\\LedgerExpensePieChart.vue": {
+    "mtime": 1785803971.548538,
+    "hash": "d15c9311a367096376889de236066b43"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\dashboard\\ProjectMonthlyBarChart.vue": {
+    "mtime": 1785803971.5495386,
+    "hash": "3f759e0f0637589fcda06dc5521e7dca"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Badge.vue": {
+    "mtime": 1785130351.8088138,
+    "hash": "a88b340707e1717e4c4104ee0edec5be"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Button.vue": {
+    "mtime": 1785139647.7648604,
+    "hash": "10281af7c252cbdf091ec18b9c33686b"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Card.vue": {
+    "mtime": 1785131464.8343556,
+    "hash": "e93dc0e5d0031053926df860894ee0a0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\DataTable.vue": {
+    "mtime": 1785393005.3621218,
+    "hash": "ab1e75cc0e6c7ef45a5f97c65fa26722"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Input.vue": {
+    "mtime": 1785312492.9074526,
+    "hash": "45155854d6396678930547cce594f446"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\ProgressBar.vue": {
+    "mtime": 1785391334.4782352,
+    "hash": "59e3dd4fce18f731fa23244287d71acb"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\StatusPill.vue": {
+    "mtime": 1785401114.4369328,
+    "hash": "92735ff29d3164aca3c7f8fe3cccaa98"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\components\\ui\\Tabs.vue": {
+    "mtime": 1785140303.9835587,
+    "hash": "b8c77af7bd021e155cf5619118dcc383"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useAccounting.ts": {
+    "mtime": 1785828455.9107165,
+    "hash": "c8a3ebd1c6b616b442b5c4c5b53c7108"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useApi.ts": {
+    "mtime": 1785824325.3503642,
+    "hash": "d0518561c4f6ff7b4de42ddbdf675fad"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useAuth.ts": {
+    "mtime": 1785833521.2540803,
+    "hash": "e6ef4477a554e58fe4065a53da5a8594"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useCurrency.ts": {
+    "mtime": 1785483656.9388475,
+    "hash": "fd59a3a4a0d5fd347b62ba9d6ff5757b"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useDate.ts": {
+    "mtime": 1785394373.9675827,
+    "hash": "dbd2238d24e10df4b5caa0dbb945f6da"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useProjects.ts": {
+    "mtime": 1785487692.8483036,
+    "hash": "b1b77f733e9a1ddae99e80aea6cd1821"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\composables\\useTheme.ts": {
+    "mtime": 1784799204.704381,
+    "hash": "e8a5bc528e866277f7e234260e53b9d0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\layouts\\auth.vue": {
+    "mtime": 1785315034.6476963,
+    "hash": "2ada33f32d170e2055a8646322d70068"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\layouts\\default.vue": {
+    "mtime": 1785822823.053933,
+    "hash": "4d92e36c851181850a324d3f76923853"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\middleware\\auth.global.ts": {
+    "mtime": 1785225642.749106,
+    "hash": "73d1aeac5b757853e3b366c908542a5d"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\index.vue": {
+    "mtime": 1785822817.194415,
+    "hash": "2cbf2dc93c6b1010804fcd4270e83e9f"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\ledgers.vue": {
+    "mtime": 1785822267.268268,
+    "hash": "af9ce0e993e0e678c04dffaf9b4607ea"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\login.vue": {
+    "mtime": 1785833667.9377823,
+    "hash": "4e3e20d6d036aeab04f4c8f8b7cd4966"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\register.vue": {
+    "mtime": 1785206847.5634968,
+    "hash": "39c290d51118f71da244f016c888f0fe"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\settings.vue": {
+    "mtime": 1785833724.2303991,
+    "hash": "826072ec058615b468026f9df7296f4c"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\management\\accounts.vue": {
+    "mtime": 1785485581.3563337,
+    "hash": "58b7e6b2d33524beaa76770433662eb0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\management\\funds.vue": {
+    "mtime": 1785828983.3760858,
+    "hash": "a9869604bf921d212e7166fcf63a617e"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\management\\items.vue": {
+    "mtime": 1785484728.485183,
+    "hash": "920028e0c8bd7cf6ba51f05cc16f7157"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\management\\journal.vue": {
+    "mtime": 1785483668.8916912,
+    "hash": "db7eed32496282c5d33e9887abd8e4ae"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\project\\[id].vue": {
+    "mtime": 1785488184.5460458,
+    "hash": "f0040468de3e6fa1d4eca69bd41aa44a"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\projects\\index.vue": {
+    "mtime": 1785395079.4632437,
+    "hash": "668ac10646d26b3b5e997d36ce06c8d4"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\pages\\projects\\[id].vue": {
+    "mtime": 1785138423.0797486,
+    "hash": "b94e38c9485137f473f48f94d504daf0"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\app\\plugins\\ionic.client.ts": {
+    "mtime": 1785208363.13671,
+    "hash": "2faa1c70c727987e8d009b5e7efcf067"
+  },
+  "C:\\laragon\\www\\account-ant\\AGENTS.md": {
+    "mtime": 1785803971.1574714,
+    "hash": "1ead7e5fc65f780c30ef359c05eccee4"
+  },
+  "C:\\laragon\\www\\account-ant\\CLAUDE.md": {
+    "mtime": 1785803971.1584713,
+    "hash": "82efb97a359f5c7290bf2513d14686be"
+  },
+  "C:\\laragon\\www\\account-ant\\LEAN-CTX.md": {
+    "mtime": 1785803971.1589718,
+    "hash": "16c9b1c8f64aee988e06b3cbcad2de6d"
+  },
+  "C:\\laragon\\www\\account-ant\\README.md": {
+    "mtime": 1784789754.3723357,
+    "hash": "97f3d56bb728b41c5397a7c57991f27c"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\glossary.md": {
+    "mtime": 1785308125.173059,
+    "hash": "70ac3271812563d9c75620b18cf96c06"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0001-accounts-payable-fund-deduction-rule.md": {
+    "mtime": 1785475560.0086432,
+    "hash": "c586b78f586d6a595c83294e231c29cf"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0001-project-ledger-workflow.md": {
+    "mtime": 1785138253.317041,
+    "hash": "5aa4231d1c7eb608c43d46fc89c9133d"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0002-posted-ledgers-tabular-view-and-navigation.md": {
+    "mtime": 1785479186.1215923,
+    "hash": "5caf73fe7db6a6b875a494ad98ebec4b"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0002-standardized-datatable-component-architecture.md": {
+    "mtime": 1785134352.6949935,
+    "hash": "7beacf695349a7b3e081453afa8fc80f"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0003-standardized-button-component-architecture.md": {
+    "mtime": 1785139597.337631,
+    "hash": "296aeaceab3212fd9d67a1496888ae57"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0004-standardized-tabs-component-architecture.md": {
+    "mtime": 1785140269.1254377,
+    "hash": "1043a6b1e4971d48885e56779c28d182"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0005-project-budget-vs-expenses-dashboard.md": {
+    "mtime": 1785140530.4293287,
+    "hash": "e7555c6380d9d45fcf1f109519153b9b"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0006-decoupling-ledger-accounts-and-linking-account-items.md": {
+    "mtime": 1785200120.7390878,
+    "hash": "cd44314b8e2a35d567475834ad723dd7"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0007-project-budgeting-cards-and-analytics-dashboard.md": {
+    "mtime": 1785201028.5173066,
+    "hash": "34eda78da9462380d5fd7c74267c3bc1"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0008-fund-account-amount-and-search-filtering.md": {
+    "mtime": 1785201533.1243043,
+    "hash": "e9947da1c74c2c79735884d0e3012d6f"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0009-ionic-core-web-component-hydration-and-app-visibility.md": {
+    "mtime": 1785206267.1101503,
+    "hash": "49e9555d2ef217639153058178aac874"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0010-user-authentication-and-person-delegation.md": {
+    "mtime": 1785216652.9115129,
+    "hash": "2a6a35b81c061cfc7b657be8ba81d034"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0011-account-item-transaction-types-and-ledger-account-reverse-selection.md": {
+    "mtime": 1785287511.716285,
+    "hash": "8b1026da2dde06495ef903913c7f8078"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0012-printable-project-balance-sheet-architecture.md": {
+    "mtime": 1785288919.2376175,
+    "hash": "ee5a971166824f506359db1a04573700"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0013-project-general-ledger-statement-and-date-formatting.md": {
+    "mtime": 1785289454.7269833,
+    "hash": "3146a9cc898e46c0f038aec3d651eb27"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0014-state-city-address-selection-and-projects-sidebar-navigation.md": {
+    "mtime": 1785290272.7835557,
+    "hash": "57ee7650c22d450d694330fe9263320e"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0015-itemized-journal-entry-breakdown.md": {
+    "mtime": 1785307361.501305,
+    "hash": "88f67495768af8829345143ba218525e"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0016-backend-itemized-journal-entry-database-architecture.md": {
+    "mtime": 1785308115.6226256,
+    "hash": "10fb460aeafd57c15c47973c8b7c97c7"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0017-project-budget-as-initial-ledger-allocation.md": {
+    "mtime": 1785481890.7450883,
+    "hash": "6ccc74e7b5f642999608cb495c6c15af"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0018-multi-item-account-creation-modal-on-card-click.md": {
+    "mtime": 1785485555.3972702,
+    "hash": "a4900702745fdea18eab069c2c9000d9"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0019-disable-already-selected-project-fund-sources.md": {
+    "mtime": 1785486572.868034,
+    "hash": "0a5a8306a6d8c1dc42a8c196ab7f1bdd"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\ADR\\0020-remove-initial-balance-and-budget-allocation-on-fund-sources.md": {
+    "mtime": 1785487570.749758,
+    "hash": "9916954741b18e9fe8b8a2c92b46c574"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\agents\\domain.md": {
+    "mtime": 1784871404.0224633,
+    "hash": "35089ed6a70a657c91fd100ade31b642"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\agents\\issue-tracker.md": {
+    "mtime": 1784871400.427332,
+    "hash": "3cd8509285524d31a33279b8cb0870e5"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\agents\\wire-frontend-to-backend-prd.md": {
+    "mtime": 1785225438.245432,
+    "hash": "c6f0d151252e9fd6bada69b5b675f7d0"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-27-responsive-visually-appealing-tabs.md": {
+    "mtime": 1785140279.104189,
+    "hash": "77e65a1aaaf7acb1aeaa0615e1a01d62"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-27-standardize-ionic-buttons.md": {
+    "mtime": 1785139608.2469316,
+    "hash": "21c515a1d063056493836352c1e4c220"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-27-standardized-table-component.md": {
+    "mtime": 1785134512.8268442,
+    "hash": "0d4584707db5f4060c27271a4779b02e"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-28-fund-account-amount-and-search-filtering.md": {
+    "mtime": 1785201544.0742276,
+    "hash": "d3a10cbbb4021e2ecd0bb5093053149f"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-28-ledger-accounts-and-items-refactor.md": {
+    "mtime": 1785200134.3805656,
+    "hash": "876b6a06112c40045b68166cbb39caed"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-28-project-budgeting-cards-and-analytics-dashboard.md": {
+    "mtime": 1785201034.2473607,
+    "hash": "878d077a3821e4a2b9a0f0b852f2aca7"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-28-wire-frontend-to-backend.md": {
+    "mtime": 1785225429.0329766,
+    "hash": "8bcd8d5e1fb87cec84995ddf6f319e92"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-credit-debit-items-and-journal-auto-fill.md": {
+    "mtime": 1785287443.6791534,
+    "hash": "ec7d5b4343098e56422c58ebb75f98c9"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-hide-navbars-logged-out-and-fix-inputs.md": {
+    "mtime": 1785312464.100108,
+    "hash": "0b4a9fce16828b39f1e24540bb8f5e61"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-itemized-journal-entries-backend.md": {
+    "mtime": 1785307735.1798117,
+    "hash": "5e416f5cf259218eddf28dc1f47ffa98"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-journal-entry-itemized-modal-click.md": {
+    "mtime": 1785310308.1237333,
+    "hash": "20c8bafecf1449c3915c4c9ee37cf7ee"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-project-accounting-ledger-print.md": {
+    "mtime": 1785289425.5711148,
+    "hash": "6c5b8ce6bbb8bac37ee6594e36f89435"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-29-project-balance-sheet-printing.md": {
+    "mtime": 1785288873.186577,
+    "hash": "d4fbd59dac96ec0c4c48835dce4375da"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-fund-source-line-chart-accounting.md": {
+    "mtime": 1785398722.1664734,
+    "hash": "96e8f3ea09ff42c6f5f5f86e25371f02"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-fund-source-line-chart.md": {
+    "mtime": 1785395514.9781566,
+    "hash": "20a2da30a7fc370db3034608be9e81a7"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-line-chart-posting-date.md": {
+    "mtime": 1785398319.2713027,
+    "hash": "de125d10affcc4f0262d38986b9abd84"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-modal-post-journal-ledger-items.md": {
+    "mtime": 1785397815.3822873,
+    "hash": "77b5d005bf85e41ba5c402b5a854eeb7"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-posting-date-database.md": {
+    "mtime": 1785396418.3319933,
+    "hash": "ab2b31c5987f29e699e79b672fece0ed"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-project-fund-date-received.md": {
+    "mtime": 1785399824.290525,
+    "hash": "fba7e107e59f6a0b5fa0a66a4f2e129f"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-project-id-posting-date.md": {
+    "mtime": 1785395932.3763514,
+    "hash": "def5f76ce4c54b744b1c8f00719716d2"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-running-balance-statement.md": {
+    "mtime": 1785399325.0179627,
+    "hash": "17e2daf4254a1fe0853476a0ad6c81e9"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\plans\\2026-07-30-use-posting-date.md": {
+    "mtime": 1785398197.1868527,
+    "hash": "24d08c97ccb941b10819e9b4f0d6684d"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\specs\\2026-07-24-db-seeder-and-frontend-wiring-spec.md": {
+    "mtime": 1784829514.6343243,
+    "hash": "fc671b518168763e44e77ac25760c92c"
+  },
+  "C:\\laragon\\www\\account-ant\\docs\\superpowers\\specs\\2026-08-04-fund-account-kpi-reactivity-design.md": {
+    "mtime": 1785822224.9029593,
+    "hash": "f0d619e07ff1a87d18b2a219e31f47e7"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\README.md": {
+    "mtime": 1773507240.0,
+    "hash": "c9fd29cc7c9057820aebcdcd6bbddca3"
+  },
+  "C:\\laragon\\www\\account-ant\\src\\backend\\nativephp\\electron\\electron-plugin\\src\\libs\\positioner\\README.md": {
     "mtime": 1780030601.0,
-    "ast_hash": "379ced95fc2a5040ab16957702e05326",
-    "semantic_hash": ""
+    "hash": "e44ca9fbf36946ae0e629c889059af4c"
   },
-  "src/backend/nativephp/electron/package.json": {
-    "mtime": 1785579375.0,
-    "ast_hash": "2813f97f53f20d4e1b4cbb575d11a399",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\200.html": {
+    "mtime": 1785834536.400785,
+    "hash": "340848326bb52d1d883e5348eecd0d6d"
   },
-  "src/backend/nativephp/electron/php.js": {
-    "mtime": 1780030601.0,
-    "ast_hash": "1f1bdfc3e6fb78e43de80ab72ac16eb4",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\404.html": {
+    "mtime": 1785834536.3987844,
+    "hash": "340848326bb52d1d883e5348eecd0d6d"
   },
-  "src/backend/nativephp/electron/src/main/index.js": {
-    "mtime": 1780030601.0,
-    "ast_hash": "a624c663af11f9345bf4baeff24fe4af",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\index.html": {
+    "mtime": 1785834536.4242892,
+    "hash": "ef2c2afe209318f8d6050d0216dc89f0"
   },
-  "src/backend/nativephp/electron/electron-plugin/src/libs/positioner/README.md": {
-    "mtime": 1780030601.0,
-    "ast_hash": "e44ca9fbf36946ae0e629c889059af4c",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\robots.txt": {
+    "mtime": 1785834536.397284,
+    "hash": "243b03ecba82dde9612cd5163145a86d"
   },
-  "src/backend/public/_nuxt/-PIJGQ7c.js": {
-    "mtime": 1785574663.7539659,
-    "ast_hash": "d2503e4cc702b89a5c887d71609aaa01",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\ledgers\\index.html": {
+    "mtime": 1785834536.4027865,
+    "hash": "fb451a45273f0da6246fc23abd5f0664"
   },
-  "src/backend/public/_nuxt/B3vfnPtG.js": {
-    "mtime": 1785574663.7604117,
-    "ast_hash": "3878088cabf3dbf44fa20a490d955a21",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\login\\index.html": {
+    "mtime": 1785834536.4052856,
+    "hash": "009e276611824191a8ec6a874639a79b"
   },
-  "src/backend/public/_nuxt/B5wQoAry.js": {
-    "mtime": 1785574663.7630382,
-    "ast_hash": "c22ab9b405e23a056c53bf5f7999c2e5",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\management\\accounts\\index.html": {
+    "mtime": 1785834536.4162889,
+    "hash": "126c79039154b15121f8c2d286a37350"
   },
-  "src/backend/public/_nuxt/B6EISGKZ.js": {
-    "mtime": 1785574663.7643943,
-    "ast_hash": "cc26f03a6804fab0845b8e131d55700f",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\management\\funds\\index.html": {
+    "mtime": 1785834536.4137876,
+    "hash": "1660ddfe0e20f50df2e4e4e99c76b0f6"
   },
-  "src/backend/public/_nuxt/B8vwnY0B.js": {
-    "mtime": 1785574663.7551723,
-    "ast_hash": "2066c22c4c4f12c3977d44e14f63b32c",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\management\\items\\index.html": {
+    "mtime": 1785834536.4112868,
+    "hash": "fb451a45273f0da6246fc23abd5f0664"
   },
-  "src/backend/public/_nuxt/BB6oloP6.js": {
-    "mtime": 1785574663.7524781,
-    "ast_hash": "a24ae56382d5833cad1c74672c1a31ca",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\management\\journal\\index.html": {
+    "mtime": 1785834536.4087873,
+    "hash": "fb451a45273f0da6246fc23abd5f0664"
   },
-  "src/backend/public/_nuxt/BWb83geT.js": {
-    "mtime": 1785574663.7536843,
-    "ast_hash": "5a655aa5b00389c5bc9ddded9698989e",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\projects\\index.html": {
+    "mtime": 1785834536.4217887,
+    "hash": "009e276611824191a8ec6a874639a79b"
   },
-  "src/backend/public/_nuxt/Ba612R5i.js": {
-    "mtime": 1785574663.7687135,
-    "ast_hash": "b7f2094ea710f42729a9cb80549eef41",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\register\\index.html": {
+    "mtime": 1785834536.4267905,
+    "hash": "5a6f03893d5f3b81c38e04358525d6ef"
   },
-  "src/backend/public/_nuxt/Bpq1X59H.js": {
-    "mtime": 1785574663.7682538,
-    "ast_hash": "a92a90012469c8955ef2387afb580008",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\backend\\public\\settings\\index.html": {
+    "mtime": 1785834536.4192882,
+    "hash": "5a6f03893d5f3b81c38e04358525d6ef"
   },
-  "src/backend/public/_nuxt/BqkHFbAB.js": {
-    "mtime": 1785574663.7582679,
-    "ast_hash": "fa2d5feadf9b8de3ea4d291fb359417e",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\README.md": {
+    "mtime": 1784414489.0,
+    "hash": "884261092c8d74ec62c5c0860a38bc9d"
   },
-  "src/backend/public/_nuxt/BvBRbYif.js": {
-    "mtime": 1785574663.7531154,
-    "ast_hash": "c9c9e1ef2da113e7cadcc206d26ea981",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/C8u1LR6J.js": {
-    "mtime": 1785574663.7689488,
-    "ast_hash": "11e9914403a78f9f96a53170f147390f",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CFINTcER.js": {
-    "mtime": 1785574663.7627685,
-    "ast_hash": "3d0298d82a99c134354bf7b84978542b",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CIUYVo8-.js": {
-    "mtime": 1785574663.767277,
-    "ast_hash": "d59f5a00f9178cc3e99e4d85e20b4301",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CKDpSzXq.js": {
-    "mtime": 1785574663.7546103,
-    "ast_hash": "c7895d77a5f194ce3f566fbbd1a94fc0",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CNs_Ozdc.js": {
-    "mtime": 1785574663.7670147,
-    "ast_hash": "28c9c7cf5cf10373734d0a1bd3472966",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CPsZQBgq.js": {
-    "mtime": 1785574663.7527611,
-    "ast_hash": "9eaf3683103f1d01593cda44758a37ba",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CQAp8s_y.js": {
-    "mtime": 1785574663.7684803,
-    "ast_hash": "cc66902e8d00d724d9fa37381d5b7e3f",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CSR41g4Q.js": {
-    "mtime": 1785574663.757983,
-    "ast_hash": "5354561880dfe9f0b0a14da0e4b94ecc",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CVsRN15I.js": {
-    "mtime": 1785574663.7606704,
-    "ast_hash": "936c91b3f7004fa011aa641bd12eb716",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CZ90y64g.js": {
-    "mtime": 1785574663.7705374,
-    "ast_hash": "973f42a9d32504ea73db61745935dcb7",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/Cc8Q7_V_.js": {
-    "mtime": 1785574663.7557473,
-    "ast_hash": "8c54f52a8990255f1e88f03ff43e00ba",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/CvPic_nL.js": {
-    "mtime": 1785574663.7691703,
-    "ast_hash": "b2f3ad050d0960cb5a7f45a23402d55c",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/D-0Yp4vf.js": {
-    "mtime": 1785574663.7699354,
-    "ast_hash": "840e6854610e99be54df7757d672bbe7",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/D1wVcX-p.js": {
-    "mtime": 1785574663.7534115,
-    "ast_hash": "4316b465796937c65dc841a2148d177c",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/DBGThcL5.js": {
-    "mtime": 1785574663.7640822,
-    "ast_hash": "c83d7c8b7dc73bb9226732c8f9fa1ad0",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/DEUXb91g.js": {
-    "mtime": 1785574663.7576897,
-    "ast_hash": "b8672b9ba5aaf5c89648f97eb1c44e27",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/DI5qgYQd.js": {
-    "mtime": 1785574663.759053,
-    "ast_hash": "1a9ad5c6161ca3a24ff69907b12fa5cd",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/DVEAHp5N.js": {
-    "mtime": 1785574663.7573838,
-    "ast_hash": "30252699bb307e5905c95552edb57b5b",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/DbbGbck9.js": {
-    "mtime": 1785574663.7695212,
-    "ast_hash": "49922d085799d4caa45a0477d975f1c2",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/DoCpNS5W.js": {
-    "mtime": 1785574663.765447,
-    "ast_hash": "93ef3c831f0b5fc6d3748776f0c40805",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/Dvn1mH8e.js": {
-    "mtime": 1785574663.7675145,
-    "ast_hash": "c3e4fe76a5d2b904f49c3395ca2b43ce",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/K-aqyraB.js": {
-    "mtime": 1785574663.7563539,
-    "ast_hash": "11ba0acc458f6454b6492b0ce0fccc69",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/M6HudXea.js": {
-    "mtime": 1785574663.756639,
-    "ast_hash": "e524965f01fb43ea25bf68d129247ddc",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/builds/latest.json": {
-    "mtime": 1785574663.7596772,
-    "ast_hash": "27acd53ef1162b59c3daa70420ca79a6",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/builds/meta/185afddc-e183-45a7-94f7-a73a5b1550cc.json": {
-    "mtime": 1785574663.760121,
-    "ast_hash": "aed050be0565476547aeda91db8a2c6f",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/kfxKNAwC.js": {
-    "mtime": 1785574663.7570403,
-    "ast_hash": "d0b431e6bd0a766c6aab654589cb88e4",
-    "semantic_hash": ""
-  },
-  "src/backend/public/_nuxt/zzLephGl.js": {
-    "mtime": 1785574663.770161,
-    "ast_hash": "7ca3edd8b14e1a78f9409086f406a286",
-    "semantic_hash": ""
-  },
-  "src/backend/public/200.html": {
-    "mtime": 1785574663.7512956,
-    "ast_hash": "b8d5bea63b8b710e3787fa3498ae6548",
-    "semantic_hash": ""
-  },
-  "src/backend/public/404.html": {
-    "mtime": 1785574663.7517173,
-    "ast_hash": "b8d5bea63b8b710e3787fa3498ae6548",
-    "semantic_hash": ""
-  },
-  "src/backend/public/index.html": {
-    "mtime": 1785574663.771583,
-    "ast_hash": "b8d5bea63b8b710e3787fa3498ae6548",
-    "semantic_hash": ""
-  },
-  "src/backend/public/ledgers/index.html": {
-    "mtime": 1785574663.7719557,
-    "ast_hash": "b8d5bea63b8b710e3787fa3498ae6548",
-    "semantic_hash": ""
-  },
-  "src/backend/public/login/index.html": {
-    "mtime": 1785574663.7723196,
-    "ast_hash": "b8d5bea63b8b710e3787fa3498ae6548",
-    "semantic_hash": ""
-  },
-  "src/backend/public/management/accounts/index.html": {
-    "mtime": 1785574663.773229,
-    "ast_hash": "23e878a8fe3549a790952739f238cc25",
-    "semantic_hash": ""
-  },
-  "src/backend/public/management/funds/index.html": {
-    "mtime": 1785574663.7739732,
-    "ast_hash": "23e878a8fe3549a790952739f238cc25",
-    "semantic_hash": ""
-  },
-  "src/backend/public/management/items/index.html": {
-    "mtime": 1785574663.7736032,
-    "ast_hash": "23e878a8fe3549a790952739f238cc25",
-    "semantic_hash": ""
-  },
-  "src/backend/public/management/journal/index.html": {
-    "mtime": 1785574663.7728343,
-    "ast_hash": "23e878a8fe3549a790952739f238cc25",
-    "semantic_hash": ""
-  },
-  "src/backend/public/projects/index.html": {
-    "mtime": 1785574663.7744322,
-    "ast_hash": "b8d5bea63b8b710e3787fa3498ae6548",
-    "semantic_hash": ""
-  },
-  "src/backend/public/register/index.html": {
-    "mtime": 1785574663.7748065,
-    "ast_hash": "b8d5bea63b8b710e3787fa3498ae6548",
-    "semantic_hash": ""
-  },
-  "src/backend/public/settings/index.html": {
-    "mtime": 1785574663.7755747,
-    "ast_hash": "b8d5bea63b8b710e3787fa3498ae6548",
-    "semantic_hash": ""
-  },
-  "src/backend/nativephp_debug.json": {
-    "mtime": 1785579414.1342096,
-    "ast_hash": "7249c44517c7818f5a72b73b08da5980",
-    "semantic_hash": ""
+  "C:\\laragon\\www\\account-ant\\src\\frontend\\public\\robots.txt": {
+    "mtime": 1784414489.0,
+    "hash": "243b03ecba82dde9612cd5163145a86d"
   }
 }

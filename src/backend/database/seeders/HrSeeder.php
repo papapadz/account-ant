@@ -9,63 +9,107 @@ use App\Models\HR\Position;
 use App\Models\Person;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class HrSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::first();
+        
+        /** 1. Setup Company */
         $city = City::first();
-
-         $company = Company::firstOrCreate(
-            ['business_name' => 'ABC Construction'],
+        $company = Company::firstOrCreate(
             [
-                'business_description' => 'Construction Company',
+                'business_name' => config('bee.company.business_name'),
+            ],
+            [
+                'business_description' => config('bee.company.business_description'),
                 'city_id' => $city ? $city->id : 1,
-                'business_classification' => 'Construction',
-                'business_scope' => 'National',
-                'street' => '5th Avenue',
-                'building_number' => 'Floor 18',
-                'barangay' => 'Fort Bonifacio',
-                'zip' => '1634',
-                'date_started' => '2026-01-01',
-                'is_government' => false,
-                'created_by' => $user ? $user->id : null,
+                'business_classification' => config('bee.company.business_classification'),
+                'business_scope' => config('bee.company.business_scope'),
+                'street' => config('bee.company.street'),
+                'building_number' => config('bee.company.building_number'),
+                'barangay' => config('bee.company.barangay'),
+                'zip' => config('bee.company.zip'),
+                'date_started' => config('bee.company.date_started'),
+                'is_government' => config('bee.company.is_government')
             ]
         );
 
-        $position = Position::firstOrCreate(
-            ['title' => 'Finance Director'],
+        /** 2. Setup Admin */
+        $admin_position = Position::firstOrCreate(
+            ['title' => 'System Administrator'],
             [
-                'industry' => 'Finance',
+                'industry' => 'Information Technology'
+            ]
+        );
+        $admin = Person::firstOrCreate(
+            [
+                'first_name' => config('bee.admin.first_name'), 
+                'last_name' => config('bee.admin.last_name'),
+                'birth_date' => config('bee.admin.birth_date'),
+                'gender' => config('bee.admin.gender'),
+                'civil_status' => config('bee.admin.civil_status'),
+            ]
+        );
+        
+        $admin_user = User::firstOrCreate(
+            [
+                'person_id' => $admin->id,
+                'email' => config('bee.admin.email')
+            ],
+            [
+                'password' => Hash::make(config('bee.admin.password')),
+                'person_affiliations_id' => PersonAffiliation::firstOrCreate(
+                    ['person_id' => $admin->id, 'company_id' => $company->id],
+                    [
+                        'affiliation_level' => 'Executive',
+                        'employment_status' => 'Regular',
+                        'employee_id' => 'bee-0001',
+                        'position_id' => $admin_position->id,
+                        'is_head' => false,
+                    ]
+                )->id
+            ]
+        );
+        $admin_user->syncRoles('super_admin');
+
+        /** 3. Setup User */
+        $position = Position::firstOrCreate(
+            ['title' => 'Owner'],
+            [
+                'industry' => 'Construction',
                 'salary_grade' => 24,
             ]
         );
-
         $person = Person::firstOrCreate(
-            ['first_name' => 'Alexander', 'last_name' => 'Vance'],
+                    ['first_name' => config('bee.person.first_name'), 'last_name' => config('bee.person.last_name')],
+                    [
+                        'middle_name' => config('bee.person.middle_name'),
+                        'birth_date' => config('bee.person.birth_date'),
+                        'gender' => config('bee.person.gender'),
+                        'civil_status' => config('bee.person.civil_status'),
+                    ]
+                );
+        $user = User::firstOrCreate(
             [
-                'middle_name' => 'Cross',
-                'birth_date' => '1988-05-14',
-                'gender' => 'Male',
-                'civil_status' => 'Single',
+                'person_id' => $person->id,
+                'email' => config('bee.person.email')
+            ],
+            [
+                'password' => Hash::make(config('bee.person.password')),
+                'person_affiliations_id' => PersonAffiliation::firstOrCreate(
+                    ['person_id' => $person->id, 'company_id' => $company->id],
+                    [
+                        'affiliation_level' => 'Executive',
+                        'employment_status' => 'Regular',
+                        'employee_id' => config('bee.person.employee_id'),
+                        'position_id' => $position->id,
+                        'is_head' => true,
+                    ]
+                )->id
             ]
         );
-
-        PersonAffiliation::firstOrCreate(
-            ['person_id' => $person->id, 'company_id' => $company->id],
-            [
-                'affiliation_level' => 'Executive',
-                'employment_status' => 'Regular',
-                'employee_id' => 'EMP-2026-001',
-                'position_id' => $position->id,
-                'is_head' => true,
-            ]
-        );
-
-        if ($user && empty($user->person_id)) {
-            $user->person_id = $person->id;
-            $user->save();
-        }
+        $user->syncRoles('admin');
     }
 }

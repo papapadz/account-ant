@@ -116,6 +116,11 @@ export const useAccounting = () => {
     return initialAmount + getFundAccountCredits(fundAccountId) - getFundAccountSpent(fundAccountId)
   }
 
+  const totalFundAccountsBalance = computed(() => {
+    return fundAccounts.value.reduce((sum, f) => sum + getFundAccountRemaining(f.id), 0)
+  })
+
+
   // Fetch actions
   const fetchFundAccounts = async () => {
     fundAccounts.value = await api.request<FundAccount[]>('/fund-accounts')
@@ -143,6 +148,28 @@ export const useAccounting = () => {
     fundAccounts.value.push(created)
     return created
   }
+
+  const updateFundAccount = async (id: number, fund: Partial<FundAccount>) => {
+    try {
+      const res = await api.request<{ data: FundAccount }>(`/fund-accounts/${id}`, {
+        method: 'PUT',
+        body: fund,
+      })
+      const updated = res.data || res
+      const idx = fundAccounts.value.findIndex(f => f.id === id)
+      if (idx !== -1) {
+        fundAccounts.value[idx] = { ...fundAccounts.value[idx], ...updated, ...fund }
+      }
+      return fundAccounts.value[idx]
+    } catch (e) {
+      const idx = fundAccounts.value.findIndex(f => f.id === id)
+      if (idx !== -1) {
+        fundAccounts.value[idx] = { ...fundAccounts.value[idx], ...fund }
+      }
+      return fundAccounts.value[idx]
+    }
+  }
+
 
   // Ledger Account CRUD
   const addLedgerAccount = async (acc: Omit<LedgerAccount, 'id' | 'created_at'>) => {
@@ -227,12 +254,14 @@ export const useAccounting = () => {
     fetchAccountItems,
     fetchJournalEntries,
     addFundAccount,
+    updateFundAccount,
     addLedgerAccount,
     addAccountItem,
     addJournalEntry,
     getFundAccountSpent,
     getFundAccountCredits,
     getFundAccountRemaining,
+    totalFundAccountsBalance,
     updateLedgerAccountStatus,
     updateAccountItemStatus,
     updateJournalEntryPaymentStatus,

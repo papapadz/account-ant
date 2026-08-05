@@ -1,3 +1,9 @@
+export interface Role {
+  id?: number
+  name: string
+  guard_name?: string
+}
+
 export interface User {
   id: number
   email: string
@@ -6,6 +12,7 @@ export interface User {
   person_affiliations_id?: number
   person?: Person
   person_affiliation?: PersonAffiliation
+  roles?: (Role | string)[]
 }
 
 export interface Person {
@@ -89,6 +96,16 @@ export const useAuth = () => {
   }))
 
   const isAuthenticated = computed(() => !!currentUser.value)
+
+  const isSuperAdmin = computed(() => {
+    if (!currentUser.value) return false
+    if (Array.isArray(currentUser.value.roles)) {
+      return currentUser.value.roles.some((r: any) =>
+        typeof r === 'string' ? r === 'super_admin' : r?.name === 'super_admin'
+      )
+    }
+    return false
+  })
 
   const syncUserData = (user: User) => {
     currentUser.value = user
@@ -175,6 +192,7 @@ export const useAuth = () => {
     currentPosition,
     currentAffiliation,
     isAuthenticated,
+    isSuperAdmin,
     login,
     registerUser,
     fetchUser,

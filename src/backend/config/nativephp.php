@@ -167,8 +167,7 @@ return [
     ],
 
     'postbuild' => [
-        'php artisan native:migrate:fresh',
-        'php artisan native:seed'
+        'php artisan native:migrate:fresh --seed --force'
     ],
 
     /**
