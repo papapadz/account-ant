@@ -60,4 +60,9 @@ class LedgerAccountItem extends Model
     {
         return $this->hasMany(JournalEntryItem::class, 'ledger_account_item_id');
     }
+
+    public function accountsPayable()
+    {
+        return $this->hasOne(AccountsPayable::class, 'ledger_account_item_id');
+    }
 }

@@ -1215,8 +1215,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/pages/ledgers.vue": {
-    "mtime": 1785940301.1221964,
-    "ast_hash": "347a85e6c800bc47dd9bf8e9dda05e9a",
+    "mtime": 1785933237.4961743,
+    "ast_hash": "af9ce0e993e0e678c04dffaf9b4607ea",
     "semantic_hash": ""
   },
   "src/frontend/app/pages/login.vue": {
@@ -1285,8 +1285,8 @@
     "semantic_hash": ""
   },
   "src/frontend/nuxt.config.ts": {
-    "mtime": 1785940372.8646638,
-    "ast_hash": "b7561c23a83b61f804df547e023819ed",
+    "mtime": 1785933237.4971468,
+    "ast_hash": "eaf2c61445d181ccf4509f0464e369b1",
     "semantic_hash": ""
   },
   "src/frontend/package.json": {

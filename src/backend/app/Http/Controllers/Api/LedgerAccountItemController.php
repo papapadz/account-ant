@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Accounting\AccountsPayable;
 use App\Models\Accounting\LedgerAccountItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +12,7 @@ class LedgerAccountItemController extends Controller
 {
     public function index(Request $request)
     {
-        $query = LedgerAccountItem::with(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'user', 'items']);
+        $query = LedgerAccountItem::with(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'user', 'items', 'accountsPayable']);
 
         if ($request->has('project_id')) {
             $query->where('project_id', $request->query('project_id'));
@@ -35,6 +36,7 @@ class LedgerAccountItemController extends Controller
             'posting_date' => 'nullable|date',
             'date' => 'nullable|date',
             'is_paid' => 'nullable|boolean',
+            'accounts_payable_name' => 'nullable|string|max:255',
             'items' => 'nullable|array',
             'items.*.description' => 'required|string|max:255',
             'items.*.quantity' => 'required|numeric|min:0.01',
@@ -59,6 +61,7 @@ class LedgerAccountItemController extends Controller
 
         $entry = DB::transaction(function () use ($validated, $request) {
             $postingDate = $validated['posting_date'] ?? $validated['date'] ?? now()->toDateString();
+            $isPaid = isset($validated['is_paid']) ? (bool) $validated['is_paid'] : true;
 
             $newEntry = LedgerAccountItem::create([
                 'ledger_account_id' => $validated['ledger_account_id'],
@@ -69,7 +72,7 @@ class LedgerAccountItemController extends Controller
                 'transaction_type' => $validated['transaction_type'],
                 'description' => $validated['description'] ?? null,
                 'posting_date' => $postingDate,
-                'is_paid' => isset($validated['is_paid']) ? (bool) $validated['is_paid'] : true,
+                'is_paid' => $isPaid,
                 'user_id' => $request->user() ? $request->user()->id : 1,
             ]);
 
@@ -89,12 +92,23 @@ class LedgerAccountItemController extends Controller
                 }
             }
 
+            $apName = $validated['accounts_payable_name'] ?? null;
+            if (!$isPaid || !empty($apName)) {
+                AccountsPayable::create([
+                    'ledger_account_item_id' => $newEntry->id,
+                    'name' => !empty($apName) ? $apName : ($newEntry->description ?: 'Accounts Payable #' . $newEntry->id),
+                    'amount' => $newEntry->amount,
+                    'status' => $isPaid ? 'paid' : 'unpaid',
+                    'user_id' => $newEntry->user_id,
+                ]);
+            }
+
             return $newEntry;
         });
 
         return response()->json([
             'message' => 'Journal transaction posted successfully',
-            'data' => $entry->load(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'items']),
+            'data' => $entry->load(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'items', 'accountsPayable']),
         ], 201);
     }
 
@@ -132,9 +146,10 @@ class LedgerAccountItemController extends Controller
             'is_paid' => 'required|boolean',
             'fund_source_id' => 'nullable|integer',
             'fund_account_id' => 'nullable|integer',
+            'accounts_payable_name' => 'nullable|string|max:255',
         ]);
 
-        $entry = LedgerAccountItem::findOrFail($id);
+        $entry = LedgerAccountItem::with('accountsPayable')->findOrFail($id);
         $updateData = ['is_paid' => $validated['is_paid']];
         
         $fundSourceId = $validated['fund_source_id'] ?? $validated['fund_account_id'] ?? null;
@@ -144,10 +159,29 @@ class LedgerAccountItemController extends Controller
 
         $entry->update($updateData);
 
+        $apName = $validated['accounts_payable_name'] ?? null;
+        if ($entry->accountsPayable) {
+            $apData = [
+                'status' => $validated['is_paid'] ? 'paid' : 'unpaid',
+            ];
+            if (!empty($apName)) {
+                $apData['name'] = $apName;
+            }
+            $entry->accountsPayable->update($apData);
+        } else if (!$validated['is_paid'] || !empty($apName)) {
+            AccountsPayable::create([
+                'ledger_account_item_id' => $entry->id,
+                'name' => !empty($apName) ? $apName : ($entry->description ?: 'Accounts Payable #' . $entry->id),
+                'amount' => $entry->amount,
+                'status' => $validated['is_paid'] ? 'paid' : 'unpaid',
+                'user_id' => $request->user()?->id ?? $entry->user_id,
+            ]);
+        }
+
         return response()->json([
             'status' => 'success',
             'message' => 'Journal entry payment status updated successfully',
-            'data' => $entry->fresh(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'items']),
+            'data' => $entry->fresh(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'items', 'accountsPayable']),
         ]);
     }
 }

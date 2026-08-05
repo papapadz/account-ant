@@ -202,13 +202,18 @@
 
         <!-- Cell: Payment Status -->
         <template #cell-is_paid="{ item }">
-          <span
-            class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1"
-            :class="item.is_paid !== false ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'"
-          >
-            <span class="w-1.5 h-1.5 rounded-full" :class="item.is_paid !== false ? 'bg-emerald-400' : 'bg-rose-400'" />
-            {{ item.is_paid !== false ? 'Posted' : 'Payable' }}
-          </span>
+          <div class="flex flex-col items-center gap-0.5">
+            <span
+              class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1"
+              :class="item.is_paid !== false ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'"
+            >
+              <span class="w-1.5 h-1.5 rounded-full" :class="item.is_paid !== false ? 'bg-emerald-400' : 'bg-rose-400'" />
+              {{ item.is_paid !== false ? 'Posted' : 'Payable' }}
+            </span>
+            <span v-if="item.is_paid === false && (item.accounts_payable?.name || item.accounts_payable_name)" class="text-[10px] text-rose-400 font-medium truncate max-w-[130px]">
+              {{ item.accounts_payable?.name || item.accounts_payable_name }}
+            </span>
+          </div>
         </template>
 
         <!-- Cell: Status -->
@@ -281,10 +286,10 @@
               <span class="font-mono text-[var(--text-main)]">{{ selectedEntry.posting_date || selectedEntry.created_at }}</span>
             </div>
 
-            <!-- <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Current Status</span>
-              <span class="font-semibold text-emerald-400 capitalize">{{ selectedEntry.status || 'posted' }}</span>
-            </div> -->
+            <div v-if="selectedEntry.accounts_payable?.name || selectedEntry.accounts_payable_name">
+              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Accounts Payable Name</span>
+              <span class="font-bold text-rose-400">{{ selectedEntry.accounts_payable?.name || selectedEntry.accounts_payable_name }}</span>
+            </div>
           </div>
 
           <div v-if="selectedEntry.description" class="border-t border-[var(--border-color)]/60 pt-2 text-xs">
@@ -321,19 +326,35 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <!-- Payment Toggle -->
-            <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] flex items-center justify-between">
-              <div>
-                <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
-                <span class="text-[10px] text-[var(--text-muted)] block">Mark entry as Paid or Unpaid</span>
+            <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] space-y-2">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
+                  <span class="text-[10px] text-[var(--text-muted)] block">Mark entry as Paid or Unpaid</span>
+                </div>
+                <UiButton
+                  size="sm"
+                  :variant="selectedEntry.is_paid !== false ? 'primary' : 'secondary'"
+                  :class="selectedEntry.is_paid !== false ? '!bg-emerald-600 hover:!bg-emerald-500' : '!text-rose-400 border-rose-500/30'"
+                  @click="togglePaymentStatus"
+                >
+                  {{ selectedEntry.is_paid !== false ? 'Mark Unpaid' : 'Mark Paid' }}
+                </UiButton>
               </div>
-              <UiButton
-                size="sm"
-                :variant="selectedEntry.is_paid !== false ? 'primary' : 'secondary'"
-                :class="selectedEntry.is_paid !== false ? '!bg-emerald-600 hover:!bg-emerald-500' : '!text-rose-400 border-rose-500/30'"
-                @click="togglePaymentStatus"
-              >
-                {{ selectedEntry.is_paid !== false ? 'Mark Unpaid' : 'Mark Paid' }}
-              </UiButton>
+
+              <!-- Option to set/update AP name if entry is unpaid -->
+              <div v-if="selectedEntry.is_paid === false" class="pt-2 border-t border-[var(--border-color)]/60 space-y-1">
+                <label class="text-[10px] font-semibold text-[var(--text-muted)] block">Accounts Payable Name (Vendor / Creditor):</label>
+                <div class="flex items-center gap-2">
+                  <input
+                    v-model="editApName"
+                    type="text"
+                    placeholder="Enter AP Creditor Name..."
+                    class="input-field text-xs py-1"
+                  />
+                  <UiButton size="sm" variant="secondary" @click="saveApName">Save Name</UiButton>
+                </div>
+              </div>
             </div>
 
             <!-- Posting Status Selector -->
@@ -436,22 +457,38 @@
         </div>
 
         <!-- 8. Payment status (is_paid) -->
-        <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] flex items-center justify-between">
-          <div>
-            <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
-            <span class="text-[10px] text-[var(--text-muted)] block">
-              {{ paymentStatusSubtitle }}
-            </span>
+        <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
+              <span class="text-[10px] text-[var(--text-muted)] block">
+                {{ paymentStatusSubtitle }}
+              </span>
+            </div>
+            <UiButton
+              type="button"
+              size="sm"
+              :variant="newJournalEntry.is_paid ? 'primary' : 'secondary'"
+              :class="newJournalEntry.is_paid ? '!bg-emerald-600 hover:!bg-emerald-500' : (newJournalEntry.transaction_type === 'credit' ? '!text-amber-400 border-amber-500/30' : '!text-rose-400 border-rose-500/30')"
+              @click="newJournalEntry.is_paid = !newJournalEntry.is_paid"
+            >
+              {{ paymentStatusButtonLabel }}
+            </UiButton>
           </div>
-          <UiButton
-            type="button"
-            size="sm"
-            :variant="newJournalEntry.is_paid ? 'primary' : 'secondary'"
-            :class="newJournalEntry.is_paid ? '!bg-emerald-600 hover:!bg-emerald-500' : (newJournalEntry.transaction_type === 'credit' ? '!text-amber-400 border-amber-500/30' : '!text-rose-400 border-rose-500/30')"
-            @click="newJournalEntry.is_paid = !newJournalEntry.is_paid"
-          >
-            {{ paymentStatusButtonLabel }}
-          </UiButton>
+
+          <!-- Accounts Payable Name input when unpaid -->
+          <div v-if="!newJournalEntry.is_paid" class="pt-2 border-t border-[var(--border-color)]/60 space-y-1">
+            <label class="block text-xs font-semibold text-rose-400 uppercase tracking-wider">
+              Accounts Payable Name (Creditor / Vendor) *
+            </label>
+            <input
+              v-model="newJournalEntry.accounts_payable_name"
+              type="text"
+              required
+              placeholder="e.g. Acme Supplies, Contractor Name..."
+              class="input-field text-xs py-2 font-medium border-rose-500/30"
+            />
+          </div>
         </div>
 
         <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
@@ -492,6 +529,7 @@ const newJournalEntry = reactive({
   description: '',
   posting_date: new Date().toISOString().slice(0, 10),
   is_paid: true,
+  accounts_payable_name: '',
 })
 
 const filteredAccountItems = computed(() => {
@@ -552,6 +590,11 @@ const handleCreateJournalEntry = async () => {
     return
   }
 
+  if (!newJournalEntry.is_paid && !newJournalEntry.accounts_payable_name) {
+    alert('Please enter the Accounts Payable Name (Creditor / Vendor).')
+    return
+  }
+
   isPostingEntry.value = true
   try {
     const auth = useAuth()
@@ -565,6 +608,7 @@ const handleCreateJournalEntry = async () => {
       description: newJournalEntry.description,
       posting_date: newJournalEntry.posting_date,
       is_paid: newJournalEntry.is_paid,
+      accounts_payable_name: newJournalEntry.is_paid ? undefined : newJournalEntry.accounts_payable_name,
       user_id: auth.currentUser.value?.id || 1,
     })
     isPostJournalModalOpen.value = false
@@ -576,6 +620,7 @@ const handleCreateJournalEntry = async () => {
     newJournalEntry.account_item_id = undefined
     newJournalEntry.transaction_type = 'debit'
     newJournalEntry.is_paid = true
+    newJournalEntry.accounts_payable_name = ''
   } catch (err: any) {
     console.error('Failed to create journal entry:', err)
     alert(err?.data?.message || err?.message || 'Failed to post journal entry.')
@@ -660,7 +705,7 @@ const filteredEntries = computed(() => {
     return true
   }).map(entry => ({
     ...entry,
-    search_text: `${getProjectName(entry.project_id)} ${getFundCode(entry.fund_account_id)} ${getAccountCode(entry.ledger_account_id)} ${getItemName(entry.account_item_id)}`
+    search_text: `${getProjectName(entry.project_id)} ${getFundCode(entry.fund_account_id)} ${getAccountCode(entry.ledger_account_id)} ${getItemName(entry.account_item_id)} ${entry.accounts_payable?.name || entry.accounts_payable_name || ''}`
   }))
 })
 
@@ -693,8 +738,11 @@ const resetFilters = () => {
   selectedStatus.value = 'posted'
 }
 
+const editApName = ref('')
+
 const openDetailModal = (item: any) => {
   selectedEntry.value = item
+  editApName.value = item.accounts_payable?.name || item.accounts_payable_name || ''
   isModalOpen.value = true
 }
 
@@ -704,10 +752,26 @@ const togglePaymentStatus = async () => {
   const newPaid = !currentPaid
 
   try {
-    await accounting.updateJournalEntryPaymentStatus(selectedEntry.value.id, newPaid)
+    const res = await accounting.updateJournalEntryPaymentStatus(selectedEntry.value.id, newPaid, editApName.value || undefined)
     selectedEntry.value.is_paid = newPaid
+    if (res?.accounts_payable) {
+      selectedEntry.value.accounts_payable = res.accounts_payable
+    }
   } catch (err) {
     console.error('Failed to update payment status:', err)
+  }
+}
+
+const saveApName = async () => {
+  if (!selectedEntry.value) return
+  try {
+    const res = await accounting.updateJournalEntryPaymentStatus(selectedEntry.value.id, false, editApName.value)
+    if (res?.accounts_payable) {
+      selectedEntry.value.accounts_payable = res.accounts_payable
+    }
+    alert('Accounts Payable Name saved successfully!')
+  } catch (err) {
+    console.error('Failed to save AP Name:', err)
   }
 }
 

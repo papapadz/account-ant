@@ -32,6 +32,16 @@ export interface AccountItem {
   transaction_type?: 'debit' | 'credit'
 }
 
+export interface AccountsPayable {
+  id?: number
+  ledger_account_item_id?: number
+  name: string
+  amount: number
+  status?: 'unpaid' | 'paid' | 'cancelled'
+  due_date?: string
+  notes?: string
+}
+
 export interface LedgerAccountItem {
   id: number
   ledger_account_id: number
@@ -44,6 +54,8 @@ export interface LedgerAccountItem {
   posting_date?: string
   status?: 'posted' | 'void' | 'reconciled'
   is_paid?: boolean
+  accounts_payable_name?: string
+  accounts_payable?: AccountsPayable
   user_id: number
   created_at: string
   project?: {
@@ -227,14 +239,16 @@ export const useAccounting = () => {
     return updated
   }
 
-  const updateJournalEntryPaymentStatus = async (id: number, is_paid: boolean) => {
+  const updateJournalEntryPaymentStatus = async (id: number, is_paid: boolean, accounts_payable_name?: string) => {
     const res = await api.request<{ data: LedgerAccountItem }>(`/journal-entries/${id}/is-paid`, {
       method: 'PATCH',
-      body: { is_paid },
+      body: { is_paid, accounts_payable_name },
     })
     const updated = res.data || res
     const idx = journalEntries.value.findIndex(e => e.id === id)
-    if (idx !== -1) journalEntries.value[idx] = { ...journalEntries.value[idx], is_paid }
+    if (idx !== -1) {
+      journalEntries.value[idx] = { ...journalEntries.value[idx], ...updated, is_paid }
+    }
     return updated
   }
 

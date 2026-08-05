@@ -1,11 +1,11 @@
 # Graph Report - account-ant  (2026-08-05)
 
 ## Corpus Check
-- 402 files · ~188,361 words
+- 402 files · ~188,134 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2789 nodes · 5516 edges · 335 communities (236 shown, 99 thin omitted)
+- 2787 nodes · 5514 edges · 326 communities (236 shown, 90 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 682 edges (avg confidence: 0.77)
 - Token cost: 0 input · 0 output
 
@@ -18,8 +18,8 @@
 - setup
 - wa
 - BZnj7tNU.js
-- oo
-- bn
+- electron/package.json
+- dt
 - Design: Fund Account Reactivity — KPI Cards Update on Fund Account Creation
 - useAuth.ts
 - dev
@@ -30,7 +30,7 @@
 - design_system.py
 - P
 - KkVnuh2l.js
-- @babel/plugin-proposal-numeric-separator
+- @babel/plugin-proposal-function-sent
 - @babel/preset-typescript
 - electron-chromedriver
 - BuDsHriU.js
@@ -41,10 +41,10 @@
 - api.ts
 - dependencies
 - Menubar
-- @babel/plugin-proposal-throw-expressions
+- @electron/notarize
 - LedgerAccountItem
 - ledgers.vue
-- @babel/plugin-transform-object-assign
+- eslint-config-prettier
 - tslib
 - @typescript-eslint/parser
 - devDependencies
@@ -64,28 +64,19 @@
 - setup
 - LedgerAccount
 - Project
-- @babel/preset-env
+- prettier-plugin-organize-imports
 - YX-VhRw7.js
-- less
-- prettier
-- rimraf
 - TestCase
 - devDependencies
-- @rushstack/eslint-patch
-- stylelint-config-recommended
-- @types/express
 - DataTable.vue
 - projects/index.vue
-- @types/node
 - wi
 - Illuminate\Database\Seeder
 - FundSourceLineChart.vue
 - dependencies
-- typescript
 - User
 - ProgressBar.vue
 - LedgerExpensePieChart.vue
-- @typescript-eslint/eslint-plugin
 - e
 - FundAccount
 - NativePHP
@@ -311,27 +302,27 @@
 ## Import Cycles
 - None detected.
 
-## Communities (335 total, 99 thin omitted)
+## Communities (326 total, 90 thin omitted)
 
 ### Community 0 - "setup"
-Cohesion: 0.13
-Nodes (28): An(), ar(), Dn(), en(), Gt(), Ht(), kn(), Le() (+20 more)
+Cohesion: 0.11
+Nodes (33): An(), be(), dirty(), Dn(), en(), Fn(), Ht(), Je() (+25 more)
 
 ### Community 1 - "wa"
-Cohesion: 0.13
-Nodes (29): Aa(), ca(), constructor(), Da(), Dr(), Er(), I(), Ia() (+21 more)
+Cohesion: 0.14
+Nodes (31): Aa(), ar(), ca(), constructor(), Da(), Dr(), Er(), I() (+23 more)
 
 ### Community 2 - "BZnj7tNU.js"
-Cohesion: 0.07
-Nodes (56): Ai(), at(), Ba(), be(), deleteProperty(), dep(), dirty(), dt() (+48 more)
+Cohesion: 0.08
+Nodes (55): Ai(), at(), Ba(), co(), concat(), deleteProperty(), dep(), Do() (+47 more)
 
-### Community 3 - "oo"
-Cohesion: 0.18
-Nodes (19): Do(), fi(), gn(), indexOf(), jo(), mo(), _n(), no() (+11 more)
-
-### Community 4 - "bn"
+### Community 3 - "electron/package.json"
 Cohesion: 0.15
-Nodes (19): bn(), dn(), fn(), get(), getBoolean(), getNumber(), gn(), In() (+11 more)
+Nodes (12): author, description, engines, node, exports, homepage, imports, #plugin (+4 more)
+
+### Community 4 - "dt"
+Cohesion: 0.24
+Nodes (12): dt(), entries(), every(), filter(), find(), findIndex(), findLast(), findLastIndex() (+4 more)
 
 ### Community 5 - "Design: Fund Account Reactivity — KPI Cards Update on Fund Account Creation"
 Cohesion: 0.29
@@ -371,11 +362,11 @@ Nodes (47): A(), C(), E(), h(), k(), L(), m(), O() (+39 more)
 
 ### Community 15 - "KkVnuh2l.js"
 Cohesion: 0.05
-Nodes (48): Tn(), Aa(), An(), bi(), Br(), $c(), fromLocalValue(), fromLocalValueArray() (+40 more)
+Nodes (55): nn(), An(), bi(), bn(), Br(), $c(), fn(), fromLocalValue() (+47 more)
 
 ### Community 19 - "BuDsHriU.js"
-Cohesion: 0.11
-Nodes (24): addHooks(), b(), callHook(), callHookParallel(), callHookWith(), deprecateHook(), deprecateHooks(), g() (+16 more)
+Cohesion: 0.14
+Nodes (16): addHooks(), callHook(), callHookParallel(), callHookWith(), deprecateHook(), deprecateHooks(), h(), hook() (+8 more)
 
 ### Community 20 - "php.ts"
 Cohesion: 0.16
@@ -403,11 +394,11 @@ Nodes (4): LedgerAccountItemController, JsonResponse, AccountsPayable, LedgerAcc
 
 ### Community 29 - "ledgers.vue"
 Cohesion: 0.06
-Nodes (21): accounting, accountsPayableBalance, currencyStore, editApName, filteredAccountItems, filteredEntries, filterType, isModalOpen (+13 more)
+Nodes (20): accounting, accountsPayableBalance, currencyStore, filteredAccountItems, filteredEntries, filterType, isModalOpen, isPostingEntry (+12 more)
 
 ### Community 33 - "devDependencies"
-Cohesion: 0.17
-Nodes (12): @babel/plugin-proposal-function-sent, electron-builder, @electron/notarize, eslint-config-prettier, prettier-plugin-organize-imports, devDependencies, @babel/plugin-proposal-function-sent, electron (+4 more)
+Cohesion: 0.07
+Nodes (30): @babel/plugin-proposal-numeric-separator, @babel/plugin-proposal-throw-expressions, @babel/plugin-transform-object-assign, @babel/preset-env, electron-builder, less, prettier, rimraf (+22 more)
 
 ### Community 34 - "Process"
 Cohesion: 0.07
@@ -422,16 +413,16 @@ Cohesion: 0.17
 Nodes (9): Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\Model, Illuminate\Database\Eloquent\SoftDeletes, JournalEntryItem, PersonAffiliation, Position, Person, PersonAddress (+1 more)
 
 ### Community 37 - "scripts"
-Cohesion: 0.05
-Nodes (41): author, description, engines, node, exports, homepage, imports, #plugin (+33 more)
+Cohesion: 0.07
+Nodes (29): scripts, build, build:all, build:linux, build:linux-arm64, build:linux-x64, build:mac, build:mac-arm64 (+21 more)
 
 ### Community 38 - "accounts.vue"
 Cohesion: 0.08
 Nodes (23): accounting, addAnotherRow(), addItemErrorMessage, closeAddItemModal(), errorMessage, filteredAccounts, generateItemCode(), getAccountItemCount() (+15 more)
 
 ### Community 39 - "R"
-Cohesion: 0.26
-Nodes (21): Bt(), cr(), defineProperty(), fa(), forEach(), get(), gr(), has() (+13 more)
+Cohesion: 0.17
+Nodes (29): Bt(), cr(), defineProperty(), fa(), forEach(), get(), gr(), has() (+21 more)
 
 ### Community 40 - "DfCc2Ccv.js"
 Cohesion: 0.21
@@ -446,8 +437,8 @@ Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
 ### Community 45 - "CjgABXhi.js"
-Cohesion: 0.13
-Nodes (60): setup(), setup(), setup(), Ae(), e(), lastIndexOf(), me(), pt() (+52 more)
+Cohesion: 0.12
+Nodes (62): setup(), setup(), setup(), Ae(), e(), ge(), Gt(), me() (+54 more)
 
 ### Community 46 - "compilerOptions"
 Cohesion: 0.09
@@ -458,8 +449,8 @@ Cohesion: 0.09
 Nodes (21): accounting, auth, companyInitials, companyName, companyScope, currencyStore, currentPageGroup, isAuthRoute (+13 more)
 
 ### Community 48 - "setup"
-Cohesion: 0.12
-Nodes (16): ci(), fi(), ho(), Ir(), Iu(), ko(), li(), lr() (+8 more)
+Cohesion: 0.09
+Nodes (33): setup(), setup(), b(), l(), u(), Z(), Tn(), de() (+25 more)
 
 ### Community 49 - "LedgerAccount"
 Cohesion: 0.24
@@ -470,8 +461,8 @@ Cohesion: 0.17
 Nodes (3): Illuminate\Http\JsonResponse, ProjectController, Project
 
 ### Community 52 - "YX-VhRw7.js"
-Cohesion: 0.24
-Nodes (19): Bn(), ke(), S(), v(), x(), y(), yn(), b() (+11 more)
+Cohesion: 0.21
+Nodes (21): Bn(), ke(), Wn(), S(), v(), x(), y(), Ct() (+13 more)
 
 ### Community 56 - "TestCase"
 Cohesion: 0.24
@@ -490,8 +481,8 @@ Cohesion: 0.11
 Nodes (15): auth, companyName, currencyStore, dateStore, filteredProjects, getCustomSortValue(), getProjectUsagePercent(), isCreateModalOpen (+7 more)
 
 ### Community 64 - "wi"
-Cohesion: 0.19
-Nodes (21): c(), constructor(), K(), p(), X(), Ar(), Cn(), constructor() (+13 more)
+Cohesion: 0.14
+Nodes (32): c(), constructor(), j(), K(), p(), X(), Y(), Jt() (+24 more)
 
 ### Community 65 - "Illuminate\Database\Seeder"
 Cohesion: 0.10
@@ -518,16 +509,16 @@ Cohesion: 0.12
 Nodes (15): accounting, availableYears, centerLabelSub, centerLabelTitle, centerLabelValue, chartSlices, currencyStore, hoveredIndex (+7 more)
 
 ### Community 74 - "e"
-Cohesion: 0.27
-Nodes (3): ba(), e, sa()
+Cohesion: 0.20
+Nodes (6): ba(), e, Hr(), jr(), Pr(), sa()
 
 ### Community 80 - "pages/index.vue"
 Cohesion: 0.12
 Nodes (13): accounting, activeProjectsCount, activeProjectsPreview, auth, companyName, currencyStore, isCreateModalOpen, projectsStore (+5 more)
 
 ### Community 83 - "s"
-Cohesion: 0.11
-Nodes (37): setup(), setup(), j(), l(), Y(), Jt(), setup(), setup() (+29 more)
+Cohesion: 0.15
+Nodes (23): g(), a(), Aa(), ai(), ca(), da(), di(), dn() (+15 more)
 
 ### Community 86 - "scripts"
 Cohesion: 0.15
@@ -622,8 +613,8 @@ Cohesion: 0.20
 Nodes (9): Account Item Credit/Debit Selection & Journal Auto-Fill Plan, Automated Verification, Global Constraints, Manual Verification, Task 1: Backend Database Migration, Model & Controller Updates, Task 2: Frontend Types & `useAccounting` Composable Updates, Task 3: Management Account Items Catalog Page Update (`items.vue`), Task 4: Project Page Journal Entry Modal Update (`project/[id].vue`) (+1 more)
 
 ### Community 122 - "setup"
-Cohesion: 0.15
-Nodes (27): br(), co(), concat(), ho(), Ii(), includes(), Io(), ja() (+19 more)
+Cohesion: 0.20
+Nodes (19): br(), Ii(), ja(), Li(), Lr(), mr(), Ri(), Rr() (+11 more)
 
 ### Community 123 - "Illuminate\Http\Request"
 Cohesion: 0.17
@@ -990,9 +981,9 @@ Cohesion: 0.08
 Nodes (23): 1. Clone the repository, 2. Set up the backend, 3. Set up the frontend, 4. Run in development mode, Account-Ant, Architecture, Authentication, Backend (+15 more)
 
 ## Knowledge Gaps
-- **1052 isolated node(s):** `$schema`, `name`, `type`, `description`, `laravel` (+1047 more)
+- **1051 isolated node(s):** `$schema`, `name`, `type`, `description`, `laravel` (+1046 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **99 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **90 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -1001,7 +992,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.053) - this node is a cross-community bridge._
 - **Why does `electron` connect `api.ts` to `devDependencies`, `index.js`, `api/childProcess.ts`, `php.ts`, `Menubar`, `vitest`?**
   _High betweenness centrality (0.022) - this node is a cross-community bridge._
-- **Why does `devDependencies` connect `devDependencies` to `eslint`, `cross-env`, `stylelint-config-sass-guidelines`, `ts-node`, `@types/ps-node`, `@babel/plugin-proposal-decorators`, `vitest-mock-commonjs`, `eslint-plugin-prettier`, `@babel/plugin-proposal-numeric-separator`, `@babel/preset-typescript`, `electron-chromedriver`, `@babel/plugin-proposal-export-namespace-from`, `vite`, `@eslint/js`, `eslint-plugin-unicorn`, `@babel/plugin-proposal-throw-expressions`, `@babel/plugin-transform-object-assign`, `tslib`, `@typescript-eslint/parser`, `scripts`, `@vue/eslint-config-prettier`, `@babel/preset-env`, `less`, `prettier`, `rimraf`, `@rushstack/eslint-patch`, `stylelint-config-recommended`, `@types/express`, `@types/node`, `typescript`, `@typescript-eslint/eslint-plugin`, `globals`, `vitest`, `electron-vite`, `stylelint`?**
+- **Why does `devDependencies` connect `devDependencies` to `electron/package.json`, `eslint`, `cross-env`, `stylelint-config-sass-guidelines`, `ts-node`, `@types/ps-node`, `@babel/plugin-proposal-decorators`, `vitest-mock-commonjs`, `eslint-plugin-prettier`, `@babel/plugin-proposal-function-sent`, `@babel/preset-typescript`, `electron-chromedriver`, `@babel/plugin-proposal-export-namespace-from`, `vite`, `@eslint/js`, `eslint-plugin-unicorn`, `@electron/notarize`, `eslint-config-prettier`, `tslib`, `@typescript-eslint/parser`, `@vue/eslint-config-prettier`, `prettier-plugin-organize-imports`, `globals`, `vitest`, `electron-vite`, `stylelint`?**
   _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **Are the 88 inferred relationships involving `setup()` (e.g. with `Ae()` and `An()`) actually correct?**
   _`setup()` has 88 INFERRED edges - model-reasoned connections that need verification._
