@@ -65,6 +65,26 @@ class AccountItemController extends Controller
             'data' => $item->load('ledgerAccount'),
         ], 201);
     }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'item_code' => 'sometimes|required|string|max:20',
+            'item_name' => 'sometimes|required|string|max:100',
+            'description' => 'nullable|string|max:255',
+            'ledger_account_id' => 'nullable|integer',
+            'transaction_type' => 'nullable|in:debit,credit',
+            'status' => 'nullable|in:active,inactive,archived',
+        ]);
+
+        $item = AccountItem::findOrFail($id);
+        $item->update($validated);
+
+        return response()->json([
+            'message' => 'Account item updated successfully',
+            'data' => $item->load('ledgerAccount'),
+        ]);
+    }
     public function updateStatus(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $validated = $request->validate([

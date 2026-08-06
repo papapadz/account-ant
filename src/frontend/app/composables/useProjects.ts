@@ -339,8 +339,18 @@ export const useProjects = () => {
   })
 
   const totalAppSpent = computed(() => {
+    const paidDebits = transactions.value
+      .filter(t => t.type === 'debit' && t.is_paid !== false)
+      .reduce((sum, t) => sum + Number(t.amount), 0)
+    const paidCredits = transactions.value
+      .filter(t => t.type === 'credit' && t.is_paid !== false)
+      .reduce((sum, t) => sum + Number(t.amount), 0)
+    return Math.max(0, paidDebits - paidCredits)
+  })
+
+  const totalAppCredits = computed(() => {
     return transactions.value
-      .filter(t => t.type === 'debit')
+      .filter(t => t.type === 'credit' && t.is_paid !== false)
       .reduce((sum, t) => sum + Number(t.amount), 0)
   })
 
@@ -606,6 +616,7 @@ export const useProjects = () => {
     totalAppSpent,
     totalAppRemainingBalance,
     totalAppUnpaidBalance,
+    totalAppCredits,
     getTotalUnpaidBalance,
     getFundProjectExpenses,
     getProjectMonthlyExpenses,
@@ -633,9 +644,18 @@ export const useProjects = () => {
     return res.data || res
   }
 
-  async function updateJournalEntryPaymentStatus(id: number, is_paid: boolean, fund_source_id?: number) {
-    const body: any = { is_paid }
-    if (fund_source_id) body.fund_source_id = fund_source_id
+  async function updateJournalEntryPaymentStatus(
+    id: number,
+    is_paid: boolean,
+    optsOrFundSourceId?: number | {
+      fund_source_id?: number
+      payment_date?: string
+      payment_remarks?: string
+      accounts_payable_name?: string
+    }
+  ) {
+    const opts = typeof optsOrFundSourceId === 'number' ? { fund_source_id: optsOrFundSourceId } : (optsOrFundSourceId || {})
+    const body: any = { is_paid, ...opts }
     const res = await api.request<any>(`/journal-entries/${id}/is-paid`, {
       method: 'PATCH',
       body,
@@ -645,7 +665,7 @@ export const useProjects = () => {
       transactions.value[idx] = {
         ...transactions.value[idx],
         is_paid,
-        ...(fund_source_id ? { fund_source_id } : {}),
+        ...opts,
       }
     }
     return res.data || res

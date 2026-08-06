@@ -25,10 +25,10 @@
             </div>
             <div>
               <h1 class="font-bold text-[var(--text-main)] tracking-tight text-base flex items-center gap-1.5 leading-tight">
-                AccountAnt
-                <span class="text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-1.5 py-0.5 rounded-full uppercase tracking-wider">v1.0</span>
+                {{ $config.public.name }}
+                <span class="text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-1.5 py-0.5 rounded-full uppercase tracking-wider">{{ $config.public.version }}</span>
               </h1>
-              <p class="text-[11px] text-[var(--text-muted)]">Automated Ledger System</p>
+              <p class="text-[11px] text-[var(--text-muted)]">{{ $config.public.description }}</p>
             </div>
           </div>
           <!-- Close Mobile Menu Button -->

@@ -147,11 +147,22 @@ class LedgerAccountItemController extends Controller
             'fund_source_id' => 'nullable|integer',
             'fund_account_id' => 'nullable|integer',
             'accounts_payable_name' => 'nullable|string|max:255',
+            'payment_date' => 'nullable|date',
+            'payment_remarks' => 'nullable|string|max:1000',
+            'remarks' => 'nullable|string|max:1000',
         ]);
 
         $entry = LedgerAccountItem::with('accountsPayable')->findOrFail($id);
         $updateData = ['is_paid' => $validated['is_paid']];
         
+        if (array_key_exists('payment_date', $validated)) {
+            $updateData['payment_date'] = $validated['payment_date'];
+        }
+        $remarks = $validated['payment_remarks'] ?? $validated['remarks'] ?? null;
+        if ($remarks !== null) {
+            $updateData['payment_remarks'] = $remarks;
+        }
+
         $fundSourceId = $validated['fund_source_id'] ?? $validated['fund_account_id'] ?? null;
         if ($fundSourceId) {
             $updateData['fund_account_id'] = $fundSourceId;

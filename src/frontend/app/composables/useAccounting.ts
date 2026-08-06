@@ -54,6 +54,8 @@ export interface LedgerAccountItem {
   posting_date?: string
   status?: 'posted' | 'void' | 'reconciled'
   is_paid?: boolean
+  payment_date?: string
+  payment_remarks?: string
   accounts_payable_name?: string
   accounts_payable?: AccountsPayable
   user_id: number
@@ -132,6 +134,14 @@ export const useAccounting = () => {
     return fundAccounts.value.reduce((sum, f) => sum + getFundAccountRemaining(f.id), 0)
   })
 
+  const totalFundSource = computed(() => {
+    return fundAccounts.value.reduce((sum, f) => sum + (Number(f.amount) || 0) + getFundAccountCredits(f.id), 0)
+  })
+
+  const totalPaidExpenses = computed(() => {
+    return totalDebits.value - totalUnpaidBalance.value
+  })
+
 
   // Fetch actions
   const fetchFundAccounts = async () => {
@@ -194,6 +204,27 @@ export const useAccounting = () => {
     return created
   }
 
+  const updateLedgerAccount = async (id: number, acc: Partial<LedgerAccount>) => {
+    try {
+      const res = await api.request<{ data: LedgerAccount }>(`/ledger-accounts/${id}`, {
+        method: 'PUT',
+        body: acc,
+      })
+      const updated = res.data || res
+      const idx = ledgerAccounts.value.findIndex(a => a.id === id)
+      if (idx !== -1) {
+        ledgerAccounts.value[idx] = { ...ledgerAccounts.value[idx], ...updated, ...acc }
+      }
+      return ledgerAccounts.value[idx]
+    } catch {
+      const idx = ledgerAccounts.value.findIndex(a => a.id === id)
+      if (idx !== -1) {
+        ledgerAccounts.value[idx] = { ...ledgerAccounts.value[idx], ...acc }
+      }
+      return ledgerAccounts.value[idx]
+    }
+  }
+
   // Account Item CRUD
   const addAccountItem = async (item: Omit<AccountItem, 'id'>) => {
     const res = await api.request<{ data: AccountItem }>('/account-items', {
@@ -203,6 +234,27 @@ export const useAccounting = () => {
     const created = res.data || res
     accountItems.value.push(created)
     return created
+  }
+
+  const updateAccountItem = async (id: number, item: Partial<AccountItem>) => {
+    try {
+      const res = await api.request<{ data: AccountItem }>(`/account-items/${id}`, {
+        method: 'PUT',
+        body: item,
+      })
+      const updated = res.data || res
+      const idx = accountItems.value.findIndex(a => a.id === id)
+      if (idx !== -1) {
+        accountItems.value[idx] = { ...accountItems.value[idx], ...updated, ...item }
+      }
+      return accountItems.value[idx]
+    } catch {
+      const idx = accountItems.value.findIndex(a => a.id === id)
+      if (idx !== -1) {
+        accountItems.value[idx] = { ...accountItems.value[idx], ...item }
+      }
+      return accountItems.value[idx]
+    }
   }
 
   // Journal Entry CRUD
@@ -239,15 +291,26 @@ export const useAccounting = () => {
     return updated
   }
 
-  const updateJournalEntryPaymentStatus = async (id: number, is_paid: boolean, accounts_payable_name?: string) => {
+  const updateJournalEntryPaymentStatus = async (
+    id: number,
+    is_paid: boolean,
+    options?: {
+      accounts_payable_name?: string
+      payment_date?: string
+      payment_remarks?: string
+      fund_source_id?: number
+      fund_account_id?: number
+    }
+  ) => {
+    const body: any = { is_paid, ...options }
     const res = await api.request<{ data: LedgerAccountItem }>(`/journal-entries/${id}/is-paid`, {
       method: 'PATCH',
-      body: { is_paid, accounts_payable_name },
+      body,
     })
     const updated = res.data || res
     const idx = journalEntries.value.findIndex(e => e.id === id)
     if (idx !== -1) {
-      journalEntries.value[idx] = { ...journalEntries.value[idx], ...updated, is_paid }
+      journalEntries.value[idx] = { ...journalEntries.value[idx], ...updated, is_paid, ...options }
     }
     return updated
   }
@@ -270,12 +333,16 @@ export const useAccounting = () => {
     addFundAccount,
     updateFundAccount,
     addLedgerAccount,
+    updateLedgerAccount,
     addAccountItem,
+    updateAccountItem,
     addJournalEntry,
     getFundAccountSpent,
     getFundAccountCredits,
     getFundAccountRemaining,
     totalFundAccountsBalance,
+    totalFundSource,
+    totalPaidExpenses,
     updateLedgerAccountStatus,
     updateAccountItemStatus,
     updateJournalEntryPaymentStatus,

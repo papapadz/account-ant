@@ -30,8 +30,8 @@
     "semantic_hash": ""
   },
   "src/backend/app/Http/Controllers/Api/AccountItemController.php": {
-    "mtime": 1785419791.9358428,
-    "ast_hash": "19256eaac86c4015ab535f4d00acd1b4",
+    "mtime": 1785941529.967597,
+    "ast_hash": "d0504b189bbbdd95068b971157e73d5a",
     "semantic_hash": ""
   },
   "src/backend/app/Http/Controllers/Api/AuthController.php": {
@@ -1090,8 +1090,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/components/Modal.vue": {
-    "mtime": 1785403025.2489328,
-    "ast_hash": "451474194f87563742ba701027186c84",
+    "mtime": 1785945223.2628584,
+    "ast_hash": "920f5c5b982b8ceca6eb21bdfeb959cc",
     "semantic_hash": ""
   },
   "src/frontend/app/components/ProjectFormModal.vue": {
@@ -1160,8 +1160,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/composables/useAccounting.ts": {
-    "mtime": 1785940285.2599504,
-    "ast_hash": "1ddfdcab84c38a486db279ac6533d8dd",
+    "mtime": 1785941541.3618345,
+    "ast_hash": "3c810f9b0c3cc4d5bd39173839ffbeb0",
     "semantic_hash": ""
   },
   "src/frontend/app/composables/useApi.ts": {
@@ -1185,8 +1185,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/composables/useProjects.ts": {
-    "mtime": 1785489250.9975085,
-    "ast_hash": "b1b77f733e9a1ddae99e80aea6cd1821",
+    "mtime": 1785942872.5975356,
+    "ast_hash": "65552fb5dd7485ee57dc4d98951ab1ff",
     "semantic_hash": ""
   },
   "src/frontend/app/composables/useTheme.ts": {
@@ -1200,7 +1200,7 @@
     "semantic_hash": ""
   },
   "src/frontend/app/layouts/default.vue": {
-    "mtime": 1785933237.4956944,
+    "mtime": 1785944607.0934052,
     "ast_hash": "4d92e36c851181850a324d3f76923853",
     "semantic_hash": ""
   },
@@ -1210,13 +1210,13 @@
     "semantic_hash": ""
   },
   "src/frontend/app/pages/index.vue": {
-    "mtime": 1785933237.4959688,
-    "ast_hash": "2cbf2dc93c6b1010804fcd4270e83e9f",
+    "mtime": 1785943475.6566186,
+    "ast_hash": "956f5ebc41888b7725758283309257d0",
     "semantic_hash": ""
   },
   "src/frontend/app/pages/ledgers.vue": {
-    "mtime": 1785933237.4961743,
-    "ast_hash": "af9ce0e993e0e678c04dffaf9b4607ea",
+    "mtime": 1785945517.3531656,
+    "ast_hash": "dbadd700ca61fa3c8f5335f85b02ea11",
     "semantic_hash": ""
   },
   "src/frontend/app/pages/login.vue": {
@@ -1225,8 +1225,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/pages/management/accounts.vue": {
-    "mtime": 1785489250.998022,
-    "ast_hash": "58b7e6b2d33524beaa76770433662eb0",
+    "mtime": 1785941786.2086234,
+    "ast_hash": "2421f5f4d22d2c18a2ad3df8a995e1a4",
     "semantic_hash": ""
   },
   "src/frontend/app/pages/management/funds.vue": {
@@ -1235,8 +1235,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/pages/management/items.vue": {
-    "mtime": 1785489250.9981878,
-    "ast_hash": "920028e0c8bd7cf6ba51f05cc16f7157",
+    "mtime": 1785941552.1706269,
+    "ast_hash": "eddd09e48cd287f6f0a036dbf32ed241",
     "semantic_hash": ""
   },
   "src/frontend/app/pages/management/journal.vue": {
@@ -1245,8 +1245,8 @@
     "semantic_hash": ""
   },
   "src/frontend/app/pages/project/[id].vue": {
-    "mtime": 1785489250.9985378,
-    "ast_hash": "f0040468de3e6fa1d4eca69bd41aa44a",
+    "mtime": 1785945366.5384595,
+    "ast_hash": "0afc5f565ee8c7d8c0324b763364b1a9",
     "semantic_hash": ""
   },
   "src/frontend/app/pages/projects/[id].vue": {
@@ -1285,8 +1285,8 @@
     "semantic_hash": ""
   },
   "src/frontend/nuxt.config.ts": {
-    "mtime": 1785933237.4971468,
-    "ast_hash": "eaf2c61445d181ccf4509f0464e369b1",
+    "mtime": 1785940372.8646638,
+    "ast_hash": "b7561c23a83b61f804df547e023819ed",
     "semantic_hash": ""
   },
   "src/frontend/package.json": {
@@ -2117,6 +2117,31 @@
   "src/frontend/public/robots.txt": {
     "mtime": 1785403025.2549644,
     "ast_hash": "243b03ecba82dde9612cd5163145a86d",
+    "semantic_hash": ""
+  },
+  "src/frontend/app/components/dashboard/AccountsPayablePieChart.vue": {
+    "mtime": 1785941289.355961,
+    "ast_hash": "cbf79eb8457c8baeae2ff902fe8c8298",
+    "semantic_hash": ""
+  },
+  "src/frontend/app/components/dashboard/AccountsPayableLineChart.vue": {
+    "mtime": 1785942113.975414,
+    "ast_hash": "443d97f8535ffa85abe206c0c507291e",
+    "semantic_hash": ""
+  },
+  ".scratch/total-spent-calculation-fix/issues/01-fix-total-spent-calculation-and-ui.md": {
+    "mtime": 1785942888.1000023,
+    "ast_hash": "1e872474834f8f525b2f19392142f764",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-05-print-ledger-modal-suppression-tickets.md": {
+    "mtime": 1785944046.0738852,
+    "ast_hash": "5d5791aa4888ec81de2c805341af702f",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-05-flat-white-modal-spec.md": {
+    "mtime": 1785945185.5251853,
+    "ast_hash": "b2bc61f77a2256c64ecb17b8363cd263",
     "semantic_hash": ""
   }
 }

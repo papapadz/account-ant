@@ -58,7 +58,8 @@
         <div
           v-for="item in filteredItems"
           :key="item.id"
-          class="glass-card p-5 rounded-xl border border-[var(--border-color)] relative overflow-hidden flex flex-col justify-between"
+          @click="openEditModal(item)"
+          class="glass-card p-5 rounded-xl border border-[var(--border-color)] hover:border-amber-500/40 relative overflow-hidden flex flex-col justify-between cursor-pointer transition-all duration-200 group"
         >
           <div>
             <div class="flex items-center justify-between mb-2">
@@ -72,11 +73,20 @@
                 >
                   {{ item.transaction_type === 'credit' ? 'Inflow' : 'Outflow' }}
                 </span>
-                <span class="text-[10px] text-[var(--text-muted)] font-mono">#{{ item.id }}</span>
+                <button
+                  type="button"
+                  @click.stop="openEditModal(item)"
+                  class="p-1 rounded hover:bg-white/10 text-[var(--text-muted)] hover:text-amber-400 transition-colors"
+                  title="Edit Item"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                </button>
               </div>
             </div>
 
-            <h3 class="text-sm font-bold text-[var(--text-main)] mt-1">
+            <h3 class="text-sm font-bold text-[var(--text-main)] group-hover:text-amber-400 transition-colors mt-1">
               {{ item.item_name }}  
             </h3>
             <p class="text-xs text-[var(--text-muted)] mt-1.5 leading-relaxed">
@@ -86,6 +96,9 @@
 
           <div class="pt-3 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-[11px] text-[var(--text-muted)]">
             <span>{{ getLedgerAccountCode(item.ledger_account_id) }}</span>
+            <span class="capitalize text-[10px] font-semibold px-1.5 py-0.5 rounded border border-[var(--border-color)] bg-[var(--bg-surface)]">
+              {{ item.status || 'active' }}
+            </span>
           </div>
         </div>
       </div>
@@ -152,12 +165,87 @@
         </div>
       </form>
     </Modal>
+
+    <!-- Edit Modal -->
+    <Modal :isOpen="isEditModalOpen" title="Edit Account Catalog Item" @close="isEditModalOpen = false">
+      <form @submit.prevent="handleUpdateItem" class="space-y-4">
+        
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Linked Ledger Account *</label>
+          <select v-model="editItem.ledger_account_id" required class="input-field">
+            <option :value="undefined" disabled>Select Ledger account...</option>
+            <option v-for="acc in accounting.ledgerAccounts.value" :key="acc.id" :value="acc.id">
+              {{ acc.account_code }} - {{ acc.account_name }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Code *</label>
+          <input v-model="editItem.item_code" type="text" required placeholder="ITEM-SRV-06" class="input-field font-mono" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Name *</label>
+          <input v-model="editItem.item_name" type="text" required placeholder="API Data Stream Processing Service" class="input-field" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type *</label>
+          <div class="grid grid-cols-2 gap-3">
+            <UiButton
+              type="button"
+              :variant="editItem.transaction_type === 'debit' ? 'primary' : 'secondary'"
+              block
+              size="sm"
+              @click="editItem.transaction_type = 'debit'"
+            >
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              Outflow (Expense)
+            </UiButton>
+            <UiButton
+              type="button"
+              :variant="editItem.transaction_type === 'credit' ? 'primary' : 'secondary'"
+              block
+              size="sm"
+              @click="editItem.transaction_type = 'credit'"
+            >
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              Inflow (Income / Refund)
+            </UiButton>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status *</label>
+          <select v-model="editItem.status" required class="input-field">
+            <option v-for="opt in itemStatusOptions" :key="opt.value" :value="opt.value">
+              {{ opt.label }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <textarea v-model="editItem.description" rows="3" placeholder="Detailed description of the transaction line item..." class="input-field"></textarea>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
+          <UiButton type="button" variant="secondary" size="sm" @click="isEditModalOpen = false">Cancel</UiButton>
+          <UiButton type="submit" variant="primary" size="sm">Update Account Item</UiButton>
+        </div>
+      </form>
+    </Modal>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { AccountItem } from '~/composables/useAccounting'
+
 const accounting = useAccounting()
 const isModalOpen = ref(false)
+const isEditModalOpen = ref(false)
+const editingItemId = ref<number | null>(null)
 const searchQuery = ref('')
 const statusFilter = ref('active')
 
@@ -196,10 +284,30 @@ const newItem = reactive({
   transaction_type: 'debit' as 'debit' | 'credit',
 })
 
+const editItem = reactive({
+  item_code: '',
+  item_name: '',
+  description: '',
+  ledger_account_id: undefined as number | undefined,
+  transaction_type: 'debit' as 'debit' | 'credit',
+  status: 'active' as 'active' | 'inactive' | 'archived',
+})
+
 const getLedgerAccountCode = (ledgerAccountId?: number) => {
   if (!ledgerAccountId) return 'N/A'
   const acc = accounting.ledgerAccounts.value.find(a => a.id === ledgerAccountId)
   return acc ? `${acc.account_code} (${acc.account_name})` : `#${ledgerAccountId}`
+}
+
+const openEditModal = (item: AccountItem) => {
+  editingItemId.value = item.id
+  editItem.item_code = item.item_code
+  editItem.item_name = item.item_name
+  editItem.description = item.description || ''
+  editItem.ledger_account_id = item.ledger_account_id
+  editItem.transaction_type = item.transaction_type || 'debit'
+  editItem.status = item.status || 'active'
+  isEditModalOpen.value = true
 }
 
 const handleCreateItem = () => {
@@ -210,6 +318,13 @@ const handleCreateItem = () => {
   newItem.description = ''
   newItem.ledger_account_id = undefined
   newItem.transaction_type = 'debit'
+}
+
+const handleUpdateItem = async () => {
+  if (!editingItemId.value) return
+  await accounting.updateAccountItem(editingItemId.value, { ...editItem })
+  isEditModalOpen.value = false
+  editingItemId.value = null
 }
 
 const handleItemStatusChange = async (id: number, newStatus: string) => {

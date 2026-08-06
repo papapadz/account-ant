@@ -1,0 +1,1685 @@
+{
+  "communities": {
+    "0": [
+      "backend_public_nuxt_b6eisgkz_js",
+      "backend_public_nuxt_bh5xugli_js",
+      "nuxt_b6eisgkz",
+      "nuxt_b6eisgkz_b",
+      "nuxt_b6eisgkz_c",
+      "nuxt_b6eisgkz_f",
+      "nuxt_b6eisgkz_g",
+      "nuxt_b6eisgkz_h",
+      "nuxt_b6eisgkz_i",
+      "nuxt_b6eisgkz_j",
+      "nuxt_b6eisgkz_k",
+      "nuxt_b6eisgkz_l",
+      "nuxt_b6eisgkz_m",
+      "nuxt_b6eisgkz_n",
+      "nuxt_b6eisgkz_p",
+      "nuxt_b6eisgkz_q",
+      "nuxt_b6eisgkz_r",
+      "nuxt_b6eisgkz_s",
+      "nuxt_b6eisgkz_t",
+      "nuxt_b6eisgkz_u",
+      "nuxt_b6eisgkz_v",
+      "nuxt_b6eisgkz_w",
+      "nuxt_b6eisgkz_x",
+      "nuxt_b6eisgkz_y",
+      "nuxt_b6eisgkz_z",
+      "nuxt_bh5xugli_a",
+      "nuxt_bh5xugli_aa",
+      "nuxt_bh5xugli_ai",
+      "nuxt_bh5xugli_ar",
+      "nuxt_bh5xugli_ba",
+      "nuxt_bh5xugli_bt",
+      "nuxt_bh5xugli_c",
+      "nuxt_bh5xugli_ca",
+      "nuxt_bh5xugli_cc",
+      "nuxt_bh5xugli_ci",
+      "nuxt_bh5xugli_cn",
+      "nuxt_bh5xugli_constructor",
+      "nuxt_bh5xugli_cr",
+      "nuxt_bh5xugli_da",
+      "nuxt_bh5xugli_di",
+      "nuxt_bh5xugli_do",
+      "nuxt_bh5xugli_dr",
+      "nuxt_bh5xugli_dt",
+      "nuxt_bh5xugli_e",
+      "nuxt_bh5xugli_e_array",
+      "nuxt_bh5xugli_e_arraybuffer",
+      "nuxt_bh5xugli_e_compare",
+      "nuxt_bh5xugli_e_date",
+      "nuxt_bh5xugli_e_function",
+      "nuxt_bh5xugli_e_map",
+      "nuxt_bh5xugli_e_object",
+      "nuxt_bh5xugli_e_serialize",
+      "nuxt_bh5xugli_e_serializebuiltintype",
+      "nuxt_bh5xugli_e_serializeobject",
+      "nuxt_bh5xugli_e_serializeobjectentries",
+      "nuxt_bh5xugli_e_set",
+      "nuxt_bh5xugli_ea",
+      "nuxt_bh5xugli_ec",
+      "nuxt_bh5xugli_ei",
+      "nuxt_bh5xugli_en",
+      "nuxt_bh5xugli_eo",
+      "nuxt_bh5xugli_er",
+      "nuxt_bh5xugli_et",
+      "nuxt_bh5xugli_fa",
+      "nuxt_bh5xugli_factory",
+      "nuxt_bh5xugli_fi",
+      "nuxt_bh5xugli_fn",
+      "nuxt_bh5xugli_fo",
+      "nuxt_bh5xugli_fr",
+      "nuxt_bh5xugli_fromlocalvalue",
+      "nuxt_bh5xugli_fromlocalvaluearray",
+      "nuxt_bh5xugli_fs",
+      "nuxt_bh5xugli_ft",
+      "nuxt_bh5xugli_fu",
+      "nuxt_bh5xugli_ga",
+      "nuxt_bh5xugli_get",
+      "nuxt_bh5xugli_getboolean",
+      "nuxt_bh5xugli_getnumber",
+      "nuxt_bh5xugli_gi",
+      "nuxt_bh5xugli_gn",
+      "nuxt_bh5xugli_gr",
+      "nuxt_bh5xugli_gs",
+      "nuxt_bh5xugli_gt",
+      "nuxt_bh5xugli_ha",
+      "nuxt_bh5xugli_hn",
+      "nuxt_bh5xugli_hr",
+      "nuxt_bh5xugli_ht",
+      "nuxt_bh5xugli_i",
+      "nuxt_bh5xugli_ia",
+      "nuxt_bh5xugli_ii",
+      "nuxt_bh5xugli_ir",
+      "nuxt_bh5xugli_islocalvalueobject",
+      "nuxt_bh5xugli_iu",
+      "nuxt_bh5xugli_j",
+      "nuxt_bh5xugli_ji",
+      "nuxt_bh5xugli_jn",
+      "nuxt_bh5xugli_jo",
+      "nuxt_bh5xugli_jr",
+      "nuxt_bh5xugli_js",
+      "nuxt_bh5xugli_ka",
+      "nuxt_bh5xugli_ki",
+      "nuxt_bh5xugli_kl",
+      "nuxt_bh5xugli_kn",
+      "nuxt_bh5xugli_ko",
+      "nuxt_bh5xugli_l",
+      "nuxt_bh5xugli_la",
+      "nuxt_bh5xugli_li",
+      "nuxt_bh5xugli_ln",
+      "nuxt_bh5xugli_lo",
+      "nuxt_bh5xugli_lr",
+      "nuxt_bh5xugli_lt",
+      "nuxt_bh5xugli_mi",
+      "nuxt_bh5xugli_mn",
+      "nuxt_bh5xugli_mo",
+      "nuxt_bh5xugli_mr",
+      "nuxt_bh5xugli_mu",
+      "nuxt_bh5xugli_n",
+      "nuxt_bh5xugli_na",
+      "nuxt_bh5xugli_ni",
+      "nuxt_bh5xugli_no",
+      "nuxt_bh5xugli_nr",
+      "nuxt_bh5xugli_nu",
+      "nuxt_bh5xugli_o",
+      "nuxt_bh5xugli_oa",
+      "nuxt_bh5xugli_oi",
+      "nuxt_bh5xugli_oo",
+      "nuxt_bh5xugli_pi",
+      "nuxt_bh5xugli_pn",
+      "nuxt_bh5xugli_po",
+      "nuxt_bh5xugli_pr",
+      "nuxt_bh5xugli_pt",
+      "nuxt_bh5xugli_pu",
+      "nuxt_bh5xugli_q",
+      "nuxt_bh5xugli_qc",
+      "nuxt_bh5xugli_qi",
+      "nuxt_bh5xugli_qn",
+      "nuxt_bh5xugli_qr",
+      "nuxt_bh5xugli_qt",
+      "nuxt_bh5xugli_r",
+      "nuxt_bh5xugli_ra",
+      "nuxt_bh5xugli_render",
+      "nuxt_bh5xugli_reset",
+      "nuxt_bh5xugli_ri",
+      "nuxt_bh5xugli_ro",
+      "nuxt_bh5xugli_rr",
+      "nuxt_bh5xugli_rt",
+      "nuxt_bh5xugli_s",
+      "nuxt_bh5xugli_scrollbehavior",
+      "nuxt_bh5xugli_set",
+      "nuxt_bh5xugli_setup",
+      "nuxt_bh5xugli_si",
+      "nuxt_bh5xugli_sl",
+      "nuxt_bh5xugli_sn",
+      "nuxt_bh5xugli_sr",
+      "nuxt_bh5xugli_st",
+      "nuxt_bh5xugli_t",
+      "nuxt_bh5xugli_t_item",
+      "nuxt_bh5xugli_tc",
+      "nuxt_bh5xugli_ti",
+      "nuxt_bh5xugli_tn",
+      "nuxt_bh5xugli_to",
+      "nuxt_bh5xugli_tojson",
+      "nuxt_bh5xugli_tr",
+      "nuxt_bh5xugli_tt",
+      "nuxt_bh5xugli_tu",
+      "nuxt_bh5xugli_un",
+      "nuxt_bh5xugli_ut",
+      "nuxt_bh5xugli_v",
+      "nuxt_bh5xugli_va",
+      "nuxt_bh5xugli_value",
+      "nuxt_bh5xugli_vi",
+      "nuxt_bh5xugli_vite_mapdeps",
+      "nuxt_bh5xugli_vn",
+      "nuxt_bh5xugli_vo",
+      "nuxt_bh5xugli_vr",
+      "nuxt_bh5xugli_vt",
+      "nuxt_bh5xugli_wa",
+      "nuxt_bh5xugli_wc",
+      "nuxt_bh5xugli_wo",
+      "nuxt_bh5xugli_wr",
+      "nuxt_bh5xugli_wt",
+      "nuxt_bh5xugli_xi",
+      "nuxt_bh5xugli_xr",
+      "nuxt_bh5xugli_ya",
+      "nuxt_bh5xugli_yi",
+      "nuxt_bh5xugli_yn",
+      "nuxt_bh5xugli_yr",
+      "nuxt_bh5xugli_yt",
+      "nuxt_bh5xugli_za",
+      "nuxt_bh5xugli_zc",
+      "nuxt_bh5xugli_zi",
+      "nuxt_bh5xugli_zn",
+      "nuxt_bh5xugli_zr",
+      "nuxt_cfintcer_hr",
+      "nuxt_cfintcer_q",
+      "nuxt_cfintcer_qr",
+      "nuxt_cfintcer_rn",
+      "nuxt_cz90y64g_pe"
+    ],
+    "1": [
+      "backend_public_nuxt_cfintcer_js",
+      "nuxt_bh5xugli_wi",
+      "nuxt_cfintcer_a",
+      "nuxt_cfintcer_aa",
+      "nuxt_cfintcer_active",
+      "nuxt_cfintcer_ae",
+      "nuxt_cfintcer_ai",
+      "nuxt_cfintcer_an",
+      "nuxt_cfintcer_ao",
+      "nuxt_cfintcer_ar",
+      "nuxt_cfintcer_ba",
+      "nuxt_cfintcer_be",
+      "nuxt_cfintcer_bi",
+      "nuxt_cfintcer_bn",
+      "nuxt_cfintcer_br",
+      "nuxt_cfintcer_bt",
+      "nuxt_cfintcer_ca",
+      "nuxt_cfintcer_co",
+      "nuxt_cfintcer_concat",
+      "nuxt_cfintcer_constructor",
+      "nuxt_cfintcer_cr",
+      "nuxt_cfintcer_da",
+      "nuxt_cfintcer_defineproperty",
+      "nuxt_cfintcer_deleteproperty",
+      "nuxt_cfintcer_dep",
+      "nuxt_cfintcer_dirty",
+      "nuxt_cfintcer_dn",
+      "nuxt_cfintcer_do",
+      "nuxt_cfintcer_dr",
+      "nuxt_cfintcer_e",
+      "nuxt_cfintcer_ea",
+      "nuxt_cfintcer_ei",
+      "nuxt_cfintcer_en",
+      "nuxt_cfintcer_entries",
+      "nuxt_cfintcer_eo",
+      "nuxt_cfintcer_er",
+      "nuxt_cfintcer_fa",
+      "nuxt_cfintcer_fi",
+      "nuxt_cfintcer_filter",
+      "nuxt_cfintcer_fn",
+      "nuxt_cfintcer_fo",
+      "nuxt_cfintcer_foreach",
+      "nuxt_cfintcer_ga",
+      "nuxt_cfintcer_ge",
+      "nuxt_cfintcer_get",
+      "nuxt_cfintcer_gi",
+      "nuxt_cfintcer_gn",
+      "nuxt_cfintcer_gr",
+      "nuxt_cfintcer_gt",
+      "nuxt_cfintcer_ha",
+      "nuxt_cfintcer_has",
+      "nuxt_cfintcer_he",
+      "nuxt_cfintcer_hn",
+      "nuxt_cfintcer_ho",
+      "nuxt_cfintcer_ht",
+      "nuxt_cfintcer_ia",
+      "nuxt_cfintcer_ie",
+      "nuxt_cfintcer_ii",
+      "nuxt_cfintcer_in",
+      "nuxt_cfintcer_includes",
+      "nuxt_cfintcer_indexof",
+      "nuxt_cfintcer_io",
+      "nuxt_cfintcer_ir",
+      "nuxt_cfintcer_it",
+      "nuxt_cfintcer_ja",
+      "nuxt_cfintcer_je",
+      "nuxt_cfintcer_ji",
+      "nuxt_cfintcer_jn",
+      "nuxt_cfintcer_jo",
+      "nuxt_cfintcer_jr",
+      "nuxt_cfintcer_jt",
+      "nuxt_cfintcer_ka",
+      "nuxt_cfintcer_ke",
+      "nuxt_cfintcer_ki",
+      "nuxt_cfintcer_kn",
+      "nuxt_cfintcer_la",
+      "nuxt_cfintcer_lastindexof",
+      "nuxt_cfintcer_le",
+      "nuxt_cfintcer_li",
+      "nuxt_cfintcer_ln",
+      "nuxt_cfintcer_lo",
+      "nuxt_cfintcer_lr",
+      "nuxt_cfintcer_lt",
+      "nuxt_cfintcer_ma",
+      "nuxt_cfintcer_map",
+      "nuxt_cfintcer_me",
+      "nuxt_cfintcer_mi",
+      "nuxt_cfintcer_mn",
+      "nuxt_cfintcer_mo",
+      "nuxt_cfintcer_mr",
+      "nuxt_cfintcer_mt",
+      "nuxt_cfintcer_n",
+      "nuxt_cfintcer_na",
+      "nuxt_cfintcer_ni",
+      "nuxt_cfintcer_nn",
+      "nuxt_cfintcer_no",
+      "nuxt_cfintcer_notify",
+      "nuxt_cfintcer_oa",
+      "nuxt_cfintcer_off",
+      "nuxt_cfintcer_oi",
+      "nuxt_cfintcer_on",
+      "nuxt_cfintcer_oo",
+      "nuxt_cfintcer_ownkeys",
+      "nuxt_cfintcer_pa",
+      "nuxt_cfintcer_pause",
+      "nuxt_cfintcer_pn",
+      "nuxt_cfintcer_po",
+      "nuxt_cfintcer_pop",
+      "nuxt_cfintcer_pr",
+      "nuxt_cfintcer_process",
+      "nuxt_cfintcer_pt",
+      "nuxt_cfintcer_push",
+      "nuxt_cfintcer_qa",
+      "nuxt_cfintcer_qe",
+      "nuxt_cfintcer_qn",
+      "nuxt_cfintcer_qt",
+      "nuxt_cfintcer_r",
+      "nuxt_cfintcer_ra",
+      "nuxt_cfintcer_re",
+      "nuxt_cfintcer_reduce",
+      "nuxt_cfintcer_remove",
+      "nuxt_cfintcer_resume",
+      "nuxt_cfintcer_ri",
+      "nuxt_cfintcer_ro",
+      "nuxt_cfintcer_rr",
+      "nuxt_cfintcer_rt",
+      "nuxt_cfintcer_run",
+      "nuxt_cfintcer_runifdirty",
+      "nuxt_cfintcer_sa",
+      "nuxt_cfintcer_set",
+      "nuxt_cfintcer_setup",
+      "nuxt_cfintcer_shift",
+      "nuxt_cfintcer_sn",
+      "nuxt_cfintcer_so",
+      "nuxt_cfintcer_some",
+      "nuxt_cfintcer_splice",
+      "nuxt_cfintcer_sr",
+      "nuxt_cfintcer_stop",
+      "nuxt_cfintcer_symbol_iterator",
+      "nuxt_cfintcer_ta",
+      "nuxt_cfintcer_ti",
+      "nuxt_cfintcer_tn",
+      "nuxt_cfintcer_to",
+      "nuxt_cfintcer_track",
+      "nuxt_cfintcer_trigger",
+      "nuxt_cfintcer_ua",
+      "nuxt_cfintcer_ue",
+      "nuxt_cfintcer_ui",
+      "nuxt_cfintcer_unshift",
+      "nuxt_cfintcer_uo",
+      "nuxt_cfintcer_ur",
+      "nuxt_cfintcer_ut",
+      "nuxt_cfintcer_va",
+      "nuxt_cfintcer_value",
+      "nuxt_cfintcer_values",
+      "nuxt_cfintcer_ve",
+      "nuxt_cfintcer_vi",
+      "nuxt_cfintcer_vn",
+      "nuxt_cfintcer_vo",
+      "nuxt_cfintcer_vr",
+      "nuxt_cfintcer_vt",
+      "nuxt_cfintcer_w",
+      "nuxt_cfintcer_wa",
+      "nuxt_cfintcer_we",
+      "nuxt_cfintcer_wn",
+      "nuxt_cfintcer_wo",
+      "nuxt_cfintcer_wr",
+      "nuxt_cfintcer_wt",
+      "nuxt_cfintcer_xa",
+      "nuxt_cfintcer_xe",
+      "nuxt_cfintcer_xi",
+      "nuxt_cfintcer_xr",
+      "nuxt_cfintcer_y",
+      "nuxt_cfintcer_ya",
+      "nuxt_cfintcer_ye",
+      "nuxt_cfintcer_yi",
+      "nuxt_cfintcer_yr",
+      "nuxt_cfintcer_yt",
+      "nuxt_cfintcer_za",
+      "nuxt_cfintcer_ze",
+      "nuxt_cfintcer_zi",
+      "nuxt_cfintcer_zn",
+      "nuxt_cfintcer_zr",
+      "nuxt_cfintcer_zt",
+      "nuxt_cz90y64g_ne"
+    ],
+    "2": [
+      "api_childprocess_getprocess",
+      "api_childprocess_getsettings",
+      "api_childprocess_startphpprocess",
+      "api_childprocess_startprocess",
+      "api_childprocess_stopallprocesses",
+      "api_childprocess_stopprocess",
+      "api_childprocess_waitforprocessdeletion",
+      "api_menubar_buildmenu",
+      "api_menubar_eventsfortray",
+      "api_notification_islocalfile",
+      "api_window_getwindowdata",
+      "backend_nativephp_electron_electron_plugin_src_index_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_alert_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_app_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_autoupdater_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_broadcasting_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_childprocess_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_clipboard_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_contextmenu_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_debug_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_dialog_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_dock_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_globalshortcut_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_helper_index_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_menu_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_menubar_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_middleware_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_notification_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_powermonitor_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_process_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_progressbar_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_screen_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_settings_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_shell_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_system_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_api_window_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_index_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_php_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_processresult_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_state_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_utils_ts",
+      "backend_nativephp_electron_electron_plugin_src_server_webpreferences_ts",
+      "backend_nativephp_electron_electron_plugin_tests_utils_test_ts",
+      "helper_index_compilemenu",
+      "helper_index_triggermenuitemevent",
+      "menubar_index_menubar",
+      "nuxt_cfintcer_join",
+      "server_api_startapiserver",
+      "server_index_killscheduler",
+      "server_index_runscheduler",
+      "server_index_startapi",
+      "server_index_startphpapp",
+      "server_php_callphp",
+      "server_php_callphpsync",
+      "server_php_canbindtoport",
+      "server_php_ensureappfoldersareavailable",
+      "server_php_getapppath",
+      "server_php_getargumentenv",
+      "server_php_getdefaultenvironmentvariables",
+      "server_php_getdefaultphpinisettings",
+      "server_php_getnightwatchtoken",
+      "server_php_getpath",
+      "server_php_getphpport",
+      "server_php_hasnightwatchinstalled",
+      "server_php_retrievenativephpconfig",
+      "server_php_retrievephpinisettings",
+      "server_php_runningsecurebuild",
+      "server_php_serveapp",
+      "server_php_shouldmigratedatabase",
+      "server_php_shouldoptimize",
+      "server_php_startscheduler",
+      "server_state_findwindow",
+      "server_state_generaterandomstring",
+      "server_utils_appendcookie",
+      "server_utils_appendwindowidtourl",
+      "server_utils_broadcasttowindows",
+      "server_utils_gotourl",
+      "server_utils_notifylaravel",
+      "server_utils_trimoptions",
+      "src_index_nativephp",
+      "src_index_nativephp_addeventlisteners",
+      "src_index_nativephp_bootstrap",
+      "src_index_nativephp_bootstrapapp",
+      "src_index_nativephp_killchildprocesses",
+      "src_index_nativephp_loadconfig",
+      "src_index_nativephp_loadphpini",
+      "src_index_nativephp_setappusermodelid",
+      "src_index_nativephp_setdeeplinkhandler",
+      "src_index_nativephp_setdockicon",
+      "src_index_nativephp_startautoupdater",
+      "src_index_nativephp_startelectronapi",
+      "src_index_nativephp_startphpapp",
+      "src_index_nativephp_startscheduler",
+      "src_index_nativephp_stopscheduler"
+    ],
+    "3": [
+      "backend_public_nuxt_5l2zpd3b_js",
+      "backend_public_nuxt_ba612r5i_js",
+      "backend_public_nuxt_bb6olop6_js",
+      "backend_public_nuxt_bm4pr29c_js",
+      "backend_public_nuxt_bqkhfbab_js",
+      "backend_public_nuxt_bwb83get_js",
+      "backend_public_nuxt_c5lhilre_js",
+      "backend_public_nuxt_c6acegry_js",
+      "backend_public_nuxt_c8u1lr6j_js",
+      "backend_public_nuxt_c_p8_nsb_js",
+      "backend_public_nuxt_chky93mw_js",
+      "backend_public_nuxt_ckdpszxq_js",
+      "backend_public_nuxt_cpszqbgq_js",
+      "backend_public_nuxt_csr41g4q_js",
+      "backend_public_nuxt_cvpic_nl_js",
+      "backend_public_nuxt_cxcvatku_js",
+      "backend_public_nuxt_d3luvh33_js",
+      "backend_public_nuxt_d98ic_ax_js",
+      "backend_public_nuxt_dircdshi_js",
+      "backend_public_nuxt_dpshjlfk_js",
+      "backend_public_nuxt_dqceg9cy_js",
+      "backend_public_nuxt_dvnyevy8_js",
+      "backend_public_nuxt_pijgq7c_js",
+      "nuxt_5l2zpd3b_setup",
+      "nuxt_ba612r5i_setup",
+      "nuxt_bb6olop6_setup",
+      "nuxt_bqkhfbab_setup",
+      "nuxt_bsheyz7z_t",
+      "nuxt_bwb83get_c",
+      "nuxt_c5lhilre_setup",
+      "nuxt_c6acegry_setup",
+      "nuxt_c8u1lr6j_setup",
+      "nuxt_c_p8_nsb_setup",
+      "nuxt_cfintcer_at",
+      "nuxt_cfintcer_dt",
+      "nuxt_cfintcer_et",
+      "nuxt_cfintcer_every",
+      "nuxt_cfintcer_f",
+      "nuxt_cfintcer_find",
+      "nuxt_cfintcer_findindex",
+      "nuxt_cfintcer_findlast",
+      "nuxt_cfintcer_findlastindex",
+      "nuxt_cfintcer_ft",
+      "nuxt_cfintcer_i",
+      "nuxt_cfintcer_kt",
+      "nuxt_cfintcer_oe",
+      "nuxt_cfintcer_ot",
+      "nuxt_cfintcer_p",
+      "nuxt_cfintcer_reduceright",
+      "nuxt_cfintcer_se",
+      "nuxt_cfintcer_st",
+      "nuxt_cfintcer_t",
+      "nuxt_cfintcer_toreversed",
+      "nuxt_cfintcer_tosorted",
+      "nuxt_cfintcer_tospliced",
+      "nuxt_cfintcer_z",
+      "nuxt_chky93mw_setup",
+      "nuxt_ckdpszxq_setup",
+      "nuxt_cpszqbgq_setup",
+      "nuxt_csr41g4q_setup",
+      "nuxt_cvpic_nl_setup",
+      "nuxt_cxcvatku_setup",
+      "nuxt_cz90y64g_i",
+      "nuxt_d3luvh33_setup",
+      "nuxt_d98ic_ax_setup",
+      "nuxt_d98ic_ax_t",
+      "nuxt_dpshjlfk_setup",
+      "nuxt_dqceg9cy_setup",
+      "nuxt_dvnyevy8_setup",
+      "nuxt_pijgq7c_setup"
+    ],
+    "4": [
+      "backend_app_providers_nativeappserviceprovider_php",
+      "backend_database_migrations_2026_08_04_162819_create_permission_tables_php",
+      "backend_database_seeders_rolesseeder_php",
+      "backend_nativephp_electron_electron_plugin_src_libs_menubar_index_ts",
+      "backend_nativephp_electron_electron_plugin_src_libs_menubar_menubar_ts",
+      "backend_nativephp_electron_electron_plugin_src_libs_menubar_types_ts",
+      "backend_nativephp_electron_electron_plugin_src_libs_menubar_util_cleanoptions_ts",
+      "backend_nativephp_electron_electron_plugin_src_libs_menubar_util_getwindowposition_ts",
+      "backend_nativephp_electron_electron_plugin_src_libs_positioner_index_ts",
+      "menubar_menubar_menubar",
+      "menubar_menubar_menubar_app",
+      "menubar_menubar_menubar_appready",
+      "menubar_menubar_menubar_clicked",
+      "menubar_menubar_menubar_constructor",
+      "menubar_menubar_menubar_createwindow",
+      "menubar_menubar_menubar_getoption",
+      "menubar_menubar_menubar_hidewindow",
+      "menubar_menubar_menubar_positioner",
+      "menubar_menubar_menubar_setoption",
+      "menubar_menubar_menubar_showwindow",
+      "menubar_menubar_menubar_tray",
+      "menubar_menubar_menubar_window",
+      "menubar_menubar_menubar_windowclear",
+      "migrations_2026_08_04_162819_create_permission_tables_down",
+      "migrations_2026_08_04_162819_create_permission_tables_up",
+      "positioner_index_positioner",
+      "positioner_index_positioner_calculate",
+      "positioner_index_positioner_constructor",
+      "positioner_index_positioner_getcoords",
+      "positioner_index_positioner_getscreensize",
+      "positioner_index_positioner_getwindowsize",
+      "positioner_index_positioner_move",
+      "providers_nativeappserviceprovider_nativeappserviceprovider",
+      "providers_nativeappserviceprovider_nativeappserviceprovider_boot",
+      "providers_nativeappserviceprovider_nativeappserviceprovider_phpini",
+      "seeders_rolesseeder_rolesseeder",
+      "seeders_rolesseeder_rolesseeder_run",
+      "util_cleanoptions_cleanoptions",
+      "util_getwindowposition_getwindowposition",
+      "util_getwindowposition_taskbarlocation",
+      "util_getwindowposition_traytoscreenrects"
+    ],
+    "5": [
+      "backend_public_nuxt_d1wvcx_p_js",
+      "backend_public_nuxt_m6hudxea_js",
+      "nuxt_d1wvcx_p_s",
+      "nuxt_d1wvcx_p_v",
+      "nuxt_d1wvcx_p_x",
+      "nuxt_d1wvcx_p_y",
+      "nuxt_m6hudxea",
+      "nuxt_m6hudxea_addhooks",
+      "nuxt_m6hudxea_aftereach",
+      "nuxt_m6hudxea_b",
+      "nuxt_m6hudxea_beforeeach",
+      "nuxt_m6hudxea_c",
+      "nuxt_m6hudxea_callhook",
+      "nuxt_m6hudxea_callhookparallel",
+      "nuxt_m6hudxea_callhookwith",
+      "nuxt_m6hudxea_clearhook",
+      "nuxt_m6hudxea_constructor",
+      "nuxt_m6hudxea_deprecatehook",
+      "nuxt_m6hudxea_deprecatehooks",
+      "nuxt_m6hudxea_g",
+      "nuxt_m6hudxea_h",
+      "nuxt_m6hudxea_hook",
+      "nuxt_m6hudxea_hookonce",
+      "nuxt_m6hudxea_j",
+      "nuxt_m6hudxea_k",
+      "nuxt_m6hudxea_l",
+      "nuxt_m6hudxea_p",
+      "nuxt_m6hudxea_q",
+      "nuxt_m6hudxea_removeallhooks",
+      "nuxt_m6hudxea_removehook",
+      "nuxt_m6hudxea_removehooks",
+      "nuxt_m6hudxea_s",
+      "nuxt_m6hudxea_tojson",
+      "nuxt_m6hudxea_u",
+      "nuxt_m6hudxea_v",
+      "nuxt_m6hudxea_w",
+      "nuxt_m6hudxea_why",
+      "nuxt_m6hudxea_x",
+      "nuxt_m6hudxea_y",
+      "nuxt_m6hudxea_z"
+    ],
+    "6": [
+      "backend_public_nuxt_cz90y64g_js",
+      "nuxt_bh5xugli_hu",
+      "nuxt_bm4pr29c_setup",
+      "nuxt_cz90y64g_ae",
+      "nuxt_cz90y64g_b",
+      "nuxt_cz90y64g_be",
+      "nuxt_cz90y64g_beforeupdate",
+      "nuxt_cz90y64g_ce",
+      "nuxt_cz90y64g_created",
+      "nuxt_cz90y64g_de",
+      "nuxt_cz90y64g_e",
+      "nuxt_cz90y64g_ee",
+      "nuxt_cz90y64g_f",
+      "nuxt_cz90y64g_fe",
+      "nuxt_cz90y64g_ge",
+      "nuxt_cz90y64g_he",
+      "nuxt_cz90y64g_ie",
+      "nuxt_cz90y64g_insertstaticcontent",
+      "nuxt_cz90y64g_j",
+      "nuxt_cz90y64g_je",
+      "nuxt_cz90y64g_l",
+      "nuxt_cz90y64g_le",
+      "nuxt_cz90y64g_mounted",
+      "nuxt_cz90y64g_p",
+      "nuxt_cz90y64g_q",
+      "nuxt_cz90y64g_qe",
+      "nuxt_cz90y64g_r",
+      "nuxt_cz90y64g_setscopeid",
+      "nuxt_cz90y64g_updated",
+      "nuxt_cz90y64g_v",
+      "nuxt_cz90y64g_ve",
+      "nuxt_cz90y64g_w",
+      "nuxt_cz90y64g_xe",
+      "nuxt_cz90y64g_ye",
+      "nuxt_cz90y64g_z",
+      "nuxt_dircdshi_setup"
+    ],
+    "7": [
+      "backend_public_nuxt_bsheyz7z_js",
+      "nuxt_bsheyz7z",
+      "nuxt_bsheyz7z_a",
+      "nuxt_bsheyz7z_b",
+      "nuxt_bsheyz7z_c",
+      "nuxt_bsheyz7z_d",
+      "nuxt_bsheyz7z_e",
+      "nuxt_bsheyz7z_f",
+      "nuxt_bsheyz7z_g",
+      "nuxt_bsheyz7z_h",
+      "nuxt_bsheyz7z_i",
+      "nuxt_bsheyz7z_k",
+      "nuxt_bsheyz7z_l",
+      "nuxt_bsheyz7z_m",
+      "nuxt_bsheyz7z_o",
+      "nuxt_bsheyz7z_p",
+      "nuxt_bsheyz7z_r",
+      "nuxt_bsheyz7z_s",
+      "nuxt_bsheyz7z_v",
+      "nuxt_bsheyz7z_w",
+      "nuxt_bsheyz7z_x",
+      "nuxt_bsheyz7z_y"
+    ],
+    "8": [
+      "backend_public_nuxt_b3vfnptg_js",
+      "nuxt_b3vfnptg",
+      "nuxt_b3vfnptg_b",
+      "nuxt_b3vfnptg_c",
+      "nuxt_b3vfnptg_d",
+      "nuxt_b3vfnptg_e",
+      "nuxt_b3vfnptg_f",
+      "nuxt_b3vfnptg_h",
+      "nuxt_b3vfnptg_i",
+      "nuxt_b3vfnptg_l",
+      "nuxt_b3vfnptg_m",
+      "nuxt_b3vfnptg_p",
+      "nuxt_b3vfnptg_r",
+      "nuxt_b3vfnptg_s",
+      "nuxt_b3vfnptg_t",
+      "nuxt_b3vfnptg_u",
+      "nuxt_b3vfnptg_v",
+      "nuxt_b3vfnptg_w",
+      "nuxt_b3vfnptg_y",
+      "nuxt_b3vfnptg_z"
+    ],
+    "9": [
+      "accounting_projectfund_projectfund",
+      "accounting_projectfund_projectfund_fundaccount",
+      "accounting_projectfund_projectfund_project",
+      "accounting_projectfund_projectfund_user",
+      "api_projectcontroller_projectcontroller",
+      "api_projectcontroller_projectcontroller_addfund",
+      "api_projectcontroller_projectcontroller_destroy",
+      "api_projectcontroller_projectcontroller_index",
+      "api_projectcontroller_projectcontroller_show",
+      "api_projectcontroller_projectcontroller_store",
+      "api_projectcontroller_projectcontroller_updatestatus",
+      "backend_app_http_controllers_api_projectcontroller_php",
+      "backend_app_models_accounting_projectfund_php",
+      "backend_database_seeders_projectseeder_php",
+      "backend_tests_feature_ledgeraccountitemtest_php",
+      "feature_ledgeraccountitemtest_ledgeraccountitemtest",
+      "feature_ledgeraccountitemtest_ledgeraccountitemtest_test_can_post_journal_entry_with_itemized_line_items",
+      "seeders_projectseeder_projectseeder",
+      "seeders_projectseeder_projectseeder_run"
+    ],
+    "10": [
+      "accounting_project_project",
+      "accounting_project_project_city",
+      "accounting_project_project_fundaccounts",
+      "accounting_project_project_getbudgetutilizedpercentageattribute",
+      "accounting_project_project_getisoverbudgetattribute",
+      "accounting_project_project_getrunningbalanceattribute",
+      "accounting_project_project_gettotalallocatedfundsattribute",
+      "accounting_project_project_gettotalcreditsattribute",
+      "accounting_project_project_gettotaldebitsattribute",
+      "accounting_project_project_gettotalexpensesattribute",
+      "accounting_project_project_journalentries",
+      "accounting_project_project_projectfunds",
+      "accounting_project_project_user",
+      "backend_app_models_accounting_project_php"
+    ],
+    "11": [
+      "address_region_region",
+      "address_subregion_subregion",
+      "backend_app_models_address_region_php",
+      "backend_app_models_address_subregion_php",
+      "backend_database_seeders_addressseeder_php",
+      "backend_database_seeders_worldaddressseeder_php",
+      "seeders_addressseeder_addressseeder",
+      "seeders_addressseeder_addressseeder_run",
+      "seeders_worldaddressseeder_worldaddressseeder",
+      "seeders_worldaddressseeder_worldaddressseeder_run"
+    ],
+    "12": [
+      "accounting_ledgeraccountitem_ledgeraccountitem",
+      "accounting_ledgeraccountitem_ledgeraccountitem_accountitem",
+      "accounting_ledgeraccountitem_ledgeraccountitem_accountspayable",
+      "accounting_ledgeraccountitem_ledgeraccountitem_fundaccount",
+      "accounting_ledgeraccountitem_ledgeraccountitem_items",
+      "accounting_ledgeraccountitem_ledgeraccountitem_ledgeraccount",
+      "accounting_ledgeraccountitem_ledgeraccountitem_project",
+      "accounting_ledgeraccountitem_ledgeraccountitem_user",
+      "backend_app_models_accounting_ledgeraccountitem_php"
+    ],
+    "13": [
+      "composables_useaccounting_useaccounting",
+      "composables_useapi_useapi",
+      "composables_useauth_useauth",
+      "composables_useprojects_useprojects",
+      "frontend_app_composables_useaccounting_ts",
+      "frontend_app_composables_useapi_ts",
+      "frontend_app_composables_useauth_ts",
+      "frontend_app_composables_useprojects_ts"
+    ],
+    "14": [
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller_index",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller_store",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller_summary",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller_updatepaymentstatus",
+      "api_ledgeraccountitemcontroller_ledgeraccountitemcontroller_updatestatus",
+      "backend_app_http_controllers_api_ledgeraccountitemcontroller_php"
+    ],
+    "15": [
+      "api_ledgeraccountcontroller_ledgeraccountcontroller",
+      "api_ledgeraccountcontroller_ledgeraccountcontroller_destroy",
+      "api_ledgeraccountcontroller_ledgeraccountcontroller_index",
+      "api_ledgeraccountcontroller_ledgeraccountcontroller_store",
+      "api_ledgeraccountcontroller_ledgeraccountcontroller_update",
+      "api_ledgeraccountcontroller_ledgeraccountcontroller_updatestatus",
+      "backend_app_http_controllers_api_ledgeraccountcontroller_php"
+    ],
+    "16": [
+      "backend_app_models_user_php",
+      "models_user_user",
+      "models_user_user_casts",
+      "models_user_user_getnameattribute",
+      "models_user_user_person",
+      "models_user_user_personaffiliation"
+    ],
+    "17": [
+      "accounting_ledgeraccount_ledgeraccount",
+      "accounting_ledgeraccount_ledgeraccount_accountitems",
+      "accounting_ledgeraccount_ledgeraccount_fundaccount",
+      "accounting_ledgeraccount_ledgeraccount_journalentries",
+      "accounting_ledgeraccount_ledgeraccount_user",
+      "backend_app_models_accounting_ledgeraccount_php"
+    ],
+    "18": [
+      "api_fundaccountcontroller_fundaccountcontroller",
+      "api_fundaccountcontroller_fundaccountcontroller_destroy",
+      "api_fundaccountcontroller_fundaccountcontroller_index",
+      "api_fundaccountcontroller_fundaccountcontroller_show",
+      "api_fundaccountcontroller_fundaccountcontroller_store",
+      "backend_app_http_controllers_api_fundaccountcontroller_php"
+    ],
+    "19": [
+      "api_accountitemcontroller_accountitemcontroller",
+      "api_accountitemcontroller_accountitemcontroller_index",
+      "api_accountitemcontroller_accountitemcontroller_store",
+      "api_accountitemcontroller_accountitemcontroller_update",
+      "api_accountitemcontroller_accountitemcontroller_updatestatus",
+      "backend_app_http_controllers_api_accountitemcontroller_php"
+    ],
+    "20": [
+      "backend_public_nuxt_ceiuyjv3_js",
+      "nuxt_ceiuyjv3_f",
+      "nuxt_ceiuyjv3_g",
+      "nuxt_ceiuyjv3_h",
+      "nuxt_ceiuyjv3_m",
+      "nuxt_ceiuyjv3_p"
+    ],
+    "21": [
+      "backend_app_models_deviceinfo_php",
+      "backend_database_seeders_deviceinfoseeder_php",
+      "models_deviceinfo_deviceinfo",
+      "seeders_deviceinfoseeder_deviceinfoseeder",
+      "seeders_deviceinfoseeder_deviceinfoseeder_run"
+    ],
+    "22": [
+      "accounting_fundaccount_fundaccount",
+      "accounting_fundaccount_fundaccount_company",
+      "accounting_fundaccount_fundaccount_ledgeraccounts",
+      "accounting_fundaccount_fundaccount_user",
+      "backend_app_models_accounting_fundaccount_php"
+    ],
+    "23": [
+      "backend_app_models_hr_personaffiliation_php",
+      "hr_personaffiliation_personaffiliation",
+      "hr_personaffiliation_personaffiliation_company",
+      "hr_personaffiliation_personaffiliation_person",
+      "hr_personaffiliation_personaffiliation_position"
+    ],
+    "24": [
+      "api_authcontroller_authcontroller",
+      "api_authcontroller_authcontroller_login",
+      "api_authcontroller_authcontroller_register",
+      "api_authcontroller_authcontroller_user",
+      "backend_app_http_controllers_api_authcontroller_php"
+    ],
+    "25": [
+      "api_settingscontroller_settingscontroller",
+      "api_settingscontroller_settingscontroller_downloadbackup",
+      "api_settingscontroller_settingscontroller_updatecompany",
+      "api_settingscontroller_settingscontroller_updateprofile",
+      "backend_app_http_controllers_api_settingscontroller_php"
+    ],
+    "26": [
+      "backend_database_factories_userfactory_php",
+      "factories_userfactory_userfactory",
+      "factories_userfactory_userfactory_definition",
+      "factories_userfactory_userfactory_unverified"
+    ],
+    "27": [
+      "backend_app_providers_appserviceprovider_php",
+      "providers_appserviceprovider_appserviceprovider",
+      "providers_appserviceprovider_appserviceprovider_boot",
+      "providers_appserviceprovider_appserviceprovider_register"
+    ],
+    "28": [
+      "accounting_accountspayable_accountspayable",
+      "accounting_accountspayable_accountspayable_ledgeraccountitem",
+      "accounting_accountspayable_accountspayable_user",
+      "backend_app_models_accounting_accountspayable_php"
+    ],
+    "29": [
+      "address_city_city",
+      "address_city_city_country",
+      "address_city_city_state",
+      "backend_app_models_address_city_php"
+    ],
+    "30": [
+      "backend_app_models_hr_company_php",
+      "hr_company_company",
+      "hr_company_company_creator",
+      "hr_company_company_fundaccounts"
+    ],
+    "31": [
+      "backend_tests_feature_authtest_php",
+      "feature_authtest_authtest",
+      "feature_authtest_authtest_test_unauthenticated_request_is_blocked",
+      "feature_authtest_authtest_test_user_can_login_and_get_profile"
+    ],
+    "32": [
+      "backend_public_nuxt_bpq1x59h_js",
+      "nuxt_bpq1x59h_a",
+      "nuxt_bpq1x59h_i",
+      "nuxt_bpq1x59h_o"
+    ],
+    "33": [
+      "backend_database_migrations_2026_07_23_031053_create_fund_accounts_table_php",
+      "migrations_2026_07_23_031053_create_fund_accounts_table_down",
+      "migrations_2026_07_23_031053_create_fund_accounts_table_up"
+    ],
+    "34": [
+      "backend_database_migrations_2026_07_23_030017_create_sub_regions_table_php",
+      "migrations_2026_07_23_030017_create_sub_regions_table_down",
+      "migrations_2026_07_23_030017_create_sub_regions_table_up"
+    ],
+    "35": [
+      "backend_database_migrations_2026_07_30_000002_add_date_received_to_project_funds_table_php",
+      "migrations_2026_07_30_000002_add_date_received_to_project_funds_table_down",
+      "migrations_2026_07_30_000002_add_date_received_to_project_funds_table_up"
+    ],
+    "36": [
+      "backend_database_migrations_2026_07_23_030114_create_people_table_php",
+      "migrations_2026_07_23_030114_create_people_table_down",
+      "migrations_2026_07_23_030114_create_people_table_up"
+    ],
+    "37": [
+      "backend_database_migrations_2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable_php",
+      "migrations_2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable_down",
+      "migrations_2026_07_28_000001_add_ledger_account_id_to_account_items_and_make_fund_account_id_nullable_up"
+    ],
+    "38": [
+      "backend_database_migrations_0001_01_01_000000_create_users_table_php",
+      "migrations_0001_01_01_000000_create_users_table_down",
+      "migrations_0001_01_01_000000_create_users_table_up"
+    ],
+    "39": [
+      "backend_database_migrations_2026_07_24_000002_create_project_funds_table_php",
+      "migrations_2026_07_24_000002_create_project_funds_table_down",
+      "migrations_2026_07_24_000002_create_project_funds_table_up"
+    ],
+    "40": [
+      "backend_database_migrations_2026_07_23_093000_add_fund_account_id_to_ledger_account_items_table_php",
+      "migrations_2026_07_23_093000_add_fund_account_id_to_ledger_account_items_table_down",
+      "migrations_2026_07_23_093000_add_fund_account_id_to_ledger_account_items_table_up"
+    ],
+    "41": [
+      "backend_database_migrations_2026_07_23_025942_create_regions_table_php",
+      "migrations_2026_07_23_025942_create_regions_table_down",
+      "migrations_2026_07_23_025942_create_regions_table_up"
+    ],
+    "42": [
+      "backend_database_migrations_0001_01_01_000001_create_cache_table_php",
+      "migrations_0001_01_01_000001_create_cache_table_down",
+      "migrations_0001_01_01_000001_create_cache_table_up"
+    ],
+    "43": [
+      "backend_database_migrations_2026_07_23_031708_create_account_items_table_php",
+      "migrations_2026_07_23_031708_create_account_items_table_down",
+      "migrations_2026_07_23_031708_create_account_items_table_up"
+    ],
+    "44": [
+      "backend_database_migrations_2026_07_28_000002_add_amount_to_fund_accounts_table_php",
+      "migrations_2026_07_28_000002_add_amount_to_fund_accounts_table_down",
+      "migrations_2026_07_28_000002_add_amount_to_fund_accounts_table_up"
+    ],
+    "45": [
+      "backend_database_migrations_2026_07_30_000004_add_status_to_account_items_table_php",
+      "migrations_2026_07_30_000004_add_status_to_account_items_table_down",
+      "migrations_2026_07_30_000004_add_status_to_account_items_table_up"
+    ],
+    "46": [
+      "backend_database_migrations_2026_07_29_000002_create_journal_entry_items_table_php",
+      "migrations_2026_07_29_000002_create_journal_entry_items_table_down",
+      "migrations_2026_07_29_000002_create_journal_entry_items_table_up"
+    ],
+    "47": [
+      "backend_database_migrations_2026_07_23_033118_create_ledger_account_items_table_php",
+      "migrations_2026_07_23_033118_create_ledger_account_items_table_down",
+      "migrations_2026_07_23_033118_create_ledger_account_items_table_up"
+    ],
+    "48": [
+      "backend_database_migrations_2026_07_23_030042_create_states_table_php",
+      "migrations_2026_07_23_030042_create_states_table_down",
+      "migrations_2026_07_23_030042_create_states_table_up"
+    ],
+    "49": [
+      "backend_database_migrations_0001_01_01_000002_create_jobs_table_php",
+      "migrations_0001_01_01_000002_create_jobs_table_down",
+      "migrations_0001_01_01_000002_create_jobs_table_up"
+    ],
+    "50": [
+      "backend_database_migrations_2026_07_23_030603_add_person_affiliations_id_to_users_php",
+      "migrations_2026_07_23_030603_add_person_affiliations_id_to_users_down",
+      "migrations_2026_07_23_030603_add_person_affiliations_id_to_users_up"
+    ],
+    "51": [
+      "backend_database_migrations_2026_07_31_000001_add_is_paid_to_ledger_account_items_table_php",
+      "migrations_2026_07_31_000001_add_is_paid_to_ledger_account_items_table_down",
+      "migrations_2026_07_31_000001_add_is_paid_to_ledger_account_items_table_up"
+    ],
+    "52": [
+      "backend_database_migrations_2026_07_23_030207_create_companies_table_php",
+      "migrations_2026_07_23_030207_create_companies_table_down",
+      "migrations_2026_07_23_030207_create_companies_table_up"
+    ],
+    "53": [
+      "backend_database_migrations_2026_07_30_000003_add_status_to_ledger_accounts_table_php",
+      "migrations_2026_07_30_000003_add_status_to_ledger_accounts_table_down",
+      "migrations_2026_07_30_000003_add_status_to_ledger_accounts_table_up"
+    ],
+    "54": [
+      "backend_database_migrations_2026_07_30_000005_add_status_to_ledger_account_items_table_php",
+      "migrations_2026_07_30_000005_add_status_to_ledger_account_items_table_down",
+      "migrations_2026_07_30_000005_add_status_to_ledger_account_items_table_up"
+    ],
+    "55": [
+      "backend_database_migrations_2026_07_23_030052_create_cities_table_php",
+      "migrations_2026_07_23_030052_create_cities_table_down",
+      "migrations_2026_07_23_030052_create_cities_table_up"
+    ],
+    "56": [
+      "backend_database_migrations_2026_08_04_155914_create_device_infos_table_php",
+      "migrations_2026_08_04_155914_create_device_infos_table_down",
+      "migrations_2026_08_04_155914_create_device_infos_table_up"
+    ],
+    "57": [
+      "backend_database_migrations_2026_07_23_030253_create_positions_table_php",
+      "migrations_2026_07_23_030253_create_positions_table_down",
+      "migrations_2026_07_23_030253_create_positions_table_up"
+    ],
+    "58": [
+      "backend_database_migrations_2026_07_29_000001_add_transaction_type_to_account_items_table_php",
+      "migrations_2026_07_29_000001_add_transaction_type_to_account_items_table_down",
+      "migrations_2026_07_29_000001_add_transaction_type_to_account_items_table_up"
+    ],
+    "59": [
+      "backend_database_migrations_2026_07_24_000003_add_project_id_to_ledger_account_items_table_php",
+      "migrations_2026_07_24_000003_add_project_id_to_ledger_account_items_table_down",
+      "migrations_2026_07_24_000003_add_project_id_to_ledger_account_items_table_up"
+    ],
+    "60": [
+      "backend_database_migrations_2026_07_30_000001_add_posting_date_to_ledger_account_items_table_php",
+      "migrations_2026_07_30_000001_add_posting_date_to_ledger_account_items_table_down",
+      "migrations_2026_07_30_000001_add_posting_date_to_ledger_account_items_table_up"
+    ],
+    "61": [
+      "backend_database_migrations_2026_07_24_000001_create_projects_table_php",
+      "migrations_2026_07_24_000001_create_projects_table_down",
+      "migrations_2026_07_24_000001_create_projects_table_up"
+    ],
+    "62": [
+      "backend_database_migrations_2026_08_05_000001_create_accounts_payables_table_php",
+      "migrations_2026_08_05_000001_create_accounts_payables_table_down",
+      "migrations_2026_08_05_000001_create_accounts_payables_table_up"
+    ],
+    "63": [
+      "backend_database_migrations_2026_07_23_030130_create_person_addresses_table_php",
+      "migrations_2026_07_23_030130_create_person_addresses_table_down",
+      "migrations_2026_07_23_030130_create_person_addresses_table_up"
+    ],
+    "64": [
+      "backend_database_migrations_2026_07_23_030316_create_person_affiliations_table_php",
+      "migrations_2026_07_23_030316_create_person_affiliations_table_down",
+      "migrations_2026_07_23_030316_create_person_affiliations_table_up"
+    ],
+    "65": [
+      "backend_database_migrations_2026_07_23_031704_create_ledger_accounts_table_php",
+      "migrations_2026_07_23_031704_create_ledger_accounts_table_down",
+      "migrations_2026_07_23_031704_create_ledger_accounts_table_up"
+    ],
+    "66": [
+      "backend_database_migrations_2026_07_23_030030_create_countries_table_php",
+      "migrations_2026_07_23_030030_create_countries_table_down",
+      "migrations_2026_07_23_030030_create_countries_table_up"
+    ],
+    "67": [
+      "backend_database_seeders_hrseeder_php",
+      "seeders_hrseeder_hrseeder",
+      "seeders_hrseeder_hrseeder_run"
+    ],
+    "68": [
+      "backend_database_seeders_accountingseeder_php",
+      "seeders_accountingseeder_accountingseeder",
+      "seeders_accountingseeder_accountingseeder_run"
+    ],
+    "69": [
+      "backend_database_seeders_databaseseeder_php",
+      "seeders_databaseseeder_databaseseeder",
+      "seeders_databaseseeder_databaseseeder_run"
+    ],
+    "70": [
+      "backend_app_models_person_php",
+      "models_person_person",
+      "models_person_person_affiliations"
+    ],
+    "71": [
+      "accounting_journalentryitem_journalentryitem",
+      "accounting_journalentryitem_journalentryitem_ledgeraccountitem",
+      "backend_app_models_accounting_journalentryitem_php"
+    ],
+    "72": [
+      "accounting_accountitem_accountitem",
+      "accounting_accountitem_accountitem_ledgeraccount",
+      "backend_app_models_accounting_accountitem_php"
+    ],
+    "73": [
+      "api_citycontroller_citycontroller",
+      "api_citycontroller_citycontroller_index",
+      "backend_app_http_controllers_api_citycontroller_php"
+    ],
+    "74": [
+      "backend_tests_unit_exampletest_php",
+      "unit_exampletest_exampletest",
+      "unit_exampletest_exampletest_test_that_true_is_true"
+    ],
+    "75": [
+      "backend_tests_feature_exampletest_php",
+      "feature_exampletest_exampletest",
+      "feature_exampletest_exampletest_test_the_application_returns_a_successful_response"
+    ],
+    "76": [
+      "backend_public_nuxt_dveahp5n_js",
+      "nuxt_dveahp5n_i",
+      "nuxt_dveahp5n_r"
+    ],
+    "77": [
+      "composables_usedate_usedate",
+      "frontend_app_composables_usedate_ts"
+    ],
+    "78": [
+      "composables_usetheme_usetheme",
+      "frontend_app_composables_usetheme_ts"
+    ],
+    "79": [
+      "composables_usecurrency_usecurrency",
+      "frontend_app_composables_usecurrency_ts"
+    ],
+    "80": [
+      "backend_app_models_personaddress_php",
+      "models_personaddress_personaddress"
+    ],
+    "81": [
+      "address_country_country",
+      "backend_app_models_address_country_php"
+    ],
+    "82": [
+      "address_state_state",
+      "backend_app_models_address_state_php"
+    ],
+    "83": [
+      "backend_app_models_hr_position_php",
+      "hr_position_position"
+    ],
+    "84": [
+      "backend_app_http_controllers_controller_php",
+      "controllers_controller_controller"
+    ],
+    "85": [
+      "backend_tests_testcase_php",
+      "tests_testcase_testcase"
+    ],
+    "86": [
+      "backend_nativephp_electron_electron_plugin_tests_setup_ts",
+      "tests_setup_createroutermock"
+    ],
+    "87": [
+      "src_backend_app_http_controllers_api_accountitemcontroller_php_jsonresponse"
+    ],
+    "88": [
+      "src_backend_app_http_controllers_api_ledgeraccountcontroller_php_jsonresponse"
+    ],
+    "89": [
+      "src_backend_app_http_controllers_api_ledgeraccountitemcontroller_php_jsonresponse"
+    ],
+    "90": [
+      "static"
+    ],
+    "91": [
+      "illuminate_http_request"
+    ],
+    "92": [
+      "illuminate_http_jsonresponse"
+    ],
+    "93": [
+      "illuminate_database_eloquent_factories_hasfactory"
+    ],
+    "94": [
+      "illuminate_database_eloquent_model"
+    ],
+    "95": [
+      "illuminate_database_eloquent_softdeletes"
+    ],
+    "96": [
+      "illuminate_notifications_notifiable"
+    ],
+    "97": [
+      "laravel_sanctum_hasapitokens"
+    ],
+    "98": [
+      "spatie_permission_traits_hasroles"
+    ],
+    "99": [
+      "illuminate_foundation_auth_user"
+    ],
+    "100": [
+      "illuminate_support_serviceprovider"
+    ],
+    "101": [
+      "native_desktop_contracts_providesphpini"
+    ],
+    "102": [
+      "illuminate_database_eloquent_factories_factory"
+    ],
+    "103": [
+      "illuminate_database_seeder"
+    ],
+    "104": [
+      "illuminate_database_console_seeds_withoutmodelevents"
+    ],
+    "105": [
+      "illuminate_foundation_testing_refreshdatabase"
+    ],
+    "106": [
+      "illuminate_foundation_testing_testcase"
+    ],
+    "107": [
+      "phpunit_framework_testcase"
+    ],
+    "108": [
+      "frontend_nuxt_config_ts"
+    ],
+    "109": [
+      "frontend_capacitor_config_ts"
+    ],
+    "110": [
+      "frontend_app_middleware_auth_global_ts"
+    ],
+    "111": [
+      "frontend_app_plugins_ionic_client_ts"
+    ],
+    "112": [
+      "backend_vite_config_js"
+    ],
+    "113": [
+      "backend_bootstrap_app_php"
+    ],
+    "114": [
+      "backend_bootstrap_providers_php"
+    ],
+    "115": [
+      "backend_bootstrap_cache_services_php"
+    ],
+    "116": [
+      "backend_bootstrap_cache_packages_php"
+    ],
+    "117": [
+      "backend_config_sanctum_php"
+    ],
+    "118": [
+      "backend_config_auth_php"
+    ],
+    "119": [
+      "backend_config_app_php"
+    ],
+    "120": [
+      "backend_config_mail_php"
+    ],
+    "121": [
+      "backend_config_services_php"
+    ],
+    "122": [
+      "backend_config_database_php"
+    ],
+    "123": [
+      "backend_config_cache_php"
+    ],
+    "124": [
+      "backend_config_session_php"
+    ],
+    "125": [
+      "backend_config_nativephp_php"
+    ],
+    "126": [
+      "backend_config_bee_php"
+    ],
+    "127": [
+      "backend_config_queue_php"
+    ],
+    "128": [
+      "backend_config_cors_php"
+    ],
+    "129": [
+      "backend_config_logging_php"
+    ],
+    "130": [
+      "backend_config_permission_php"
+    ],
+    "131": [
+      "backend_config_filesystems_php"
+    ],
+    "132": [
+      "backend_resources_js_bootstrap_js"
+    ],
+    "133": [
+      "backend_resources_js_app_js"
+    ],
+    "134": [
+      "backend_resources_views_welcome_blade_php"
+    ],
+    "135": [
+      "backend_nativephp_electron_php_js"
+    ],
+    "136": [
+      "backend_nativephp_electron_eslint_config_js"
+    ],
+    "137": [
+      "backend_nativephp_electron_electron_plugin_babel_config_js"
+    ],
+    "138": [
+      "backend_nativephp_electron_electron_plugin_mocks_electron_ts"
+    ],
+    "139": [
+      "backend_nativephp_electron_electron_plugin_tests_mocking_test_ts"
+    ],
+    "140": [
+      "backend_nativephp_electron_electron_plugin_tests_api_test_ts"
+    ],
+    "141": [
+      "backend_nativephp_electron_electron_plugin_src_server_childprocess_ts"
+    ],
+    "142": [
+      "backend_nativephp_electron_electron_plugin_src_libs_menubar_ambient_d_ts"
+    ],
+    "143": [
+      "backend_nativephp_electron_electron_plugin_src_preload_livewire_dispatcher_js"
+    ],
+    "144": [
+      "backend_nativephp_electron_src_main_index_js"
+    ],
+    "145": [
+      "backend_public_index_php"
+    ],
+    "146": [
+      "backend_public_nuxt_b5wqoary_js"
+    ],
+    "147": [
+      "backend_public_nuxt_cns_ozdc_js"
+    ],
+    "148": [
+      "backend_routes_console_php"
+    ],
+    "149": [
+      "backend_routes_web_php"
+    ],
+    "150": [
+      "backend_routes_api_php"
+    ]
+  },
+  "cohesion": {
+    "0": 0.02,
+    "1": 0.03,
+    "2": 0.05,
+    "3": 0.08,
+    "4": 0.07,
+    "5": 0.08,
+    "6": 0.09,
+    "7": 0.15,
+    "8": 0.24,
+    "9": 0.11,
+    "10": 0.23,
+    "11": 0.22,
+    "12": 0.22,
+    "13": 0.25,
+    "14": 0.29,
+    "15": 0.33,
+    "16": 0.4,
+    "17": 0.33,
+    "18": 0.33,
+    "19": 0.4,
+    "20": 0.53,
+    "21": 0.4,
+    "22": 0.4,
+    "23": 0.4,
+    "24": 0.6,
+    "25": 0.4,
+    "26": 0.5,
+    "27": 0.5,
+    "28": 0.5,
+    "29": 0.5,
+    "30": 0.5,
+    "31": 0.5,
+    "32": 0.5,
+    "33": 0.67,
+    "34": 0.67,
+    "35": 0.67,
+    "36": 0.67,
+    "37": 0.67,
+    "38": 0.67,
+    "39": 0.67,
+    "40": 0.67,
+    "41": 0.67,
+    "42": 0.67,
+    "43": 0.67,
+    "44": 0.67,
+    "45": 0.67,
+    "46": 0.67,
+    "47": 0.67,
+    "48": 0.67,
+    "49": 0.67,
+    "50": 0.67,
+    "51": 0.67,
+    "52": 0.67,
+    "53": 0.67,
+    "54": 0.67,
+    "55": 0.67,
+    "56": 0.67,
+    "57": 0.67,
+    "58": 0.67,
+    "59": 0.67,
+    "60": 0.67,
+    "61": 0.67,
+    "62": 0.67,
+    "63": 0.67,
+    "64": 0.67,
+    "65": 0.67,
+    "66": 0.67,
+    "67": 0.67,
+    "68": 0.67,
+    "69": 0.67,
+    "70": 0.67,
+    "71": 0.67,
+    "72": 0.67,
+    "73": 0.67,
+    "74": 0.67,
+    "75": 0.67,
+    "76": 0.67,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0
+  },
+  "gods": [
+    {
+      "id": "nuxt_cfintcer_i",
+      "label": "I()",
+      "degree": 45
+    },
+    {
+      "id": "nuxt_cfintcer_p",
+      "label": "P()",
+      "degree": 38
+    },
+    {
+      "id": "nuxt_cfintcer_f",
+      "label": "F()",
+      "degree": 33
+    },
+    {
+      "id": "nuxt_cfintcer_ot",
+      "label": "ot()",
+      "degree": 31
+    },
+    {
+      "id": "nuxt_cfintcer_r",
+      "label": "R()",
+      "degree": 31
+    },
+    {
+      "id": "nuxt_cfintcer_z",
+      "label": "z()",
+      "degree": 28
+    },
+    {
+      "id": "nuxt_cfintcer_at",
+      "label": "at()",
+      "degree": 26
+    },
+    {
+      "id": "nuxt_cfintcer_y",
+      "label": "Y()",
+      "degree": 22
+    },
+    {
+      "id": "nuxt_cfintcer_push",
+      "label": "push()",
+      "degree": 21
+    },
+    {
+      "id": "nuxt_bh5xugli_e",
+      "label": "e",
+      "degree": 20
+    }
+  ],
+  "surprises": [
+    {
+      "source": "eo()",
+      "target": "so()",
+      "source_files": [
+        "backend/public/_nuxt/Bh5XuGLI.js",
+        "backend/public/_nuxt/CFINTcER.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities; peripheral node `eo()` unexpectedly reaches hub `so()`"
+    },
+    {
+      "source": "notifyLaravel()",
+      "target": "eventsForTray()",
+      "source_files": [
+        "backend/nativephp/electron/electron-plugin/src/server/utils.ts",
+        "backend/nativephp/electron/electron-plugin/src/server/api/menuBar.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `eventsForTray()` unexpectedly reaches hub `notifyLaravel()`"
+    },
+    {
+      "source": "notifyLaravel()",
+      "target": "triggerMenuItemEvent()",
+      "source_files": [
+        "backend/nativephp/electron/electron-plugin/src/server/utils.ts",
+        "backend/nativephp/electron/electron-plugin/src/server/api/helper/index.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `triggerMenuItemEvent()` unexpectedly reaches hub `notifyLaravel()`"
+    },
+    {
+      "source": "setup()",
+      "target": "de()",
+      "source_files": [
+        "backend/public/_nuxt/DiRcDSHI.js",
+        "backend/public/_nuxt/CZ90y64g.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `setup()` unexpectedly reaches hub `de()`"
+    },
+    {
+      "source": "n()",
+      "target": "on()",
+      "source_files": [
+        "backend/public/_nuxt/Bh5XuGLI.js",
+        "backend/public/_nuxt/CFINTcER.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `join()` connect `project/[id].vue` to `Bh5XuGLI.js`, `setup`?",
+      "why": "High betweenness centrality (0.129) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `at()` connect `setup` to `CFINTcER.js`, `Bh5XuGLI.js`, `project/[id].vue`?",
+      "why": "High betweenness centrality (0.074) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `T()` connect `setup` to `dev`?",
+      "why": "High betweenness centrality (0.031) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `PersonAddress`, `Country`, `State` to the rest of the system?",
+      "why": "6 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `CFINTcER.js` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.02 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Bh5XuGLI.js` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.03 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `project/[id].vue` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.05 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

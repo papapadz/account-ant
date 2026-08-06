@@ -108,6 +108,17 @@
           </select>
         </div>
 
+        <!-- Year Filter Dropdown -->
+        <div class="flex items-center gap-2 min-w-[140px] flex-1 sm:flex-none">
+          <label class="text-xs font-semibold text-[var(--text-muted)] whitespace-nowrap">Year:</label>
+          <select v-model="selectedYear" class="input-field text-xs py-1.5 font-medium cursor-pointer">
+            <option :value="null">All Years</option>
+            <option v-for="yr in availableYears" :key="yr" :value="yr">
+              {{ yr }}
+            </option>
+          </select>
+        </div>
+
         <!-- Status Filter Dropdown -->
         <!-- <div class="flex items-center gap-2 min-w-[170px] flex-1 sm:flex-none">
           <label class="text-xs font-semibold text-[var(--text-muted)] whitespace-nowrap">Status:</label>
@@ -122,7 +133,7 @@
 
       <div class="flex items-center gap-2">
         <UiButton
-          v-if="selectedProjectId !== null || selectedAccountId !== null || selectedStatus !== 'posted' || filterType !== 'all'"
+          v-if="selectedProjectId !== null || selectedAccountId !== null || selectedYear !== null || selectedStatus !== 'posted' || filterType !== 'all'"
           variant="ghost"
           size="sm"
           class="text-xs text-rose-400 hover:text-rose-300"
@@ -203,13 +214,26 @@
         <!-- Cell: Payment Status -->
         <template #cell-is_paid="{ item }">
           <div class="flex flex-col items-center gap-0.5">
-            <span
-              class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1"
-              :class="item.is_paid !== false ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'"
+            <button
+              v-if="item.is_paid === false"
+              type="button"
+              class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 hover:border-amber-500/40 transition-all cursor-pointer shadow-sm hover:scale-105"
+              title="Click to Settle Payment"
+              @click.stop="openMarkPaidModal(item)"
             >
-              <span class="w-1.5 h-1.5 rounded-full" :class="item.is_paid !== false ? 'bg-emerald-400' : 'bg-rose-400'" />
-              {{ item.is_paid !== false ? 'Posted' : 'Payable' }}
-            </span>
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              Settle Payment
+            </button>
+            <button
+              v-else
+              type="button"
+              class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all cursor-pointer shadow-sm hover:scale-105"
+              title="Click to View Payment Details"
+              @click.stop="openPaymentDetailsModal(item)"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Paid Details
+            </button>
             <span v-if="item.is_paid === false && (item.accounts_payable?.name || item.accounts_payable_name)" class="text-[10px] text-rose-400 font-medium truncate max-w-[130px]">
               {{ item.accounts_payable?.name || item.accounts_payable_name }}
             </span>
@@ -334,11 +358,11 @@
                 </div>
                 <UiButton
                   size="sm"
-                  :variant="selectedEntry.is_paid !== false ? 'primary' : 'secondary'"
-                  :class="selectedEntry.is_paid !== false ? '!bg-emerald-600 hover:!bg-emerald-500' : '!text-rose-400 border-rose-500/30'"
+                  :variant="selectedEntry.is_paid !== false ? 'secondary' : 'primary'"
+                  :class="selectedEntry.is_paid !== false ? '!text-rose-400 border-rose-500/30' : '!bg-emerald-600 hover:!bg-emerald-500 !text-white'"
                   @click="togglePaymentStatus"
                 >
-                  {{ selectedEntry.is_paid !== false ? 'Mark Unpaid' : 'Mark Paid' }}
+                  {{ selectedEntry.is_paid !== false ? 'Mark Unpaid' : 'Settle Payment' }}
                 </UiButton>
               </div>
 
@@ -354,6 +378,21 @@
                   />
                   <UiButton size="sm" variant="secondary" @click="saveApName">Save Name</UiButton>
                 </div>
+              </div>
+
+              <!-- Display Payment Date & Remarks if entry is Paid -->
+              <div v-else class="pt-2 border-t border-[var(--border-color)]/60 space-y-1.5 text-[11px]">
+                <div class="flex items-center justify-between text-[var(--text-muted)]">
+                  <span>Payment Date:</span>
+                  <span class="font-mono text-[var(--text-main)] font-semibold">{{ selectedEntry.payment_date || selectedEntry.posting_date || 'N/A' }}</span>
+                </div>
+                <div v-if="selectedEntry.payment_remarks" class="text-[var(--text-muted)]">
+                  <span class="block text-[10px] font-semibold uppercase tracking-wider">Payment Remarks:</span>
+                  <p class="text-[var(--text-main)] bg-[var(--bg-app)] p-1.5 rounded border border-[var(--border-color)] mt-0.5 whitespace-pre-wrap font-mono">{{ selectedEntry.payment_remarks }}</p>
+                </div>
+                <UiButton size="sm" variant="outline" class="w-full mt-1.5 text-[10px]" @click="openPaymentDetailsModal(selectedEntry)">
+                  View Full Settlement Details &rarr;
+                </UiButton>
               </div>
             </div>
 
@@ -497,6 +536,25 @@
         </div>
       </form>
     </Modal>
+
+    <!-- Shared Mark Paid Modal -->
+    <MarkPaidModal
+      :is-open="isMarkPaidModalOpen"
+      :entry="selectedEntryForMarkPaid"
+      :fund-accounts="accounting.fundAccounts.value"
+      :is-submitting="isMarkPaidSubmitting"
+      @close="isMarkPaidModalOpen = false"
+      @confirm="handleMarkPaidConfirm"
+    />
+
+    <!-- Shared Payment Details Modal -->
+    <PaymentDetailsModal
+      :is-open="isPaymentDetailsModalOpen"
+      :entry="selectedEntryForPaymentDetails"
+      :fund-accounts="accounting.fundAccounts.value"
+      @close="isPaymentDetailsModalOpen = false"
+      @unmark-paid="handleUnmarkPaidFromDetails"
+    />
   </div>
 </template>
 
@@ -511,7 +569,26 @@ const projectsStore = useProjects()
 const filterType = ref<'all' | 'debit' | 'credit'>('all')
 const selectedProjectId = ref<number | null>(null)
 const selectedAccountId = ref<number | null>(null)
+const selectedYear = ref<number | null>(null)
 const selectedStatus = ref<'posted' | 'all' | 'reconciled' | 'void'>('posted')
+
+const availableYears = computed<number[]>(() => {
+  const yearsSet = new Set<number>()
+  const currentYr = new Date().getFullYear()
+  yearsSet.add(currentYr)
+
+  accounting.journalEntries.value.forEach((entry) => {
+    const rawDate = entry.posting_date || entry.created_at
+    if (rawDate) {
+      const yr = parseInt(rawDate.slice(0, 4), 10)
+      if (!isNaN(yr)) {
+        yearsSet.add(yr)
+      }
+    }
+  })
+
+  return Array.from(yearsSet).sort((a, b) => b - a)
+})
 
 const isModalOpen = ref(false)
 const selectedEntry = ref<any>(null)
@@ -702,6 +779,16 @@ const filteredEntries = computed(() => {
       return false
     }
 
+    // Year filter
+    if (selectedYear.value !== null) {
+      const rawDate = entry.posting_date || entry.created_at
+      if (!rawDate) return false
+      const entryYr = parseInt(rawDate.slice(0, 4), 10)
+      if (entryYr !== Number(selectedYear.value)) {
+        return false
+      }
+    }
+
     return true
   }).map(entry => ({
     ...entry,
@@ -735,30 +822,94 @@ const resetFilters = () => {
   filterType.value = 'all'
   selectedProjectId.value = null
   selectedAccountId.value = null
+  selectedYear.value = null
   selectedStatus.value = 'posted'
 }
 
 const editApName = ref('')
+const isMarkPaidModalOpen = ref(false)
+const selectedEntryForMarkPaid = ref<any>(null)
+const isMarkPaidSubmitting = ref(false)
 
-const openDetailModal = (item: any) => {
-  selectedEntry.value = item
-  editApName.value = item.accounts_payable?.name || item.accounts_payable_name || ''
-  isModalOpen.value = true
+const isPaymentDetailsModalOpen = ref(false)
+const selectedEntryForPaymentDetails = ref<any>(null)
+
+const openPaymentDetailsModal = (item: any) => {
+  selectedEntryForPaymentDetails.value = item
+  isPaymentDetailsModalOpen.value = true
+}
+
+const handleUnmarkPaidFromDetails = async (entry: any) => {
+  if (!entry) return
+  if (!confirm('Are you sure you want to mark this entry as Unpaid (Accounts Payable)?')) return
+  try {
+    await accounting.updateJournalEntryPaymentStatus(entry.id, false)
+    entry.is_paid = false
+    if (selectedEntry.value && selectedEntry.value.id === entry.id) {
+      selectedEntry.value.is_paid = false
+    }
+    isPaymentDetailsModalOpen.value = false
+  } catch (err) {
+    console.error('Failed to mark as unpaid:', err)
+  }
+}
+
+const openMarkPaidModal = (item: any) => {
+  selectedEntryForMarkPaid.value = item
+  isMarkPaidModalOpen.value = true
+}
+
+const handleMarkPaidConfirm = async (payload: any) => {
+  if (!selectedEntryForMarkPaid.value) return
+  isMarkPaidSubmitting.value = true
+  try {
+    const res = await accounting.updateJournalEntryPaymentStatus(payload.id, true, {
+      payment_date: payload.payment_date,
+      payment_remarks: payload.payment_remarks,
+      fund_account_id: payload.fund_account_id,
+      accounts_payable_name: payload.accounts_payable_name,
+    })
+    
+    if (selectedEntry.value && selectedEntry.value.id === payload.id) {
+      selectedEntry.value.is_paid = true
+      selectedEntry.value.payment_date = payload.payment_date
+      selectedEntry.value.payment_remarks = payload.payment_remarks
+      if (payload.fund_account_id) selectedEntry.value.fund_account_id = payload.fund_account_id
+    }
+
+    const targetIdx = accounting.journalEntries.value.findIndex(e => e.id === payload.id)
+    if (targetIdx !== -1) {
+      accounting.journalEntries.value[targetIdx] = {
+        ...accounting.journalEntries.value[targetIdx],
+        is_paid: true,
+        payment_date: payload.payment_date,
+        payment_remarks: payload.payment_remarks,
+        ...(payload.fund_account_id ? { fund_account_id: payload.fund_account_id } : {}),
+      }
+    }
+    isMarkPaidModalOpen.value = false
+  } catch (err: any) {
+    console.error('Failed to mark entry as paid:', err)
+    alert(err?.data?.message || err?.message || 'Failed to settle payment')
+  } finally {
+    isMarkPaidSubmitting.value = false
+  }
 }
 
 const togglePaymentStatus = async () => {
   if (!selectedEntry.value) return
   const currentPaid = selectedEntry.value.is_paid !== false
-  const newPaid = !currentPaid
 
-  try {
-    const res = await accounting.updateJournalEntryPaymentStatus(selectedEntry.value.id, newPaid, editApName.value || undefined)
-    selectedEntry.value.is_paid = newPaid
-    if (res?.accounts_payable) {
-      selectedEntry.value.accounts_payable = res.accounts_payable
+  if (!currentPaid) {
+    openMarkPaidModal(selectedEntry.value)
+  } else {
+    if (!confirm('Are you sure you want to mark this entry as Unpaid (Accounts Payable)?')) return
+    try {
+      await accounting.updateJournalEntryPaymentStatus(selectedEntry.value.id, false)
+      selectedEntry.value.is_paid = false
+    } catch (err) {
+      console.error('Failed to mark as unpaid:', err)
     }
-  } catch (err) {
-    console.error('Failed to update payment status:', err)
   }
 }
 

@@ -16,6 +16,16 @@
         <div>
           <div class="flex items-center gap-2.5">
             <h1 class="text-2xl font-bold text-[var(--text-main)] tracking-tight">{{ project.name }}</h1>
+            <button
+              type="button"
+              @click="openEditProjectModal"
+              title="Edit Project Details"
+              class="p-1.5 rounded-lg text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 transition-all cursor-pointer flex items-center justify-center border border-emerald-500/20"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+            </button>
             <UiStatusPill
               :status="project.status || 'active'"
               :options="projectStatusOptions"
@@ -676,54 +686,40 @@
               </div>
             </div>
 
-            <!-- Toggle switch (only enabled if entry is currently unpaid) -->
-            <button
-              v-if="selectedTransactionForItems.is_paid === false"
-              type="button"
-              @click="modalIsPaid = !modalIsPaid"
-              class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
-              :class="modalIsPaid ? 'bg-emerald-500' : 'bg-amber-500/40'"
-              :aria-checked="modalIsPaid"
-              title="Toggle to mark as paid"
-            >
-              <span
-                class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                :class="modalIsPaid ? 'translate-x-4' : 'translate-x-0'"
-              />
-            </button>
-          </div>
-
-          <!-- Fund source selector & commit action when toggled to true -->
-          <div v-if="selectedTransactionForItems.is_paid === false && modalIsPaid" class="pt-3 mt-3 border-t border-[var(--border-color)]/50 space-y-3">
-            <div class="space-y-1">
-              <label class="block text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
-                Fund Source Account to Deduct From <span class="text-rose-400">*</span>
-              </label>
-              <select
-                v-model="selectedFundSourceId"
-                class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 font-medium"
-              >
-                <option v-for="fund in projectFundSources" :key="fund.id" :value="fund.id">
-                  {{ fund.name }} (Available: {{ currencyStore.formatCurrency(projectsStore.getFundSourceRemaining(fund.id)) }})
-                </option>
-              </select>
-            </div>
-            <div class="flex items-center justify-between pt-1">
-              <span class="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Commits {{ currencyStore.formatCurrency(selectedTransactionForItems.amount) }} deduction.
-              </span>
+            <!-- Payment Actions -->
+            <div class="flex items-center gap-2">
               <UiButton
+                v-if="selectedTransactionForItems.is_paid === false"
                 type="button"
                 variant="primary"
                 size="sm"
-                :loading="isSavingPaymentStatus"
-                @click="handleSavePaymentStatusInModal"
+                class="!bg-emerald-600 hover:!bg-emerald-500"
+                @click="openMarkPaidModalFromProject(selectedTransactionForItems)"
               >
-                Save & Commit to Fund Source
+                Mark Entry as Paid
               </UiButton>
+              <UiButton
+                v-else
+                type="button"
+                variant="secondary"
+                size="sm"
+                class="!text-rose-400 border-rose-500/30"
+                @click="unmarkPaidFromProject(selectedTransactionForItems)"
+              >
+                Mark Unpaid
+              </UiButton>
+            </div>
+          </div>
+
+          <!-- Payment Date & Remarks Display (if Paid) -->
+          <div v-if="selectedTransactionForItems.is_paid !== false && (selectedTransactionForItems.payment_date || selectedTransactionForItems.payment_remarks)" class="pt-3 mt-3 border-t border-[var(--border-color)]/50 space-y-1.5 text-xs">
+            <div v-if="selectedTransactionForItems.payment_date" class="flex items-center justify-between text-[var(--text-muted)]">
+              <span>Payment Settled On:</span>
+              <span class="font-mono font-bold text-emerald-400">{{ selectedTransactionForItems.payment_date }}</span>
+            </div>
+            <div v-if="selectedTransactionForItems.payment_remarks" class="text-[var(--text-muted)]">
+              <span class="block text-[10px] font-bold uppercase tracking-wider">Payment Remarks:</span>
+              <p class="text-[var(--text-main)] bg-[var(--bg-app)] p-2 rounded-lg border border-[var(--border-color)] mt-0.5 whitespace-pre-wrap font-mono">{{ selectedTransactionForItems.payment_remarks }}</p>
             </div>
           </div>
         </div>
@@ -919,11 +915,13 @@
     <Modal
       :is-open="isPrintBalanceSheetModalOpen"
       title="Project General Ledger Statement"
+      variant="flat-white"
+      max-width="max-w-4xl"
       @close="isPrintBalanceSheetModalOpen = false"
     >
       <div class="space-y-4">
         <!-- Top Action Bar in Modal -->
-        <div class="flex items-center justify-between bg-slate-800/60 p-3 rounded-lg border border-[var(--border-color)] no-print">
+        <div class="flex items-center justify-between bg-slate-100 p-3 rounded-lg border border-slate-200 no-print">
           <div class="flex items-center gap-2">
             <UiButton type="button" variant="primary" size="sm" @click="triggerPrint">
               <template #icon-left>
@@ -937,7 +935,7 @@
         </div>
 
         <!-- Printable Document Area -->
-        <div id="printable-balance-sheet" class="bg-white text-slate-900 p-8 rounded-xl shadow-lg font-sans border border-slate-200">
+        <div id="printable-balance-sheet" class="bg-white text-slate-900 p-6 rounded-xl font-sans border-0 shadow-none">
           <!-- Primary Header: Company Name -->
           <div class="border-b-2 border-slate-900 pb-4 text-center">
             <h1 class="text-2xl font-black uppercase tracking-tight text-slate-900">{{ companyNameHeader }}</h1>
@@ -1017,6 +1015,97 @@
       </div>
     </Modal>
 
+    <!-- Edit Construction Project Details Modal -->
+    <Modal :isOpen="isEditProjectModalOpen" title="Edit Construction Project Details" @close="closeEditProjectModal">
+      <form @submit.prevent="handleSaveEditProject" class="space-y-4">
+        <!-- Error Alert Banner -->
+        <div v-if="editProjectErrorMessage" class="p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-start gap-2">
+          <svg class="w-4 h-4 text-rose-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="break-words">{{ editProjectErrorMessage }}</span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project Name *</label>
+          <input
+            v-model="editProjectForm.name"
+            type="text"
+            required
+            placeholder="e.g. Commercial Complex Phase 1"
+            :disabled="isSubmittingEditProject"
+            class="input-field text-xs font-semibold"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Client Name</label>
+            <input
+              v-model="editProjectForm.client_name"
+              type="text"
+              placeholder="e.g. Acme Corporation"
+              :disabled="isSubmittingEditProject"
+              class="input-field text-xs"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status</label>
+            <select
+              v-model="editProjectForm.status"
+              :disabled="isSubmittingEditProject"
+              class="input-field text-xs py-1.5 font-medium"
+            >
+              <option value="active">Active</option>
+              <option value="on-hold">On Hold</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Target Total Budget</label>
+            <input
+              v-model.number="editProjectForm.budget"
+              type="number"
+              step="0.01"
+              placeholder="0.00"
+              :disabled="isSubmittingEditProject"
+              class="input-field text-xs font-mono font-bold text-emerald-400"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Start Date</label>
+            <input
+              v-model="editProjectForm.start_date"
+              type="date"
+              :disabled="isSubmittingEditProject"
+              class="input-field font-mono text-xs"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description / Notes</label>
+          <textarea
+            v-model="editProjectForm.description"
+            rows="3"
+            placeholder="Project summary or scope notes..."
+            :disabled="isSubmittingEditProject"
+            class="input-field text-xs"
+          ></textarea>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
+          <UiButton type="button" variant="secondary" size="sm" :disabled="isSubmittingEditProject" @click="closeEditProjectModal">Cancel</UiButton>
+          <UiButton type="submit" variant="primary" size="sm" :loading="isSubmittingEditProject" :disabled="isSubmittingEditProject">Save Project Changes</UiButton>
+        </div>
+      </form>
+    </Modal>
+
     <!-- Floating Switcher for UI Prototype Variants -->
     <!-- <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900 border border-slate-700/80 rounded-full px-4 py-2 flex items-center gap-3 shadow-2xl z-50">
       <button
@@ -1044,7 +1133,15 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
-    </div> -->
+    <!-- Shared Mark Paid Modal -->
+    <MarkPaidModal
+      :is-open="isMarkPaidModalOpen"
+      :entry="selectedEntryForMarkPaid"
+      :fund-accounts="projectFundSources"
+      :is-submitting="isMarkPaidSubmitting"
+      @close="isMarkPaidModalOpen = false"
+      @confirm="handleMarkPaidConfirm"
+    />
   </div>
 
   <div v-else class="glass-card rounded-xl border border-[var(--border-color)] p-12 text-center">
@@ -1079,6 +1176,18 @@ const projectTabs = computed<TabItem[]>(() => [
 const isPostJournalModalOpen = ref(false)
 const isAddFundModalOpen = ref(false)
 const isPrintBalanceSheetModalOpen = ref(false)
+const isEditProjectModalOpen = ref(false)
+const isSubmittingEditProject = ref(false)
+const editProjectErrorMessage = ref('')
+
+const editProjectForm = reactive({
+  name: '',
+  client_name: '',
+  description: '',
+  budget: 0,
+  start_date: '',
+  status: 'active' as 'active' | 'on-hold' | 'completed',
+})
 const statementDate = ref(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }))
 
 // Status change options
@@ -1217,6 +1326,10 @@ const modalIsPaid = ref(false)
 const selectedFundSourceId = ref<number | null>(null)
 const isSavingPaymentStatus = ref(false)
 
+const isMarkPaidModalOpen = ref(false)
+const selectedEntryForMarkPaid = ref<any>(null)
+const isMarkPaidSubmitting = ref(false)
+
 const openItemDetailsModal = (tx: any) => {
   selectedTransactionForItems.value = tx
   modalIsPaid.value = tx.is_paid !== false
@@ -1224,24 +1337,51 @@ const openItemDetailsModal = (tx: any) => {
   isViewItemsModalOpen.value = true
 }
 
-const handleSavePaymentStatusInModal = async () => {
-  if (!selectedTransactionForItems.value) return
-  isSavingPaymentStatus.value = true
+const openMarkPaidModalFromProject = (tx: any) => {
+  selectedEntryForMarkPaid.value = tx
+  isMarkPaidModalOpen.value = true
+}
+
+const unmarkPaidFromProject = async (tx: any) => {
+  if (!tx) return
+  if (!confirm('Are you sure you want to mark this entry as Unpaid (Accounts Payable)?')) return
   try {
-    const targetId = selectedTransactionForItems.value.id
-    const newPaidStatus = modalIsPaid.value
-    const fundId = selectedFundSourceId.value ?? selectedTransactionForItems.value.fund_source_id
-    await projectsStore.updateJournalEntryPaymentStatus(targetId, newPaidStatus, fundId)
-    
-    selectedTransactionForItems.value = {
-      ...selectedTransactionForItems.value,
-      is_paid: newPaidStatus,
-      fund_source_id: fundId,
-    }
+    await projectsStore.updateJournalEntryPaymentStatus(tx.id, false)
+    tx.is_paid = false
+    modalIsPaid.value = false
   } catch (err: any) {
     alert(err?.data?.message || err?.message || 'Failed to update payment status.')
+  }
+}
+
+const handleMarkPaidConfirm = async (payload: any) => {
+  if (!selectedEntryForMarkPaid.value) return
+  isMarkPaidSubmitting.value = true
+  try {
+    const fundId = payload.fund_source_id || payload.fund_account_id
+    await projectsStore.updateJournalEntryPaymentStatus(payload.id, true, {
+      payment_date: payload.payment_date,
+      payment_remarks: payload.payment_remarks,
+      fund_source_id: fundId,
+      accounts_payable_name: payload.accounts_payable_name,
+    })
+
+    if (selectedTransactionForItems.value && selectedTransactionForItems.value.id === payload.id) {
+      selectedTransactionForItems.value.is_paid = true
+      selectedTransactionForItems.value.payment_date = payload.payment_date
+      selectedTransactionForItems.value.payment_remarks = payload.payment_remarks
+      if (fundId) {
+        selectedTransactionForItems.value.fund_source_id = fundId
+      }
+      modalIsPaid.value = true
+    }
+
+    isMarkPaidModalOpen.value = false
+  } catch (err: any) {
+    console.error('Failed to mark entry as paid:', err)
+    alert(err?.data?.message || err?.message || 'Failed to settle payment')
   } finally {
-    isSavingPaymentStatus.value = false
+    isMarkPaidSubmitting.value = false
   }
 }
 
@@ -1638,7 +1778,55 @@ const getUsageTextColorClass = (val: number) => {
   return 'text-emerald-400'
 }
 
+const openEditProjectModal = () => {
+  if (!project.value) return
+  editProjectForm.name = project.value.name || ''
+  editProjectForm.client_name = project.value.client_name || ''
+  editProjectForm.description = project.value.description || ''
+  editProjectForm.budget = project.value.budget || 0
+  editProjectForm.start_date = project.value.start_date?.slice(0, 10) || ''
+  editProjectForm.status = project.value.status || 'active'
+  editProjectErrorMessage.value = ''
+  isEditProjectModalOpen.value = true
+}
+
+const closeEditProjectModal = () => {
+  if (!isSubmittingEditProject.value) {
+    isEditProjectModalOpen.value = false
+    editProjectErrorMessage.value = ''
+  }
+}
+
+const handleSaveEditProject = async () => {
+  if (!project.value) return
+  if (!editProjectForm.name.trim()) {
+    editProjectErrorMessage.value = 'Project Name is required.'
+    return
+  }
+
+  isSubmittingEditProject.value = true
+  editProjectErrorMessage.value = ''
+
+  try {
+    await projectsStore.updateProject(project.value.id, {
+      name: editProjectForm.name.trim(),
+      client_name: editProjectForm.client_name.trim(),
+      description: editProjectForm.description.trim() || undefined,
+      budget: Number(editProjectForm.budget) || 0,
+      start_date: editProjectForm.start_date,
+      status: editProjectForm.status,
+    })
+    closeEditProjectModal()
+  } catch (err: any) {
+    console.error('Failed to update project:', err)
+    editProjectErrorMessage.value = err?.data?.message || err?.statusMessage || err?.message || 'Failed to update project details.'
+  } finally {
+    isSubmittingEditProject.value = false
+  }
+}
+
 const triggerPrint = () => {
+  // isPrintBalanceSheetModalOpen.value = false
   window.print()
 }
 </script>
