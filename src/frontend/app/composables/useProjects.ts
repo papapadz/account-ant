@@ -339,18 +339,8 @@ export const useProjects = () => {
   })
 
   const totalAppSpent = computed(() => {
-    const paidDebits = transactions.value
-      .filter(t => t.type === 'debit' && t.is_paid !== false)
-      .reduce((sum, t) => sum + Number(t.amount), 0)
-    const paidCredits = transactions.value
-      .filter(t => t.type === 'credit' && t.is_paid !== false)
-      .reduce((sum, t) => sum + Number(t.amount), 0)
-    return Math.max(0, paidDebits - paidCredits)
-  })
-
-  const totalAppCredits = computed(() => {
     return transactions.value
-      .filter(t => t.type === 'credit' && t.is_paid !== false)
+      .filter(t => t.type === 'debit')
       .reduce((sum, t) => sum + Number(t.amount), 0)
   })
 
@@ -616,7 +606,6 @@ export const useProjects = () => {
     totalAppSpent,
     totalAppRemainingBalance,
     totalAppUnpaidBalance,
-    totalAppCredits,
     getTotalUnpaidBalance,
     getFundProjectExpenses,
     getProjectMonthlyExpenses,

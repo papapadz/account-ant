@@ -47,18 +47,18 @@
           </template>
         </KpiCard>
 
-      <KpiCard
-        title="Total Spent"
-        :value="`${currencyStore.formatCurrency(totalAppSpent)}`"
-        :subtitle="`Accounst Payable: ${currencyStore.formatCurrency(totalAccounstPayable)}`"
-        type="rose"
-      >
-        <template #icon>
-          <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
-          </svg>
-        </template>
-      </KpiCard>
+        <KpiCard
+          title="Total Spent"
+          :value="`${currencyStore.formatCurrency(totalAppSpent)}`"
+          subtitle="Cumulative posted outflows"
+          type="rose"
+        >
+          <template #icon>
+            <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+            </svg>
+          </template>
+        </KpiCard>
 
         <KpiCard
           title="Remaining Balance"
@@ -102,12 +102,6 @@
 
         <!-- Monthly Project Expense Bar Chart -->
         <DashboardProjectMonthlyBarChart />
-
-        <!-- Accounts Payable Pie Chart -->
-        <DashboardAccountsPayablePieChart />
-
-        <!-- Accounts Payable Monthly Line Chart -->
-        <DashboardAccountsPayableLineChart />
       </div>
     </ClientOnly>
 
@@ -173,11 +167,10 @@ const currencyStore = useCurrency()
 
 const isCreateModalOpen = ref(false)
 
-const companyName = computed(() => auth.currentCompany.value?.business_name)
-const totalAccounstPayable = computed(() => accounting.totalUnpaidBalance.value)
-const totalAppSpent = computed(() => accounting.totalDebits.value - totalAccounstPayable.value)
-const totalAppManagedFunds = computed(() => accounting.totalFundAccountsBalance.value + totalAppSpent.value)
-const totalAppRemainingBalance = computed(() => accounting.totalFundAccountsBalance.value)
+const companyName = computed(() => auth.currentCompany.value?.business_name || 'Apex Technologies')
+const totalAppManagedFunds = computed(() => accounting.totalFundAccountsBalance.value || 0)
+const totalAppSpent = computed(() => projectsStore.totalAppSpent.value)
+const totalAppRemainingBalance = computed(() => totalAppManagedFunds.value - totalAppSpent.value)
 const totalProjectsCount = computed(() => projectsStore.projects.value.length)
 const activeProjectsCount = computed(() => projectsStore.projects.value.filter(p => p.status === 'active').length)
 

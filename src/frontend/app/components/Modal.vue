@@ -6,41 +6,18 @@
       @click.self="close"
     >
       <div
-        :class="[
-          maxWidth,
-          'w-full overflow-hidden transform transition-all duration-200 rounded-xl',
-          variant === 'flat-white'
-            ? 'bg-white border-0 shadow-none text-slate-900'
-            : 'bg-[var(--bg-modal)] border border-[var(--border-color)] text-[var(--text-main)] shadow-2xl'
-        ]"
+        class="bg-[var(--bg-modal)] border border-[var(--border-color)] text-[var(--text-main)] rounded-xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all duration-200"
       >
         <!-- Modal Header -->
-        <div
-          :class="[
-            'px-6 py-4 flex items-center justify-between',
-            variant === 'flat-white'
-              ? 'border-b border-slate-100 bg-white'
-              : 'border-b border-[var(--border-color)]'
-          ]"
-        >
-          <h3
-            :class="[
-              'text-sm font-bold uppercase tracking-wider flex items-center gap-2',
-              variant === 'flat-white' ? 'text-slate-900' : 'text-[var(--text-main)]'
-            ]"
-          >
+        <div class="px-6 py-4 border-b border-[var(--border-color)] flex items-center justify-between">
+          <h3 class="text-sm font-bold text-[var(--text-main)] uppercase tracking-wider flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
             {{ title }}
           </h3>
           <UiButton
             variant="ghost"
             size="sm"
-            :class="[
-              '!p-1',
-              variant === 'flat-white'
-                ? 'text-slate-400 hover:text-slate-900'
-                : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
-            ]"
+            class="!p-1 text-[var(--text-muted)] hover:text-[var(--text-main)]"
             @click="close"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,25 +27,12 @@
         </div>
 
         <!-- Modal Body -->
-        <div
-          :class="[
-            'p-6 max-h-[85vh] overflow-y-auto',
-            variant === 'flat-white' ? 'bg-white text-slate-900' : ''
-          ]"
-        >
+        <div class="p-6 max-h-[80vh] overflow-y-auto">
           <slot></slot>
         </div>
 
         <!-- Modal Footer -->
-        <div
-          v-if="$slots.footer"
-          :class="[
-            'px-6 py-4 flex items-center justify-end gap-3',
-            variant === 'flat-white'
-              ? 'border-t border-slate-100 bg-slate-50'
-              : 'border-t border-[var(--border-color)] bg-[var(--bg-sidebar)]'
-          ]"
-        >
+        <div v-if="$slots.footer" class="px-6 py-4 border-t border-[var(--border-color)] bg-[var(--bg-sidebar)] flex items-center justify-end gap-3">
           <slot name="footer"></slot>
         </div>
       </div>
@@ -77,17 +41,10 @@
 </template>
 
 <script setup lang="ts">
-export interface ModalProps {
+const props = defineProps<{
   isOpen: boolean
   title: string
-  variant?: 'default' | 'flat-white'
-  maxWidth?: string
-}
-
-const props = withDefaults(defineProps<ModalProps>(), {
-  variant: 'default',
-  maxWidth: 'max-w-lg'
-})
+}>()
 
 const emit = defineEmits(['close'])
 
