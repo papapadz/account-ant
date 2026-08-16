@@ -264,6 +264,35 @@
             <span v-else>Export .json Backup</span>
           </UiButton>
         </div>
+
+        <!-- Option 3: Wipe Database Data -->
+        <div class="p-4 rounded-xl border border-rose-500/30 bg-rose-950/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <h5 class="text-xs font-bold text-rose-400 flex items-center gap-2">
+              <span>Wipe System Data</span>
+              <span class="px-2 py-0.5 rounded text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/30 font-mono font-bold">Destructive</span>
+            </h5>
+            <p class="text-[11px] text-[var(--text-muted)]">
+              Permanently purges all transaction, ledger, journal entry, and project records. Preserves Address, HR, Person, User, and Device Info.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <UiButton v-if="!showWipeConfirm" variant="danger" size="sm" :disabled="isWiping" @click="showWipeConfirm = true">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              <span>Wipe Database Data</span>
+            </UiButton>
+            <template v-else>
+              <UiButton variant="danger" size="sm" :loading="isWiping" @click="handleWipeData">
+                Confirm Wipe
+              </UiButton>
+              <UiButton variant="ghost" size="sm" :disabled="isWiping" @click="showWipeConfirm = false">
+                Cancel
+              </UiButton>
+            </template>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -295,6 +324,8 @@ const apiUrl = ref('http://localhost:8000/api')
 const showSaveToast = ref(false)
 const isDownloading = ref(false)
 const isDownloadingJson = ref(false)
+const isWiping = ref(false)
+const showWipeConfirm = ref(false)
 
 watch(showSaveToast, (val) => {
   if (val) {
@@ -436,6 +467,30 @@ const handleUpdateCompany = async () => {
     showSaveToast.value = true
   } catch (err: any) {
     alert(err?.data?.message || err?.message || 'Failed to update company.')
+  }
+}
+
+const handleWipeData = async () => {
+  isWiping.value = true
+  try {
+    await api.request('/settings/wipe-data', {
+      method: 'POST',
+    })
+    showWipeConfirm.value = false
+    showSaveToast.value = true
+
+    // Refresh application stores to reflect wiped state
+    await Promise.allSettled([
+      accounting.fetchFundAccounts(),
+      accounting.fetchLedgerAccounts(),
+      accounting.fetchAccountItems(),
+      accounting.fetchJournalEntries(),
+      projectsStore.fetchProjects(),
+    ])
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to wipe database data.')
+  } finally {
+    isWiping.value = false
   }
 }
 </script>

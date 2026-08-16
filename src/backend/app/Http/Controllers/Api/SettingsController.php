@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\HR\Company;
 use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class SettingsController extends Controller
 {
@@ -117,5 +119,34 @@ class SettingsController extends Controller
         return response()->json([
             'message' => 'Database file not found or empty.',
         ], 404);
+    }
+
+    public function wipeData(Request $request)
+    {
+        $tablesToWipe = [
+            'journal_entry_items',
+            'ledger_account_items',
+            'accounts_payables',
+            'account_items',
+            'project_funds',
+            'projects',
+            'ledger_accounts',
+            'fund_accounts',
+        ];
+
+        Schema::disableForeignKeyConstraints();
+        try {
+            foreach ($tablesToWipe as $table) {
+                if (Schema::hasTable($table)) {
+                    DB::table($table)->truncate();
+                }
+            }
+        } finally {
+            Schema::enableForeignKeyConstraints();
+        }
+
+        return response()->json([
+            'message' => 'All transaction, accounting, and project data wiped successfully.',
+        ]);
     }
 }

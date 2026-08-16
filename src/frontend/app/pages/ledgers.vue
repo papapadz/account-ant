@@ -57,7 +57,7 @@
         <KpiCard
           title="Net Ledger Balance"
           :value="currencyStore.formatCurrency(summaryTotals.net)"
-          subtitle="Total outflows minus inflows"
+          subtitle="(Fund accounts balance + inflows) minus outflows"
           type="emerald"
         >
           <template #icon>
@@ -259,162 +259,373 @@
           <span class="text-[var(--text-main)] max-w-xs truncate block">{{ value || 'N/A' }}</span>
         </template>
 
-       
+        <!-- Cell: Actions -->
+        <template #cell-actions="{ item }">
+          <UiButton
+            size="sm"
+            variant="secondary"
+            class="text-[11px] py-1 px-2.5 !text-emerald-400 hover:!text-emerald-300 border-emerald-500/30 hover:border-emerald-500/50 hover:bg-emerald-500/10 font-semibold"
+            @click.stop="openDetailModal(item)"
+          >
+            <svg class="w-3.5 h-3.5 mr-1 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            View
+          </UiButton>
+        </template>
       </UiDataTable>
     </ClientOnly>
 
     <!-- Entry Detail & Action Modal -->
     <Modal :isOpen="isModalOpen" title="Ledger Entry Details & Actions" @close="isModalOpen = false">
       <div v-if="selectedEntry" class="space-y-5">
-        <!-- Top Entry Meta Box -->
-        <div class="bg-[var(--bg-surface)] p-4 rounded-xl border border-[var(--border-color)] space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-sm font-bold text-emerald-400">Entry #{{ selectedEntry.id }}</span>
-              <span
-                class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
-                :class="selectedEntry.transaction_type === 'debit' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'"
-              >
-                {{ selectedEntry.transaction_type }}
-              </span>
-            </div>
-
-            <div class="text-right font-mono font-bold text-lg" :class="selectedEntry.transaction_type === 'debit' ? 'text-blue-400' : 'text-amber-400'">
-              {{ currencyStore.formatCurrency(selectedEntry.amount) }}
-            </div>
+        <!-- Header Mode Toggle Bar -->
+        <div class="flex items-center justify-between bg-[var(--bg-surface)] p-3 rounded-xl border border-[var(--border-color)]">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">Mode:</span>
+            <span
+              class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1"
+              :class="isEditMode ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'"
+            >
+              <span class="w-1.5 h-1.5 rounded-full" :class="isEditMode ? 'bg-amber-400 animate-pulse' : 'bg-emerald-400'" />
+              {{ isEditMode ? 'Editing Entry Details' : 'Viewing Details' }}
+            </span>
           </div>
 
-          <div class="grid grid-cols-2 gap-3 text-xs border-t border-[var(--border-color)]/60 pt-3">
-            <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Ledger Account</span>
-              <span class="font-bold text-[var(--text-main)]">{{ getAccountCode(selectedEntry.ledger_account_id) }}</span>
-            </div>
-
-            <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Catalog Item</span>
-              <span class="font-medium text-[var(--text-main)]">{{ getItemName(selectedEntry.account_item_id) }}</span>
-            </div>
-
-            <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Fund Source</span>
-              <span class="font-medium text-[var(--text-main)]">{{ getFundCode(selectedEntry.fund_account_id) }}</span>
-            </div>
-
-            <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Project</span>
-              <span class="font-medium text-[var(--text-main)]">{{ getProjectName(selectedEntry.project_id) }}</span>
-            </div>
-
-            <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Posting Date</span>
-              <span class="font-mono text-[var(--text-main)]">{{ selectedEntry.posting_date || selectedEntry.created_at }}</span>
-            </div>
-
-            <div v-if="selectedEntry.accounts_payable?.name || selectedEntry.accounts_payable_name">
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Accounts Payable Name</span>
-              <span class="font-bold text-rose-400">{{ selectedEntry.accounts_payable?.name || selectedEntry.accounts_payable_name }}</span>
-            </div>
-          </div>
-
-          <div v-if="selectedEntry.description" class="border-t border-[var(--border-color)]/60 pt-2 text-xs">
-            <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Memo / Description</span>
-            <p class="text-[var(--text-main)] italic mt-0.5">{{ selectedEntry.description }}</p>
-          </div>
+          <UiButton
+            type="button"
+            size="sm"
+            :variant="isEditMode ? 'outline' : 'secondary'"
+            class="text-xs"
+            @click="toggleEditMode"
+          >
+            <template v-if="!isEditMode">
+              <svg class="w-3.5 h-3.5 mr-1 inline-block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              Edit Details
+            </template>
+            <template v-else>
+              <svg class="w-3.5 h-3.5 mr-1 inline-block text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              View Mode
+            </template>
+          </UiButton>
         </div>
 
-        <!-- Itemized Breakdown (if sub-items exist) -->
-        <div v-if="selectedEntry.items && selectedEntry.items.length > 0" class="space-y-2">
-          <h4 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">Itemized Line Breakdown</h4>
-          <div class="border border-[var(--border-color)] rounded-lg overflow-hidden divide-y divide-[var(--border-color)] text-xs">
-            <div
-              v-for="(sub, idx) in selectedEntry.items"
-              :key="idx"
-              class="p-2.5 flex items-center justify-between bg-[var(--bg-surface)]/50"
-            >
+        <!-- VIEW MODE -->
+        <template v-if="!isEditMode">
+          <!-- Top Entry Meta Box -->
+          <div class="bg-[var(--bg-surface)] p-4 rounded-xl border border-[var(--border-color)] space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-sm font-bold text-emerald-400">Entry #{{ selectedEntry.id }}</span>
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+                  :class="selectedEntry.transaction_type === 'debit' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'"
+                >
+                  {{ selectedEntry.transaction_type }}
+                </span>
+              </div>
+
+              <div class="text-right font-mono font-bold text-lg" :class="selectedEntry.transaction_type === 'debit' ? 'text-blue-400' : 'text-amber-400'">
+                {{ currencyStore.formatCurrency(selectedEntry.amount) }}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-xs border-t border-[var(--border-color)]/60 pt-3">
               <div>
-                <div class="font-semibold text-[var(--text-main)]">{{ sub.description }}</div>
-                <div class="text-[10px] text-[var(--text-muted)] font-mono">
-                  {{ sub.quantity }} {{ sub.unit }} @ {{ currencyStore.formatCurrency(sub.price) }}
+                <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Ledger Account</span>
+                <span class="font-bold text-[var(--text-main)]">{{ getAccountCode(selectedEntry.ledger_account_id) }}</span>
+              </div>
+
+              <div>
+                <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Catalog Item</span>
+                <span class="font-medium text-[var(--text-main)]">{{ getItemName(selectedEntry.account_item_id) }}</span>
+              </div>
+
+              <div>
+                <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Fund Source</span>
+                <span class="font-medium text-[var(--text-main)]">{{ getFundCode(selectedEntry.fund_account_id) }}</span>
+              </div>
+
+              <div>
+                <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Project</span>
+                <span class="font-medium text-[var(--text-main)]">{{ getProjectName(selectedEntry.project_id) }}</span>
+              </div>
+
+              <div>
+                <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Posting Date</span>
+                <span class="font-mono text-[var(--text-main)]">{{ selectedEntry.posting_date || selectedEntry.created_at }}</span>
+              </div>
+
+              <div v-if="selectedEntry.accounts_payable?.name || selectedEntry.accounts_payable_name">
+                <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Accounts Payable Name</span>
+                <span class="font-bold text-rose-400">{{ selectedEntry.accounts_payable?.name || selectedEntry.accounts_payable_name }}</span>
+              </div>
+            </div>
+
+            <div v-if="selectedEntry.description" class="border-t border-[var(--border-color)]/60 pt-2 text-xs">
+              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Memo / Description</span>
+              <p class="text-[var(--text-main)] italic mt-0.5">{{ selectedEntry.description }}</p>
+            </div>
+          </div>
+
+          <!-- Itemized Breakdown (if sub-items exist) -->
+          <div v-if="selectedEntry.items && selectedEntry.items.length > 0" class="space-y-2">
+            <h4 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">Itemized Line Breakdown</h4>
+            <div class="border border-[var(--border-color)] rounded-lg overflow-hidden divide-y divide-[var(--border-color)] text-xs">
+              <div
+                v-for="(sub, idx) in selectedEntry.items"
+                :key="idx"
+                class="p-2.5 flex items-center justify-between bg-[var(--bg-surface)]/50"
+              >
+                <div>
+                  <div class="font-semibold text-[var(--text-main)]">{{ sub.description }}</div>
+                  <div class="text-[10px] text-[var(--text-muted)] font-mono">
+                    {{ sub.quantity }} {{ sub.unit }} @ {{ currencyStore.formatCurrency(sub.price) }}
+                  </div>
+                </div>
+                <div class="font-mono font-bold text-[var(--text-main)]">
+                  {{ currencyStore.formatCurrency(sub.subtotal) }}
                 </div>
               </div>
-              <div class="font-mono font-bold text-[var(--text-main)]">
-                {{ currencyStore.formatCurrency(sub.subtotal) }}
+            </div>
+          </div>
+
+          <!-- Interactive Quick Actions -->
+          <div class="space-y-3 pt-2 border-t border-[var(--border-color)]">
+            <h4 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">Interactive Entry Actions</h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- Payment Toggle -->
+              <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] space-y-2">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
+                    <span class="text-[10px] text-[var(--text-muted)] block">Mark entry as Paid or Unpaid</span>
+                  </div>
+                  <UiButton
+                    size="sm"
+                    :variant="selectedEntry.is_paid !== false ? 'secondary' : 'primary'"
+                    :class="selectedEntry.is_paid !== false ? '!text-rose-400 border-rose-500/30' : '!bg-emerald-600 hover:!bg-emerald-500 !text-white'"
+                    @click="togglePaymentStatus"
+                  >
+                    {{ selectedEntry.is_paid !== false ? 'Mark Unpaid' : 'Settle Payment' }}
+                  </UiButton>
+                </div>
+
+                <!-- Option to set/update AP name if entry is unpaid -->
+                <div v-if="selectedEntry.is_paid === false" class="pt-2 border-t border-[var(--border-color)]/60 space-y-1">
+                  <label class="text-[10px] font-semibold text-[var(--text-muted)] block">Accounts Payable Name (Vendor / Creditor):</label>
+                  <div class="flex items-center gap-2">
+                    <input
+                      v-model="editApName"
+                      type="text"
+                      placeholder="Enter AP Creditor Name..."
+                      class="input-field text-xs py-1"
+                    />
+                    <UiButton size="sm" variant="secondary" @click="saveApName">Save Name</UiButton>
+                  </div>
+                </div>
+
+                <!-- Display Payment Date & Remarks if entry is Paid -->
+                <div v-else class="pt-2 border-t border-[var(--border-color)]/60 space-y-1.5 text-[11px]">
+                  <div class="flex items-center justify-between text-[var(--text-muted)]">
+                    <span>Payment Date:</span>
+                    <span class="font-mono text-[var(--text-main)] font-semibold">{{ selectedEntry.payment_date || selectedEntry.posting_date || 'N/A' }}</span>
+                  </div>
+                  <div v-if="selectedEntry.payment_remarks" class="text-[var(--text-muted)]">
+                    <span class="block text-[10px] font-semibold uppercase tracking-wider">Payment Remarks:</span>
+                    <p class="text-[var(--text-main)] bg-[var(--bg-app)] p-1.5 rounded border border-[var(--border-color)] mt-0.5 whitespace-pre-wrap font-mono">{{ selectedEntry.payment_remarks }}</p>
+                  </div>
+                  <UiButton size="sm" variant="outline" class="w-full mt-1.5 text-[10px]" @click="openPaymentDetailsModal(selectedEntry)">
+                    View Full Settlement Details &rarr;
+                  </UiButton>
+                </div>
+              </div>
+
+              <!-- Posting Status Selector -->
+              <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] space-y-1">
+                <label class="text-xs font-semibold text-[var(--text-main)] block">Posting Status</label>
+                <select
+                  :value="selectedEntry.status || 'posted'"
+                  class="input-field text-xs py-1 font-medium"
+                  @change="updateEntryStatus(($event.target as HTMLSelectElement).value)"
+                >
+                  <option value="posted">Posted</option>
+                  <option value="reconciled">Reconciled</option>
+                  <option value="void">Void</option>
+                </select>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Interactive Quick Actions -->
-        <div class="space-y-3 pt-2 border-t border-[var(--border-color)]">
-          <h4 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">Interactive Entry Actions</h4>
+          <div class="pt-3 flex justify-end border-t border-[var(--border-color)]">
+            <UiButton variant="secondary" size="sm" @click="isModalOpen = false">Close</UiButton>
+          </div>
+        </template>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <!-- Payment Toggle -->
-            <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] space-y-2">
+        <!-- EDIT MODE -->
+        <template v-else>
+          <form @submit.prevent="handleSaveEdits" class="space-y-4">
+            <!-- Warning Banner if Amount Changed -->
+            <div
+              v-if="Math.abs(Number(editForm.amount) - Number(selectedEntry.amount)) > 0.0001"
+              class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl space-y-1 text-xs"
+            >
+              <div class="font-bold text-amber-400 flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                Automated Reversal Entry Will Be Created
+              </div>
+              <p class="text-[var(--text-muted)] text-[11px] leading-relaxed">
+                Changing amount from <span class="font-mono font-bold text-amber-300">{{ currencyStore.formatCurrency(selectedEntry.amount) }}</span> to <span class="font-mono font-bold text-emerald-400">{{ currencyStore.formatCurrency(editForm.amount) }}</span> will automatically post a <span class="font-bold text-amber-400">Reversal Entry</span> of <span class="font-mono font-bold text-amber-300">{{ currencyStore.formatCurrency(selectedEntry.amount) }}</span> to balance out the previous ledger entry.
+              </p>
+            </div>
+
+            <!-- 1. Project Selection -->
+            <div>
+              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project</label>
+              <select v-model="editForm.project_id" class="input-field text-xs py-2 font-medium">
+                <option :value="null">General Ledger (No Specific Project)</option>
+                <option v-for="proj in projectsStore.projects.value" :key="proj.id" :value="proj.id">
+                  {{ proj.name || (proj as any).project_name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- 2. Fund Source Account -->
+            <div>
+              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account *</label>
+              <select v-model="editForm.fund_account_id" required class="input-field text-xs py-2 font-medium">
+                <option :value="undefined" disabled>-- Select Fund Account --</option>
+                <option v-for="fund in accounting.fundAccounts.value" :key="fund.id" :value="fund.id">
+                  {{ fund.fund_code }} - {{ fund.fund_name }} (Available: {{ currencyStore.formatCurrency(accounting.getFundAccountRemaining(fund.id)) }})
+                </option>
+              </select>
+            </div>
+
+            <!-- 3. Ledger Account -->
+            <div>
+              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Ledger Account *</label>
+              <select v-model="editForm.ledger_account_id" required class="input-field text-xs py-2 font-medium">
+                <option :value="undefined" disabled>-- Select Ledger Account --</option>
+                <option v-for="acc in accounting.ledgerAccounts.value" :key="acc.id" :value="acc.id">
+                  {{ acc.account_code }} - {{ acc.account_name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- 4. Ledger Account Item -->
+            <div>
+              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Catalog Item *</label>
+              <select v-model="editForm.account_item_id" required class="input-field text-xs py-2 font-medium">
+                <option :value="undefined" disabled>-- Select Account Item --</option>
+                <option v-for="item in editFilteredAccountItems" :key="item.id" :value="item.id">
+                  {{ item.item_code }} - {{ item.item_name }} ({{ item.transaction_type === 'credit' ? 'Inflow' : 'Outflow' }})
+                </option>
+              </select>
+            </div>
+
+            <!-- 5. Transaction Type & Amount -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    class="py-1.5 px-3 rounded-lg text-xs font-bold uppercase transition-all"
+                    :class="editForm.transaction_type === 'debit' ? 'bg-blue-600 text-white shadow' : 'bg-[var(--bg-surface)] text-[var(--text-muted)] border border-[var(--border-color)]'"
+                    @click="editForm.transaction_type = 'debit'"
+                  >
+                    Outflow (Debit)
+                  </button>
+                  <button
+                    type="button"
+                    class="py-1.5 px-3 rounded-lg text-xs font-bold uppercase transition-all"
+                    :class="editForm.transaction_type === 'credit' ? 'bg-amber-600 text-white shadow' : 'bg-[var(--bg-surface)] text-[var(--text-muted)] border border-[var(--border-color)]'"
+                    @click="editForm.transaction_type = 'credit'"
+                  >
+                    Inflow (Credit)
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Amount *</label>
+                <input
+                  v-model.number="editForm.amount"
+                  type="number"
+                  step="0.01"
+                  required
+                  placeholder="1000.00"
+                  class="input-field font-mono font-bold text-base text-emerald-400"
+                />
+              </div>
+            </div>
+
+            <!-- 6. Posting Date -->
+            <div>
+              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Posting Date *</label>
+              <input
+                v-model="editForm.posting_date"
+                type="date"
+                required
+                class="input-field font-mono text-xs"
+              />
+            </div>
+
+            <!-- 7. Memo / Description -->
+            <div>
+              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Memo / Description</label>
+              <textarea v-model="editForm.description" rows="2" placeholder="Record entry description..." class="input-field text-xs"></textarea>
+            </div>
+
+            <!-- 8. Payment Status Toggle -->
+            <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] space-y-3">
               <div class="flex items-center justify-between">
                 <div>
                   <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
-                  <span class="text-[10px] text-[var(--text-muted)] block">Mark entry as Paid or Unpaid</span>
+                  <span class="text-[10px] text-[var(--text-muted)] block">
+                    {{ editForm.is_paid ? 'Paid / Immediate Settlement' : 'Unpaid Accounts Payable' }}
+                  </span>
                 </div>
                 <UiButton
+                  type="button"
                   size="sm"
-                  :variant="selectedEntry.is_paid !== false ? 'secondary' : 'primary'"
-                  :class="selectedEntry.is_paid !== false ? '!text-rose-400 border-rose-500/30' : '!bg-emerald-600 hover:!bg-emerald-500 !text-white'"
-                  @click="togglePaymentStatus"
+                  :variant="editForm.is_paid ? 'primary' : 'secondary'"
+                  :class="editForm.is_paid ? '!bg-emerald-600 hover:!bg-emerald-500' : '!text-rose-400 border-rose-500/30'"
+                  @click="editForm.is_paid = !editForm.is_paid"
                 >
-                  {{ selectedEntry.is_paid !== false ? 'Mark Unpaid' : 'Settle Payment' }}
+                  {{ editForm.is_paid ? 'Paid' : 'Unpaid (AP)' }}
                 </UiButton>
               </div>
 
-              <!-- Option to set/update AP name if entry is unpaid -->
-              <div v-if="selectedEntry.is_paid === false" class="pt-2 border-t border-[var(--border-color)]/60 space-y-1">
-                <label class="text-[10px] font-semibold text-[var(--text-muted)] block">Accounts Payable Name (Vendor / Creditor):</label>
-                <div class="flex items-center gap-2">
-                  <input
-                    v-model="editApName"
-                    type="text"
-                    placeholder="Enter AP Creditor Name..."
-                    class="input-field text-xs py-1"
-                  />
-                  <UiButton size="sm" variant="secondary" @click="saveApName">Save Name</UiButton>
-                </div>
-              </div>
-
-              <!-- Display Payment Date & Remarks if entry is Paid -->
-              <div v-else class="pt-2 border-t border-[var(--border-color)]/60 space-y-1.5 text-[11px]">
-                <div class="flex items-center justify-between text-[var(--text-muted)]">
-                  <span>Payment Date:</span>
-                  <span class="font-mono text-[var(--text-main)] font-semibold">{{ selectedEntry.payment_date || selectedEntry.posting_date || 'N/A' }}</span>
-                </div>
-                <div v-if="selectedEntry.payment_remarks" class="text-[var(--text-muted)]">
-                  <span class="block text-[10px] font-semibold uppercase tracking-wider">Payment Remarks:</span>
-                  <p class="text-[var(--text-main)] bg-[var(--bg-app)] p-1.5 rounded border border-[var(--border-color)] mt-0.5 whitespace-pre-wrap font-mono">{{ selectedEntry.payment_remarks }}</p>
-                </div>
-                <UiButton size="sm" variant="outline" class="w-full mt-1.5 text-[10px]" @click="openPaymentDetailsModal(selectedEntry)">
-                  View Full Settlement Details &rarr;
-                </UiButton>
+              <div v-if="!editForm.is_paid" class="pt-2 border-t border-[var(--border-color)]/60 space-y-1">
+                <label class="block text-xs font-semibold text-rose-400 uppercase tracking-wider">
+                  Accounts Payable Name (Creditor / Vendor) *
+                </label>
+                <input
+                  v-model="editForm.accounts_payable_name"
+                  type="text"
+                  placeholder="e.g. Acme Supplies, Contractor Name..."
+                  class="input-field text-xs py-2 font-medium border-rose-500/30"
+                />
               </div>
             </div>
 
-            <!-- Posting Status Selector -->
-            <div class="bg-[var(--bg-surface)] p-3 rounded-lg border border-[var(--border-color)] space-y-1">
-              <label class="text-xs font-semibold text-[var(--text-main)] block">Posting Status</label>
-              <select
-                :value="selectedEntry.status || 'posted'"
-                class="input-field text-xs py-1 font-medium"
-                @change="updateEntryStatus(($event.target as HTMLSelectElement).value)"
-              >
-                <option value="posted">Posted</option>
-                <option value="reconciled">Reconciled</option>
-                <option value="void">Void</option>
-              </select>
+            <!-- Action Buttons -->
+            <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
+              <UiButton type="button" variant="secondary" size="sm" @click="isEditMode = false">Cancel Edit</UiButton>
+              <UiButton type="submit" variant="primary" size="sm" :loading="isSavingEdits">Save Changes</UiButton>
             </div>
-          </div>
-        </div>
-
-        <div class="pt-3 flex justify-end border-t border-[var(--border-color)]">
-          <UiButton variant="secondary" size="sm" @click="isModalOpen = false">Close</UiButton>
-        </div>
+          </form>
+        </template>
       </div>
     </Modal>
 
@@ -592,6 +803,135 @@ const availableYears = computed<number[]>(() => {
 
 const isModalOpen = ref(false)
 const selectedEntry = ref<any>(null)
+const isEditMode = ref(false)
+const isSavingEdits = ref(false)
+
+const editForm = reactive({
+  id: 0,
+  project_id: null as number | null,
+  ledger_account_id: undefined as number | undefined,
+  fund_account_id: undefined as number | undefined,
+  account_item_id: undefined as number | undefined,
+  amount: 1000.00,
+  transaction_type: 'debit' as 'debit' | 'credit',
+  description: '',
+  posting_date: new Date().toISOString().slice(0, 10),
+  is_paid: true,
+  accounts_payable_name: '',
+})
+
+const editFilteredAccountItems = computed(() => {
+  if (!editForm.ledger_account_id) return accounting.accountItems.value
+  return accounting.accountItems.value.filter(item => item.ledger_account_id === editForm.ledger_account_id)
+})
+
+watch(() => editForm.ledger_account_id, (newAccountId) => {
+  if (!newAccountId) {
+    editForm.account_item_id = undefined
+    return
+  }
+  if (editForm.account_item_id) {
+    const item = accounting.accountItems.value.find(i => i.id === Number(editForm.account_item_id))
+    if (item && item.ledger_account_id !== newAccountId) {
+      editForm.account_item_id = undefined
+    }
+  }
+})
+
+watch(() => editForm.account_item_id, (newItemId) => {
+  if (!newItemId) return
+  const item = accounting.accountItems.value.find(i => i.id === Number(newItemId))
+  if (item) {
+    if (item.ledger_account_id && editForm.ledger_account_id !== item.ledger_account_id) {
+      editForm.ledger_account_id = item.ledger_account_id
+    }
+    if (item.transaction_type) {
+      editForm.transaction_type = item.transaction_type
+    }
+  }
+})
+
+const openDetailModal = (item: any) => {
+  selectedEntry.value = item
+  isEditMode.value = false
+  editApName.value = item.accounts_payable?.name || item.accounts_payable_name || ''
+
+  editForm.id = item.id
+  editForm.project_id = item.project_id || null
+  editForm.fund_account_id = item.fund_account_id
+  editForm.ledger_account_id = item.ledger_account_id
+  editForm.account_item_id = item.account_item_id
+  editForm.amount = Number(item.amount) || 0
+  editForm.transaction_type = item.transaction_type || 'debit'
+  editForm.posting_date = item.posting_date || (item.created_at ? item.created_at.slice(0, 10) : new Date().toISOString().slice(0, 10))
+  editForm.description = item.description || ''
+  editForm.is_paid = item.is_paid !== false
+  editForm.accounts_payable_name = item.accounts_payable?.name || item.accounts_payable_name || ''
+
+  isModalOpen.value = true
+}
+
+const toggleEditMode = () => {
+  if (!isEditMode.value && selectedEntry.value) {
+    editForm.id = selectedEntry.value.id
+    editForm.project_id = selectedEntry.value.project_id || null
+    editForm.fund_account_id = selectedEntry.value.fund_account_id
+    editForm.ledger_account_id = selectedEntry.value.ledger_account_id
+    editForm.account_item_id = selectedEntry.value.account_item_id
+    editForm.amount = Number(selectedEntry.value.amount) || 0
+    editForm.transaction_type = selectedEntry.value.transaction_type || 'debit'
+    editForm.posting_date = selectedEntry.value.posting_date || (selectedEntry.value.created_at ? selectedEntry.value.created_at.slice(0, 10) : new Date().toISOString().slice(0, 10))
+    editForm.description = selectedEntry.value.description || ''
+    editForm.is_paid = selectedEntry.value.is_paid !== false
+    editForm.accounts_payable_name = selectedEntry.value.accounts_payable?.name || selectedEntry.value.accounts_payable_name || ''
+  }
+  isEditMode.value = !isEditMode.value
+}
+
+const handleSaveEdits = async () => {
+  if (!selectedEntry.value) return
+  if (!editForm.ledger_account_id || !editForm.account_item_id) {
+    alert('Please select a Ledger Account and Catalog Item.')
+    return
+  }
+
+  const amountChanged = Math.abs(Number(editForm.amount) - Number(selectedEntry.value.amount)) > 0.0001
+  if (amountChanged) {
+    const confirmMsg = `Changing the amount will generate an automated Reversal Entry of ${currencyStore.formatCurrency(selectedEntry.value.amount)} to balance out the previous ledger entry. Are you sure you want to proceed?`
+    if (!confirm(confirmMsg)) return
+  }
+
+  isSavingEdits.value = true
+  try {
+    const res = await accounting.updateJournalEntry(selectedEntry.value.id, {
+      ledger_account_id: editForm.ledger_account_id,
+      fund_account_id: editForm.fund_account_id,
+      project_id: editForm.project_id || undefined,
+      account_item_id: editForm.account_item_id,
+      amount: Number(editForm.amount),
+      transaction_type: editForm.transaction_type,
+      description: editForm.description,
+      posting_date: editForm.posting_date,
+      is_paid: editForm.is_paid,
+      accounts_payable_name: editForm.is_paid ? undefined : editForm.accounts_payable_name,
+    })
+
+    if (res?.updated) {
+      selectedEntry.value = res.updated
+    }
+    isEditMode.value = false
+    // if (res?.reversal_entry) {
+    //   alert(`Entry updated successfully! Automated Reversal Entry #${res.reversal_entry.id} was created to balance out the previous amount.`)
+    // } else {
+    //   alert('Entry details saved successfully!')
+    // }
+  } catch (err: any) {
+    console.error('Failed to update journal entry:', err)
+    alert(err?.data?.message || err?.message || 'Failed to save entry changes.')
+  } finally {
+    isSavingEdits.value = false
+  }
+}
 
 const isPostJournalModalOpen = ref(false)
 const isPostingEntry = ref(false)
@@ -723,6 +1063,7 @@ const ledgerColumns: DataTableColumn[] = [
   { key: 'credit', label: 'Inflow', align: 'right', width: 'min-w-[120px]' },
   { key: 'is_paid', label: 'Payment', align: 'center' },
   { key: 'description', label: 'Description / Memo', width: 'min-w-[180px]' },
+  { key: 'actions', label: 'Actions', align: 'center', width: 'w-24' },
 ]
 
 const getFundCode = (id?: number) => {
@@ -805,10 +1146,12 @@ const summaryTotals = computed(() => {
     .filter(e => e.transaction_type === 'credit')
     .reduce((sum, e) => sum + Number(e.amount), 0)
 
+  const fundAccountsBalance = accounting.fundAccounts.value.reduce((sum, f) => sum + (Number(f.amount) || 0), 0)
+
   return {
     debits,
     credits,
-    net: debits - credits
+    net: (fundAccountsBalance + credits) - debits
   }
 })
 

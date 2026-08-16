@@ -124,6 +124,95 @@ class LedgerAccountItemController extends Controller
         ]);
     }
 
+    public function update(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
+        $validated = $request->validate([
+            'ledger_account_id' => 'required|integer',
+            'fund_account_id' => 'nullable|integer',
+            'project_id' => 'nullable|exists:projects,id',
+            'account_item_id' => 'required|integer',
+            'amount' => 'required|numeric|min:0.01',
+            'transaction_type' => 'required|in:debit,credit',
+            'description' => 'nullable|string|max:255',
+            'posting_date' => 'nullable|date',
+            'is_paid' => 'nullable|boolean',
+            'accounts_payable_name' => 'nullable|string|max:255',
+        ]);
+
+        $entry = LedgerAccountItem::with('accountsPayable')->findOrFail($id);
+
+        $result = DB::transaction(function () use ($validated, $entry, $request) {
+            $reversalEntry = null;
+            $newAmount = (float) $validated['amount'];
+            $oldAmount = (float) $entry->amount;
+
+            // Check if amount has changed: if so, create a reversal entry for the old amount
+            if (abs($newAmount - $oldAmount) > 0.0001) {
+                $reversalType = $entry->transaction_type === 'debit' ? 'credit' : 'debit';
+                $reversalEntry = LedgerAccountItem::create([
+                    'ledger_account_id' => $entry->ledger_account_id,
+                    'fund_account_id' => $entry->fund_account_id,
+                    'project_id' => $entry->project_id,
+                    'account_item_id' => $entry->account_item_id,
+                    'amount' => $oldAmount,
+                    'transaction_type' => $reversalType,
+                    'description' => "Reversal for Entry #{$entry->id} (Amount adjustment from {$oldAmount} to {$newAmount})",
+                    'posting_date' => now()->toDateString(),
+                    'is_paid' => true,
+                    'status' => 'posted',
+                    'user_id' => $request->user()?->id ?? $entry->user_id,
+                ]);
+            }
+
+            $isPaid = isset($validated['is_paid']) ? (bool) $validated['is_paid'] : $entry->is_paid;
+            $postingDate = $validated['posting_date'] ?? $entry->posting_date;
+
+            $entry->update([
+                'ledger_account_id' => $validated['ledger_account_id'],
+                'fund_account_id' => $validated['fund_account_id'] ?? null,
+                'project_id' => $validated['project_id'] ?? null,
+                'account_item_id' => $validated['account_item_id'],
+                'amount' => $newAmount,
+                'transaction_type' => $validated['transaction_type'],
+                'description' => $validated['description'] ?? null,
+                'posting_date' => $postingDate,
+                'is_paid' => $isPaid,
+            ]);
+
+            $apName = $validated['accounts_payable_name'] ?? null;
+            if ($entry->accountsPayable) {
+                $apData = [
+                    'amount' => $newAmount,
+                    'status' => $isPaid ? 'paid' : 'unpaid',
+                ];
+                if (!empty($apName)) {
+                    $apData['name'] = $apName;
+                }
+                $entry->accountsPayable->update($apData);
+            } else if (!$isPaid || !empty($apName)) {
+                AccountsPayable::create([
+                    'ledger_account_item_id' => $entry->id,
+                    'name' => !empty($apName) ? $apName : ($entry->description ?: 'Accounts Payable #' . $entry->id),
+                    'amount' => $newAmount,
+                    'status' => $isPaid ? 'paid' : 'unpaid',
+                    'user_id' => $request->user()?->id ?? $entry->user_id,
+                ]);
+            }
+
+            return [
+                'entry' => $entry->fresh(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'items', 'accountsPayable']),
+                'reversal_entry' => $reversalEntry ? $reversalEntry->load(['ledgerAccount', 'fundAccount', 'accountItem', 'project', 'items', 'accountsPayable']) : null,
+            ];
+        });
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Journal entry updated successfully',
+            'data' => $result['entry'],
+            'reversal_entry' => $result['reversal_entry'],
+        ]);
+    }
+
     public function updateStatus(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $validated = $request->validate([

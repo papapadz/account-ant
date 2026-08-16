@@ -58,5 +58,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/profile', [SettingsController::class, 'updateProfile']);
         Route::put('/company', [SettingsController::class, 'updateCompany']);
         Route::get('/backup', [SettingsController::class, 'downloadBackup']);
+        Route::post('/wipe-data', [SettingsController::class, 'wipeData']);
     });
 });

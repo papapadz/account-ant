@@ -1,9 +1,9 @@
 {
     "name": "account-ant",
-    "version": "1.0.0",
-    "description": "An awesome app built with NativePHP",
+    "version": "1.0.1",
+    "description": "Account-Ant is a powerful accounting ledger system for enterprise fund management, chart of accounts, and journal transactions.",
     "main": "./out/main/index.js",
-    "author": null,
+    "author": "Binary Bee Tech Solutions",
     "homepage": "https://nativephp.com",
     "type": "module",
     "engines": {

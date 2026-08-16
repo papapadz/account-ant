@@ -268,6 +268,22 @@ export const useAccounting = () => {
     return created
   }
 
+  const updateJournalEntry = async (id: number, entry: Partial<LedgerAccountItem>) => {
+    const res = await api.request<{ data: LedgerAccountItem; reversal_entry?: LedgerAccountItem }>(`/journal-entries/${id}`, {
+      method: 'PUT',
+      body: entry,
+    })
+    const updated = res.data || res
+    const idx = journalEntries.value.findIndex(e => e.id === id)
+    if (idx !== -1) {
+      journalEntries.value[idx] = { ...journalEntries.value[idx], ...updated }
+    }
+    if (res.reversal_entry) {
+      journalEntries.value.unshift(res.reversal_entry)
+    }
+    return { updated, reversal_entry: res.reversal_entry }
+  }
+
   // Status Update Methods
   const updateLedgerAccountStatus = async (id: number, status: 'active' | 'inactive' | 'archived') => {
     const res = await api.request<{ data: LedgerAccount }>(`/ledger-accounts/${id}/status`, {
@@ -337,6 +353,7 @@ export const useAccounting = () => {
     addAccountItem,
     updateAccountItem,
     addJournalEntry,
+    updateJournalEntry,
     getFundAccountSpent,
     getFundAccountCredits,
     getFundAccountRemaining,
