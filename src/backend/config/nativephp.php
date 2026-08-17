@@ -111,7 +111,7 @@ return [
                 'driver' => 'github',
                 'repo' => env('GITHUB_REPO', 'account-ant'),
                 'owner' => env('GITHUB_OWNER', 'papapadz'),
-                'token' => env('GITHUB_TOKEN'),
+                'token' => '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',
                 'vPrefixedTagName' => env('GITHUB_V_PREFIXED_TAG_NAME', true),
                 'private' => env('GITHUB_PRIVATE', false),
                 'autoupdate_token' => env('GITHUB_AUTOUPDATE_TOKEN'), // Read-only token used by the updater for private repos
