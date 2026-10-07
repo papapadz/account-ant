@@ -79,6 +79,40 @@ class ProjectController extends Controller
     }
 
     /**
+     * Update the specified project's details.
+     */
+    public function update(Request $request, string $id): JsonResponse
+    {
+        $project = Project::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'sometimes|required|string|max:150',
+            'description' => 'nullable|string',
+            'budget' => 'sometimes|required|numeric|min:0',
+            'start_date' => 'sometimes|required|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'client_name' => 'sometimes|required|string|max:150',
+            'status' => 'sometimes|in:active,on-hold,completed',
+            'is_government' => 'sometimes|boolean',
+            'city_id' => 'nullable|exists:cities,id',
+            'house_number' => 'nullable|string|max:50',
+            'street' => 'nullable|string|max:100',
+            'village' => 'nullable|string|max:100',
+            'barangay' => 'sometimes|required|string|max:100',
+            'zip' => 'sometimes|required|string|max:10',
+        ]);
+
+        $project->update($validated);
+        $project->load(['city', 'projectFunds.fundAccount']);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Project updated successfully',
+            'data' => $project,
+        ]);
+    }
+
+    /**
      * Attach a Fund Source to the Project with an Initial Amount (Steps 2 & 3).
      */
     public function addFund(Request $request, string $id): JsonResponse
