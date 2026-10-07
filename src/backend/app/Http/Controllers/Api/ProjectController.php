@@ -92,7 +92,7 @@ class ProjectController extends Controller
             'start_date' => 'sometimes|required|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
             'client_name' => 'sometimes|required|string|max:150',
-            'status' => 'sometimes|in:active,on-hold,completed',
+            'status' => 'sometimes|in:active,on-hold,completed,cancelled',
             'is_government' => 'sometimes|boolean',
             'city_id' => 'nullable|exists:cities,id',
             'house_number' => 'nullable|string|max:50',
@@ -172,7 +172,7 @@ class ProjectController extends Controller
     public function updateStatus(Request $request, string $id): JsonResponse
     {
         $validated = $request->validate([
-            'status' => 'required|in:active,on-hold,completed',
+            'status' => 'required|in:active,on-hold,completed,cancelled',
         ]);
 
         $project = Project::findOrFail($id);

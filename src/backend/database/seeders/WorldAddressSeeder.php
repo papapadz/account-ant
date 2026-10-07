@@ -25,16 +25,27 @@ class WorldAddressSeeder extends Seeder
         //$this->command->info('World Address seeded!');
         //Eloquent::reguard();
 
-        $jsonCountries = File::get('database/json/countries.json');
-        $jsonWorldRegions = File::get('database/json/regions.json');
-        $jsonWorldSubRegions = File::get('database/json/subregions.json');
-        
-        $jsonRegions = File::get('database/json/refregion.json');
-        $jsonProvinces = File::get('database/json/refprovince.json');
-        $jsonCities = File::get('database/json/refcitymun.json');
+        $loadJson = static fn (string $file): string => File::exists(database_path("json/{$file}"))
+            ? File::get(database_path("json/{$file}"))
+            : File::get("database/json/{$file}");
 
-        foreach (json_decode($jsonWorldRegions) as $item)
-            Region::firstOrCreate([
+        $jsonCountries = $loadJson('philippines.json');
+        $jsonWorldRegions = $loadJson('regions.json');
+        $jsonWorldSubRegions = $loadJson('subregions.json');
+        $jsonRegions = $loadJson('refregion.json');
+        $jsonProvinces = $loadJson('refprovince.json');
+        $jsonCities = $loadJson('refcitymun.json');
+
+        DB::transaction(function () use (
+            $jsonWorldRegions,
+            $jsonWorldSubRegions,
+            $jsonCountries,
+            $jsonRegions,
+            $jsonProvinces,
+            $jsonCities
+        ): void {
+            foreach (json_decode($jsonWorldRegions) as $item)
+                Region::firstOrCreate([
                 'id' => $item->id
             ],[
                 'name' => $item->name,
@@ -133,7 +144,8 @@ class WorldAddressSeeder extends Seeder
                 'longitude' => 0
             ]);
         }
+        });
 
-        $this->command->info('Philippines Addresses seeded!');
+        $this->command?->info('Philippines Addresses seeded!');
     }
 }

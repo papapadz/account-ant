@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  status?: 'active' | 'on-hold' | 'completed' | 'archived' | 'emerald' | 'amber' | 'blue' | 'rose' | 'gray'
+  status?: 'active' | 'on-hold' | 'completed' | 'cancelled' | 'archived' | 'emerald' | 'amber' | 'blue' | 'rose' | 'gray'
 }>()
 
 const statusLabel = computed(() => {
@@ -18,6 +18,7 @@ const statusLabel = computed(() => {
     case 'active': return 'Active'
     case 'on-hold': return 'On Hold'
     case 'completed': return 'Completed'
+    case 'cancelled': return 'Cancelled'
     case 'archived': return 'Archived'
     default: return props.status || 'Active'
   }
@@ -34,6 +35,7 @@ const badgeClasses = computed(() => {
     case 'completed':
     case 'blue':
       return 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+    case 'cancelled':
     case 'rose':
       return 'bg-rose-500/10 text-rose-400 border-rose-500/20'
     case 'archived':
@@ -54,6 +56,7 @@ const dotClasses = computed(() => {
     case 'completed':
     case 'blue':
       return 'bg-blue-400'
+    case 'cancelled':
     case 'rose':
       return 'bg-rose-400'
     case 'archived':

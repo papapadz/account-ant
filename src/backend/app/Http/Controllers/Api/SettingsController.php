@@ -6,9 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Models\HR\Company;
 use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SettingsController extends Controller
 {
+    /**
+     * Data tables cleared by wipeData(), ordered leaf-first so foreign keys never block a delete.
+     * Users, roles, address, profile/company and framework tables are deliberately not listed.
+     */
+    private const WIPE_TABLES = [
+        'journal_entry_items',
+        'accounts_payables',
+        'project_funds',
+        'ledger_account_items',
+        'account_items',
+        'ledger_accounts',
+        'projects',
+        'fund_accounts',
+    ];
+
     public function updateProfile(Request $request)
     {
         $validated = $request->validate([
@@ -61,6 +77,37 @@ class SettingsController extends Controller
         return response()->json([
             'message' => 'Company settings updated successfully',
             'company' => $company,
+        ]);
+    }
+
+    public function wipeData(Request $request)
+    {
+        if (!$request->user()->hasAnyRole(['super_admin', 'admin'])) {
+            return response()->json(['message' => 'Only an admin or super admin can wipe data.'], 403);
+        }
+
+        $request->validate([
+            'confirm' => 'required|in:WIPE',
+        ]);
+
+        $deleted = DB::transaction(function () {
+            $counts = [];
+            foreach (self::WIPE_TABLES as $table) {
+                $counts[$table] = DB::table($table)->delete();
+            }
+
+            // Restart auto-increment IDs from 1 (SQLite keeps them in sqlite_sequence).
+            if (DB::getDriverName() === 'sqlite') {
+                DB::table('sqlite_sequence')->whereIn('name', self::WIPE_TABLES)->delete();
+            }
+
+            return $counts;
+        });
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'All data wiped successfully',
+            'data' => ['deleted' => $deleted],
         ]);
     }
 

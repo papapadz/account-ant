@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Native\Desktop\Facades\Window;
 use Native\Desktop\Contracts\ProvidesPhpIni;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -17,6 +20,26 @@ class NativeAppServiceProvider implements ProvidesPhpIni
             ->title(config('app.name'))
             ->hideMenu()
             ->maximized();
+    }
+
+
+    public function runSeeders(): void
+    {
+        if (Schema::hasTable('migrations')) {
+            try {
+                // Force the seeder to run seamlessly in production
+                Artisan::call('migrate', ['--force' => true]);
+                Artisan::call('db:seed', ['--force' => true]);
+            } catch (\Throwable $e) {
+                Log::warning('Migration and seeding checks failed: ' . $e->getMessage());
+            }
+        } else {
+            try {
+                Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+            } catch (\Throwable $e) {
+                Log::warning('First-time seeding encountered issue: ' . $e->getMessage());
+            }
+        }
     }
 
     /**

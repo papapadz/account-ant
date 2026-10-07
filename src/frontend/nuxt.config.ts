@@ -60,7 +60,7 @@ export default defineNuxtConfig({
     public: {
       name: 'Account-Ant',
       description: 'Automated Accounting Ledger',
-      version: '1.0.1',
+      version: '1.1.2',
       // apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000/api',
     },
   },

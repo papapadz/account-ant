@@ -1,0 +1,31 @@
+[
+    {
+        "id": 174,
+        "name": "Philippines",
+        "iso3": "PHL",
+        "numeric_code": "608",
+        "iso2": "PH",
+        "phonecode": "63",
+        "capital": "Manila",
+        "currency": "PHP",
+        "currency_name": "Philippine peso",
+        "currency_symbol": "₱",
+        "tld": ".ph",
+        "native": "Pilipinas",
+        "region": "Asia",
+        "region_id": 3,
+        "subregion": "South-Eastern Asia",
+        "subregion_id": 13,
+        "nationality": "Philippine, Filipino",
+        "timezones": "[{\"zoneName\":\"Asia\/Manila\",\"gmtOffset\":28800,\"gmtOffsetName\":\"UTC+08:00\",\"abbreviation\":\"PHT\",\"tzName\":\"Philippine Time\"}]",
+        "translations": "{\"kr\":\"필리핀\",\"pt-BR\":\"Filipinas\",\"pt\":\"Filipinas\",\"nl\":\"Filipijnen\",\"hr\":\"Filipini\",\"fa\":\"جزایر الندفیلیپین\",\"de\":\"Philippinen\",\"es\":\"Filipinas\",\"fr\":\"Philippines\",\"ja\":\"フィリピン\",\"it\":\"Filippine\",\"cn\":\"菲律宾\",\"tr\":\"Filipinler\"}",
+        "latitude": 13.00000000,
+        "longitude": 122.00000000,
+        "emoji": "??",
+        "emojiU": "U+1F1F5 U+1F1ED",
+        "created_at": "2018-07-21 09:11:03",
+        "updated_at": "2023-08-11 17:45:55",
+        "flag": 1,
+        "wikiDataId": "Q928"
+    }
+]

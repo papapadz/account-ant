@@ -426,7 +426,7 @@
           <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project (Optional)</label>
           <select v-model="newJournalEntry.project_id" class="input-field text-xs py-2 font-medium">
             <option :value="null">General Ledger (No Specific Project)</option>
-            <option v-for="proj in projectsStore.projects.value" :key="proj.id" :value="proj.id">
+            <option v-for="proj in selectableProjects" :key="proj.id" :value="proj.id">
               {{ proj.name || (proj as any).project_name }}
             </option>
           </select>
@@ -437,7 +437,7 @@
           <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account *</label>
           <select v-model="newJournalEntry.fund_account_id" required class="input-field text-xs py-2 font-medium">
             <option :value="undefined" disabled>-- Select Fund Account --</option>
-            <option v-for="fund in accounting.fundAccounts.value" :key="fund.id" :value="fund.id">
+            <option v-for="fund in selectableFundAccounts" :key="fund.id" :value="fund.id">
               {{ fund.fund_code }} - {{ fund.fund_name }} (Available: {{ currencyStore.formatCurrency(accounting.getFundAccountRemaining(fund.id)) }})
             </option>
           </select>
@@ -613,6 +613,14 @@ const filteredAccountItems = computed(() => {
   if (!newJournalEntry.ledger_account_id) return accounting.accountItems.value
   return accounting.accountItems.value.filter(item => item.ledger_account_id === newJournalEntry.ledger_account_id)
 })
+
+const selectableProjects = computed(() =>
+  projectsStore.projects.value.filter(p => p.status !== 'cancelled')
+)
+
+const selectableFundAccounts = computed(() =>
+  accounting.fundAccounts.value.filter(f => (f.status ?? 'active') === 'active')
+)
 
 const paymentStatusSubtitle = computed(() => {
   const isCredit = newJournalEntry.transaction_type === 'credit'

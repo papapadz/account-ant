@@ -2,13 +2,13 @@
   <Teleport to="body">
     <div
       v-if="isOpen"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm transition-opacity"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm transition-opacity print:static print:block print:p-0 print:bg-transparent print:backdrop-blur-none"
       @click.self="close"
     >
       <div
         :class="[
           maxWidth,
-          'w-full overflow-hidden transform transition-all duration-200 rounded-xl',
+          'w-full overflow-hidden transform transition-all duration-200 rounded-xl print:transform-none print:overflow-visible print:max-w-none',
           variant === 'flat-white'
             ? 'bg-white border-0 shadow-none text-slate-900'
             : 'bg-[var(--bg-modal)] border border-[var(--border-color)] text-[var(--text-main)] shadow-2xl'
@@ -17,7 +17,7 @@
         <!-- Modal Header -->
         <div
           :class="[
-            'px-6 py-4 flex items-center justify-between',
+            'px-6 py-4 flex items-center justify-between print:hidden',
             variant === 'flat-white'
               ? 'border-b border-slate-100 bg-white'
               : 'border-b border-[var(--border-color)]'
@@ -52,7 +52,7 @@
         <!-- Modal Body -->
         <div
           :class="[
-            'p-6 max-h-[85vh] overflow-y-auto',
+            'p-6 max-h-[85vh] overflow-y-auto print:max-h-none print:overflow-visible print:p-0',
             variant === 'flat-white' ? 'bg-white text-slate-900' : ''
           ]"
         >
@@ -63,7 +63,7 @@
         <div
           v-if="$slots.footer"
           :class="[
-            'px-6 py-4 flex items-center justify-end gap-3',
+            'px-6 py-4 flex items-center justify-end gap-3 print:hidden',
             variant === 'flat-white'
               ? 'border-t border-slate-100 bg-slate-50'
               : 'border-t border-[var(--border-color)] bg-[var(--bg-sidebar)]'

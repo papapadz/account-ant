@@ -31,7 +31,7 @@ export interface Project {
   address?: ProjectAddress | string
   client_name: string
   start_date: string
-  status: 'active' | 'on-hold' | 'completed'
+  status: 'active' | 'on-hold' | 'completed' | 'cancelled'
   created_at: string
   city_id?: number
 }
@@ -671,7 +671,7 @@ export const useProjects = () => {
     return res.data || res
   }
 
-  async function updateProjectStatus(id: number, status: 'active' | 'on-hold' | 'completed') {
+  async function updateProjectStatus(id: number, status: 'active' | 'on-hold' | 'completed' | 'cancelled') {
     const res = await api.request<any>(`/projects/${id}/status`, {
       method: 'PATCH',
       body: { status },

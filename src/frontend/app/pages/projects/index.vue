@@ -250,7 +250,7 @@ const projectsStore = useProjects()
 const currencyStore = useCurrency()
 const dateStore = useDate()
 
-const statusFilter = ref<'all' | 'active' | 'on-hold' | 'completed'>('all')
+const statusFilter = ref<'all' | 'active' | 'on-hold' | 'completed' | 'cancelled'>('all')
 const searchQuery = ref('')
 const viewMode = ref<'cards' | 'table'>('cards')
 const isCreateModalOpen = ref(false)
@@ -262,6 +262,7 @@ const statusFilterTabs = computed<TabItem[]>(() => [
   { value: 'active', label: 'Active', badge: projectsStore.projects.value.filter(p => p.status === 'active').length },
   { value: 'on-hold', label: 'On-Hold', badge: projectsStore.projects.value.filter(p => p.status === 'on-hold').length },
   { value: 'completed', label: 'Completed', badge: projectsStore.projects.value.filter(p => p.status === 'completed').length },
+  { value: 'cancelled', label: 'Cancelled', badge: projectsStore.projects.value.filter(p => p.status === 'cancelled').length },
 ])
 
 const projectColumns: DataTableColumn[] = [

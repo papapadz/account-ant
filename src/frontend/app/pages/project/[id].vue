@@ -353,9 +353,18 @@
 
         <!-- 2. Ledger Account -->
         <div class="space-y-1.5">
-          <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-            Ledger Account <span class="text-rose-400">*</span>
-          </label>
+          <div class="flex items-center justify-between">
+            <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+              Ledger Account <span class="text-rose-400">*</span>
+            </label>
+            <button
+              type="button"
+              class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300"
+              @click="toggleQuickLedger"
+            >
+              {{ showQuickLedger ? 'Cancel' : '+ New' }}
+            </button>
+          </div>
           <select
             v-model="journalForm.ledger_account_id"
             required
@@ -370,6 +379,35 @@
               [{{ acc.account_code }}] {{ acc.account_name }} ({{ activeCategories.filter(c => c.ledger_account_id === acc.id).length }} items)
             </option>
           </select>
+
+          <!-- Quick create: Ledger Account -->
+          <div
+            v-if="showQuickLedger"
+            class="p-3 rounded-lg bg-[var(--bg-surface)] border border-emerald-500/30 space-y-2.5"
+          >
+            <div class="grid grid-cols-3 gap-2">
+              <input
+                v-model="quickLedger.account_code"
+                type="text"
+                maxlength="20"
+                placeholder="Code e.g. 1030-PREPAID"
+                class="input-field col-span-1 font-mono text-sm"
+                @keydown.enter.prevent="handleQuickCreateLedger"
+              />
+              <input
+                v-model="quickLedger.account_name"
+                type="text"
+                maxlength="100"
+                placeholder="Account name"
+                class="input-field col-span-2 text-sm"
+                @keydown.enter.prevent="handleQuickCreateLedger"
+              />
+            </div>
+            <p v-if="quickError" class="text-xs text-rose-400">{{ quickError }}</p>
+            <UiButton type="button" size="sm" :loading="isQuickSaving" @click="handleQuickCreateLedger">
+              Create Ledger Account
+            </UiButton>
+          </div>
         </div>
 
         <!-- 3. Account Item Name / Line Category -->
@@ -378,20 +416,32 @@
             <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
               Account Item Name / Line Category <span class="text-rose-400">*</span>
             </label>
-            <span
-              v-if="journalForm.type"
-              class="px-2 py-0.5 rounded text-[10px] font-bold uppercase border select-none"
-              :class="journalForm.type === 'debit' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'"
-            >
-              {{ journalForm.type === 'debit' ? 'OUTFLOW' : 'INFLOW' }}
-            </span>
+            <div class="flex items-center gap-2">
+              <span
+                v-if="journalForm.type"
+                class="px-2 py-0.5 rounded text-[10px] font-bold uppercase border select-none"
+                :class="journalForm.type === 'debit' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'"
+              >
+                {{ journalForm.type === 'debit' ? 'OUTFLOW' : 'INFLOW' }}
+              </span>
+              <button
+                type="button"
+                class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300"
+                @click="toggleQuickItem"
+              >
+                {{ showQuickItem ? 'Cancel' : '+ New' }}
+              </button>
+            </div>
           </div>
           <select
             v-model="journalForm.category_id"
             required
-            class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+            :disabled="!journalForm.ledger_account_id"
+            class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <option value="" disabled>-- Select Item Category --</option>
+            <option value="" disabled>
+              {{ journalForm.ledger_account_id ? '-- Select Item Category --' : '-- Select a Ledger Account first --' }}
+            </option>
             <option
               v-for="cat in filteredAccountItems"
               :key="cat.id"
@@ -400,6 +450,74 @@
               {{ cat.name }} ({{ cat.code }})
             </option>
           </select>
+
+          <!-- Quick create: Account Item -->
+          <div
+            v-if="showQuickItem"
+            class="p-3 rounded-lg bg-[var(--bg-surface)] border border-emerald-500/30 space-y-2.5"
+          >
+            <div class="space-y-1">
+              <label class="block text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                Linked Ledger Account <span class="text-rose-400">*</span>
+              </label>
+              <select
+                v-model="quickItem.ledger_account_id"
+                class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                @change="suggestQuickItemCode"
+              >
+                <option value="" disabled>-- Select Ledger Account --</option>
+                <option
+                  v-for="acc in accountingStore.ledgerAccounts.value"
+                  :key="acc.id"
+                  :value="acc.id"
+                >
+                  [{{ acc.account_code }}] {{ acc.account_name }}
+                </option>
+              </select>
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <input
+                v-model="quickItem.item_code"
+                type="text"
+                maxlength="20"
+                placeholder="Item code"
+                class="input-field col-span-1 font-mono text-sm"
+                @keydown.enter.prevent="handleQuickCreateItem"
+              />
+              <input
+                v-model="quickItem.item_name"
+                type="text"
+                maxlength="100"
+                placeholder="Item name"
+                class="input-field col-span-2 text-sm"
+                @keydown.enter.prevent="handleQuickCreateItem"
+              />
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <button
+                v-for="opt in [{ value: 'debit', label: 'Outflow' }, { value: 'credit', label: 'Inflow' }]"
+                :key="opt.value"
+                type="button"
+                class="px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors"
+                :class="quickItem.transaction_type === opt.value
+                  ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-400'
+                  : 'border-[var(--border-color)] text-[var(--text-muted)]'"
+                @click="quickItem.transaction_type = opt.value as 'debit' | 'credit'"
+              >
+                {{ opt.label }}
+              </button>
+            </div>
+            <p v-if="quickError" class="text-xs text-rose-400">{{ quickError }}</p>
+            <UiButton
+              type="button"
+              size="sm"
+              :loading="isQuickSaving"
+              :disabled="!quickItem.ledger_account_id"
+              @click="handleQuickCreateItem"
+            >
+              Create Account Item
+            </UiButton>
+          </div>
         </div>
 
         <!-- 4. Itemized Breakdown Toggle -->
@@ -803,7 +921,7 @@
             >
               <option value="" disabled>Select an available fund account</option>
               <option
-                v-for="fund in accountingStore.fundAccounts.value"
+                v-for="fund in selectableFundAccounts"
                 :key="fund.id"
                 :value="fund.fund_name"
                 :disabled="isFundAlreadySelected(fund.id)"
@@ -824,7 +942,7 @@
               >
                 <option value="" disabled>Select an available fund account</option>
                 <option
-                  v-for="fund in accountingStore.fundAccounts.value"
+                  v-for="fund in selectableFundAccounts"
                   :key="fund.id"
                   :value="fund.fund_name"
                   :disabled="isFundAlreadySelected(fund.id)"
@@ -862,7 +980,7 @@
               >
                 <option value="" disabled>Select an available fund account</option>
                 <option
-                  v-for="fund in accountingStore.fundAccounts.value"
+                  v-for="fund in selectableFundAccounts"
                   :key="fund.id"
                   :value="fund.fund_name"
                   :disabled="isFundAlreadySelected(fund.id)"
@@ -952,7 +1070,7 @@
             </div>
             <div class="text-right">
               <p><span class="font-bold text-slate-700">Statement Date:</span> {{ statementDate }}</p>
-              <p class="mt-1"><span class="font-bold text-slate-700">Status:</span> <span class="uppercase font-bold text-emerald-700">{{ project?.status }}</span></p>
+              <p class="mt-1"><span class="font-bold text-slate-700">Status:</span> <span class="uppercase font-bold" :class="project?.status === 'cancelled' ? 'text-rose-700' : 'text-emerald-700'">{{ project?.status }}</span></p>
               <p class="mt-1"><span class="font-bold text-slate-700">Started:</span> {{ formatDateMMDDYY(project?.start_date) }}</p>
             </div>
           </div>
@@ -995,7 +1113,7 @@
           </div>
 
           <!-- Financial Aggregations Footer -->
-          <div class="mt-6 pt-4 border-t-2 border-slate-900 grid grid-cols-3 gap-4 text-xs font-mono">
+          <div class="break-inside-avoid mt-6 pt-4 border-t-2 border-slate-900 grid grid-cols-3 gap-4 text-xs font-mono">
             <div class="bg-slate-50 p-3 rounded border border-slate-200">
               <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Outflow</span>
               <span class="text-sm font-bold text-rose-700">{{ currencyStore.formatCurrency(totalProjectDebits) }}</span>
@@ -1060,6 +1178,7 @@
               <option value="active">Active</option>
               <option value="on-hold">On Hold</option>
               <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
             </select>
           </div>
         </div>
@@ -1186,7 +1305,7 @@ const editProjectForm = reactive({
   description: '',
   budget: 0,
   start_date: '',
-  status: 'active' as 'active' | 'on-hold' | 'completed',
+  status: 'active' as 'active' | 'on-hold' | 'completed' | 'cancelled',
 })
 const statementDate = ref(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }))
 
@@ -1201,6 +1320,7 @@ const projectStatusOptions = [
   { value: 'active', label: 'Active' },
   { value: 'on-hold', label: 'On Hold' },
   { value: 'completed', label: 'Completed' },
+  { value: 'cancelled', label: 'Cancelled' },
 ]
 
 const handleJournalEntryStatusChange = async (id: number, newStatus: string) => {
@@ -1214,7 +1334,7 @@ const handleJournalEntryStatusChange = async (id: number, newStatus: string) => 
 const handleProjectStatusChange = async (newStatus: string) => {
   if (!project.value) return
   try {
-    await projectsStore.updateProjectStatus(project.value.id, newStatus as 'active' | 'on-hold' | 'completed')
+    await projectsStore.updateProjectStatus(project.value.id, newStatus as 'active' | 'on-hold' | 'completed' | 'cancelled')
   } catch (err: any) {
     alert(err?.data?.message || err?.message || 'Failed to update project status.')
   }
@@ -1250,7 +1370,9 @@ watch(isCreatingNewFund, () => {
 })
 
 watch(isPostJournalModalOpen, async (isOpen) => {
-  if (isOpen) {
+  if (!isOpen) {
+    resetQuickCreate()
+  } else {
     try {
       await Promise.all([
         accountingStore.fetchLedgerAccounts(),
@@ -1481,6 +1603,10 @@ const projectFundSources = computed(() => {
   return projectsStore.fundSources.value.filter(f => f.project_id === projectId.value)
 })
 
+const selectableFundAccounts = computed(() =>
+  accountingStore.fundAccounts.value.filter(f => (f.status ?? 'active') === 'active')
+)
+
 const isFundAlreadySelected = (fundAccountId: number) => {
   return projectFundSources.value.some(pf => pf.id === fundAccountId || (pf as any).fund_account_id === fundAccountId)
 }
@@ -1493,25 +1619,16 @@ const activeCategories = computed(() => {
   return projectsStore.categories.value.filter(c => c.status === 'active')
 })
 
+// Only items belonging to the selected ledger account are selectable
 const filteredAccountItems = computed(() => {
-  if (!journalForm.ledger_account_id) {
-    return activeCategories.value
-  }
+  if (!journalForm.ledger_account_id) return []
   const selectedLedgerId = Number(journalForm.ledger_account_id)
-  const matches = activeCategories.value.filter(c => c.ledger_account_id === selectedLedgerId)
-  return matches.length > 0 ? matches : activeCategories.value
+  return activeCategories.value.filter(c => c.ledger_account_id === selectedLedgerId)
 })
 
-watch(() => journalForm.ledger_account_id, (newLedgerId) => {
-  if (!newLedgerId) return
-  const numId = Number(newLedgerId)
-  const matches = activeCategories.value.filter(c => c.ledger_account_id === numId)
-  if (matches.length > 0) {
-    journalForm.category_id = matches[0].id
-    if (matches[0].transaction_type) {
-      journalForm.type = matches[0].transaction_type
-    }
-  }
+// A different ledger account means a different item list, so drop the previous selection
+watch(() => journalForm.ledger_account_id, () => {
+  journalForm.category_id = ''
 })
 
 watch(() => journalForm.category_id, (newCatId) => {
@@ -1533,6 +1650,113 @@ watch(() => journalForm.category_id, (newCatId) => {
     }
   }
 })
+
+// Quick create (ledger account / account item) inside the Post Journal modal
+const showQuickLedger = ref(false)
+const showQuickItem = ref(false)
+const isQuickSaving = ref(false)
+const quickError = ref('')
+const quickLedger = reactive({ account_code: '', account_name: '' })
+const quickItem = reactive({
+  ledger_account_id: '' as number | string,
+  item_code: '',
+  item_name: '',
+  transaction_type: 'debit' as 'debit' | 'credit',
+})
+let lastSuggestedItemCode = ''
+
+const resetQuickCreate = () => {
+  showQuickLedger.value = false
+  showQuickItem.value = false
+  quickError.value = ''
+  lastSuggestedItemCode = ''
+  Object.assign(quickLedger, { account_code: '', account_name: '' })
+  Object.assign(quickItem, { ledger_account_id: '', item_code: '', item_name: '', transaction_type: 'debit' })
+}
+
+// Suggest ACCOUNTCODE-NN for the picked ledger account, unless the user already typed their own code
+const suggestQuickItemCode = () => {
+  const ledger = accountingStore.ledgerAccounts.value.find(a => a.id === Number(quickItem.ledger_account_id))
+  if (!ledger) return
+  if (quickItem.item_code && quickItem.item_code !== lastSuggestedItemCode) return
+  const count = accountingStore.accountItems.value.filter(i => i.ledger_account_id === ledger.id).length
+  const cleanCode = ledger.account_code.replace(/[^a-zA-Z0-9]/g, '-').toUpperCase()
+  lastSuggestedItemCode = `${cleanCode}-${String(count + 1).padStart(2, '0')}`
+  quickItem.item_code = lastSuggestedItemCode
+}
+
+const toggleQuickLedger = () => {
+  const open = !showQuickLedger.value
+  resetQuickCreate()
+  showQuickLedger.value = open
+}
+
+const toggleQuickItem = () => {
+  const open = !showQuickItem.value
+  resetQuickCreate()
+  showQuickItem.value = open
+  if (!open) return
+  quickItem.transaction_type = journalForm.type
+  quickItem.ledger_account_id = journalForm.ledger_account_id
+  suggestQuickItemCode()
+}
+
+const handleQuickCreateLedger = async () => {
+  const account_code = quickLedger.account_code.trim()
+  const account_name = quickLedger.account_name.trim()
+  if (!account_code || !account_name) {
+    quickError.value = 'Account code and name are required.'
+    return
+  }
+  isQuickSaving.value = true
+  quickError.value = ''
+  try {
+    const created = await accountingStore.addLedgerAccount({ account_code, account_name, user_id: 1 })
+    journalForm.ledger_account_id = created.id
+    resetQuickCreate()
+  } catch (err: any) {
+    quickError.value = err?.data?.message || err?.message || 'Failed to create ledger account.'
+  } finally {
+    isQuickSaving.value = false
+  }
+}
+
+const handleQuickCreateItem = async () => {
+  const ledgerId = Number(quickItem.ledger_account_id)
+  const item_code = quickItem.item_code.trim()
+  const item_name = quickItem.item_name.trim()
+  if (!ledgerId) {
+    quickError.value = 'Select the ledger account this item belongs to.'
+    return
+  }
+  if (!item_code || !item_name) {
+    quickError.value = 'Item code and name are required.'
+    return
+  }
+  isQuickSaving.value = true
+  quickError.value = ''
+  try {
+    const created = await accountingStore.addAccountItem({
+      item_code,
+      item_name,
+      transaction_type: quickItem.transaction_type,
+      ledger_account_id: ledgerId,
+    })
+    // categories are rebuilt from account items in fetchProjects
+    await projectsStore.fetchProjects()
+    if (Number(journalForm.ledger_account_id) !== ledgerId) {
+      // the ledger watcher auto-picks the first item; let it settle before selecting the new one
+      journalForm.ledger_account_id = ledgerId
+      await nextTick()
+    }
+    journalForm.category_id = created.id
+    resetQuickCreate()
+  } catch (err: any) {
+    quickError.value = err?.data?.message || err?.message || 'Failed to create account item.'
+  } finally {
+    isQuickSaving.value = false
+  }
+}
 
 const handleMarkAsPaid = async (id: number) => {
   try {
@@ -1826,38 +2050,37 @@ const handleSaveEditProject = async () => {
 }
 
 const triggerPrint = () => {
-  // isPrintBalanceSheetModalOpen.value = false
   window.print()
 }
 </script>
 
-<style scoped>
+<style>
+/* Unscoped on purpose: Modal teleports to <body>, outside this page's scoped styles. */
 @media print {
-  body * {
-    visibility: hidden !important;
+  @page {
+    margin: 12mm;
   }
-  #printable-balance-sheet,
-  #printable-balance-sheet * {
-    visibility: visible !important;
+  /* Hide the app shell only while the ledger modal is open (modal lives outside #__nuxt). */
+  body:has(#printable-balance-sheet) #__nuxt {
+    display: none !important;
   }
   #printable-balance-sheet {
-    position: fixed !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 24px !important;
+    padding: 0 !important;
     background: #ffffff !important;
     color: #000000 !important;
     box-shadow: none !important;
     border: none !important;
-    z-index: 999999 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-  .no-print,
-  button,
-  nav,
-  header,
-  .fixed:not(#printable-balance-sheet) {
+  #printable-balance-sheet thead {
+    display: table-header-group;
+  }
+  #printable-balance-sheet tr,
+  #printable-balance-sheet .break-inside-avoid {
+    break-inside: avoid;
+  }
+  .no-print {
     display: none !important;
   }
 }

@@ -17,7 +17,7 @@
 
     <!-- Tab 1: Profile -->
     <div v-if="activeTab === 'profile'" class="glass-card p-6 rounded-xl border border-[var(--border-color)] space-y-4 max-w-2xl">
-      <h3 class="text-sm font-bold text-[var(--text-main)] uppercase tracking-wider">Personal Profile Details (`Person` Model)</h3>
+      <h3 class="text-sm font-bold text-[var(--text-main)] uppercase tracking-wider">Profile Details</h3>
 
       <!-- <div v-if="!auth.isSuperAdmin.value" class="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs flex items-center gap-2">
         <svg class="w-4 h-4 shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -265,7 +265,72 @@
           </UiButton>
         </div>
       </div>
+
+      <!-- Danger Zone: Wipe Data -->
+      <div class="p-4 rounded-xl border border-rose-500/30 bg-rose-500/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <h5 class="text-xs font-bold text-rose-400 flex items-center gap-2">
+            <span>Wipe Data</span>
+            <span class="px-2 py-0.5 rounded text-[10px] bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono font-bold">Danger Zone</span>
+          </h5>
+          <p class="text-[11px] text-[var(--text-muted)]">
+            Permanently delete all fund accounts, ledger accounts, account items, journal entries, accounts payable and projects. Users, roles, address data and your profile and company are kept.
+          </p>
+        </div>
+        <UiButton variant="danger" size="sm" @click="openWipeModal">
+          Wipe Data
+        </UiButton>
+      </div>
     </div>
+
+    <!-- Wipe Data Confirmation Modal -->
+    <Modal :isOpen="isWipeModalOpen" title="Wipe All Data" @close="closeWipeModal">
+      <div class="space-y-4">
+        <div class="p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs">
+          This permanently deletes the data below and cannot be undone. A JSON backup will be downloaded first.
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div class="p-3 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)]">
+            <p class="font-bold text-rose-400 mb-1">Will be deleted</p>
+            <ul class="list-disc list-inside text-[var(--text-muted)] space-y-0.5">
+              <li>Fund accounts</li>
+              <li>Ledger accounts and account items</li>
+              <li>Journal entries and accounts payable</li>
+              <li>Projects and project funds</li>
+            </ul>
+          </div>
+          <div class="p-3 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)]">
+            <p class="font-bold text-emerald-400 mb-1">Will be kept</p>
+            <ul class="list-disc list-inside text-[var(--text-muted)] space-y-0.5">
+              <li>Users and roles</li>
+              <li>Profile, company and position</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">
+            Type <span class="font-mono text-rose-400">WIPE</span> to confirm
+          </label>
+          <input
+            v-model="wipeConfirmText"
+            type="text"
+            autocomplete="off"
+            placeholder="WIPE"
+            class="input-field font-mono"
+            :disabled="isWiping"
+          />
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
+          <UiButton type="button" variant="secondary" size="sm" :disabled="isWiping" @click="closeWipeModal">Cancel</UiButton>
+          <UiButton type="button" variant="danger" size="sm" :disabled="!canConfirmWipe" :loading="isWiping" @click="handleWipeData">
+            Wipe All Data
+          </UiButton>
+        </div>
+      </div>
+    </Modal>
 
     <!-- Toast Notification -->
     <div v-if="showSaveToast" class="fixed bottom-6 right-6 bg-emerald-500 text-slate-950 px-4 py-2.5 rounded-lg shadow-xl font-bold text-xs flex items-center gap-2 z-50 animate-bounce">
@@ -295,6 +360,10 @@ const apiUrl = ref('http://localhost:8000/api')
 const showSaveToast = ref(false)
 const isDownloading = ref(false)
 const isDownloadingJson = ref(false)
+const isWipeModalOpen = ref(false)
+const wipeConfirmText = ref('')
+const isWiping = ref(false)
+const canConfirmWipe = computed(() => wipeConfirmText.value === 'WIPE' && !isWiping.value)
 
 watch(showSaveToast, (val) => {
   if (val) {
@@ -396,6 +465,53 @@ const downloadJsonBackup = async () => {
     showSaveToast.value = true
   } finally {
     isDownloadingJson.value = false
+  }
+}
+
+const openWipeModal = () => {
+  wipeConfirmText.value = ''
+  isWipeModalOpen.value = true
+}
+
+const closeWipeModal = () => {
+  if (isWiping.value) return
+  isWipeModalOpen.value = false
+  wipeConfirmText.value = ''
+}
+
+const handleWipeData = async () => {
+  if (!canConfirmWipe.value) return
+  isWiping.value = true
+  try {
+    // Safety copy first; downloadJsonBackup falls back to a client-side dump, so it always yields a file.
+    await downloadJsonBackup()
+
+    await api.request('/settings/wipe', { method: 'DELETE', body: { confirm: 'WIPE' } })
+
+    accounting.fundAccounts.value = []
+    accounting.ledgerAccounts.value = []
+    accounting.accountItems.value = []
+    accounting.journalEntries.value = []
+    projectsStore.projects.value = []
+    projectsStore.fundSources.value = []
+    projectsStore.categories.value = []
+    projectsStore.transactions.value = []
+
+    await Promise.all([
+      accounting.fetchFundAccounts(),
+      accounting.fetchLedgerAccounts(),
+      accounting.fetchAccountItems(),
+      accounting.fetchJournalEntries(),
+      projectsStore.fetchProjects(),
+    ])
+
+    isWipeModalOpen.value = false
+    wipeConfirmText.value = ''
+    showSaveToast.value = true
+  } catch (err: any) {
+    alert(err?.data?.message || err?.message || 'Failed to wipe data.')
+  } finally {
+    isWiping.value = false
   }
 }
 

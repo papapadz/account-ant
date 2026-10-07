@@ -42,6 +42,7 @@
           v-for="fund in filteredFunds"
           :key="fund.id"
           class="glass-card p-5 rounded-xl border border-[var(--border-color)] relative overflow-hidden flex flex-col justify-between group cursor-pointer hover:border-emerald-500/40 transition-all"
+          :class="{ 'opacity-60': fund.status === 'inactive' }"
           @click="openEditModal(fund)"
         >
           <div>
@@ -76,7 +77,9 @@
           </div>
 
           <div class="pt-4 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
-            <span class="text-emerald-500 font-semibold">Active</span>
+            <span class="font-semibold" :class="fund.status === 'inactive' ? 'text-[var(--text-muted)]' : 'text-emerald-500'">
+              {{ fund.status === 'inactive' ? 'Inactive' : 'Active' }}
+            </span>
             <span class="text-xs font-bold text-emerald-400 group-hover:underline flex items-center gap-1">
               <span>Edit Account</span>
               <span>&rarr;</span>
@@ -150,6 +153,17 @@
           <textarea v-model="editingFund.description" rows="3" placeholder="Specify purpose of this fund account..." class="input-field"></textarea>
         </div>
 
+        <div>
+          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status</label>
+          <select v-model="editingFund.status" class="input-field text-xs py-1.5 font-medium">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <p v-if="editingFund.status === 'inactive'" class="text-[11px] text-[var(--text-muted)] mt-1">
+            Inactive fund accounts are hidden from the fund source selection in projects.
+          </p>
+        </div>
+
         <div class="pt-4 flex items-center justify-end gap-3 border-t border-[var(--border-color)]">
           <UiButton type="button" variant="secondary" size="sm" @click="isEditModalOpen = false">Cancel</UiButton>
           <UiButton type="submit" variant="primary" size="sm">Save Changes</UiButton>
@@ -217,6 +231,7 @@ const editingFund = reactive({
   description: '',
   amount: 0,
   originalAmount: 0,
+  status: 'active' as 'active' | 'inactive',
 })
 
 const amountDifference = computed(() => {
@@ -230,6 +245,7 @@ const openEditModal = (fund: FundAccount) => {
   editingFund.description = fund.description || ''
   editingFund.amount = Number(fund.amount) || 0
   editingFund.originalAmount = Number(fund.amount) || 0
+  editingFund.status = fund.status || 'active'
   isEditModalOpen.value = true
 }
 
@@ -258,6 +274,7 @@ const handleUpdateFund = async () => {
     fund_name: editingFund.fund_name,
     description: editingFund.description,
     amount: newAmount,
+    status: editingFund.status,
   })
 
   // If amount changed, automatically record a journal entry for the difference

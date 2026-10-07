@@ -46,6 +46,7 @@ class FundAccountController extends Controller
             'description' => 'nullable|string|max:255',
             'amount' => 'numeric|min:0',
             'company_id' => 'integer',
+            'status' => 'sometimes|in:active,inactive',
         ]);
 
         $fund = FundAccount::create([
@@ -54,6 +55,7 @@ class FundAccountController extends Controller
             'fund_name' => $validated['fund_name'],
             'description' => $validated['description'] ?? null,
             'amount' => $validated['amount'] ?? 0.00,
+            'status' => $validated['status'] ?? 'active',
             'user_id' => 1,
             'ledger_account_id' => 1,
         ]);
@@ -68,6 +70,26 @@ class FundAccountController extends Controller
     {
         $fund = FundAccount::with('ledgerAccounts')->findOrFail($id);
         return response()->json($fund);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $fund = FundAccount::findOrFail($id);
+
+        $validated = $request->validate([
+            'fund_code' => 'sometimes|string|max:20',
+            'fund_name' => 'sometimes|string|max:100',
+            'description' => 'nullable|string|max:255',
+            'amount' => 'sometimes|numeric|min:0',
+            'status' => 'sometimes|in:active,inactive',
+        ]);
+
+        $fund->update($validated);
+
+        return response()->json([
+            'message' => 'Fund account updated successfully',
+            'data' => $fund,
+        ]);
     }
 
     public function destroy($id)

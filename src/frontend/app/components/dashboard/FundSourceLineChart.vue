@@ -52,8 +52,8 @@
     <!-- Stats Summary Row -->
       <div class="flex items-center justify-between text-xs text-[var(--text-muted)] px-1">
         <div>
-          Fund Source Volume:
-          <span class="font-mono font-bold text-blue-400 ml-1">{{ currencyStore.formatCurrency(periodTotalAmount) }}</span>
+          Total Balance:
+          <span class="font-mono font-bold text-blue-400 ml-1">{{ currencyStore.formatCurrency(totalBalance) }}</span>
         </div>
         <div>
           Peak Month:
@@ -237,12 +237,11 @@ const monthlyData = computed(() => {
   return result
 })
 
-const periodTotalAmount = computed(() => {
-  return monthlyData.value.reduce((sum, item) => sum + item.amount, 0)
-})
-
-const monthlyAverage = computed(() => {
-  return Math.round(periodTotalAmount.value / 12)
+// Total balance: the running balance as of today's month for the current year, otherwise December.
+const totalBalance = computed(() => {
+  const now = new Date()
+  const monthIdx = selectedYear.value === now.getFullYear() ? now.getMonth() : 11
+  return monthlyData.value[monthIdx]?.amount ?? 0
 })
 
 const peakMonthLabel = computed(() => {

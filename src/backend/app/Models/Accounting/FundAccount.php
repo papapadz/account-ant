@@ -18,6 +18,7 @@ class FundAccount extends Model
         'fund_name',
         'description',
         'amount',
+        'status',
         'user_id',
         'ledger_account_id',
     ];

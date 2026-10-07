@@ -59,6 +59,30 @@ class ProjectUpdateTest extends TestCase
         ]);
     }
 
+    public function test_can_cancel_project_via_update()
+    {
+        $user = $this->makeUser();
+        $project = $this->makeProject($user);
+
+        $this->actingAs($user)->putJson("/api/projects/{$project->id}", [
+            'status' => 'cancelled',
+        ])->assertStatus(200)->assertJsonPath('data.status', 'cancelled');
+
+        $this->assertDatabaseHas('projects', ['id' => $project->id, 'status' => 'cancelled']);
+    }
+
+    public function test_can_cancel_project_via_status_endpoint()
+    {
+        $user = $this->makeUser();
+        $project = $this->makeProject($user);
+
+        $this->actingAs($user)->patchJson("/api/projects/{$project->id}/status", [
+            'status' => 'cancelled',
+        ])->assertStatus(200);
+
+        $this->assertDatabaseHas('projects', ['id' => $project->id, 'status' => 'cancelled']);
+    }
+
     public function test_update_rejects_invalid_payload()
     {
         $user = $this->makeUser();

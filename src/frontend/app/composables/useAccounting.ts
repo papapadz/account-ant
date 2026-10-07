@@ -5,6 +5,7 @@ export interface FundAccount {
   fund_name: string
   description?: string
   amount?: number
+  status?: 'active' | 'inactive'
   user_id: number
   ledger_account_id?: number
   created_at?: string

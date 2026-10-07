@@ -148,6 +148,7 @@
           <option value="active">Active</option>
           <option value="on-hold">On-Hold</option>
           <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
         </select>
       </div>
 
@@ -182,7 +183,7 @@ const form = reactive({
   description: '',
   budget: 500000.00,
   start_date: new Date().toISOString().split('T')[0],
-  status: 'active' as 'active' | 'on-hold' | 'completed',
+  status: 'active' as 'active' | 'on-hold' | 'completed' | 'cancelled',
   state_id: null as number | null,
   city_id: null as number | null,
   street: '',

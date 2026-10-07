@@ -1,102 +1,71 @@
-# Graph Report - account-ant  (2026-08-06)
+# Graph Report - account-ant  (2026-10-07)
 
 ## Corpus Check
-- 414 files · ~196,909 words
+- 362 files · ~186,311 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2874 nodes · 5248 edges · 348 communities (241 shown, 107 thin omitted)
-- Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 623 edges (avg confidence: 0.78)
+- 2539 nodes · 4782 edges · 288 communities (220 shown, 68 thin omitted)
+- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 608 edges (avg confidence: 0.78)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2f364034`
+- Built from commit: `eaff41ef`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- CFINTcER.js
 - vi
+- D1wVcX-p.js
 - project/[id].vue
-- e
+- Cr
 - M6HudXea.js
 - Design: Fund Account Reactivity — KPI Cards Update on Fund Account Creation
-- P
+- CFINTcER.js
 - dev
 - s
 - dependencies
 - post-update-cmd
 - extra
-- electron/package.json
+- LedgerAccountItem
 - design_system.py
 - Illuminate\Database\Eloquent\Model
-- api.ts
-- @babel/plugin-proposal-numeric-separator
-- php.js
-- electron-builder
-- php.ts
+- Illuminate\Http\Request
+- FundAccount
+- resetQuickCreate
+- FundAccountUpdateTest
 - accounts.vue
 - Issue tracker: GitHub
-- @eslint/js
-- eslint-plugin-unicorn
-- @electron/notarize
-- dependencies
-- electron-updater
-- @babel/plugin-proposal-throw-expressions
-- eslint-config-prettier
-- play-sound
-- @babel/plugin-transform-object-assign
-- e
-- @typescript-eslint/parser
-- devDependencies
+- setup
+- Company
+- setup
 - Process
 - ui-ux-pro-max
 - 01-fix-backend-artisan-and-nativephp-key.md
-- scripts
-- Menubar
 - ledgers.vue
 - Illuminate\Database\Seeder
-- @vue/eslint-config-prettier
-- state.ts
 - What You Must Do When Invoked
-- D1wVcX-p.js
-- setup
-- User
-- compilerOptions
 - default.vue
-- Project
 - B6EISGKZ.js
 - projects/index.vue
 - DataTable.vue
-- less
-- prettier
-- rimraf
-- LedgerAccountItem
 - devDependencies
-- @rushstack/eslint-patch
-- stylelint-config-recommended
-- @types/express
 - FundSourceLineChart.vue
 - AccountsPayableLineChart.vue
-- @types/node
 - pages/index.vue
 - items.vue
 - LedgerExpensePieChart.vue
 - ProgressBar.vue
-- typescript
 - funds.vue
 - settings.vue
-- NativePHP
-- @typescript-eslint/eslint-plugin
 - AccountsPayablePieChart.vue
 - FundExpensePieChart.vue
 - StatusPill.vue
 - journal.vue
 - Tracer-Bullet Tickets
-- TestCase
+- User
 - LedgerAccount
 - login.vue
-- server/index.ts
 - Spec: Flat White Borderless Modal Component Variant
 - ProjectMonthlyBarChart.vue
 - Tabs.vue
@@ -105,7 +74,6 @@
 - composer.json
 - useProjects.ts
 - Global Constraints
-- FundAccount
 - useAuth.ts
 - register.vue
 - useAccounting.ts
@@ -117,10 +85,8 @@
 - Badge.vue
 - Nuxt Minimal Starter
 - ExampleTest
-- electron.ts
 - wayfinder/SKILL.md
 - ADR 0002: Standardized Data Table Component & Dual-Mode Responsive Architecture
-- ambient.d.ts
 - KpiCard.vue
 - Button.vue
 - Feature Specification: Change Status for Ledger Accounts, Account Items, and Project Journal Entries
@@ -128,7 +94,7 @@
 - Global Constraints
 - Global Constraints
 - Global Constraints
-- Illuminate\Http\Request
+- Project
 - to-spec/SKILL.md
 - graphify reference: extra exports and benchmark
 - Handoff Document: Project-Based Ledger Posting & Budget Tracking
@@ -173,7 +139,6 @@
 - projects/[id].vue
 - frontend/tsconfig.json
 - 01-fix-sqlite-database-path-resolution.md
-- index.js
 - 02-install-nativephp-electron-dependencies.md
 - What to keep from Ionic, and why
 - lean-ctx — Context Engineering Layer
@@ -192,20 +157,12 @@
 - 0019. Disable Already Selected Fund Sources in Project Modal
 - Domain Docs
 - 03-verify-native-migration-and-dev-server.md
-- positioner/README.md
-- index.mts
-- livewire-dispatcher.js
-- server/childProcess.ts
-- axios
 - Card.vue
 - Input.vue
 - addItemizedRow
 - closeEditProjectModal
 - cycleVariant
-- api/childProcess.ts
 - psr-4
-- electron-builder.mjs
-- globals
 - capacitor.config.ts
 - nuxt.config.ts
 - ADR 0007: Project Budgeting, Card View Default & Interactive Analytics Dashboard
@@ -218,8 +175,6 @@
 - Global Constraints
 - Global Constraints
 - Global Constraints
-- vitest
-- electron-vite
 - graphify reference: add a URL and watch a folder
 - graphify reference: commit hook and native CLAUDE.md integration
 - graphify reference: incremental update and cluster-only
@@ -231,23 +186,12 @@
 - Correct Running Balance Computation & Display Implementation Plan
 - n
 - BPVyj4YU.js
-- @babel/plugin-proposal-decorators
 - handleTransactionRowClick
 - MarkPaidModal.vue
-- setup
 - PaymentDetailsModal.vue
 - graphify reference: GitHub clone and cross-repo merge
 - graphify reference: transcribe video and audio
 - Domain Glossary: AccountAnt Project Ledger System
-- eslint
-- cross-env
-- stylelint-config-sass-guidelines
-- ts-node
-- @types/ps-node
-- vitest-mock-commonjs
-- eslint-plugin-prettier
-- vite
-- @babel/plugin-proposal-export-namespace-from
 - rules/graphify.md
 - workflows/graphify.md
 - .claude/CLAUDE.md
@@ -310,53 +254,53 @@
   src/backend/public/_nuxt/-PIJGQ7c2.js → src/backend/public/_nuxt/BPVyj4YU.js
 - `setup()` --indirect_call--> `u()`  [INFERRED]
   src/backend/public/_nuxt/-PIJGQ7c2.js → src/backend/public/_nuxt/M6HudXea.js
-- `setup()` --indirect_call--> `H()`  [INFERRED]
-  src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/B3vfnPtG.js
 - `setup()` --indirect_call--> `L()`  [INFERRED]
   src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/BBMgkpsu.js
-- `setup()` --indirect_call--> `be()`  [INFERRED]
+- `setup()` --indirect_call--> `Se()`  [INFERRED]
+  src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/CFINTcER.js
+- `setup()` --indirect_call--> `W()`  [INFERRED]
   src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/CFINTcER.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (348 total, 107 thin omitted)
+## Communities (288 total, 68 thin omitted)
 
-### Community 0 - "CFINTcER.js"
-Cohesion: 0.04
-Nodes (120): o(), Aa(), An(), ar(), Ba(), br(), ca(), co() (+112 more)
+### Community 0 - "vi"
+Cohesion: 0.17
+Nodes (18): ai(), ci(), Dr(), _i(), ki(), li(), Mr(), oi() (+10 more)
 
-### Community 1 - "vi"
-Cohesion: 0.25
-Nodes (8): vi(), gi(), Qa(), Ro(), set(), Ut(), value(), zn()
+### Community 1 - "D1wVcX-p.js"
+Cohesion: 0.20
+Nodes (21): b(), C(), f(), I(), L(), m(), R(), S() (+13 more)
 
 ### Community 2 - "project/[id].vue"
-Cohesion: 0.03
-Nodes (56): accountingStore, activeCategories, activeFundAccountsBalance, activeTab, authStore, chronologicalStatement, companyNameHeader, currencyStore (+48 more)
+Cohesion: 0.02
+Nodes (63): accountingStore, activeCategories, activeFundAccountsBalance, activeTab, authStore, chronologicalStatement, companyNameHeader, currencyStore (+55 more)
 
-### Community 3 - "e"
-Cohesion: 0.20
-Nodes (34): setup(), setup(), D(), E(), T(), N(), setup(), setup() (+26 more)
+### Community 3 - "Cr"
+Cohesion: 0.17
+Nodes (16): Cr(), Er(), Hr(), qr(), Sr(), Tr(), wr(), xr() (+8 more)
 
 ### Community 4 - "M6HudXea.js"
-Cohesion: 0.15
-Nodes (14): addHooks(), callHook(), callHookParallel(), callHookWith(), deprecateHook(), deprecateHooks(), hook(), hookOnce() (+6 more)
+Cohesion: 0.14
+Nodes (15): addHooks(), callHook(), callHookParallel(), callHookWith(), deprecateHook(), deprecateHooks(), hook(), hookOnce() (+7 more)
 
 ### Community 5 - "Design: Fund Account Reactivity — KPI Cards Update on Fund Account Creation"
 Cohesion: 0.29
 Nodes (6): Data Semantics Clarified, Design: Fund Account Reactivity — KPI Cards Update on Fund Account Creation, Problem, Root Cause, Solution, What Was NOT Changed
 
-### Community 6 - "P"
-Cohesion: 0.27
-Nodes (25): c(), $a(), ao(), at(), bi(), eo(), Et(), F() (+17 more)
+### Community 6 - "CFINTcER.js"
+Cohesion: 0.05
+Nodes (167): setup(), setup(), D(), E(), H(), T(), N(), setup() (+159 more)
 
 ### Community 7 - "dev"
 Cohesion: 0.40
 Nodes (5): Composer\\Config::disableProcessTimeout, npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others, npx concurrently -k -c \"#93c5fd,#c4b5fd\" \"php artisan native:run --no-interaction\" \"npm run dev\" --names=app,vite, dev, native:dev
 
 ### Community 8 - "s"
-Cohesion: 0.15
-Nodes (25): ai(), ci(), Da(), ga(), ha(), Ka(), li(), Mr() (+17 more)
+Cohesion: 0.24
+Nodes (16): ga(), gn(), ha(), jn(), mn(), ni(), pn(), qn() (+8 more)
 
 ### Community 9 - "dependencies"
 Cohesion: 0.04
@@ -370,29 +314,25 @@ Nodes (3): @php artisan native:install --force --quiet --publish, @php artisan v
 Cohesion: 0.67
 Nodes (3): extra, laravel, dont-discover
 
-### Community 12 - "electron/package.json"
-Cohesion: 0.15
-Nodes (12): author, description, engines, node, exports, homepage, imports, #plugin (+4 more)
+### Community 12 - "LedgerAccountItem"
+Cohesion: 0.18
+Nodes (3): LedgerAccountItemController, JsonResponse, LedgerAccountItem
 
 ### Community 13 - "design_system.py"
 Cohesion: 0.06
 Nodes (42): BM25, detect_domain(), _load_csv(), Lowercase, split, remove punctuation, filter short words, Build BM25 index from documents, Score all documents against query, Load CSV and return list of dicts, Core search function using BM25 (+34 more)
 
 ### Community 14 - "Illuminate\Database\Eloquent\Model"
+Cohesion: 0.14
+Nodes (11): Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\Model, Illuminate\Database\Eloquent\SoftDeletes, AccountsPayable, JournalEntryItem, DeviceInfo, PersonAffiliation, Position (+3 more)
+
+### Community 15 - "Illuminate\Http\Request"
 Cohesion: 0.15
-Nodes (10): Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\Model, Illuminate\Database\Eloquent\SoftDeletes, JournalEntryItem, DeviceInfo, PersonAffiliation, Position, Person (+2 more)
+Nodes (7): Illuminate\Http\Request, AccountItemController, JsonResponse, AuthController, CityController, SettingsController, Controller
 
-### Community 15 - "api.ts"
-Cohesion: 0.09
-Nodes (16): router, router, router, router, router, router, router, router (+8 more)
-
-### Community 17 - "php.js"
-Cohesion: 0.22
-Nodes (8): fs-extra, fs-extra, yauzl, binaryDestDir, binarySrcDir, isBuilding, platform, yauzl
-
-### Community 19 - "php.ts"
-Cohesion: 0.15
-Nodes (27): startPhpProcess(), argumentEnv, bootstrapCache, callPhp(), callPhpSync(), canBindToPort(), databaseFile, databasePath (+19 more)
+### Community 17 - "resetQuickCreate"
+Cohesion: 0.33
+Nodes (6): handleQuickCreateItem(), handleQuickCreateLedger(), resetQuickCreate(), suggestQuickItemCode(), toggleQuickItem(), toggleQuickLedger()
 
 ### Community 20 - "accounts.vue"
 Cohesion: 0.07
@@ -402,17 +342,17 @@ Nodes (31): accounting, addAnotherRow(), addItemErrorMessage, closeAddItemModal(
 Cohesion: 0.06
 Nodes (30): Before exploring, read these, Domain Docs, File structure, Flag ADR conflicts, Use the glossary's vocabulary, Conventions, Issue tracker: GitHub, Pull requests as a triage surface (+22 more)
 
-### Community 25 - "dependencies"
-Cohesion: 0.07
-Nodes (27): body-parser, electron-context-menu, @electron/remote, electron-store, @electron-toolkit/preload, @electron-toolkit/utils, electron-window-state, express (+19 more)
+### Community 23 - "setup"
+Cohesion: 0.06
+Nodes (97): setup(), bt(), gt(), ht(), jo(), lo(), Lt(), Rt() (+89 more)
 
-### Community 31 - "e"
-Cohesion: 0.18
-Nodes (8): ba(), e, ht(), pt(), toJSON(), vt(), yt(), za()
+### Community 25 - "Company"
+Cohesion: 0.15
+Nodes (6): AccountItem, ProjectFund, Company, AccountingSeeder, ProjectSeeder, LedgerAccountItemTest
 
-### Community 33 - "devDependencies"
-Cohesion: 0.13
-Nodes (15): @babel/plugin-proposal-function-sent, @babel/preset-env, @babel/preset-typescript, electron-chromedriver, prettier-plugin-organize-imports, devDependencies, @babel/plugin-proposal-function-sent, @babel/preset-env (+7 more)
+### Community 31 - "setup"
+Cohesion: 0.09
+Nodes (26): ar(), e, Fr(), Fu(), Ii(), Iu(), ji(), jr() (+18 more)
 
 ### Community 34 - "Process"
 Cohesion: 0.07
@@ -422,53 +362,21 @@ Nodes (27): 1. State the question, 2. Pick the language, 3. Isolate the logic in
 Cohesion: 0.07
 Nodes (29): Accessibility, Available Domains, Available Stacks, Common Rules for Professional UI, Example Workflow, How to Use This Skill, Icons & Visual Elements, Interaction (+21 more)
 
-### Community 37 - "scripts"
-Cohesion: 0.07
-Nodes (29): scripts, build, build:all, build:linux, build:linux-arm64, build:linux-x64, build:mac, build:mac-arm64 (+21 more)
-
-### Community 38 - "Menubar"
-Cohesion: 0.11
-Nodes (10): menubar(), Menubar, Options, cleanOptions(), getWindowPosition(), taskbarLocation, trayToScreenRects(), WindowPosition (+2 more)
-
 ### Community 39 - "ledgers.vue"
 Cohesion: 0.05
-Nodes (30): accounting, accountsPayableBalance, availableYears, currencyStore, editApName, filteredAccountItems, filteredEntries, filterType (+22 more)
+Nodes (32): accounting, accountsPayableBalance, availableYears, currencyStore, editApName, filteredAccountItems, filteredEntries, filterType (+24 more)
 
 ### Community 40 - "Illuminate\Database\Seeder"
-Cohesion: 0.11
+Cohesion: 0.12
 Nodes (12): Illuminate\Database\Console\Seeds\WithoutModelEvents, Illuminate\Database\Seeder, City, Country, Region, State, SubRegion, AddressSeeder (+4 more)
-
-### Community 42 - "state.ts"
-Cohesion: 0.11
-Nodes (19): router, router, router, compileMenu(), TODO: Bring a window to the front?, triggerMenuItemEvent(), router, buildMenu() (+11 more)
 
 ### Community 43 - "What You Must Do When Invoked"
 Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
-### Community 44 - "D1wVcX-p.js"
-Cohesion: 0.20
-Nodes (22): b(), C(), f(), H(), I(), L(), m(), R() (+14 more)
-
-### Community 45 - "setup"
-Cohesion: 0.09
-Nodes (28): setup(), ar(), Dr(), Fr(), Fu(), Ii(), Iu(), ji() (+20 more)
-
-### Community 46 - "User"
-Cohesion: 0.10
-Nodes (10): Illuminate\Foundation\Auth\User, Illuminate\Notifications\Notifiable, Laravel\Sanctum\HasApiTokens, Spatie\Permission\Traits\HasRoles, AccountItem, ProjectFund, Company, User (+2 more)
-
-### Community 47 - "compilerOptions"
-Cohesion: 0.09
-Nodes (22): dom, es2019, node, ../node_modules/@types, ./src/**/*.mts, ./src/**/*.ts, compilerOptions, allowSyntheticDefaultImports (+14 more)
-
 ### Community 48 - "default.vue"
 Cohesion: 0.09
 Nodes (21): accounting, auth, companyInitials, companyName, companyScope, currencyStore, currentPageGroup, isAuthRoute (+13 more)
-
-### Community 49 - "Project"
-Cohesion: 0.17
-Nodes (3): Illuminate\Http\JsonResponse, ProjectController, Project
 
 ### Community 50 - "B6EISGKZ.js"
 Cohesion: 0.14
@@ -482,17 +390,13 @@ Nodes (15): auth, companyName, currencyStore, dateStore, filteredProjects, getCu
 Cohesion: 0.11
 Nodes (16): actionColumn, badgeColumn, bodyColumns, currentPage, currentPageSize, DataTableColumn, filteredItems, localSearch (+8 more)
 
-### Community 56 - "LedgerAccountItem"
-Cohesion: 0.15
-Nodes (4): LedgerAccountItemController, JsonResponse, AccountsPayable, LedgerAccountItem
-
 ### Community 57 - "devDependencies"
 Cohesion: 0.10
-Nodes (19): concurrently, laravel-vite-plugin, devDependencies, axios, concurrently, laravel-vite-plugin, tailwindcss, @tailwindcss/vite (+11 more)
+Nodes (19): axios, concurrently, laravel-vite-plugin, devDependencies, axios, concurrently, laravel-vite-plugin, tailwindcss (+11 more)
 
 ### Community 61 - "FundSourceLineChart.vue"
-Cohesion: 0.11
-Nodes (17): accounting, activeAccountsCount, areaPath, availableYears, chartPoints, currencyStore, hoveredIndex, hoveredPoint (+9 more)
+Cohesion: 0.12
+Nodes (16): accounting, activeAccountsCount, areaPath, availableYears, chartPoints, currencyStore, hoveredIndex, hoveredPoint (+8 more)
 
 ### Community 62 - "AccountsPayableLineChart.vue"
 Cohesion: 0.12
@@ -519,8 +423,8 @@ Cohesion: 0.12
 Nodes (12): accounting, amountDifference, auth, currencyStore, editingFund, filteredFunds, isEditModalOpen, isModalOpen (+4 more)
 
 ### Community 70 - "settings.vue"
-Cohesion: 0.12
-Nodes (10): accounting, activeTab, api, apiUrl, auth, isDownloading, isDownloadingJson, projectsStore (+2 more)
+Cohesion: 0.09
+Nodes (16): accounting, activeTab, api, apiUrl, auth, canConfirmWipe, downloadJsonBackup(), handleWipeData() (+8 more)
 
 ### Community 73 - "AccountsPayablePieChart.vue"
 Cohesion: 0.13
@@ -542,9 +446,9 @@ Nodes (8): accounting, currencyStore, filteredEntries, filterType, isModalOpen, 
 Cohesion: 0.29
 Nodes (6): Objective, Ticket 1: Decouple Printable Document Container from Modal Teleport Tree, Ticket 2: Isolate Print Media CSS Rules, Ticket 3: End-to-End Verification, Tickets: Remove Modal Artifacts from Printed General Ledger, Tracer-Bullet Tickets
 
-### Community 78 - "TestCase"
-Cohesion: 0.23
-Nodes (6): Illuminate\Foundation\Testing\RefreshDatabase, Illuminate\Foundation\Testing\TestCase, AuthTest, ExampleTest, LedgerAccountItemTest, TestCase
+### Community 78 - "User"
+Cohesion: 0.10
+Nodes (12): Illuminate\Foundation\Auth\User, Illuminate\Foundation\Testing\RefreshDatabase, Illuminate\Foundation\Testing\TestCase, Illuminate\Notifications\Notifiable, Laravel\Sanctum\HasApiTokens, Spatie\Permission\Traits\HasRoles, User, AuthTest (+4 more)
 
 ### Community 79 - "LedgerAccount"
 Cohesion: 0.26
@@ -553,10 +457,6 @@ Nodes (3): LedgerAccountController, JsonResponse, LedgerAccount
 ### Community 80 - "login.vue"
 Cohesion: 0.17
 Nodes (8): auth, demoPersonas, email, errorMessage, isLoading, password, rememberMe, showPassword
-
-### Community 81 - "server/index.ts"
-Cohesion: 0.33
-Nodes (8): APIProcess, startAPIServer(), killScheduler(), runScheduler(), startAPI(), startPhpApp(), appendCookie(), NOTE: If this fails it may be you have a NativePHP app running locally
 
 ### Community 82 - "Spec: Flat White Borderless Modal Component Variant"
 Cohesion: 0.18
@@ -622,10 +522,6 @@ Nodes (4): badgeClasses, dotClasses, props, statusLabel
 Cohesion: 0.40
 Nodes (4): Development Server, Nuxt Minimal Starter, Production, Setup
 
-### Community 102 - "electron.ts"
-Cohesion: 0.50
-Nodes (3): app, electron, powerMonitor
-
 ### Community 103 - "wayfinder/SKILL.md"
 Cohesion: 0.17
 Nodes (11): Chart the map, Fog of war, Invocation, Out of scope, Plan, don't do, Refer by name, The Map, The map body (+3 more)
@@ -662,9 +558,9 @@ Nodes (9): Global Constraints, Ledger Accounts & Items Refactor Implementation P
 Cohesion: 0.20
 Nodes (9): Account Item Credit/Debit Selection & Journal Auto-Fill Plan, Automated Verification, Global Constraints, Manual Verification, Task 1: Backend Database Migration, Model & Controller Updates, Task 2: Frontend Types & `useAccounting` Composable Updates, Task 3: Management Account Items Catalog Page Update (`items.vue`), Task 4: Project Page Journal Entry Modal Update (`project/[id].vue`) (+1 more)
 
-### Community 123 - "Illuminate\Http\Request"
-Cohesion: 0.16
-Nodes (7): Illuminate\Http\Request, AccountItemController, JsonResponse, AuthController, CityController, SettingsController, Controller
+### Community 123 - "Project"
+Cohesion: 0.18
+Nodes (3): Illuminate\Http\JsonResponse, ProjectController, Project
 
 ### Community 126 - "to-spec/SKILL.md"
 Cohesion: 0.22
@@ -818,10 +714,6 @@ Nodes (6): Global Constraints, Project Budgeting, Card View & Analytics Dashboar
 Cohesion: 0.67
 Nodes (3): getCategoryName(), getFundSourceName(), getTransactionSortValue()
 
-### Community 194 - "index.js"
-Cohesion: 0.20
-Nodes (9): electron, fix-path, fix-path, electron, appPath, buildPath, certificate, defaultIcon (+1 more)
-
 ### Community 196 - "What to keep from Ionic, and why"
 Cohesion: 0.33
 Nodes (5): Keep: overlay controllers, but own the content, Keep: page shell and navigation, Keep: platform + native integration APIs, Rebuild: every form control and content-display component, What to keep from Ionic, and why
@@ -886,21 +778,9 @@ Nodes (5): 0019. Disable Already Selected Fund Sources in Project Modal, Consequ
 Cohesion: 0.33
 Nodes (5): Before exploring, read these, Domain Docs, File structure, Flag ADR conflicts, Use the glossary's vocabulary
 
-### Community 227 - "api/childProcess.ts"
-Cohesion: 0.48
-Nodes (6): getProcess(), getSettings(), router, startProcess(), stopAllProcesses(), stopProcess()
-
 ### Community 228 - "psr-4"
 Cohesion: 0.40
 Nodes (5): autoload, psr-4, App\\, Database\\Factories\\, Database\\Seeders\\
-
-### Community 229 - "electron-builder.mjs"
-Cohesion: 0.40
-Nodes (4): isDarwin, isLinux, isWindows, updaterConfig
-
-### Community 230 - "globals"
-Cohesion: 0.40
-Nodes (4): globals, globals, typescript-eslint, typescript-eslint
 
 ### Community 233 - "ADR 0007: Project Budgeting, Card View Default & Interactive Analytics Dashboard"
 Cohesion: 0.40
@@ -980,19 +860,15 @@ Nodes (3): Correct Running Balance Computation & Display Implementation Plan, Gl
 
 ### Community 277 - "n"
 Cohesion: 0.11
-Nodes (34): p(), U(), cn(), constructor(), ei(), fi(), fn(), fo() (+26 more)
+Nodes (34): p(), U(), cn(), constructor(), Do(), ei(), fi(), fn() (+26 more)
 
 ### Community 278 - "BPVyj4YU.js"
 Cohesion: 0.05
-Nodes (45): _a(), aa(), ca(), componentOnReady(), connectedCallback(), Cr(), disconnectedCallback(), dt() (+37 more)
+Nodes (34): _a(), aa(), ba(), ca(), componentOnReady(), connectedCallback(), Da(), disconnectedCallback() (+26 more)
 
 ### Community 281 - "MarkPaidModal.vue"
 Cohesion: 0.20
 Nodes (10): currencyStore, emit, fundAccountsList, handleClose(), handleConfirm(), paymentDate, paymentRemarks, props (+2 more)
-
-### Community 282 - "setup"
-Cohesion: 0.07
-Nodes (81): setup(), bt(), Do(), gt(), jo(), Na(), St(), Tt() (+73 more)
 
 ### Community 288 - "PaymentDetailsModal.vue"
 Cohesion: 0.24
@@ -1003,19 +879,19 @@ Cohesion: 0.08
 Nodes (23): 1. Clone the repository, 2. Set up the backend, 3. Set up the frontend, 4. Run in development mode, Account-Ant, Architecture, Authentication, Backend (+15 more)
 
 ## Knowledge Gaps
-- **1150 isolated node(s):** `$schema`, `name`, `type`, `description`, `laravel` (+1145 more)
+- **1021 isolated node(s):** `$schema`, `name`, `type`, `description`, `laravel` (+1016 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **107 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **68 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `e` connect `e` to `s`, `D1wVcX-p.js`, `setup`, `B6EISGKZ.js`, `n`, `BPVyj4YU.js`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `e()` connect `e` to `CFINTcER.js`, `M6HudXea.js`, `P`, `s`, `D1wVcX-p.js`, `setup`, `n`, `BPVyj4YU.js`, `setup`?**
+- **Why does `LedgerAccount` connect `LedgerAccount` to `Company`, `Illuminate\Database\Eloquent\Model`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **Why does `devDependencies` connect `devDependencies` to `eslint`, `cross-env`, `stylelint-config-sass-guidelines`, `ts-node`, `electron/package.json`, `@types/ps-node`, `vitest-mock-commonjs`, `eslint-plugin-prettier`, `@babel/plugin-proposal-numeric-separator`, `vite`, `electron-builder`, `@babel/plugin-proposal-export-namespace-from`, `@eslint/js`, `eslint-plugin-unicorn`, `@babel/plugin-proposal-decorators`, `@electron/notarize`, `@babel/plugin-proposal-throw-expressions`, `eslint-config-prettier`, `@babel/plugin-transform-object-assign`, `@typescript-eslint/parser`, `@vue/eslint-config-prettier`, `less`, `prettier`, `rimraf`, `@rushstack/eslint-patch`, `stylelint-config-recommended`, `@types/express`, `@types/node`, `index.js`, `typescript`, `@typescript-eslint/eslint-plugin`, `globals`, `vitest`, `electron-vite`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **Why does `Project` connect `Project` to `Company`, `Illuminate\Database\Eloquent\Model`, `User`?**
+  _High betweenness centrality (0.001) - this node is a cross-community bridge._
+- **Why does `FundAccount` connect `FundAccount` to `Company`, `FundAccountUpdateTest`, `Illuminate\Database\Eloquent\Model`, `User`?**
+  _High betweenness centrality (0.001) - this node is a cross-community bridge._
 - **Are the 86 inferred relationships involving `setup()` (e.g. with `bt()` and `cn()`) actually correct?**
   _`setup()` has 86 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 73 inferred relationships involving `setup()` (e.g. with `D()` and `E()`) actually correct?**
