@@ -166,9 +166,10 @@ return [
         'php artisan optimize:clear'
     ],
 
-    'postbuild' => [
-        'php artisan native:migrate:fresh --seed --force'
-    ],
+    // Empty: native:migrate:fresh fails at build time (NATIVEPHP_DATABASE_PATH is unset,
+    // so the nativephp connection has a null path) and the packaged app uses the
+    // userData DB, not a file seeded here.
+    'postbuild' => [],
 
     /**
      * The NSIS installer configuration for Windows builds.

@@ -1,50 +1,56 @@
-# Graph Report - account-ant  (2026-10-07)
+# Graph Report - account-ant  (2026-10-19)
 
 ## Corpus Check
-- 362 files · ~186,311 words
+- 364 files · ~187,026 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2539 nodes · 4782 edges · 288 communities (220 shown, 68 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 608 edges (avg confidence: 0.78)
+- 2643 nodes · 5320 edges · 282 communities (212 shown, 70 thin omitted)
+- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 611 edges (avg confidence: 0.75)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `eaff41ef`
+- Built from commit: `0f0c026f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - vi
-- D1wVcX-p.js
+- B3vfnPtG.js
 - project/[id].vue
-- Cr
+- e
 - M6HudXea.js
 - Design: Fund Account Reactivity — KPI Cards Update on Fund Account Creation
 - CFINTcER.js
 - dev
-- s
+- setup
 - dependencies
 - post-update-cmd
 - extra
 - LedgerAccountItem
 - design_system.py
-- Illuminate\Database\Eloquent\Model
+- Illuminate\Database\Eloquent\Factories\HasFactory
 - Illuminate\Http\Request
 - FundAccount
 - resetQuickCreate
-- FundAccountUpdateTest
+- console.php
 - accounts.vue
 - Issue tracker: GitHub
 - setup
-- Company
-- setup
+- NativeAppServiceProvider.php
+- e
+- wa
 - Process
 - ui-ux-pro-max
 - 01-fix-backend-artisan-and-nativephp-key.md
+- BT-Ec4PT.js
+- o
 - ledgers.vue
-- Illuminate\Database\Seeder
+- Illuminate\Database\Eloquent\Model
+- u
+- Ve
 - What You Must Do When Invoked
+- LedgerAccount
 - default.vue
 - B6EISGKZ.js
 - projects/index.vue
@@ -64,7 +70,6 @@
 - journal.vue
 - Tracer-Bullet Tickets
 - User
-- LedgerAccount
 - login.vue
 - Spec: Flat White Borderless Modal Component Variant
 - ProjectMonthlyBarChart.vue
@@ -77,9 +82,9 @@
 - useAuth.ts
 - register.vue
 - useAccounting.ts
-- UserFactory
+- UserFactory.php
 - AppServiceProvider
-- NativeAppServiceProvider
+- DB
 - Process
 - Modal.vue
 - Badge.vue
@@ -89,11 +94,14 @@
 - ADR 0002: Standardized Data Table Component & Dual-Mode Responsive Architecture
 - KpiCard.vue
 - Button.vue
+- Illuminate\Database\Migrations\Migration
+- Illuminate\Database\Schema\Blueprint
 - Feature Specification: Change Status for Ledger Accounts, Account Items, and Project Journal Entries
 - ADR 0005: Project Budget Entry & Dashboard Budget vs Expenses Visualization
 - Global Constraints
 - Global Constraints
 - Global Constraints
+- Illuminate\Support\Facades\Schema
 - Project
 - to-spec/SKILL.md
 - graphify reference: extra exports and benchmark
@@ -135,7 +143,7 @@
 - useCurrency.ts
 - useDate.ts
 - useTheme.ts
-- getTransactionSortValue
+- chronologicalStatement
 - projects/[id].vue
 - frontend/tsconfig.json
 - 01-fix-sqlite-database-path-resolution.md
@@ -175,6 +183,9 @@
 - Global Constraints
 - Global Constraints
 - Global Constraints
+- bootstrap/app.php
+- logging.php
+- sanctum.php
 - graphify reference: add a URL and watch a folder
 - graphify reference: commit hook and native CLAUDE.md integration
 - graphify reference: incremental update and cluster-only
@@ -184,8 +195,8 @@
 - Fetch Ledger Accounts & Account Items on Post Journal Modal Open Implementation Plan
 - Global Constraints
 - Correct Running Balance Computation & Display Implementation Plan
-- n
-- BPVyj4YU.js
+- t
+- CBfzN5IZ.js
 - handleTransactionRowClick
 - MarkPaidModal.vue
 - PaymentDetailsModal.vue
@@ -238,69 +249,69 @@
 - Account-Ant
 
 ## God Nodes (most connected - your core abstractions)
-1. `setup()` - 91 edges
-2. `setup()` - 76 edges
-3. `setup()` - 50 edges
-4. `e()` - 50 edges
-5. `P()` - 48 edges
-6. `I()` - 47 edges
-7. `setup()` - 44 edges
-8. `z()` - 43 edges
-9. `u()` - 40 edges
-10. `F()` - 39 edges
+1. `setup()` - 119 edges
+2. `setup()` - 84 edges
+3. `setup()` - 65 edges
+4. `vi()` - 65 edges
+5. `e()` - 50 edges
+6. `setup()` - 48 edges
+7. `P()` - 48 edges
+8. `I()` - 47 edges
+9. `wa()` - 46 edges
+10. `User` - 43 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `setup()` --indirect_call--> `o()`  [INFERRED]
-  src/backend/public/_nuxt/-PIJGQ7c2.js → src/backend/public/_nuxt/BPVyj4YU.js
-- `setup()` --indirect_call--> `u()`  [INFERRED]
-  src/backend/public/_nuxt/-PIJGQ7c2.js → src/backend/public/_nuxt/M6HudXea.js
 - `setup()` --indirect_call--> `L()`  [INFERRED]
   src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/BBMgkpsu.js
-- `setup()` --indirect_call--> `Se()`  [INFERRED]
-  src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/CFINTcER.js
-- `setup()` --indirect_call--> `W()`  [INFERRED]
+- `setup()` --indirect_call--> `de()`  [INFERRED]
+  src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/BT-Ec4PT.js
+- `setup()` --indirect_call--> `_e()`  [INFERRED]
+  src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/BT-Ec4PT.js
+- `setup()` --indirect_call--> `ve()`  [INFERRED]
+  src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/BT-Ec4PT.js
+- `setup()` --indirect_call--> `be()`  [INFERRED]
   src/backend/public/_nuxt/38D_Tp3_.js → src/backend/public/_nuxt/CFINTcER.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (288 total, 68 thin omitted)
+## Communities (282 total, 70 thin omitted)
 
 ### Community 0 - "vi"
-Cohesion: 0.17
-Nodes (18): ai(), ci(), Dr(), _i(), ki(), li(), Mr(), oi() (+10 more)
+Cohesion: 0.12
+Nodes (31): aa(), ca(), Da(), Er(), Gr(), _i(), r(), oa() (+23 more)
 
-### Community 1 - "D1wVcX-p.js"
-Cohesion: 0.20
-Nodes (21): b(), C(), f(), I(), L(), m(), R(), S() (+13 more)
+### Community 1 - "B3vfnPtG.js"
+Cohesion: 0.17
+Nodes (22): b(), C(), E(), f(), I(), L(), m(), p() (+14 more)
 
 ### Community 2 - "project/[id].vue"
-Cohesion: 0.02
-Nodes (63): accountingStore, activeCategories, activeFundAccountsBalance, activeTab, authStore, chronologicalStatement, companyNameHeader, currencyStore (+55 more)
+Cohesion: 0.03
+Nodes (62): accountingStore, activeCategories, activeFundAccountsBalance, activeTab, authStore, companyNameHeader, currencyStore, currentVariant (+54 more)
 
-### Community 3 - "Cr"
-Cohesion: 0.17
-Nodes (16): Cr(), Er(), Hr(), qr(), Sr(), Tr(), wr(), xr() (+8 more)
+### Community 3 - "e"
+Cohesion: 0.23
+Nodes (37): setup(), setup(), D(), H(), N(), setup(), setup(), setup() (+29 more)
 
 ### Community 4 - "M6HudXea.js"
-Cohesion: 0.14
-Nodes (15): addHooks(), callHook(), callHookParallel(), callHookWith(), deprecateHook(), deprecateHooks(), hook(), hookOnce() (+7 more)
+Cohesion: 0.13
+Nodes (18): ga(), ha(), addHooks(), callHook(), callHookParallel(), callHookWith(), deprecateHook(), deprecateHooks() (+10 more)
 
 ### Community 5 - "Design: Fund Account Reactivity — KPI Cards Update on Fund Account Creation"
 Cohesion: 0.29
 Nodes (6): Data Semantics Clarified, Design: Fund Account Reactivity — KPI Cards Update on Fund Account Creation, Problem, Root Cause, Solution, What Was NOT Changed
 
 ### Community 6 - "CFINTcER.js"
-Cohesion: 0.05
-Nodes (167): setup(), setup(), D(), E(), H(), T(), N(), setup() (+159 more)
+Cohesion: 0.06
+Nodes (133): L(), I(), c(), Cr(), Fr(), Hr(), Hu(), Ka() (+125 more)
 
 ### Community 7 - "dev"
 Cohesion: 0.40
 Nodes (5): Composer\\Config::disableProcessTimeout, npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others, npx concurrently -k -c \"#93c5fd,#c4b5fd\" \"php artisan native:run --no-interaction\" \"npm run dev\" --names=app,vite, dev, native:dev
 
-### Community 8 - "s"
-Cohesion: 0.24
-Nodes (16): ga(), gn(), ha(), jn(), mn(), ni(), pn(), qn() (+8 more)
+### Community 8 - "setup"
+Cohesion: 0.09
+Nodes (38): c(), l(), ai(), ci(), o(), s(), m(), d() (+30 more)
 
 ### Community 9 - "dependencies"
 Cohesion: 0.04
@@ -315,20 +326,20 @@ Cohesion: 0.67
 Nodes (3): extra, laravel, dont-discover
 
 ### Community 12 - "LedgerAccountItem"
-Cohesion: 0.18
-Nodes (3): LedgerAccountItemController, JsonResponse, LedgerAccountItem
+Cohesion: 0.13
+Nodes (4): LedgerAccountItemController, JsonResponse, AccountsPayable, LedgerAccountItem
 
 ### Community 13 - "design_system.py"
-Cohesion: 0.06
+Cohesion: 0.05
 Nodes (42): BM25, detect_domain(), _load_csv(), Lowercase, split, remove punctuation, filter short words, Build BM25 index from documents, Score all documents against query, Load CSV and return list of dicts, Core search function using BM25 (+34 more)
 
-### Community 14 - "Illuminate\Database\Eloquent\Model"
-Cohesion: 0.14
-Nodes (11): Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\Model, Illuminate\Database\Eloquent\SoftDeletes, AccountsPayable, JournalEntryItem, DeviceInfo, PersonAffiliation, Position (+3 more)
+### Community 14 - "Illuminate\Database\Eloquent\Factories\HasFactory"
+Cohesion: 0.09
+Nodes (15): Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\SoftDeletes, Illuminate\Database\Seeder, Illuminate\Support\Facades\Hash, JournalEntryItem, ProjectFund, DeviceInfo, Company (+7 more)
 
 ### Community 15 - "Illuminate\Http\Request"
-Cohesion: 0.15
-Nodes (7): Illuminate\Http\Request, AccountItemController, JsonResponse, AuthController, CityController, SettingsController, Controller
+Cohesion: 0.12
+Nodes (9): Illuminate\Http\Request, Illuminate\Support\Facades\Route, AccountItemController, JsonResponse, AuthController, CityController, SettingsController, Controller (+1 more)
 
 ### Community 17 - "resetQuickCreate"
 Cohesion: 0.33
@@ -342,17 +353,21 @@ Nodes (31): accounting, addAnotherRow(), addItemErrorMessage, closeAddItemModal(
 Cohesion: 0.06
 Nodes (30): Before exploring, read these, Domain Docs, File structure, Flag ADR conflicts, Use the glossary's vocabulary, Conventions, Issue tracker: GitHub, Pull requests as a triage surface (+22 more)
 
-### Community 23 - "setup"
-Cohesion: 0.06
-Nodes (97): setup(), bt(), gt(), ht(), jo(), lo(), Lt(), Rt() (+89 more)
+### Community 24 - "setup"
+Cohesion: 0.13
+Nodes (43): setup(), et(), Ne(), Pe(), tt(), Ze(), setup(), bt() (+35 more)
 
-### Community 25 - "Company"
-Cohesion: 0.15
-Nodes (6): AccountItem, ProjectFund, Company, AccountingSeeder, ProjectSeeder, LedgerAccountItemTest
+### Community 28 - "NativeAppServiceProvider.php"
+Cohesion: 0.11
+Nodes (11): Illuminate\Database\Console\Seeds\WithoutModelEvents, Illuminate\Support\Facades\Log, Native\Desktop\Contracts\ProvidesPhpIni, Native\Desktop\Facades\Window, Spatie\Permission\DefaultTeamResolver, Spatie\Permission\Models\Permission, Spatie\Permission\Models\Role, Spatie\Permission\PermissionRegistrar (+3 more)
 
-### Community 31 - "setup"
+### Community 31 - "e"
+Cohesion: 0.22
+Nodes (5): t(), _a(), e, ya(), zi()
+
+### Community 32 - "wa"
 Cohesion: 0.09
-Nodes (26): ar(), e, Fr(), Fu(), Ii(), Iu(), ji(), jr() (+18 more)
+Nodes (34): beforeUpdate(), Tr(), An(), ar(), be(), cr(), Da(), Do() (+26 more)
 
 ### Community 34 - "Process"
 Cohesion: 0.07
@@ -362,33 +377,53 @@ Nodes (27): 1. State the question, 2. Pick the language, 3. Isolate the logic in
 Cohesion: 0.07
 Nodes (29): Accessibility, Available Domains, Available Stacks, Common Rules for Professional UI, Example Workflow, How to Use This Skill, Icons & Visual Elements, Interaction (+21 more)
 
+### Community 37 - "BT-Ec4PT.js"
+Cohesion: 0.15
+Nodes (30): Ae(), be(), ce(), created(), de(), _e(), Ee(), F() (+22 more)
+
+### Community 38 - "o"
+Cohesion: 0.11
+Nodes (24): cn(), Di(), Do(), fi(), f(), o(), fo(), get() (+16 more)
+
 ### Community 39 - "ledgers.vue"
 Cohesion: 0.05
-Nodes (32): accounting, accountsPayableBalance, availableYears, currencyStore, editApName, filteredAccountItems, filteredEntries, filterType (+24 more)
+Nodes (36): accounting, accountsPayableBalance, availableYears, currencyStore, editApName, filteredAccountItems, filteredEntries, filterType (+28 more)
 
-### Community 40 - "Illuminate\Database\Seeder"
-Cohesion: 0.12
-Nodes (12): Illuminate\Database\Console\Seeds\WithoutModelEvents, Illuminate\Database\Seeder, City, Country, Region, State, SubRegion, AddressSeeder (+4 more)
+### Community 40 - "Illuminate\Database\Eloquent\Model"
+Cohesion: 0.17
+Nodes (11): Eloquent, File, Illuminate\Database\Eloquent\Model, City, Country, Region, State, SubRegion (+3 more)
+
+### Community 41 - "u"
+Cohesion: 0.18
+Nodes (11): Fu(), jr(), ee(), te(), y(), yn(), Oe(), b() (+3 more)
+
+### Community 42 - "Ve"
+Cohesion: 0.40
+Nodes (5): mounted(), updated(), jo(), dirty(), Ve()
 
 ### Community 43 - "What You Must Do When Invoked"
 Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
+
+### Community 44 - "LedgerAccount"
+Cohesion: 0.22
+Nodes (3): LedgerAccountController, JsonResponse, LedgerAccount
 
 ### Community 48 - "default.vue"
 Cohesion: 0.09
 Nodes (21): accounting, auth, companyInitials, companyName, companyScope, currencyStore, currentPageGroup, isAuthRoute (+13 more)
 
 ### Community 50 - "B6EISGKZ.js"
-Cohesion: 0.14
-Nodes (27): b(), C(), F(), g(), h(), I(), j(), K() (+19 more)
+Cohesion: 0.17
+Nodes (24): b(), C(), F(), g(), h(), I(), j(), K() (+16 more)
 
 ### Community 51 - "projects/index.vue"
 Cohesion: 0.11
-Nodes (15): auth, companyName, currencyStore, dateStore, filteredProjects, getCustomSortValue(), getProjectUsagePercent(), isCreateModalOpen (+7 more)
+Nodes (16): auth, companyName, currencyStore, dateStore, filteredProjects, formatAddress(), getCustomSortValue(), getProjectUsagePercent() (+8 more)
 
 ### Community 52 - "DataTable.vue"
 Cohesion: 0.11
-Nodes (16): actionColumn, badgeColumn, bodyColumns, currentPage, currentPageSize, DataTableColumn, filteredItems, localSearch (+8 more)
+Nodes (17): actionColumn, badgeColumn, bodyColumns, currentPage, currentPageSize, DataTableColumn, filteredItems, getItemValue() (+9 more)
 
 ### Community 57 - "devDependencies"
 Cohesion: 0.10
@@ -448,11 +483,7 @@ Nodes (6): Objective, Ticket 1: Decouple Printable Document Container from Modal
 
 ### Community 78 - "User"
 Cohesion: 0.10
-Nodes (12): Illuminate\Foundation\Auth\User, Illuminate\Foundation\Testing\RefreshDatabase, Illuminate\Foundation\Testing\TestCase, Illuminate\Notifications\Notifiable, Laravel\Sanctum\HasApiTokens, Spatie\Permission\Traits\HasRoles, User, AuthTest (+4 more)
-
-### Community 79 - "LedgerAccount"
-Cohesion: 0.26
-Nodes (3): LedgerAccountController, JsonResponse, LedgerAccount
+Nodes (13): Illuminate\Foundation\Auth\User, Illuminate\Foundation\Testing\RefreshDatabase, Illuminate\Foundation\Testing\TestCase, Illuminate\Notifications\Notifiable, Laravel\Sanctum\HasApiTokens, Spatie\Permission\Traits\HasRoles, User, AuthTest (+5 more)
 
 ### Community 80 - "login.vue"
 Cohesion: 0.17
@@ -483,8 +514,8 @@ Cohesion: 0.14
 Nodes (13): framework, laravel, autoload-dev, psr-4, description, keywords, license, minimum-stability (+5 more)
 
 ### Community 88 - "useProjects.ts"
-Cohesion: 0.20
-Nodes (8): CityModel, ExpenseCategory, FundSource, Project, ProjectAddress, StateModel, Transaction, TransactionItem
+Cohesion: 0.15
+Nodes (9): CityModel, ExpenseCategory, FundSource, Project, ProjectAddress, StateModel, Transaction, TransactionItem (+1 more)
 
 ### Community 89 - "Global Constraints"
 Cohesion: 0.14
@@ -502,9 +533,13 @@ Nodes (6): auth, confirmPassword, currentStep, formData, isSubmitting, stepTitle
 Cohesion: 0.29
 Nodes (5): AccountItem, AccountsPayable, FundAccount, LedgerAccount, LedgerAccountItem
 
-### Community 94 - "UserFactory"
-Cohesion: 0.47
-Nodes (3): Illuminate\Database\Eloquent\Factories\Factory, UserFactory, static
+### Community 94 - "UserFactory.php"
+Cohesion: 0.22
+Nodes (5): Illuminate\Database\Eloquent\Factories\Factory, Illuminate\Support\Str, Pdo\Mysql, UserFactory, static
+
+### Community 96 - "DB"
+Cohesion: 0.16
+Nodes (5): DB, Illuminate\Support\Facades\DB, up(), FundAccountUpdateTest, NativeFirstLaunchSeedingTest
 
 ### Community 97 - "Process"
 Cohesion: 0.15
@@ -710,9 +745,9 @@ Nodes (6): Global Constraints, Responsive and Visually Appealing Tabs Component 
 Cohesion: 0.29
 Nodes (6): Global Constraints, Project Budgeting, Card View & Analytics Dashboard Implementation Plan, Task 1: Update Composable (`useProjects.ts`) with `budget` & Analytics Helpers, Task 2: Create Visual Analytics Components (Pie & Bar Charts), Task 3: Build Projects Dashboard in `projects/index.vue` and `index.vue`, Task 4: Verification & Testing
 
-### Community 190 - "getTransactionSortValue"
-Cohesion: 0.67
-Nodes (3): getCategoryName(), getFundSourceName(), getTransactionSortValue()
+### Community 190 - "chronologicalStatement"
+Cohesion: 0.33
+Nodes (6): chronologicalStatement, getCategoryName(), getFundSourceCode(), getFundSourceName(), getLedgerCodeForCategory(), getTransactionSortValue()
 
 ### Community 196 - "What to keep from Ionic, and why"
 Cohesion: 0.33
@@ -822,6 +857,18 @@ Nodes (4): `date_received` in `ProjectFund` Model & Database Implementation Plan
 Cohesion: 0.40
 Nodes (4): Global Constraints, Task 1: Update `useProjects.ts` to map and use `posting_date`, Task 2: Update `project/[id].vue` to display, search, and sort by `posting_date`, Use `posting_date` as Primary Date in `useProjects.ts` & `project/[id].vue` Implementation Plan
 
+### Community 243 - "bootstrap/app.php"
+Cohesion: 0.40
+Nodes (3): Illuminate\Foundation\Application, Illuminate\Foundation\Configuration\Exceptions, Illuminate\Foundation\Configuration\Middleware
+
+### Community 250 - "logging.php"
+Cohesion: 0.40
+Nodes (4): Monolog\Handler\NullHandler, Monolog\Handler\StreamHandler, Monolog\Handler\SyslogUdpHandler, Monolog\Processor\PsrLogMessageProcessor
+
+### Community 256 - "sanctum.php"
+Cohesion: 0.40
+Nodes (4): Illuminate\Cookie\Middleware\EncryptCookies, Illuminate\Foundation\Http\Middleware\ValidateCsrfToken, Laravel\Sanctum\Http\Middleware\AuthenticateSession, Laravel\Sanctum\Sanctum
+
 ### Community 258 - "graphify reference: add a URL and watch a folder"
 Cohesion: 0.50
 Nodes (3): For /graphify add, For --watch, graphify reference: add a URL and watch a folder
@@ -858,13 +905,13 @@ Nodes (3): Global Constraints, Standardize Posting Date in `project/[id].vue` Im
 Cohesion: 0.50
 Nodes (3): Correct Running Balance Computation & Display Implementation Plan, Global Constraints, Task 1: Update `chronologicalStatement` computed property and table template in `project/[id].vue`
 
-### Community 277 - "n"
-Cohesion: 0.11
-Nodes (34): p(), U(), cn(), constructor(), Do(), ei(), fi(), fn() (+26 more)
+### Community 277 - "t"
+Cohesion: 0.09
+Nodes (33): constructor(), ei(), eo(), factory(), t(), n(), lo(), Lt() (+25 more)
 
-### Community 278 - "BPVyj4YU.js"
+### Community 278 - "CBfzN5IZ.js"
 Cohesion: 0.05
-Nodes (34): _a(), aa(), ba(), ca(), componentOnReady(), connectedCallback(), Da(), disconnectedCallback() (+26 more)
+Nodes (43): ar(), ba(), componentOnReady(), connectedCallback(), disconnectedCallback(), Dr(), dt(), ea() (+35 more)
 
 ### Community 281 - "MarkPaidModal.vue"
 Cohesion: 0.20
@@ -879,24 +926,24 @@ Cohesion: 0.08
 Nodes (23): 1. Clone the repository, 2. Set up the backend, 3. Set up the frontend, 4. Run in development mode, Account-Ant, Architecture, Authentication, Backend (+15 more)
 
 ## Knowledge Gaps
-- **1021 isolated node(s):** `$schema`, `name`, `type`, `description`, `laravel` (+1016 more)
+- **1018 isolated node(s):** `$schema`, `name`, `type`, `description`, `laravel` (+1013 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **68 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **70 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `LedgerAccount` connect `LedgerAccount` to `Company`, `Illuminate\Database\Eloquent\Model`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **Why does `Project` connect `Project` to `Company`, `Illuminate\Database\Eloquent\Model`, `User`?**
-  _High betweenness centrality (0.001) - this node is a cross-community bridge._
-- **Why does `FundAccount` connect `FundAccount` to `Company`, `FundAccountUpdateTest`, `Illuminate\Database\Eloquent\Model`, `User`?**
-  _High betweenness centrality (0.001) - this node is a cross-community bridge._
-- **Are the 86 inferred relationships involving `setup()` (e.g. with `bt()` and `cn()`) actually correct?**
-  _`setup()` has 86 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 73 inferred relationships involving `setup()` (e.g. with `D()` and `E()`) actually correct?**
-  _`setup()` has 73 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 12 inferred relationships involving `setup()` (e.g. with `f()` and `o()`) actually correct?**
-  _`setup()` has 12 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 13 inferred relationships involving `e()` (e.g. with `setup()` and `setup()`) actually correct?**
-  _`e()` has 13 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `User` connect `User` to `DB`, `Illuminate\Database\Eloquent\Model`, `LedgerAccountItem`, `LedgerAccount`, `Illuminate\Database\Eloquent\Factories\HasFactory`, `Illuminate\Http\Request`, `NativeAppServiceProvider.php`, `UserFactory.php`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `LedgerAccount` connect `LedgerAccount` to `Illuminate\Database\Eloquent\Model`, `User`, `Illuminate\Database\Eloquent\Factories\HasFactory`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+- **Why does `Project` connect `Project` to `Illuminate\Database\Eloquent\Model`, `User`, `NativeAppServiceProvider.php`, `Illuminate\Database\Eloquent\Factories\HasFactory`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+- **Are the 103 inferred relationships involving `setup()` (e.g. with `Ee()` and `et()`) actually correct?**
+  _`setup()` has 103 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 78 inferred relationships involving `setup()` (e.g. with `D()` and `H()`) actually correct?**
+  _`setup()` has 78 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 17 inferred relationships involving `setup()` (e.g. with `fe()` and `c()`) actually correct?**
+  _`setup()` has 17 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 10 inferred relationships involving `vi()` (e.g. with `Dr()` and `Er()`) actually correct?**
+  _`vi()` has 10 INFERRED edges - model-reasoned connections that need verification._

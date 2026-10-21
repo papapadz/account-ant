@@ -150,14 +150,13 @@ php artisan native:build
 This will:
 1. Run `prebuild` scripts (`php artisan optimize:clear`)
 2. Bundle the Laravel app + PHP runtime into an Electron wrapper
-3. Run `postbuild` scripts (`php artisan native:migrate:fresh --seed --force`) to pre-seed the bundled SQLite
-4. Produce a Windows NSIS installer (`.exe`) in `nativephp/electron/dist/`
+3. Produce a Windows NSIS installer (`.exe`) in `nativephp/electron/dist/`
 
-> **First-boot seeding:** On the end-user's machine, the `NativeAppServiceProvider` runs `migrate` on every boot and seeds the database automatically on first install (when the `roles` table is empty).
+> **First launch:** On the end-user's machine, the packaged app runs `migrate --force` on the first launch of each version. If the `roles` table is empty (a new install), `NativeAppServiceProvider::runSeeders()` then seeds roles, address data, the company, and two accounts (the super admin and an `admin`-role account). **Both accounts use passwords hardcoded in `config/bee.php`, and those passwords ship inside the installer. Change them before any release.** The seeder list is `NativeAppServiceProvider::FIRST_LAUNCH_SEEDERS`.
 
 ### Customising the app icon
 
-Replace `src/backend/nativephp/electron/build/icon.png` with your own logo (minimum **256×256 px**, square PNG). For Windows, you can also supply `icon.ico` for sharper taskbar icons.
+Replace `src/backend/public/icon.png` with your own logo (minimum **256×256 px**, square PNG). The build copies it to `nativephp/electron/build/` and generates the Windows icon from it. To supply your own `src/backend/public/icon.ico` instead, it must include a **256×256** entry, or electron-builder fails with `icon.ico must be at least 256x256`.
 
 ---
 
