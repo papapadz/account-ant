@@ -1,0 +1,1 @@
+import{n as e}from"./1amwGy8P2.js";var t=()=>{if(e!==void 0)return e.Capacitor};export{t};

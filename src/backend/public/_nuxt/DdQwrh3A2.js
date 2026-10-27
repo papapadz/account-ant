@@ -1,0 +1,1 @@
+import{_ as e,f as t,n,o as r}from"#entry";import{t as i}from"./CiYmoQsB2.js";var a=()=>`:host(.ion-color){color:var(--ion-color-base)}`,o=class{constructor(t){e(this,t)}render(){let e=n(this);return t(r,{key:`bfaa49d35f43b8036725ae8a322c716fc6e43bdf`,class:i(this.color,{[e]:!0})},t(`slot`,{key:`c04880cd1935b42cbe60f58fd523b4d8a96072dc`}))}};o.style=a();export{o as ion_text};
