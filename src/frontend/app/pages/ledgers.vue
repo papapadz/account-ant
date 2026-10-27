@@ -835,6 +835,13 @@ const resetFilters = () => {
 }
 
 const editApName = ref('')
+
+const openDetailModal = (item: any) => {
+  selectedEntry.value = item
+  editApName.value = item.accounts_payable?.name || item.accounts_payable_name || ''
+  isModalOpen.value = true
+}
+
 const isMarkPaidModalOpen = ref(false)
 const selectedEntryForMarkPaid = ref<any>(null)
 const isMarkPaidSubmitting = ref(false)
