@@ -11,7 +11,8 @@
 | **AccountItem** | Standardized catalog item (e.g., Cloud Hosting Infrastructure) assigned a transaction type (`debit` or `credit`) and linked to a default `LedgerAccount` for automatic pre-filling in journal entries. |
 | **Project Fund Allocation** | The mapping of a specific `FundAccount` to a `Project`, initialized with a designated `initial_amount`. |
 | **Initial Fund Amount** | The starting capital/credit limit assigned to a project from a specific fund account. |
-| **Ledger Account Item** | An individual double-entry transaction item (Debit `Dr` or Credit `Cr`) posted against a ledger account and fund source. |
+| **Ledger Account Item** | An individual double-entry transaction item (Debit `Dr` or Credit `Cr`) posted against a ledger account and fund source. Not to be confused with the UI label "Ledger Account Item" on the `/ledgers` journal entry modal, which names the dropdown that selects an `AccountItem` catalog entry. |
+| **Inline Quick Create** | The "+ New" panel under the Fund, Ledger Account and Account Item selects in the journal entry modals (`components/journal/QuickCreate.vue`), which creates the record without leaving the modal. On `/ledgers` (Global Ledger) a created fund is not linked to any project and the fund option is hidden while a project is selected; on the project page a created fund is linked to that project. |
 | **Project Journal Entry** | A `LedgerAccountItem` tagged with a `project_id` and restricted to fund sources allocated to that project. |
 | **Project Accounting Ledger** | Formal printable general ledger statement for a specific project featuring company header, secondary address line, project details, MM/DD/YY formatted dates, concise fund codes (`FND-101`), and chronological transaction line items with running balances. |
 | **Running Balance** | The current available funds remaining for a project fund source (`Initial Amount - Debits + Credits`). |

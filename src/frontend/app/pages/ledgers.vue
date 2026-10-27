@@ -441,6 +441,13 @@
               {{ fund.fund_code }} - {{ fund.fund_name }} (Available: {{ currencyStore.formatCurrency(accounting.getFundAccountRemaining(fund.id)) }})
             </option>
           </select>
+          <!-- Global Ledger only: a fund created here is not linked to any project -->
+          <JournalQuickCreate
+            v-if="!newJournalEntry.project_id"
+            kind="fund"
+            class="mt-1"
+            :after-create="(id) => (newJournalEntry.fund_account_id = id)"
+          />
         </div>
 
         <!-- 3. Ledger Account -->
@@ -452,6 +459,11 @@
               {{ acc.account_code }} - {{ acc.account_name }}
             </option>
           </select>
+          <JournalQuickCreate
+            kind="ledger"
+            class="mt-1"
+            :after-create="(id) => (newJournalEntry.ledger_account_id = id)"
+          />
         </div>
 
         <!-- 4. Ledger Account Item -->
@@ -463,6 +475,13 @@
               {{ item.item_code }} - {{ item.item_name }} ({{ item.transaction_type === 'credit' ? 'Inflow' : 'Outflow' }})
             </option>
           </select>
+          <JournalQuickCreate
+            kind="item"
+            class="mt-1"
+            :ledger-id="newJournalEntry.ledger_account_id"
+            :transaction-type="newJournalEntry.transaction_type"
+            :after-create="(id) => (newJournalEntry.account_item_id = id)"
+          />
         </div>
 
         <!-- 5. Amount & 6. Transaction Date -->
