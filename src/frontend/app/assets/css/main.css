@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* ─── Theme: fonts + type scale ──────────────────────────────────────
+   Tailwind's default --font-sans/--font-mono (system stacks) were winning
+   over the body font on every element carrying `font-sans`/`font-mono`,
+   so IBM Plex / JetBrains Mono never rendered. Declared here so utilities
+   resolve to the real fonts. Scale nudged up: text-xs 12→13px, text-sm
+   14→15px; text-2xs (11px) is the floor for uppercase micro-labels. */
+@theme {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.25rem;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.4rem;
+}
+
 /* ─── Design Tokens ──────────────────────────────────────────────── */
 @layer base {
   :root {
@@ -86,12 +103,26 @@
   body {
     background-color: var(--bg-app);
     color: var(--text-main);
-    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Money and codes should line up in columns */
+  table {
+    font-variant-numeric: tabular-nums;
   }
 }
 
 /* ─── Ionic Component Overrides ──────────────────────────────────── */
+
+/* Ionic's own CSS is unlayered, so this must be too or it loses to it */
+:root,
+html {
+  --ion-font-family: var(--font-sans);
+}
 
 /* Ensure ion-app container is always visible across all hydration phases */
 ion-app,
@@ -341,4 +372,26 @@ ion-tab-button.tab-selected ion-label {
 
 .input-field::placeholder {
   color: var(--text-muted);
+}
+
+/* ─── Form Labels ────────────────────────────────────────────────── */
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ─── Motion preferences ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

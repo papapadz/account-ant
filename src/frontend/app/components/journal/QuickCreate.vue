@@ -2,7 +2,7 @@
   <div>
     <button
       type="button"
-      class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300"
+      class="text-2xs font-semibold text-emerald-400 hover:text-emerald-300"
       @click="toggle"
     >
       {{ open ? 'Cancel' : `+ New ${copy.label}` }}
@@ -13,7 +13,7 @@
       class="mt-1.5 p-3 rounded-lg bg-[var(--bg-surface)] border border-emerald-500/30 space-y-2.5"
     >
       <div v-if="kind === 'item'" class="space-y-1">
-        <label class="block text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wider">
+        <label class="form-label">
           Linked Ledger Account <span class="text-rose-400">*</span>
         </label>
         <select v-model="form.ledger_account_id" class="input-field text-sm" @change="suggestItemCode">
@@ -44,7 +44,7 @@
       </div>
 
       <div v-if="kind === 'fund'" class="space-y-1">
-        <label class="block text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wider">
+        <label class="form-label">
           Opening amount (optional)
         </label>
         <input

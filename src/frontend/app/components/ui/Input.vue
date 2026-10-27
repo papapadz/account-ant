@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-1.5 w-full">
-    <label v-if="label" :for="id" class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+    <label v-if="label" :for="id" class="form-label">
       {{ label }}
       <span v-if="required" class="text-rose-400">*</span>
     </label>
@@ -35,7 +35,7 @@
     </div>
 
     <p v-if="error" class="text-xs text-rose-400 mt-1">{{ error }}</p>
-    <p v-else-if="hint" class="text-[11px] text-[var(--text-muted)]">{{ hint }}</p>
+    <p v-else-if="hint" class="text-2xs text-[var(--text-muted)]">{{ hint }}</p>
   </div>
 </template>
 

@@ -9,7 +9,7 @@
       <!-- Status & Entry Header Card -->
       <div class="bg-[var(--bg-surface)] p-4 rounded-xl border border-[var(--border-color)] space-y-2.5">
         <div class="flex items-center justify-between">
-          <span class="font-mono text-[10px] font-bold text-emerald-500 uppercase tracking-wider bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 flex items-center gap-1">
+          <span class="font-mono text-2xs font-bold text-emerald-500 uppercase tracking-wider bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 flex items-center gap-1">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Paid / Settled
           </span>
@@ -23,7 +23,7 @@
             <h4 class="font-bold text-[var(--text-main)] text-sm line-clamp-1">
               {{ entry.description || entry.note || 'Journal Entry Settlement' }}
             </h4>
-            <p v-if="vendorName" class="text-[11px] text-[var(--text-muted)] mt-0.5">
+            <p v-if="vendorName" class="text-2xs text-[var(--text-muted)] mt-0.5">
               Payee: <span class="font-bold text-[var(--text-main)]">{{ vendorName }}</span>
             </p>
           </div>
@@ -37,7 +37,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <!-- Payment Date -->
         <div class="bg-[var(--bg-app)] p-3 rounded-lg border border-[var(--border-color)] space-y-0.5">
-          <span class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider block">Payment Date</span>
+          <span class="text-2xs font-bold text-[var(--text-muted)] uppercase tracking-wider block">Payment Date</span>
           <span class="font-mono font-semibold text-[var(--text-main)] text-xs block">
             {{ entry.payment_date || entry.posting_date || 'N/A' }}
           </span>
@@ -45,7 +45,7 @@
 
         <!-- Disbursement Fund Source -->
         <div class="bg-[var(--bg-app)] p-3 rounded-lg border border-[var(--border-color)] space-y-0.5">
-          <span class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider block">Fund Source</span>
+          <span class="text-2xs font-bold text-[var(--text-muted)] uppercase tracking-wider block">Fund Source</span>
           <span class="font-semibold text-[var(--text-main)] text-xs block truncate" :title="fundName">
             {{ fundName }}
           </span>
@@ -53,7 +53,7 @@
       </div>
 
       <!-- Additional Metadata (Project / Ledger Account) -->
-      <div v-if="projectName || ledgerAccountName" class="bg-[var(--bg-app)] p-3 rounded-lg border border-[var(--border-color)] space-y-1.5 text-[11px]">
+      <div v-if="projectName || ledgerAccountName" class="bg-[var(--bg-app)] p-3 rounded-lg border border-[var(--border-color)] space-y-1.5 text-2xs">
         <div v-if="projectName" class="flex items-center justify-between">
           <span class="text-[var(--text-muted)]">Project:</span>
           <span class="font-semibold text-[var(--text-main)] truncate max-w-[180px]">{{ projectName }}</span>
@@ -66,7 +66,7 @@
 
       <!-- Payment Remarks -->
       <div class="space-y-1">
-        <label class="block font-bold text-[var(--text-main)] text-[11px]">
+        <label class="block font-bold text-[var(--text-main)] text-2xs">
           Payment Remarks / Reference Notes
         </label>
         <div class="bg-[var(--bg-app)] p-3 rounded-lg border border-[var(--border-color)] text-xs text-[var(--text-main)] font-mono min-h-[60px] whitespace-pre-wrap">

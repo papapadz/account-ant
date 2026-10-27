@@ -29,22 +29,22 @@
       <ClientOnly>
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">First Name</label>
+            <label class="form-label mb-1">First Name</label>
             <input v-model="auth.currentPerson.value.first_name" type="text" class="input-field" :disabled="!auth.isSuperAdmin.value" />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Last Name</label>
+            <label class="form-label mb-1">Last Name</label>
             <input v-model="auth.currentPerson.value.last_name" type="text" class="input-field" :disabled="!auth.isSuperAdmin.value" />
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Middle Name</label>
+            <label class="form-label mb-1">Middle Name</label>
             <input v-model="auth.currentPerson.value.middle_name" type="text" class="input-field" :disabled="!auth.isSuperAdmin.value" />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Civil Status</label>
+            <label class="form-label mb-1">Civil Status</label>
             <select v-model="auth.currentPerson.value.civil_status" class="input-field" :disabled="!auth.isSuperAdmin.value">
               <option value="Single">Single</option>
               <option value="Married">Married</option>
@@ -56,14 +56,14 @@
 
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Gender</label>
+            <label class="form-label mb-1">Gender</label>
             <select v-model="auth.currentPerson.value.gender" class="input-field" :disabled="!auth.isSuperAdmin.value">
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Birth Date</label>
+            <label class="form-label mb-1">Birth Date</label>
             <input v-model="auth.currentPerson.value.birth_date" type="date" class="input-field" :disabled="!auth.isSuperAdmin.value" />
           </div>
         </div>
@@ -87,18 +87,18 @@
 
       <ClientOnly>
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Business Name</label>
+          <label class="form-label mb-1">Business Name</label>
           <input v-model="auth.currentCompany.value.business_name" type="text" class="input-field" :disabled="!auth.isSuperAdmin.value" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Business Description</label>
+          <label class="form-label mb-1">Business Description</label>
           <textarea v-model="auth.currentCompany.value.business_description" rows="2" class="input-field" :disabled="!auth.isSuperAdmin.value"></textarea>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Business Scope</label>
+            <label class="form-label mb-1">Business Scope</label>
             <select v-model="auth.currentCompany.value.business_scope" class="input-field" :disabled="!auth.isSuperAdmin.value">
               <option value="National">National</option>
               <option value="Regional">Regional</option>
@@ -107,7 +107,7 @@
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">City ID</label>
+            <label class="form-label mb-1">City ID</label>
             <input v-model.number="auth.currentCompany.value.city_id" type="number" class="input-field" :disabled="!auth.isSuperAdmin.value" />
           </div>
         </div>
@@ -137,11 +137,11 @@
       <ClientOnly>
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Position Title</label>
+            <label class="form-label mb-1">Position Title</label>
             <input v-model="auth.currentPosition.value.title" type="text" class="input-field" :disabled="!auth.isSuperAdmin.value" />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Industry</label>
+            <label class="form-label mb-1">Industry</label>
             <select v-model="auth.currentPosition.value.industry" class="input-field" :disabled="!auth.isSuperAdmin.value">
               <option value="Finance">Finance</option>
               <option value="Information Technology">Information Technology</option>
@@ -153,7 +153,7 @@
 
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Affiliation Level</label>
+            <label class="form-label mb-1">Affiliation Level</label>
             <select v-model="auth.currentAffiliation.value.affiliation_level" class="input-field" :disabled="!auth.isSuperAdmin.value">
               <option value="Executive">Executive</option>
               <option value="Managerial">Managerial</option>
@@ -162,7 +162,7 @@
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Employee ID</label>
+            <label class="form-label mb-1">Employee ID</label>
             <input v-model="auth.currentAffiliation.value.employee_id" type="text" class="input-field font-mono" :disabled="!auth.isSuperAdmin.value" />
           </div>
         </div>
@@ -191,11 +191,11 @@
         <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] space-y-2">
           <div class="flex items-center justify-between text-xs">
             <span class="text-[var(--text-muted)] font-medium">Database Engine:</span>
-            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-[11px] font-bold">SQLite3 WAL</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-2xs font-bold">SQLite3 WAL</span>
           </div>
           <div class="flex items-center justify-between text-xs">
             <span class="text-[var(--text-muted)] font-medium">Active Target:</span>
-            <span class="font-mono text-[11px] text-[var(--text-main)]">nativephp.sqlite</span>
+            <span class="font-mono text-2xs text-[var(--text-main)]">nativephp.sqlite</span>
           </div>
           <div class="flex items-center justify-between text-xs">
             <span class="text-[var(--text-muted)] font-medium">Health Status:</span>
@@ -230,9 +230,9 @@
           <div class="space-y-1">
             <h5 class="text-xs font-bold text-[var(--text-main)] flex items-center gap-2">
               <span>Full SQLite Database File (.sqlite)</span>
-              <span class="px-2 py-0.5 rounded text-[10px] bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono font-bold">Binary File</span>
+              <span class="px-2 py-0.5 rounded text-2xs bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono font-bold">Binary File</span>
             </h5>
-            <p class="text-[11px] text-[var(--text-muted)]">
+            <p class="text-2xs text-[var(--text-muted)]">
               Download the physical SQLite database file for full system migration or offline storage.
             </p>
           </div>
@@ -250,9 +250,9 @@
           <div class="space-y-1">
             <h5 class="text-xs font-bold text-[var(--text-main)] flex items-center gap-2">
               <span>Structured Data Archive (.json)</span>
-              <span class="px-2 py-0.5 rounded text-[10px] bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono font-bold">JSON Archive</span>
+              <span class="px-2 py-0.5 rounded text-2xs bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono font-bold">JSON Archive</span>
             </h5>
-            <p class="text-[11px] text-[var(--text-muted)]">
+            <p class="text-2xs text-[var(--text-muted)]">
               Export all system records (Fund Accounts, Journal Entries, Projects, People) as readable JSON for audit reporting.
             </p>
           </div>
@@ -271,9 +271,9 @@
         <div class="space-y-1">
           <h5 class="text-xs font-bold text-rose-400 flex items-center gap-2">
             <span>Wipe Data</span>
-            <span class="px-2 py-0.5 rounded text-[10px] bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono font-bold">Danger Zone</span>
+            <span class="px-2 py-0.5 rounded text-2xs bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono font-bold">Danger Zone</span>
           </h5>
-          <p class="text-[11px] text-[var(--text-muted)]">
+          <p class="text-2xs text-[var(--text-muted)]">
             Permanently delete all fund accounts, ledger accounts, account items, journal entries, accounts payable and projects. Users, roles, address data and your profile and company are kept.
           </p>
         </div>
@@ -310,7 +310,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">
+          <label class="form-label mb-1">
             Type <span class="font-mono text-rose-400">WIPE</span> to confirm
           </label>
           <input

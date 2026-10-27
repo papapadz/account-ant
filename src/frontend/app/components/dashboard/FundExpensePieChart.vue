@@ -10,7 +10,7 @@
           </svg>
           Fund Project Expenses
         </h3>
-        <p class="text-[11px] text-[var(--text-muted)] mt-0.5">Project expense breakdown for selected fund source</p>
+        <p class="text-2xs text-[var(--text-muted)] mt-0.5">Project expense breakdown for selected fund source</p>
       </div>
 
       <!-- Filters: Fund Source & Year -->
@@ -71,7 +71,7 @@
 
         <!-- Donut Center Label -->
         <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none p-4">
-          <span class="text-[9px] uppercase font-bold text-[var(--text-muted)] tracking-wider">Total Spent</span>
+          <span class="text-2xs uppercase font-bold text-[var(--text-muted)] tracking-wider">Total Spent</span>
           <span class="text-xs sm:text-sm font-bold font-mono text-emerald-400 truncate max-w-full">
             {{ currencyStore.formatCurrency(totalFundExpense) }}
           </span>
@@ -87,13 +87,13 @@
         >
           <div class="flex items-center gap-2 overflow-hidden flex-1 min-w-0 mr-2">
             <span class="w-3 h-3 rounded-full shrink-0 border border-black/10" :style="{ backgroundColor: item.color }"></span>
-            <span class="font-semibold text-[var(--text-main)] truncate text-[11px] sm:text-xs" :title="item.projectName">
+            <span class="font-semibold text-[var(--text-main)] truncate text-2xs sm:text-xs" :title="item.projectName">
               {{ item.projectName }}
             </span>
           </div>
 
           <div class="flex items-center gap-2 shrink-0">
-            <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span class="px-1.5 py-0.5 rounded text-2xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               {{ item.percentage }}%
             </span>
             <span class="font-mono text-xs font-bold text-[var(--text-main)]">

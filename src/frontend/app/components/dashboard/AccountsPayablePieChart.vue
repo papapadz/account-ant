@@ -10,7 +10,7 @@
           </svg>
           Accounts Payable Distribution
         </h3>
-        <p class="text-[11px] text-[var(--text-muted)] mt-0.5">
+        <p class="text-2xs text-[var(--text-muted)] mt-0.5">
           {{ selectedAccountId === null ? 'Unpaid payables mapped per ledger account' : 'Unpaid payables by creditor / vendor' }}
         </p>
       </div>
@@ -78,13 +78,13 @@
 
         <!-- Donut Center Label -->
         <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-4 py-2">
-          <span class="text-[9px] uppercase font-bold text-[var(--text-muted)] tracking-wider truncate max-w-full">
+          <span class="text-2xs uppercase font-bold text-[var(--text-muted)] tracking-wider truncate max-w-full">
             {{ centerLabelTitle }}
           </span>
           <span class="text-xs sm:text-sm font-bold font-mono text-rose-400 truncate max-w-full">
             {{ centerLabelValue }}
           </span>
-          <span v-if="centerLabelSub" class="text-[10px] font-semibold text-[var(--text-muted)] font-mono">
+          <span v-if="centerLabelSub" class="text-2xs font-semibold text-[var(--text-muted)] font-mono">
             {{ centerLabelSub }}
           </span>
         </div>
@@ -103,17 +103,17 @@
           <div class="flex items-center gap-2 overflow-hidden flex-1 min-w-0 mr-2">
             <span class="w-3.5 h-3.5 rounded-full shrink-0 border border-black/10" :style="{ backgroundColor: item.color }"></span>
             <div class="truncate min-w-0">
-              <div class="font-semibold text-[var(--text-main)] truncate text-[11px] sm:text-xs" :title="item.label">
+              <div class="font-semibold text-[var(--text-main)] truncate text-2xs sm:text-xs" :title="item.label">
                 {{ item.label }}
               </div>
-              <div v-if="item.subLabel" class="text-[9px] font-mono text-[var(--text-muted)] mt-0.5">
+              <div v-if="item.subLabel" class="text-2xs font-mono text-[var(--text-muted)] mt-0.5">
                 {{ item.subLabel }}
               </div>
             </div>
           </div>
 
           <div class="flex items-center gap-2 shrink-0">
-            <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+            <span class="px-1.5 py-0.5 rounded text-2xs font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
               {{ item.percentage }}%
             </span>
             <span class="font-mono text-xs font-bold text-[var(--text-main)]">

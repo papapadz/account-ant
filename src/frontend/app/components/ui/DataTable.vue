@@ -3,7 +3,7 @@
     <!-- Top Toolbar (Search & Filters) -->
     <div v-if="searchable || $slots['header-actions']" class="px-0.5 sm:px-1 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pb-1">
       <!-- Search Input -->
-      <div v-if="searchable" class="relative flex-1 min-w-[240px]">
+      <div v-if="searchable" class="relative flex-1 sm:min-w-[240px]">
         <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
@@ -25,7 +25,7 @@
     <div :class="responsive ? 'hidden md:block overflow-x-auto rounded-lg border border-[var(--border-color)]/70 bg-[var(--bg-surface)]/30' : 'overflow-x-auto rounded-lg border border-[var(--border-color)]/70 bg-[var(--bg-surface)]/30'">
       <table class="w-full text-left border-collapse min-w-full">
         <thead>
-          <tr class="bg-[var(--bg-sidebar)]/50 border-b border-[var(--border-color)] text-xs font-semibold text-[var(--text-muted)] select-none">
+          <tr class="bg-[var(--bg-sidebar)]/50 border-b border-[var(--border-color)] text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)] select-none">
             <th
               v-for="col in columns"
               :key="col.key"
@@ -124,10 +124,10 @@
               :key="col.key"
               class="flex flex-col justify-between py-1 px-2 rounded bg-[var(--bg-sidebar)]/30"
             >
-              <span class="text-[10px] font-medium text-[var(--text-muted)] uppercase tracking-wider mb-0.5 block">
+              <span class="text-2xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-0.5 block">
                 {{ col.label }}
               </span>
-              <div class="text-[var(--text-main)] font-medium truncate">
+              <div class="text-[var(--text-main)] font-medium break-words min-w-0">
                 <slot :name="`cell-${col.key}`" :item="item" :index="index" :value="getItemValue(item, col.key)">
                   {{ getItemValue(item, col.key) }}
                 </slot>
@@ -178,7 +178,7 @@
       </div>
 
       <!-- Pagination Buttons -->
-      <div v-if="totalPages > 1" class="flex items-center gap-1.5 select-none">
+      <div v-if="totalPages > 1" class="flex flex-wrap items-center justify-center gap-1.5 select-none">
         <UiButton
           variant="secondary"
           size="sm"
@@ -188,16 +188,20 @@
           Previous
         </UiButton>
 
-        <UiButton
-          v-for="page in visiblePages"
-          :key="page"
-          :variant="currentPage === page ? 'primary' : 'secondary'"
-          size="sm"
-          class="font-mono font-bold px-3"
-          @click="currentPage = page"
-        >
-          {{ page }}
-        </UiButton>
+        <span class="sm:hidden px-2 font-mono text-[var(--text-main)]">{{ currentPage }} / {{ totalPages }}</span>
+
+        <div class="hidden sm:flex items-center gap-1.5">
+          <UiButton
+            v-for="page in visiblePages"
+            :key="page"
+            :variant="currentPage === page ? 'primary' : 'secondary'"
+            size="sm"
+            class="font-mono font-bold px-3"
+            @click="currentPage = page"
+          >
+            {{ page }}
+          </UiButton>
+        </div>
 
         <UiButton
           variant="secondary"

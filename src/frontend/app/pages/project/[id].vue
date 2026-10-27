@@ -210,7 +210,7 @@
             </span>
             <span
               v-if="item.is_paid === false"
-              class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-amber-500/15 text-amber-400 border border-amber-500/30 select-none whitespace-nowrap self-start"
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-2xs font-extrabold uppercase bg-amber-500/15 text-amber-400 border border-amber-500/30 select-none whitespace-nowrap self-start"
             >
               Accounts Payable (Unpaid)
             </span>
@@ -286,7 +286,7 @@
         <!-- Cell: Fund Name -->
         <template #cell-name="{ item }">
           <div class="font-bold text-xs text-[var(--text-main)]">{{ item.name }}</div>
-          <div class="text-[10px] font-mono text-emerald-400 mt-0.5">ID #{{ item.id }}</div>
+          <div class="text-2xs font-mono text-emerald-400 mt-0.5">ID #{{ item.id }}</div>
         </template>
 
         <!-- Cell: Date Received -->
@@ -332,7 +332,7 @@
       <form @submit.prevent="handlePostJournalEntry" class="space-y-4">
         <!-- 1. Select Fund Source -->
         <div class="space-y-1.5">
-          <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+          <label class="form-label">
             Fund Source <span class="text-rose-400">*</span>
           </label>
           <select
@@ -354,7 +354,7 @@
 
         <!-- 2. Ledger Account -->
         <div class="space-y-1.5">
-          <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+          <label class="form-label">
             Ledger Account <span class="text-rose-400">*</span>
           </label>
           <select
@@ -377,13 +377,13 @@
         <!-- 3. Account Item Name / Line Category -->
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
-            <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+            <label class="form-label">
               Account Item Name / Line Category <span class="text-rose-400">*</span>
             </label>
             <div class="flex items-center gap-2">
               <span
                 v-if="journalForm.type"
-                class="px-2 py-0.5 rounded text-[10px] font-bold uppercase border select-none"
+                class="px-2 py-0.5 rounded text-2xs font-bold uppercase border select-none"
                 :class="journalForm.type === 'debit' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'"
               >
                 {{ journalForm.type === 'debit' ? 'OUTFLOW' : 'INFLOW' }}
@@ -425,7 +425,7 @@
             </div>
             <div>
               <span class="text-xs font-bold text-[var(--text-main)] block">Itemized Line Items</span>
-              <span class="text-[11px] text-[var(--text-muted)] block">Break down entry by item, quantity, unit & price</span>
+              <span class="text-2xs text-[var(--text-muted)] block">Break down entry by item, quantity, unit & price</span>
             </div>
           </div>
           <button
@@ -459,7 +459,7 @@
               <div class="grid grid-cols-12 gap-2 items-center">
                 <!-- Description -->
                 <div class="col-span-12 sm:col-span-4">
-                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Item / Description</label>
+                  <label class="block text-2xs text-[var(--text-muted)] font-medium uppercase mb-0.5">Item / Description</label>
                   <input
                     v-model="row.description"
                     type="text"
@@ -471,7 +471,7 @@
 
                 <!-- Qty -->
                 <div class="col-span-6 sm:col-span-2">
-                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Qty</label>
+                  <label class="block text-2xs text-[var(--text-muted)] font-medium uppercase mb-0.5">Qty</label>
                   <input
                     v-model.number="row.quantity"
                     type="number"
@@ -485,7 +485,7 @@
 
                 <!-- Unit -->
                 <div class="col-span-6 sm:col-span-2">
-                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit</label>
+                  <label class="block text-2xs text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit</label>
                   <select
                     v-model="row.unit"
                     class="w-full rounded bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500"
@@ -496,7 +496,7 @@
 
                 <!-- Price -->
                 <div class="col-span-9 sm:col-span-3">
-                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit Price ($)</label>
+                  <label class="block text-2xs text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit Price ($)</label>
                   <input
                     v-model.number="row.price"
                     type="number"
@@ -534,7 +534,7 @@
               </div>
 
               <!-- Line Subtotal calculation line -->
-              <div class="flex justify-end text-[11px] text-[var(--text-muted)] font-mono">
+              <div class="flex justify-end text-2xs text-[var(--text-muted)] font-mono">
                 Subtotal: <span class="font-bold text-emerald-400 ml-1">{{ currencyStore.formatCurrency((Number(row.quantity) || 0) * (Number(row.price) || 0)) }}</span>
               </div>
             </div>
@@ -566,12 +566,12 @@
               :required="true"
             />
             <div v-else class="space-y-1.5">
-              <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+              <label class="form-label">
                 Total Amount (Auto-Calculated)
               </label>
               <div class="w-full rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono font-bold text-base px-3 py-2 flex items-center justify-between">
                 <span>{{ currencyStore.formatCurrency(itemizedTotal) }}</span>
-                <span class="text-[10px] text-emerald-500/80 uppercase font-sans">Locked</span>
+                <span class="text-2xs text-emerald-500/80 uppercase font-sans">Locked</span>
               </div>
             </div>
           </div>
@@ -586,7 +586,7 @@
 
         <!-- 6. Description / Memo -->
         <div class="space-y-1.5">
-          <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+          <label class="form-label">
             Transaction Description / Memo <span class="text-rose-400">*</span>
           </label>
           <input
@@ -617,13 +617,13 @@
                 <div class="flex items-center gap-2">
                   <span class="text-xs font-bold text-[var(--text-main)]">Payment Status</span>
                   <span
-                    class="px-2 py-0.5 rounded text-[10px] font-bold uppercase border select-none transition-colors duration-200"
+                    class="px-2 py-0.5 rounded text-2xs font-bold uppercase border select-none transition-colors duration-200"
                     :class="journalForm.is_paid ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/10 text-amber-400 border-amber-500/30'"
                   >
                     {{ journalForm.is_paid ? 'Paid / Settled' : 'Accounts Payable (Unpaid)' }}
                   </span>
                 </div>
-                <span class="text-[11px] text-[var(--text-muted)] block">
+                <span class="text-2xs text-[var(--text-muted)] block">
                   {{ journalForm.is_paid ? 'Immediate cash outflow from Fund Account' : 'Accrued liability / project expense commitment' }}
                 </span>
               </div>
@@ -731,14 +731,14 @@
               <span class="font-mono font-bold text-emerald-400">{{ selectedTransactionForItems.payment_date }}</span>
             </div>
             <div v-if="selectedTransactionForItems.payment_remarks" class="text-[var(--text-muted)]">
-              <span class="block text-[10px] font-bold uppercase tracking-wider">Payment Remarks:</span>
+              <span class="block text-2xs font-bold uppercase tracking-wider">Payment Remarks:</span>
               <p class="text-[var(--text-main)] bg-[var(--bg-app)] p-2 rounded-lg border border-[var(--border-color)] mt-0.5 whitespace-pre-wrap font-mono">{{ selectedTransactionForItems.payment_remarks }}</p>
             </div>
           </div>
         </div>
 
-        <div v-if="selectedTransactionForItems.items && selectedTransactionForItems.items.length > 0" class="border border-[var(--border-color)] rounded-xl overflow-hidden shadow-sm">
-          <table class="w-full text-xs sm:text-sm">
+        <div v-if="selectedTransactionForItems.items && selectedTransactionForItems.items.length > 0" class="border border-[var(--border-color)] rounded-xl overflow-x-auto shadow-sm">
+          <table class="w-full min-w-[30rem] text-xs sm:text-sm">
             <thead>
               <tr class="bg-[var(--bg-sidebar)] text-[var(--text-main)] text-xs font-bold uppercase tracking-wider border-b border-[var(--border-color)] select-none">
                 <th class="py-3 px-4 text-left">Item / Description</th>
@@ -808,7 +808,7 @@
         <div>
           <!-- Variant A: Clean Dropdown Only -->
           <div v-if="currentVariant === 'A'" class="space-y-1">
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account</label>
+            <label class="form-label mb-1">Fund Source Account</label>
             <select
               v-model="fundForm.name"
               class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
@@ -829,7 +829,7 @@
           <!-- Variant B: Dropdown + Quick Add inline -->
           <div v-else-if="currentVariant === 'B'" class="space-y-3">
             <div v-if="!isCreatingNewFund" class="space-y-1">
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account</label>
+              <label class="form-label mb-1">Fund Source Account</label>
               <select
                 v-model="fundForm.name"
                 class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
@@ -857,7 +857,7 @@
               <button
                 type="button"
                 @click="isCreatingNewFund = !isCreatingNewFund"
-                class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                class="text-2xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
               >
                 {{ isCreatingNewFund ? '← Select existing account' : '+ Create new fund account' }}
               </button>
@@ -867,7 +867,7 @@
           <!-- Variant C: Two-Tab selection -->
           <div v-else-if="currentVariant === 'C'">
             <div v-if="modalTab === 'existing'" class="space-y-1">
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account</label>
+              <label class="form-label mb-1">Fund Source Account</label>
               <select
                 v-model="fundForm.name"
                 class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
@@ -972,9 +972,9 @@
 
           <!-- Chronological Statement Table -->
           <div class="mt-6">
-            <table class="w-full text-[11px] border-collapse">
+            <table class="w-full text-2xs border-collapse">
               <thead>
-                <tr class="bg-slate-100 text-slate-800 font-bold uppercase text-[10px]">
+                <tr class="bg-slate-100 text-slate-800 font-bold uppercase text-2xs">
                   <th class="py-2 px-2 text-left">Date</th>
                   <th class="py-2 px-2 text-left">Item/Description</th>
                   <th class="py-2 px-2 text-left">Account</th>
@@ -989,7 +989,7 @@
                   <td class="py-2 px-2 font-mono whitespace-nowrap text-slate-600">{{ dateStore.formatISODate(item.rawDate || item.date) }}</td>
                   <td class="py-2 px-2 font-semibold text-slate-900">
                     {{ item.category_name }}
-                    <div class="text-[10px] text-slate-500 font-normal truncate max-w-xs">{{ item.description }}</div>
+                    <div class="text-2xs text-slate-500 font-normal truncate max-w-xs">{{ item.description }}</div>
                   </td>
                   <td class="py-2 px-2 font-mono text-slate-600 whitespace-nowrap">{{ item.ledger_code }}</td>
                   <td class="py-2 px-2 font-mono font-bold text-emerald-700 whitespace-nowrap">{{ item.fund_code }}</td>
@@ -1010,15 +1010,15 @@
           <!-- Financial Aggregations Footer -->
           <div class="break-inside-avoid mt-6 pt-4 border-t-2 border-slate-900 grid grid-cols-3 gap-4 text-xs font-mono">
             <div class="bg-slate-50 p-3 rounded border border-slate-200">
-              <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Outflow</span>
+              <span class="text-2xs font-sans uppercase font-bold text-slate-500 block">Total Outflow</span>
               <span class="text-sm font-bold text-rose-700">{{ currencyStore.formatCurrency(totalProjectDebits) }}</span>
             </div>
             <div class="bg-slate-50 p-3 rounded border border-slate-200">
-              <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Inflow</span>
+              <span class="text-2xs font-sans uppercase font-bold text-slate-500 block">Total Inflow</span>
               <span class="text-sm font-bold text-emerald-700">{{ currencyStore.formatCurrency(totalProjectCredits) }}</span>
             </div>
             <div class="bg-slate-900 text-white p-3 rounded border border-slate-900">
-              <span class="text-[10px] font-sans uppercase font-bold text-slate-400 block">Net Balance Position</span>
+              <span class="text-2xs font-sans uppercase font-bold text-slate-400 block">Net Balance Position</span>
               <span class="text-sm font-extrabold" :class="printableNetBalance < 0 ? 'text-rose-400' : 'text-emerald-400'">
                 {{ currencyStore.formatCurrency(printableNetBalance) }}
               </span>
@@ -1040,7 +1040,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project Name *</label>
+          <label class="form-label mb-1">Project Name *</label>
           <input
             v-model="editProjectForm.name"
             type="text"
@@ -1053,7 +1053,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Client Name</label>
+            <label class="form-label mb-1">Client Name</label>
             <input
               v-model="editProjectForm.client_name"
               type="text"
@@ -1064,7 +1064,7 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status</label>
+            <label class="form-label mb-1">Status</label>
             <select
               v-model="editProjectForm.status"
               :disabled="isSubmittingEditProject"
@@ -1080,7 +1080,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Target Total Budget</label>
+            <label class="form-label mb-1">Target Total Budget</label>
             <input
               v-model.number="editProjectForm.budget"
               type="number"
@@ -1092,7 +1092,7 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Start Date</label>
+            <label class="form-label mb-1">Start Date</label>
             <input
               v-model="editProjectForm.start_date"
               type="date"
@@ -1103,7 +1103,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description / Notes</label>
+          <label class="form-label mb-1">Description / Notes</label>
           <textarea
             v-model="editProjectForm.description"
             rows="3"
