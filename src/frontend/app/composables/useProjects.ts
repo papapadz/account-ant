@@ -74,6 +74,8 @@ export interface Transaction {
   posting_date?: string
   status?: 'posted' | 'void' | 'reconciled'
   is_paid?: boolean
+  payment_date?: string
+  payment_remarks?: string
   note?: string
   items?: TransactionItem[]
   created_at: string
@@ -200,6 +202,8 @@ export const useProjects = () => {
             posting_date: postingDateVal,
             status: je.status || 'posted',
             is_paid: je.is_paid !== undefined && je.is_paid !== null ? Boolean(je.is_paid) : true,
+            payment_date: je.payment_date ?? undefined,
+            payment_remarks: je.payment_remarks ?? undefined,
             note: je.description,
             items,
             created_at: je.created_at,
