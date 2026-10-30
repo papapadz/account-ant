@@ -4,7 +4,7 @@
     <button
       type="button"
       @click.stop="toggleDropdown"
-      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border cursor-pointer transition-all duration-200 hover:opacity-90"
+      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-2xs font-bold uppercase tracking-wider border cursor-pointer transition-all duration-200 hover:opacity-90"
       :class="colorClass"
       :title="`Status: ${status} — click to change`"
     >
@@ -30,7 +30,7 @@
         style="backdrop-filter: blur(12px);"
       >
         <div class="p-1">
-          <p class="px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] border-b border-[var(--border-color)] mb-1">Change Status</p>
+          <p class="px-2 py-1 text-2xs font-bold uppercase tracking-widest text-[var(--text-muted)] border-b border-[var(--border-color)] mb-1">Change Status</p>
           <button
             v-for="option in options"
             :key="option.value"

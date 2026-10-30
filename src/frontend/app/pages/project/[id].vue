@@ -210,7 +210,7 @@
             </span>
             <span
               v-if="item.is_paid === false"
-              class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-amber-500/15 text-amber-400 border border-amber-500/30 select-none whitespace-nowrap self-start"
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-2xs font-extrabold uppercase bg-amber-500/15 text-amber-400 border border-amber-500/30 select-none whitespace-nowrap self-start"
             >
               Accounts Payable (Unpaid)
             </span>
@@ -286,7 +286,7 @@
         <!-- Cell: Fund Name -->
         <template #cell-name="{ item }">
           <div class="font-bold text-xs text-[var(--text-main)]">{{ item.name }}</div>
-          <div class="text-[10px] font-mono text-emerald-400 mt-0.5">ID #{{ item.id }}</div>
+          <div class="text-2xs font-mono text-emerald-400 mt-0.5">ID #{{ item.id }}</div>
         </template>
 
         <!-- Cell: Date Received -->
@@ -332,7 +332,7 @@
       <form @submit.prevent="handlePostJournalEntry" class="space-y-4">
         <!-- 1. Select Fund Source -->
         <div class="space-y-1.5">
-          <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+          <label class="form-label">
             Fund Source <span class="text-rose-400">*</span>
           </label>
           <select
@@ -349,22 +349,14 @@
               {{ fund.name }} (Available: {{ currencyStore.formatCurrency(projectsStore.getFundSourceRemaining(fund.id)) }})
             </option>
           </select>
+          <JournalQuickCreate kind="fund" :after-create="onQuickFundCreated" />
         </div>
 
         <!-- 2. Ledger Account -->
         <div class="space-y-1.5">
-          <div class="flex items-center justify-between">
-            <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-              Ledger Account <span class="text-rose-400">*</span>
-            </label>
-            <button
-              type="button"
-              class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300"
-              @click="toggleQuickLedger"
-            >
-              {{ showQuickLedger ? 'Cancel' : '+ New' }}
-            </button>
-          </div>
+          <label class="form-label">
+            Ledger Account <span class="text-rose-400">*</span>
+          </label>
           <select
             v-model="journalForm.ledger_account_id"
             required
@@ -379,58 +371,23 @@
               [{{ acc.account_code }}] {{ acc.account_name }} ({{ activeCategories.filter(c => c.ledger_account_id === acc.id).length }} items)
             </option>
           </select>
-
-          <!-- Quick create: Ledger Account -->
-          <div
-            v-if="showQuickLedger"
-            class="p-3 rounded-lg bg-[var(--bg-surface)] border border-emerald-500/30 space-y-2.5"
-          >
-            <div class="grid grid-cols-3 gap-2">
-              <input
-                v-model="quickLedger.account_code"
-                type="text"
-                maxlength="20"
-                placeholder="Code e.g. 1030-PREPAID"
-                class="input-field col-span-1 font-mono text-sm"
-                @keydown.enter.prevent="handleQuickCreateLedger"
-              />
-              <input
-                v-model="quickLedger.account_name"
-                type="text"
-                maxlength="100"
-                placeholder="Account name"
-                class="input-field col-span-2 text-sm"
-                @keydown.enter.prevent="handleQuickCreateLedger"
-              />
-            </div>
-            <p v-if="quickError" class="text-xs text-rose-400">{{ quickError }}</p>
-            <UiButton type="button" size="sm" :loading="isQuickSaving" @click="handleQuickCreateLedger">
-              Create Ledger Account
-            </UiButton>
-          </div>
+          <JournalQuickCreate kind="ledger" :after-create="onQuickLedgerCreated" />
         </div>
 
         <!-- 3. Account Item Name / Line Category -->
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
-            <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+            <label class="form-label">
               Account Item Name / Line Category <span class="text-rose-400">*</span>
             </label>
             <div class="flex items-center gap-2">
               <span
                 v-if="journalForm.type"
-                class="px-2 py-0.5 rounded text-[10px] font-bold uppercase border select-none"
+                class="px-2 py-0.5 rounded text-2xs font-bold uppercase border select-none"
                 :class="journalForm.type === 'debit' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'"
               >
                 {{ journalForm.type === 'debit' ? 'OUTFLOW' : 'INFLOW' }}
               </span>
-              <button
-                type="button"
-                class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300"
-                @click="toggleQuickItem"
-              >
-                {{ showQuickItem ? 'Cancel' : '+ New' }}
-              </button>
             </div>
           </div>
           <select
@@ -450,74 +407,12 @@
               {{ cat.name }} ({{ cat.code }})
             </option>
           </select>
-
-          <!-- Quick create: Account Item -->
-          <div
-            v-if="showQuickItem"
-            class="p-3 rounded-lg bg-[var(--bg-surface)] border border-emerald-500/30 space-y-2.5"
-          >
-            <div class="space-y-1">
-              <label class="block text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                Linked Ledger Account <span class="text-rose-400">*</span>
-              </label>
-              <select
-                v-model="quickItem.ledger_account_id"
-                class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
-                @change="suggestQuickItemCode"
-              >
-                <option value="" disabled>-- Select Ledger Account --</option>
-                <option
-                  v-for="acc in accountingStore.ledgerAccounts.value"
-                  :key="acc.id"
-                  :value="acc.id"
-                >
-                  [{{ acc.account_code }}] {{ acc.account_name }}
-                </option>
-              </select>
-            </div>
-            <div class="grid grid-cols-3 gap-2">
-              <input
-                v-model="quickItem.item_code"
-                type="text"
-                maxlength="20"
-                placeholder="Item code"
-                class="input-field col-span-1 font-mono text-sm"
-                @keydown.enter.prevent="handleQuickCreateItem"
-              />
-              <input
-                v-model="quickItem.item_name"
-                type="text"
-                maxlength="100"
-                placeholder="Item name"
-                class="input-field col-span-2 text-sm"
-                @keydown.enter.prevent="handleQuickCreateItem"
-              />
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-              <button
-                v-for="opt in [{ value: 'debit', label: 'Outflow' }, { value: 'credit', label: 'Inflow' }]"
-                :key="opt.value"
-                type="button"
-                class="px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors"
-                :class="quickItem.transaction_type === opt.value
-                  ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-400'
-                  : 'border-[var(--border-color)] text-[var(--text-muted)]'"
-                @click="quickItem.transaction_type = opt.value as 'debit' | 'credit'"
-              >
-                {{ opt.label }}
-              </button>
-            </div>
-            <p v-if="quickError" class="text-xs text-rose-400">{{ quickError }}</p>
-            <UiButton
-              type="button"
-              size="sm"
-              :loading="isQuickSaving"
-              :disabled="!quickItem.ledger_account_id"
-              @click="handleQuickCreateItem"
-            >
-              Create Account Item
-            </UiButton>
-          </div>
+          <JournalQuickCreate
+            kind="item"
+            :ledger-id="journalForm.ledger_account_id"
+            :transaction-type="journalForm.type"
+            :after-create="onQuickItemCreated"
+          />
         </div>
 
         <!-- 4. Itemized Breakdown Toggle -->
@@ -530,7 +425,7 @@
             </div>
             <div>
               <span class="text-xs font-bold text-[var(--text-main)] block">Itemized Line Items</span>
-              <span class="text-[11px] text-[var(--text-muted)] block">Break down entry by item, quantity, unit & price</span>
+              <span class="text-2xs text-[var(--text-muted)] block">Break down entry by item, quantity, unit & price</span>
             </div>
           </div>
           <button
@@ -564,7 +459,7 @@
               <div class="grid grid-cols-12 gap-2 items-center">
                 <!-- Description -->
                 <div class="col-span-12 sm:col-span-4">
-                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Item / Description</label>
+                  <label class="block text-2xs text-[var(--text-muted)] font-medium uppercase mb-0.5">Item / Description</label>
                   <input
                     v-model="row.description"
                     type="text"
@@ -576,7 +471,7 @@
 
                 <!-- Qty -->
                 <div class="col-span-6 sm:col-span-2">
-                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Qty</label>
+                  <label class="block text-2xs text-[var(--text-muted)] font-medium uppercase mb-0.5">Qty</label>
                   <input
                     v-model.number="row.quantity"
                     type="number"
@@ -590,7 +485,7 @@
 
                 <!-- Unit -->
                 <div class="col-span-6 sm:col-span-2">
-                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit</label>
+                  <label class="block text-2xs text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit</label>
                   <select
                     v-model="row.unit"
                     class="w-full rounded bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500"
@@ -601,7 +496,7 @@
 
                 <!-- Price -->
                 <div class="col-span-9 sm:col-span-3">
-                  <label class="block text-[10px] text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit Price ($)</label>
+                  <label class="block text-2xs text-[var(--text-muted)] font-medium uppercase mb-0.5">Unit Price ($)</label>
                   <input
                     v-model.number="row.price"
                     type="number"
@@ -639,7 +534,7 @@
               </div>
 
               <!-- Line Subtotal calculation line -->
-              <div class="flex justify-end text-[11px] text-[var(--text-muted)] font-mono">
+              <div class="flex justify-end text-2xs text-[var(--text-muted)] font-mono">
                 Subtotal: <span class="font-bold text-emerald-400 ml-1">{{ currencyStore.formatCurrency((Number(row.quantity) || 0) * (Number(row.price) || 0)) }}</span>
               </div>
             </div>
@@ -671,12 +566,12 @@
               :required="true"
             />
             <div v-else class="space-y-1.5">
-              <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+              <label class="form-label">
                 Total Amount (Auto-Calculated)
               </label>
               <div class="w-full rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono font-bold text-base px-3 py-2 flex items-center justify-between">
                 <span>{{ currencyStore.formatCurrency(itemizedTotal) }}</span>
-                <span class="text-[10px] text-emerald-500/80 uppercase font-sans">Locked</span>
+                <span class="text-2xs text-emerald-500/80 uppercase font-sans">Locked</span>
               </div>
             </div>
           </div>
@@ -691,7 +586,7 @@
 
         <!-- 6. Description / Memo -->
         <div class="space-y-1.5">
-          <label class="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+          <label class="form-label">
             Transaction Description / Memo <span class="text-rose-400">*</span>
           </label>
           <input
@@ -722,13 +617,13 @@
                 <div class="flex items-center gap-2">
                   <span class="text-xs font-bold text-[var(--text-main)]">Payment Status</span>
                   <span
-                    class="px-2 py-0.5 rounded text-[10px] font-bold uppercase border select-none transition-colors duration-200"
+                    class="px-2 py-0.5 rounded text-2xs font-bold uppercase border select-none transition-colors duration-200"
                     :class="journalForm.is_paid ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/10 text-amber-400 border-amber-500/30'"
                   >
                     {{ journalForm.is_paid ? 'Paid / Settled' : 'Accounts Payable (Unpaid)' }}
                   </span>
                 </div>
-                <span class="text-[11px] text-[var(--text-muted)] block">
+                <span class="text-2xs text-[var(--text-muted)] block">
                   {{ journalForm.is_paid ? 'Immediate cash outflow from Fund Account' : 'Accrued liability / project expense commitment' }}
                 </span>
               </div>
@@ -841,14 +736,14 @@
               />
             </div>
             <div v-if="selectedTransactionForItems.payment_remarks" class="text-[var(--text-muted)]">
-              <span class="block text-[10px] font-bold uppercase tracking-wider">Payment Remarks:</span>
+              <span class="block text-2xs font-bold uppercase tracking-wider">Payment Remarks:</span>
               <p class="text-[var(--text-main)] bg-[var(--bg-app)] p-2 rounded-lg border border-[var(--border-color)] mt-0.5 whitespace-pre-wrap font-mono">{{ selectedTransactionForItems.payment_remarks }}</p>
             </div>
           </div>
         </div>
 
-        <div v-if="selectedTransactionForItems.items && selectedTransactionForItems.items.length > 0" class="border border-[var(--border-color)] rounded-xl overflow-hidden shadow-sm">
-          <table class="w-full text-xs sm:text-sm">
+        <div v-if="selectedTransactionForItems.items && selectedTransactionForItems.items.length > 0" class="border border-[var(--border-color)] rounded-xl overflow-x-auto shadow-sm">
+          <table class="w-full min-w-[30rem] text-xs sm:text-sm">
             <thead>
               <tr class="bg-[var(--bg-sidebar)] text-[var(--text-main)] text-xs font-bold uppercase tracking-wider border-b border-[var(--border-color)] select-none">
                 <th class="py-3 px-4 text-left">Item / Description</th>
@@ -918,7 +813,7 @@
         <div>
           <!-- Variant A: Clean Dropdown Only -->
           <div v-if="currentVariant === 'A'" class="space-y-1">
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account</label>
+            <label class="form-label mb-1">Fund Source Account</label>
             <select
               v-model="fundForm.name"
               class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
@@ -939,7 +834,7 @@
           <!-- Variant B: Dropdown + Quick Add inline -->
           <div v-else-if="currentVariant === 'B'" class="space-y-3">
             <div v-if="!isCreatingNewFund" class="space-y-1">
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account</label>
+              <label class="form-label mb-1">Fund Source Account</label>
               <select
                 v-model="fundForm.name"
                 class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
@@ -967,7 +862,7 @@
               <button
                 type="button"
                 @click="isCreatingNewFund = !isCreatingNewFund"
-                class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                class="text-2xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
               >
                 {{ isCreatingNewFund ? '← Select existing account' : '+ Create new fund account' }}
               </button>
@@ -977,7 +872,7 @@
           <!-- Variant C: Two-Tab selection -->
           <div v-else-if="currentVariant === 'C'">
             <div v-if="modalTab === 'existing'" class="space-y-1">
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account</label>
+              <label class="form-label mb-1">Fund Source Account</label>
               <select
                 v-model="fundForm.name"
                 class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
@@ -1082,9 +977,9 @@
 
           <!-- Chronological Statement Table -->
           <div class="mt-6">
-            <table class="w-full text-[11px] border-collapse">
+            <table class="w-full text-2xs border-collapse">
               <thead>
-                <tr class="bg-slate-100 text-slate-800 font-bold uppercase text-[10px]">
+                <tr class="bg-slate-100 text-slate-800 font-bold uppercase text-2xs">
                   <th class="py-2 px-2 text-left">Date</th>
                   <th class="py-2 px-2 text-left">Item/Description</th>
                   <th class="py-2 px-2 text-left">Account</th>
@@ -1099,7 +994,7 @@
                   <td class="py-2 px-2 font-mono whitespace-nowrap text-slate-600">{{ dateStore.formatISODate(item.rawDate || item.date) }}</td>
                   <td class="py-2 px-2 font-semibold text-slate-900">
                     {{ item.category_name }}
-                    <div class="text-[10px] text-slate-500 font-normal truncate max-w-xs">{{ item.description }}</div>
+                    <div class="text-2xs text-slate-500 font-normal truncate max-w-xs">{{ item.description }}</div>
                   </td>
                   <td class="py-2 px-2 font-mono text-slate-600 whitespace-nowrap">{{ item.ledger_code }}</td>
                   <td class="py-2 px-2 font-mono font-bold text-emerald-700 whitespace-nowrap">{{ item.fund_code }}</td>
@@ -1120,15 +1015,15 @@
           <!-- Financial Aggregations Footer -->
           <div class="break-inside-avoid mt-6 pt-4 border-t-2 border-slate-900 grid grid-cols-3 gap-4 text-xs font-mono">
             <div class="bg-slate-50 p-3 rounded border border-slate-200">
-              <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Outflow</span>
+              <span class="text-2xs font-sans uppercase font-bold text-slate-500 block">Total Outflow</span>
               <span class="text-sm font-bold text-rose-700">{{ currencyStore.formatCurrency(totalProjectDebits) }}</span>
             </div>
             <div class="bg-slate-50 p-3 rounded border border-slate-200">
-              <span class="text-[10px] font-sans uppercase font-bold text-slate-500 block">Total Inflow</span>
+              <span class="text-2xs font-sans uppercase font-bold text-slate-500 block">Total Inflow</span>
               <span class="text-sm font-bold text-emerald-700">{{ currencyStore.formatCurrency(totalProjectCredits) }}</span>
             </div>
             <div class="bg-slate-900 text-white p-3 rounded border border-slate-900">
-              <span class="text-[10px] font-sans uppercase font-bold text-slate-400 block">Net Balance Position</span>
+              <span class="text-2xs font-sans uppercase font-bold text-slate-400 block">Net Balance Position</span>
               <span class="text-sm font-extrabold" :class="printableNetBalance < 0 ? 'text-rose-400' : 'text-emerald-400'">
                 {{ currencyStore.formatCurrency(printableNetBalance) }}
               </span>
@@ -1150,7 +1045,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project Name *</label>
+          <label class="form-label mb-1">Project Name *</label>
           <input
             v-model="editProjectForm.name"
             type="text"
@@ -1163,7 +1058,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Client Name</label>
+            <label class="form-label mb-1">Client Name</label>
             <input
               v-model="editProjectForm.client_name"
               type="text"
@@ -1174,7 +1069,7 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status</label>
+            <label class="form-label mb-1">Status</label>
             <select
               v-model="editProjectForm.status"
               :disabled="isSubmittingEditProject"
@@ -1190,7 +1085,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Target Total Budget</label>
+            <label class="form-label mb-1">Target Total Budget</label>
             <input
               v-model.number="editProjectForm.budget"
               type="number"
@@ -1202,7 +1097,7 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Start Date</label>
+            <label class="form-label mb-1">Start Date</label>
             <input
               v-model="editProjectForm.start_date"
               type="date"
@@ -1213,7 +1108,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description / Notes</label>
+          <label class="form-label mb-1">Description / Notes</label>
           <textarea
             v-model="editProjectForm.description"
             rows="3"
@@ -1375,9 +1270,7 @@ watch(isCreatingNewFund, () => {
 })
 
 watch(isPostJournalModalOpen, async (isOpen) => {
-  if (!isOpen) {
-    resetQuickCreate()
-  } else {
+  if (isOpen) {
     try {
       await Promise.all([
         accountingStore.fetchLedgerAccounts(),
@@ -1669,111 +1562,27 @@ watch(() => journalForm.category_id, (newCatId) => {
   }
 })
 
-// Quick create (ledger account / account item) inside the Post Journal modal
-const showQuickLedger = ref(false)
-const showQuickItem = ref(false)
-const isQuickSaving = ref(false)
-const quickError = ref('')
-const quickLedger = reactive({ account_code: '', account_name: '' })
-const quickItem = reactive({
-  ledger_account_id: '' as number | string,
-  item_code: '',
-  item_name: '',
-  transaction_type: 'debit' as 'debit' | 'credit',
-})
-let lastSuggestedItemCode = ''
-
-const resetQuickCreate = () => {
-  showQuickLedger.value = false
-  showQuickItem.value = false
-  quickError.value = ''
-  lastSuggestedItemCode = ''
-  Object.assign(quickLedger, { account_code: '', account_name: '' })
-  Object.assign(quickItem, { ledger_account_id: '', item_code: '', item_name: '', transaction_type: 'debit' })
+// Inline "+ New" (JournalQuickCreate): select the new record in the form
+const onQuickLedgerCreated = (id: number) => {
+  journalForm.ledger_account_id = id
 }
 
-// Suggest ACCOUNTCODE-NN for the picked ledger account, unless the user already typed their own code
-const suggestQuickItemCode = () => {
-  const ledger = accountingStore.ledgerAccounts.value.find(a => a.id === Number(quickItem.ledger_account_id))
-  if (!ledger) return
-  if (quickItem.item_code && quickItem.item_code !== lastSuggestedItemCode) return
-  const count = accountingStore.accountItems.value.filter(i => i.ledger_account_id === ledger.id).length
-  const cleanCode = ledger.account_code.replace(/[^a-zA-Z0-9]/g, '-').toUpperCase()
-  lastSuggestedItemCode = `${cleanCode}-${String(count + 1).padStart(2, '0')}`
-  quickItem.item_code = lastSuggestedItemCode
+const onQuickItemCreated = async (id: number) => {
+  // categories are rebuilt from account items in fetchProjects
+  await projectsStore.fetchProjects()
+  const ledgerId = accountingStore.accountItems.value.find(i => i.id === id)?.ledger_account_id
+  if (ledgerId && Number(journalForm.ledger_account_id) !== ledgerId) {
+    // the ledger watcher clears the item; let it settle before selecting the new one
+    journalForm.ledger_account_id = ledgerId
+    await nextTick()
+  }
+  journalForm.category_id = id
 }
 
-const toggleQuickLedger = () => {
-  const open = !showQuickLedger.value
-  resetQuickCreate()
-  showQuickLedger.value = open
-}
-
-const toggleQuickItem = () => {
-  const open = !showQuickItem.value
-  resetQuickCreate()
-  showQuickItem.value = open
-  if (!open) return
-  quickItem.transaction_type = journalForm.type
-  quickItem.ledger_account_id = journalForm.ledger_account_id
-  suggestQuickItemCode()
-}
-
-const handleQuickCreateLedger = async () => {
-  const account_code = quickLedger.account_code.trim()
-  const account_name = quickLedger.account_name.trim()
-  if (!account_code || !account_name) {
-    quickError.value = 'Account code and name are required.'
-    return
-  }
-  isQuickSaving.value = true
-  quickError.value = ''
-  try {
-    const created = await accountingStore.addLedgerAccount({ account_code, account_name, user_id: 1 })
-    journalForm.ledger_account_id = created.id
-    resetQuickCreate()
-  } catch (err: any) {
-    quickError.value = err?.data?.message || err?.message || 'Failed to create ledger account.'
-  } finally {
-    isQuickSaving.value = false
-  }
-}
-
-const handleQuickCreateItem = async () => {
-  const ledgerId = Number(quickItem.ledger_account_id)
-  const item_code = quickItem.item_code.trim()
-  const item_name = quickItem.item_name.trim()
-  if (!ledgerId) {
-    quickError.value = 'Select the ledger account this item belongs to.'
-    return
-  }
-  if (!item_code || !item_name) {
-    quickError.value = 'Item code and name are required.'
-    return
-  }
-  isQuickSaving.value = true
-  quickError.value = ''
-  try {
-    const created = await accountingStore.addAccountItem({
-      item_code,
-      item_name,
-      transaction_type: quickItem.transaction_type,
-      ledger_account_id: ledgerId,
-    })
-    // categories are rebuilt from account items in fetchProjects
-    await projectsStore.fetchProjects()
-    if (Number(journalForm.ledger_account_id) !== ledgerId) {
-      // the ledger watcher auto-picks the first item; let it settle before selecting the new one
-      journalForm.ledger_account_id = ledgerId
-      await nextTick()
-    }
-    journalForm.category_id = created.id
-    resetQuickCreate()
-  } catch (err: any) {
-    quickError.value = err?.data?.message || err?.message || 'Failed to create account item.'
-  } finally {
-    isQuickSaving.value = false
-  }
+// A fund must be linked to the project before this project's journal entries can use it
+const onQuickFundCreated = async (id: number) => {
+  await projectsStore.linkFundSource(projectId.value, id)
+  journalForm.fund_source_id = id
 }
 
 const handleMarkAsPaid = async (id: number) => {

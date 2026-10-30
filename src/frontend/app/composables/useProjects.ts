@@ -490,13 +490,18 @@ export const useProjects = () => {
       await accountingStore.fetchFundAccounts()
     }
 
-    await api.request(`/projects/${fund.project_id}/funds`, {
+    await linkFundSource(fund.project_id, fundAccountId as number, fund.date_received || fund.date)
+  }
+
+  // Association only (ADR 0020): no budget allocation is posted, so initial_amount stays 0
+  const linkFundSource = async (projectId: number, fundAccountId: number, date?: string) => {
+    await api.request(`/projects/${projectId}/funds`, {
       method: 'POST',
       body: {
         fund_account_id: fundAccountId,
         initial_amount: 0,
-        date_received: fund.date_received || fund.date,
-        date: fund.date_received || fund.date,
+        date_received: date,
+        date,
       }
     })
 
@@ -628,6 +633,7 @@ export const useProjects = () => {
     addProject,
     updateProject,
     addFundSource,
+    linkFundSource,
     addTransaction,
     addCategory,
     updateCategory,

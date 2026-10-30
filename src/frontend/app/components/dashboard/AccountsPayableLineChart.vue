@@ -11,14 +11,14 @@
           </div>
           Accounts Payable Volume Trend
         </h3>
-        <p class="text-[11px] text-[var(--text-muted)] mt-0.5">
+        <p class="text-2xs text-[var(--text-muted)] mt-0.5">
           Cumulative total outstanding accounts payable balance over time
         </p>
       </div>
 
       <!-- Toolbar: Year Filter -->
       <div class="flex items-center gap-1.5 w-full sm:w-auto">
-        <span class="text-[11px] font-medium text-[var(--text-muted)] shrink-0">Year:</span>
+        <span class="text-2xs font-medium text-[var(--text-muted)] shrink-0">Year:</span>
         <select
           v-model="selectedYear"
           class="text-xs bg-[var(--bg-surface-elevated)] border border-[var(--border-color)] text-[var(--text-main)] rounded-lg px-2.5 py-1 focus:outline-none focus:ring-1 focus:ring-rose-500 font-mono transition-colors"
@@ -33,7 +33,7 @@
     <!-- Summary Stats Header Bar -->
     <div class="grid grid-cols-3 gap-2 py-2 px-3 rounded-xl bg-[var(--bg-surface-elevated)]/60 border border-[var(--border-color)]/60 text-xs">
       <div>
-        <div class="text-[10px] uppercase font-semibold text-[var(--text-muted)] tracking-wider">
+        <div class="text-2xs uppercase font-semibold text-[var(--text-muted)] tracking-wider">
           Peak AP Balance
         </div>
         <div class="font-mono font-bold text-rose-500 mt-0.5">
@@ -41,13 +41,13 @@
         </div>
       </div>
       <div>
-        <div class="text-[10px] uppercase font-semibold text-[var(--text-muted)] tracking-wider">Peak Month</div>
+        <div class="text-2xs uppercase font-semibold text-[var(--text-muted)] tracking-wider">Peak Month</div>
         <div class="font-semibold text-[var(--text-main)] mt-0.5 truncate">
           {{ peakMonthLabel }}
         </div>
       </div>
       <div>
-        <div class="text-[10px] uppercase font-semibold text-[var(--text-muted)] tracking-wider">Unpaid Items</div>
+        <div class="text-2xs uppercase font-semibold text-[var(--text-muted)] tracking-wider">Unpaid Items</div>
         <div class="font-mono font-semibold text-rose-400 mt-0.5">
           {{ totalUnpaidCount }} entries
         </div>
@@ -142,21 +142,21 @@
           class="absolute z-20 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-3 px-3 py-2 rounded-xl bg-[var(--bg-surface-elevated)]/95 backdrop-blur-md border border-rose-500/30 shadow-xl text-[var(--text-main)] transition-all duration-150 ease-out"
           :style="{ left: `${(hoveredPoint.x / 600) * 100}%`, top: `${(hoveredPoint.y / 180) * 100}%` }"
         >
-          <div class="text-[10px] text-rose-400 font-bold uppercase tracking-wider mb-0.5 flex items-center gap-1">
+          <div class="text-2xs text-rose-400 font-bold uppercase tracking-wider mb-0.5 flex items-center gap-1">
             <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
             {{ hoveredPoint.month }} {{ selectedYear }}
           </div>
           <div class="text-xs font-mono font-bold text-[var(--text-main)]">
             {{ currencyStore.formatCurrency(hoveredPoint.amount) }}
           </div>
-          <div class="text-[10px] text-[var(--text-muted)] mt-1 flex items-center justify-between gap-3">
+          <div class="text-2xs text-[var(--text-muted)] mt-1 flex items-center justify-between gap-3">
             <span>Total Outstanding AP</span>
             <span class="font-mono text-rose-400 font-semibold">{{ hoveredPoint.count }} {{ hoveredPoint.count === 1 ? 'entry' : 'entries' }}</span>
           </div>
         </div>
 
         <!-- X-Axis Month Labels -->
-        <div class="flex justify-between items-center px-1 pt-2 border-t border-[var(--border-color)]/60 text-[10px] font-mono text-[var(--text-muted)]">
+        <div class="flex justify-between items-center px-1 pt-2 border-t border-[var(--border-color)]/60 text-2xs font-mono text-[var(--text-muted)]">
           <span
             v-for="(m, idx) in monthsList"
             :key="m"

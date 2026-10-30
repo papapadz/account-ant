@@ -17,15 +17,15 @@
         <div v-if="currentStep === 1" class="space-y-4">
           <h3 class="text-sm font-bold text-[var(--text-main)] uppercase tracking-wider">User Account Credentials</h3>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Email Address *</label>
+            <label class="form-label mb-1">Email Address *</label>
             <input v-model="formData.user.email" type="email" required placeholder="user@company.com" class="input-field" />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Password *</label>
+            <label class="form-label mb-1">Password *</label>
             <input v-model="formData.user.password" type="password" required placeholder="••••••••••••" class="input-field" />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Confirm Password *</label>
+            <label class="form-label mb-1">Confirm Password *</label>
             <input v-model="confirmPassword" type="password" required placeholder="••••••••••••" class="input-field" />
           </div>
         </div>
@@ -35,21 +35,21 @@
           <h3 class="text-sm font-bold text-[var(--text-main)] uppercase tracking-wider">Personal Profile Details</h3>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">First Name *</label>
+              <label class="form-label mb-1">First Name *</label>
               <input v-model="formData.person.first_name" type="text" required placeholder="Alexander" class="input-field" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Last Name *</label>
+              <label class="form-label mb-1">Last Name *</label>
               <input v-model="formData.person.last_name" type="text" required placeholder="Sterling" class="input-field" />
             </div>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Middle Name</label>
+              <label class="form-label mb-1">Middle Name</label>
               <input v-model="formData.person.middle_name" type="text" placeholder="Vance" class="input-field" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Civil Status *</label>
+              <label class="form-label mb-1">Civil Status *</label>
               <select v-model="formData.person.civil_status" class="input-field">
                 <option value="Single">Single</option>
                 <option value="Married">Married</option>
@@ -60,14 +60,14 @@
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Gender</label>
+              <label class="form-label mb-1">Gender</label>
               <select v-model="formData.person.gender" class="input-field">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
             </div>
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Birth Date</label>
+              <label class="form-label mb-1">Birth Date</label>
               <input v-model="formData.person.birth_date" type="date" class="input-field" />
             </div>
           </div>
@@ -77,16 +77,16 @@
         <div v-if="currentStep === 3" class="space-y-4">
           <h3 class="text-sm font-bold text-[var(--text-main)] uppercase tracking-wider">Company / Entity Profile</h3>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Business Name *</label>
+            <label class="form-label mb-1">Business Name *</label>
             <input v-model="formData.company.business_name" type="text" required placeholder="Apex Financial Technologies Inc." class="input-field" />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Business Description *</label>
+            <label class="form-label mb-1">Business Description *</label>
             <input v-model="formData.company.business_description" type="text" required placeholder="Automated Ledger & Enterprise Asset Management" class="input-field" />
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Business Scope</label>
+              <label class="form-label mb-1">Business Scope</label>
               <select v-model="formData.company.business_scope" class="input-field">
                 <option value="National">National</option>
                 <option value="Regional">Regional</option>
@@ -95,7 +95,7 @@
               </select>
             </div>
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">City ID / Municipality</label>
+              <label class="form-label mb-1">City ID / Municipality</label>
               <input v-model.number="formData.company.city_id" type="number" required placeholder="101" class="input-field" />
             </div>
           </div>
@@ -110,11 +110,11 @@
           <h3 class="text-sm font-bold text-[var(--text-main)] uppercase tracking-wider">Position & Employment Affiliation</h3>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Position Title *</label>
+              <label class="form-label mb-1">Position Title *</label>
               <input v-model="formData.position.title" type="text" required placeholder="Chief Financial Officer" class="input-field" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Industry *</label>
+              <label class="form-label mb-1">Industry *</label>
               <select v-model="formData.position.industry" class="input-field">
                 <option value="Finance">Finance</option>
                 <option value="Information Technology">Information Technology</option>
@@ -127,7 +127,7 @@
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Affiliation Level *</label>
+              <label class="form-label mb-1">Affiliation Level *</label>
               <select v-model="formData.affiliation.affiliation_level" class="input-field">
                 <option value="Executive">Executive</option>
                 <option value="Managerial">Managerial</option>
@@ -136,7 +136,7 @@
               </select>
             </div>
             <div>
-              <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Employment Status *</label>
+              <label class="form-label mb-1">Employment Status *</label>
               <select v-model="formData.affiliation.employment_status" class="input-field">
                 <option value="Regular">Regular</option>
                 <option value="Contractual">Contractual</option>
@@ -146,7 +146,7 @@
             </div>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Employee ID Code *</label>
+            <label class="form-label mb-1">Employee ID Code *</label>
             <input v-model="formData.affiliation.employee_id" type="text" required placeholder="EMP-2026-901" class="input-field font-mono" />
           </div>
           <div class="flex items-center gap-2 pt-2">

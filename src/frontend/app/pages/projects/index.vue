@@ -121,19 +121,19 @@
             
             <div class="grid grid-cols-2 gap-2 pt-1">
               <div class="bg-[var(--bg-surface)] p-2 rounded-lg border border-[var(--border-color)]">
-                <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Total Budget</span>
+                <span class="text-2xs text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Total Budget</span>
                 <span class="text-xs font-bold font-mono text-[var(--text-main)]">{{ currencyStore.formatCurrency(projectsStore.getProjectBudget(project.id)) }}</span>
               </div>
               <div class="bg-[var(--bg-surface)] p-2 rounded-lg border border-[var(--border-color)]">
-                <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Total Spent</span>
+                <span class="text-2xs text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Total Spent</span>
                 <span class="text-xs font-bold font-mono text-rose-400">{{ currencyStore.formatCurrency(projectsStore.getProjectTotalSpent(project.id)) }}</span>
               </div>
               <div class="bg-[var(--bg-surface)] p-2 rounded-lg border border-[var(--border-color)]">
-                <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Remaining Balance</span>
+                <span class="text-2xs text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Remaining Balance</span>
                 <span class="text-xs font-bold font-mono text-[var(--text-main)]">{{ currencyStore.formatCurrency(projectsStore.getProjectRemainingBalance(project.id)) }}</span>
               </div>
               <div class="bg-[var(--bg-surface)] p-2 rounded-lg border border-[var(--border-color)]">
-                <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Budget Utilization</span>
+                <span class="text-2xs text-[var(--text-muted)] uppercase tracking-wider block font-semibold">Budget Utilization</span>
                 <span :class="['text-xs font-bold font-mono', getUsageTextColorClass(projectsStore.getProjectBudgetUtilization(project.id))]">{{ projectsStore.getProjectBudgetUtilization(project.id) }}%</span>
               </div>
             </div>

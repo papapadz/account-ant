@@ -162,7 +162,8 @@ export const useAccounting = () => {
   }
 
   // Fund Account CRUD
-  const addFundAccount = async (fund: Omit<FundAccount, 'id' | 'created_at'>) => {
+  // user_id is optional: the API sets it from the authenticated user
+  const addFundAccount = async (fund: Omit<FundAccount, 'id' | 'created_at' | 'user_id'> & { user_id?: number }) => {
     const res = await api.request<{ data: FundAccount }>('/fund-accounts', {
       method: 'POST',
       body: fund,
@@ -195,7 +196,7 @@ export const useAccounting = () => {
 
 
   // Ledger Account CRUD
-  const addLedgerAccount = async (acc: Omit<LedgerAccount, 'id' | 'created_at'>) => {
+  const addLedgerAccount = async (acc: Omit<LedgerAccount, 'id' | 'created_at' | 'user_id'> & { user_id?: number }) => {
     const res = await api.request<{ data: LedgerAccount }>('/ledger-accounts', {
       method: 'POST',
       body: acc,

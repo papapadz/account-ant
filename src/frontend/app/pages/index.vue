@@ -133,13 +133,13 @@
         >
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-mono text-[var(--text-muted)] font-bold">PRJ-#{{ project.id }}</span>
+              <span class="text-2xs font-mono text-[var(--text-muted)] font-bold">PRJ-#{{ project.id }}</span>
               <UiBadge variant="emerald" size="sm">Active</UiBadge>
             </div>
             <h3 class="text-sm font-bold text-[var(--text-main)] group-hover:text-emerald-400 transition-colors line-clamp-1">
               {{ project.name }}
             </h3>
-            <p class="text-[11px] text-[var(--text-muted)] mt-1 flex items-center gap-1 truncate">
+            <p class="text-2xs text-[var(--text-muted)] mt-1 flex items-center gap-1 truncate">
               <svg class="w-3 h-3 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               </svg>

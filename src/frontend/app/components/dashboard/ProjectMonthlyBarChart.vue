@@ -9,7 +9,7 @@
           </svg>
           Monthly Project Expense
         </h3>
-        <p class="text-[11px] text-[var(--text-muted)] mt-0.5">Monthly outflow breakdown for selected project</p>
+        <p class="text-2xs text-[var(--text-muted)] mt-0.5">Monthly outflow breakdown for selected project</p>
       </div>
 
       <!-- Filters: Project & Year -->
@@ -62,7 +62,7 @@
           class="flex-1 flex flex-col items-center h-full justify-end group relative"
         >
           <!-- Tooltip Hover Popover -->
-          <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute -top-10 bg-slate-900 text-white text-[10px] font-mono px-2 py-1 rounded shadow-lg border border-slate-700 pointer-events-none whitespace-nowrap z-20">
+          <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute -top-10 bg-slate-900 text-white text-2xs font-mono px-2 py-1 rounded shadow-lg border border-slate-700 pointer-events-none whitespace-nowrap z-20">
             {{ bar.month }}: {{ currencyStore.formatCurrency(bar.amount) }}
           </div>
 
@@ -74,7 +74,7 @@
           ></div>
 
           <!-- Month Label -->
-          <span class="text-[10px] font-mono text-[var(--text-muted)] mt-2 font-medium">
+          <span class="text-2xs font-mono text-[var(--text-muted)] mt-2 font-medium">
             {{ bar.month }}
           </span>
         </div>

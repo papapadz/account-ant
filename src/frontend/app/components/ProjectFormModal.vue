@@ -2,7 +2,7 @@
   <Modal :isOpen="isOpen" title="Create New Project" @close="$emit('close')">
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <div>
-        <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project Name *</label>
+        <label class="form-label mb-1">Project Name *</label>
         <input
           v-model="form.name"
           type="text"
@@ -13,7 +13,7 @@
       </div>
 
       <div>
-        <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Client / Contracting Party *</label>
+        <label class="form-label mb-1">Client / Contracting Party *</label>
         <input
           v-model="form.client_name"
           type="text"
@@ -24,7 +24,7 @@
       </div>
 
       <div>
-        <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project Description *</label>
+        <label class="form-label mb-1">Project Description *</label>
         <textarea
           v-model="form.description"
           rows="3"
@@ -36,7 +36,7 @@
 
       <div class="grid grid-cols-2 gap-3">
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Max Budget Cap</label>
+          <label class="form-label mb-1">Max Budget Cap</label>
           <input
             v-model.number="form.budget"
             type="number"
@@ -46,7 +46,7 @@
           />
         </div>
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Start Date *</label>
+          <label class="form-label mb-1">Start Date *</label>
           <input
             v-model="form.start_date"
             type="date"
@@ -60,13 +60,13 @@
       <div class="space-y-3 pt-2 border-t border-[var(--border-color)]">
         <div class="flex items-center justify-between">
           <label class="block text-xs font-bold text-emerald-500 uppercase tracking-wider">Site Location &amp; Address *</label>
-          <span class="text-[10px] text-[var(--text-muted)] font-mono">Backend Model Aligned</span>
+          <span class="text-2xs text-[var(--text-muted)] font-mono">Backend Model Aligned</span>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <!-- State Selection Dropdown -->
           <div>
-            <label class="block text-[11px] font-medium text-[var(--text-muted)] mb-1">State / Region *</label>
+            <label class="block text-2xs font-medium text-[var(--text-muted)] mb-1">State / Region *</label>
             <select
               v-model="form.state_id"
               required
@@ -86,7 +86,7 @@
 
           <!-- City Selection Dropdown -->
           <div>
-            <label class="block text-[11px] font-medium text-[var(--text-muted)] mb-1">City / Municipality *</label>
+            <label class="block text-2xs font-medium text-[var(--text-muted)] mb-1">City / Municipality *</label>
             <select
               v-model="form.city_id"
               required
@@ -107,7 +107,7 @@
 
         <!-- Street & Zip Code Inputs -->
         <div>
-          <label class="block text-[11px] font-medium text-[var(--text-muted)] mb-1">Street Address *</label>
+          <label class="block text-2xs font-medium text-[var(--text-muted)] mb-1">Street Address *</label>
           <input
             v-model="form.street"
             type="text"
@@ -119,7 +119,7 @@
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-[11px] font-medium text-[var(--text-muted)] mb-1">Barangay / District</label>
+            <label class="block text-2xs font-medium text-[var(--text-muted)] mb-1">Barangay / District</label>
             <input
               v-model="form.barangay"
               type="text"
@@ -128,7 +128,7 @@
             />
           </div>
           <div>
-            <label class="block text-[11px] font-medium text-[var(--text-muted)] mb-1">Zip Code</label>
+            <label class="block text-2xs font-medium text-[var(--text-muted)] mb-1">Zip Code</label>
             <input
               v-model="form.zip_code"
               type="text"
@@ -140,7 +140,7 @@
       </div>
 
       <div>
-        <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status</label>
+        <label class="form-label mb-1">Status</label>
         <select
           v-model="form.status"
           class="w-full rounded-lg bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
