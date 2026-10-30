@@ -9,7 +9,7 @@
       <!-- Entry Summary Card -->
       <div class="bg-[var(--bg-surface)] p-3.5 rounded-xl border border-[var(--border-color)] space-y-2">
         <div class="flex items-center justify-between">
-          <span class="font-mono text-[10px] font-bold text-amber-500 uppercase tracking-wider bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+          <span class="font-mono text-2xs font-bold text-amber-500 uppercase tracking-wider bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
             Payable #{{ entry.id }}
           </span>
           <span class="font-mono font-bold text-sm text-[var(--text-main)]">
@@ -21,9 +21,9 @@
           <h4 class="font-bold text-[var(--text-main)] text-xs line-clamp-1">
             {{ entry.description || entry.note || 'Journal Entry Settlement' }}
           </h4>
-          <p v-if="vendorName" class="text-[11px] text-[var(--text-muted)] mt-0.5 flex items-center gap-1.5">
+          <p v-if="vendorName" class="text-2xs text-[var(--text-muted)] mt-0.5 flex items-center gap-1.5">
             <span class="font-semibold text-[var(--text-main)]">Payee / Vendor:</span>
-            <span class="bg-[var(--bg-app)] border border-[var(--border-color)] px-1.5 py-0.5 rounded text-[10px] font-mono text-emerald-400 font-bold">
+            <span class="bg-[var(--bg-app)] border border-[var(--border-color)] px-1.5 py-0.5 rounded text-2xs font-mono text-emerald-400 font-bold">
               {{ vendorName }}
             </span>
           </p>
@@ -35,12 +35,12 @@
         <!-- Payment Date Field -->
         <div>
           <div class="flex items-center justify-between mb-1">
-            <label class="block font-bold text-[var(--text-main)] text-[11px]">
+            <label class="block font-bold text-[var(--text-main)] text-2xs">
               Payment Date <span class="text-rose-500">*</span>
             </label>
             <button
               type="button"
-              class="text-[10px] font-bold text-emerald-500 hover:text-emerald-400 transition-colors"
+              class="text-2xs font-bold text-emerald-500 hover:text-emerald-400 transition-colors"
               @click="setToday"
             >
               Set Today
@@ -56,7 +56,7 @@
 
         <!-- Fund Account Selector -->
         <div v-if="fundAccountsList.length > 0">
-          <label class="block font-bold text-[var(--text-main)] text-[11px] mb-1">
+          <label class="block font-bold text-[var(--text-main)] text-2xs mb-1">
             Disbursement Fund Account <span class="text-rose-500">*</span>
           </label>
           <select
@@ -72,7 +72,7 @@
 
         <!-- Payment Remarks / Notes -->
         <div>
-          <label class="block font-bold text-[var(--text-main)] text-[11px] mb-1">
+          <label class="block font-bold text-[var(--text-main)] text-2xs mb-1">
             Payment Remarks / Reference
           </label>
           <textarea

@@ -25,7 +25,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-[var(--bg-surface)] border border-[var(--border-color)] p-4 rounded-xl flex items-center justify-between">
           <div>
-            <span class="text-[11px] text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Total Outflows</span>
+            <span class="text-2xs text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Total Outflows</span>
             <span class="text-xl font-bold font-mono-num text-blue-500">{{ currencyStore.formatCurrency(accounting.totalDebits.value) }}</span>
           </div>
           <div class="w-8 h-8 rounded bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold text-xs">Out</div>
@@ -33,7 +33,7 @@
 
         <div class="bg-[var(--bg-surface)] border border-[var(--border-color)] p-4 rounded-xl flex items-center justify-between">
           <div>
-            <span class="text-[11px] text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Total Inflows</span>
+            <span class="text-2xs text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Total Inflows</span>
             <span class="text-xl font-bold font-mono-num text-amber-500">{{ currencyStore.formatCurrency(accounting.totalCredits.value) }}</span>
           </div>
           <div class="w-8 h-8 rounded bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold text-xs">In</div>
@@ -41,7 +41,7 @@
 
         <div class="bg-[var(--bg-surface)] border border-[var(--border-color)] p-4 rounded-xl flex items-center justify-between">
           <div>
-            <span class="text-[11px] text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Net Ledger Balance</span>
+            <span class="text-2xs text-[var(--text-muted)] font-semibold uppercase tracking-wider block">Net Ledger Balance</span>
             <span class="text-xl font-bold font-mono-num text-emerald-500">{{ currencyStore.formatCurrency(accounting.netLedgerBalance.value) }}</span>
           </div>
           <div class="w-8 h-8 rounded bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold text-xs">Bal</div>
@@ -73,7 +73,7 @@
 
         <!-- Cell: Fund Account -->
         <template #cell-fund_account_id="{ value }">
-          <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono text-[11px] font-semibold">
+          <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono text-2xs font-semibold">
             {{ getFundCode(value) }}
           </span>
         </template>
@@ -95,7 +95,7 @@
         <!-- Cell: Transaction Type -->
         <template #cell-transaction_type="{ value }">
           <span
-            class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+            class="px-2 py-0.5 rounded text-2xs font-bold uppercase tracking-wider"
             :class="value === 'debit' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'"
           >
             {{ value }}
@@ -125,7 +125,7 @@
 
         <!-- Cell: Timestamp -->
         <template #cell-created_at="{ value }">
-          <span class="font-mono text-[var(--text-muted)] text-[11px] whitespace-nowrap">{{ value }}</span>
+          <span class="font-mono text-[var(--text-muted)] text-2xs whitespace-nowrap">{{ value }}</span>
         </template>
       </UiDataTable>
     </ClientOnly>
@@ -134,7 +134,7 @@
     <Modal :isOpen="isModalOpen" title="Post Double-Entry Journal Transaction" @close="isModalOpen = false">
       <form @submit.prevent="handleCreateEntry" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type *</label>
+          <label class="form-label mb-1">Transaction Type *</label>
           <div class="grid grid-cols-2 gap-3">
             <UiButton
               type="button"
@@ -156,7 +156,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source *</label>
+          <label class="form-label mb-1">Fund Source *</label>
           <select v-model="newEntry.fund_account_id" class="input-field font-medium">
             <option v-for="fund in accounting.fundAccounts.value" :key="fund.id" :value="fund.id">
               {{ fund.fund_code }} - {{ fund.fund_name }}
@@ -165,7 +165,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Target Ledger Account *</label>
+          <label class="form-label mb-1">Target Ledger Account *</label>
           <select v-model="newEntry.ledger_account_id" class="input-field font-medium">
             <option v-for="acc in accounting.ledgerAccounts.value" :key="acc.id" :value="acc.id">
               {{ acc.account_code }} - {{ acc.account_name }}
@@ -174,7 +174,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Master Account Item *</label>
+          <label class="form-label mb-1">Master Account Item *</label>
           <select v-model="newEntry.account_item_id" class="input-field font-medium">
             <option v-for="item in accounting.accountItems.value" :key="item.id" :value="item.id">
               {{ item.item_code }} - {{ item.item_name }}
@@ -183,7 +183,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Amount ($ USD) *</label>
+          <label class="form-label mb-1">Transaction Amount ($ USD) *</label>
           <input
             v-model.number="newEntry.amount"
             type="number"
@@ -195,7 +195,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Entry Memo / Description</label>
+          <label class="form-label mb-1">Entry Memo / Description</label>
           <textarea v-model="newEntry.description" rows="2" placeholder="Record purpose of journal entry..." class="input-field"></textarea>
         </div>
 

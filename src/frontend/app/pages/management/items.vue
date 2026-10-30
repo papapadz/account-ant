@@ -35,13 +35,13 @@
       </div>
       <!-- Status Filter Chips -->
       <div class="flex flex-wrap items-center gap-2">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">Filter:</span>
+        <span class="text-2xs font-bold uppercase tracking-wider text-[var(--text-muted)]">Filter:</span>
         <button
           v-for="chip in statusChips"
           :key="chip.value"
           type="button"
           @click="statusFilter = chip.value"
-          class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-all duration-150 cursor-pointer"
+          class="px-2.5 py-0.5 rounded-full text-2xs font-bold uppercase tracking-wider border transition-all duration-150 cursor-pointer"
           :class="statusFilter === chip.value
             ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
             : 'bg-[var(--bg-surface)] text-[var(--text-muted)] border-[var(--border-color)] hover:border-amber-500/30'"
@@ -68,7 +68,7 @@
               </span>
               <div class="flex items-center gap-2">
                 <span
-                  class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border"
+                  class="px-2 py-0.5 rounded text-2xs font-bold uppercase tracking-wider border"
                   :class="item.transaction_type === 'credit' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 'bg-blue-500/10 text-blue-400 border-blue-500/20'"
                 >
                   {{ item.transaction_type === 'credit' ? 'Inflow' : 'Outflow' }}
@@ -94,9 +94,9 @@
             </p>
           </div>
 
-          <div class="pt-3 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-[11px] text-[var(--text-muted)]">
+          <div class="pt-3 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-2xs text-[var(--text-muted)]">
             <span>{{ getLedgerAccountCode(item.ledger_account_id) }}</span>
-            <span class="capitalize text-[10px] font-semibold px-1.5 py-0.5 rounded border border-[var(--border-color)] bg-[var(--bg-surface)]">
+            <span class="capitalize text-2xs font-semibold px-1.5 py-0.5 rounded border border-[var(--border-color)] bg-[var(--bg-surface)]">
               {{ item.status || 'active' }}
             </span>
           </div>
@@ -110,7 +110,7 @@
       <form @submit.prevent="handleCreateItem" class="space-y-4">
         
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Linked Ledger Account *</label>
+          <label class="form-label mb-1">Linked Ledger Account *</label>
           <select v-model="newItem.ledger_account_id" required class="input-field">
             <option :value="undefined" disabled>Select Ledger account...</option>
             <option v-for="acc in accounting.ledgerAccounts.value" :key="acc.id" :value="acc.id">
@@ -120,17 +120,17 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Code *</label>
+          <label class="form-label mb-1">Item Code *</label>
           <input v-model="newItem.item_code" type="text" required placeholder="ITEM-SRV-06" class="input-field font-mono" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Name *</label>
+          <label class="form-label mb-1">Item Name *</label>
           <input v-model="newItem.item_name" type="text" required placeholder="API Data Stream Processing Service" class="input-field" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type *</label>
+          <label class="form-label mb-1">Transaction Type *</label>
           <div class="grid grid-cols-2 gap-3">
             <UiButton
               type="button"
@@ -155,7 +155,7 @@
           </div>
         </div>
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <label class="form-label mb-1">Description</label>
           <textarea v-model="newItem.description" rows="3" placeholder="Detailed description of the transaction line item..." class="input-field"></textarea>
         </div>
 
@@ -171,7 +171,7 @@
       <form @submit.prevent="handleUpdateItem" class="space-y-4">
         
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Linked Ledger Account *</label>
+          <label class="form-label mb-1">Linked Ledger Account *</label>
           <select v-model="editItem.ledger_account_id" required class="input-field">
             <option :value="undefined" disabled>Select Ledger account...</option>
             <option v-for="acc in accounting.ledgerAccounts.value" :key="acc.id" :value="acc.id">
@@ -181,17 +181,17 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Code *</label>
+          <label class="form-label mb-1">Item Code *</label>
           <input v-model="editItem.item_code" type="text" required placeholder="ITEM-SRV-06" class="input-field font-mono" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Name *</label>
+          <label class="form-label mb-1">Item Name *</label>
           <input v-model="editItem.item_name" type="text" required placeholder="API Data Stream Processing Service" class="input-field" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type *</label>
+          <label class="form-label mb-1">Transaction Type *</label>
           <div class="grid grid-cols-2 gap-3">
             <UiButton
               type="button"
@@ -217,7 +217,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status *</label>
+          <label class="form-label mb-1">Status *</label>
           <select v-model="editItem.status" required class="input-field">
             <option v-for="opt in itemStatusOptions" :key="opt.value" :value="opt.value">
               {{ opt.label }}
@@ -226,7 +226,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <label class="form-label mb-1">Description</label>
           <textarea v-model="editItem.description" rows="3" placeholder="Detailed description of the transaction line item..." class="input-field"></textarea>
         </div>
 

@@ -217,7 +217,7 @@
             <button
               v-if="item.is_paid === false"
               type="button"
-              class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 hover:border-amber-500/40 transition-all cursor-pointer shadow-sm hover:scale-105"
+              class="px-2 py-0.5 rounded text-2xs font-bold uppercase tracking-wider inline-flex items-center gap-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 hover:border-amber-500/40 transition-all cursor-pointer shadow-sm hover:scale-105"
               title="Click to Settle Payment"
               @click.stop="openMarkPaidModal(item)"
             >
@@ -227,14 +227,14 @@
             <button
               v-else
               type="button"
-              class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all cursor-pointer shadow-sm hover:scale-105"
+              class="px-2 py-0.5 rounded text-2xs font-bold uppercase tracking-wider inline-flex items-center gap-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all cursor-pointer shadow-sm hover:scale-105"
               title="Click to View Payment Details"
               @click.stop="openPaymentDetailsModal(item)"
             >
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" />
               Paid Details
             </button>
-            <span v-if="item.is_paid === false && (item.accounts_payable?.name || item.accounts_payable_name)" class="text-[10px] text-rose-400 font-medium truncate max-w-[130px]">
+            <span v-if="item.is_paid === false && (item.accounts_payable?.name || item.accounts_payable_name)" class="text-2xs text-rose-400 font-medium truncate max-w-[130px]">
               {{ item.accounts_payable?.name || item.accounts_payable_name }}
             </span>
           </div>
@@ -243,7 +243,7 @@
         <!-- Cell: Status -->
         <!-- <template #cell-status="{ value }">
           <span
-            class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+            class="px-2 py-0.5 rounded text-2xs font-bold uppercase tracking-wider"
             :class="[
               (value || 'posted') === 'posted' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' :
               value === 'reconciled' ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' :
@@ -272,7 +272,7 @@
             <div class="flex items-center gap-2">
               <span class="font-mono text-sm font-bold text-emerald-400">Entry #{{ selectedEntry.id }}</span>
               <span
-                class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+                class="px-2 py-0.5 rounded text-2xs font-bold uppercase tracking-wider"
                 :class="selectedEntry.transaction_type === 'debit' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'"
               >
                 {{ selectedEntry.transaction_type }}
@@ -286,38 +286,38 @@
 
           <div class="grid grid-cols-2 gap-3 text-xs border-t border-[var(--border-color)]/60 pt-3">
             <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Ledger Account</span>
+              <span class="text-[var(--text-muted)] block text-2xs uppercase font-semibold">Ledger Account</span>
               <span class="font-bold text-[var(--text-main)]">{{ getAccountCode(selectedEntry.ledger_account_id) }}</span>
             </div>
 
             <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Catalog Item</span>
+              <span class="text-[var(--text-muted)] block text-2xs uppercase font-semibold">Catalog Item</span>
               <span class="font-medium text-[var(--text-main)]">{{ getItemName(selectedEntry.account_item_id) }}</span>
             </div>
 
             <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Fund Source</span>
+              <span class="text-[var(--text-muted)] block text-2xs uppercase font-semibold">Fund Source</span>
               <span class="font-medium text-[var(--text-main)]">{{ getFundCode(selectedEntry.fund_account_id) }}</span>
             </div>
 
             <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Project</span>
+              <span class="text-[var(--text-muted)] block text-2xs uppercase font-semibold">Project</span>
               <span class="font-medium text-[var(--text-main)]">{{ getProjectName(selectedEntry.project_id) }}</span>
             </div>
 
             <div>
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Posting Date</span>
+              <span class="text-[var(--text-muted)] block text-2xs uppercase font-semibold">Posting Date</span>
               <span class="font-mono text-[var(--text-main)]">{{ selectedEntry.posting_date || selectedEntry.created_at }}</span>
             </div>
 
             <div v-if="selectedEntry.accounts_payable?.name || selectedEntry.accounts_payable_name">
-              <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Accounts Payable Name</span>
+              <span class="text-[var(--text-muted)] block text-2xs uppercase font-semibold">Accounts Payable Name</span>
               <span class="font-bold text-rose-400">{{ selectedEntry.accounts_payable?.name || selectedEntry.accounts_payable_name }}</span>
             </div>
           </div>
 
           <div v-if="selectedEntry.description" class="border-t border-[var(--border-color)]/60 pt-2 text-xs">
-            <span class="text-[var(--text-muted)] block text-[10px] uppercase font-semibold">Memo / Description</span>
+            <span class="text-[var(--text-muted)] block text-2xs uppercase font-semibold">Memo / Description</span>
             <p class="text-[var(--text-main)] italic mt-0.5">{{ selectedEntry.description }}</p>
           </div>
         </div>
@@ -333,7 +333,7 @@
             >
               <div>
                 <div class="font-semibold text-[var(--text-main)]">{{ sub.description }}</div>
-                <div class="text-[10px] text-[var(--text-muted)] font-mono">
+                <div class="text-2xs text-[var(--text-muted)] font-mono">
                   {{ sub.quantity }} {{ sub.unit }} @ {{ currencyStore.formatCurrency(sub.price) }}
                 </div>
               </div>
@@ -354,7 +354,7 @@
               <div class="flex items-center justify-between">
                 <div>
                   <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
-                  <span class="text-[10px] text-[var(--text-muted)] block">Mark entry as Paid or Unpaid</span>
+                  <span class="text-2xs text-[var(--text-muted)] block">Mark entry as Paid or Unpaid</span>
                 </div>
                 <UiButton
                   size="sm"
@@ -368,7 +368,7 @@
 
               <!-- Option to set/update AP name if entry is unpaid -->
               <div v-if="selectedEntry.is_paid === false" class="pt-2 border-t border-[var(--border-color)]/60 space-y-1">
-                <label class="text-[10px] font-semibold text-[var(--text-muted)] block">Accounts Payable Name (Vendor / Creditor):</label>
+                <label class="text-2xs font-semibold text-[var(--text-muted)] block">Accounts Payable Name (Vendor / Creditor):</label>
                 <div class="flex items-center gap-2">
                   <input
                     v-model="editApName"
@@ -381,16 +381,16 @@
               </div>
 
               <!-- Display Payment Date & Remarks if entry is Paid -->
-              <div v-else class="pt-2 border-t border-[var(--border-color)]/60 space-y-1.5 text-[11px]">
+              <div v-else class="pt-2 border-t border-[var(--border-color)]/60 space-y-1.5 text-2xs">
                 <div class="flex items-center justify-between text-[var(--text-muted)]">
                   <span>Payment Date:</span>
                   <span class="font-mono text-[var(--text-main)] font-semibold">{{ selectedEntry.payment_date || selectedEntry.posting_date || 'N/A' }}</span>
                 </div>
                 <div v-if="selectedEntry.payment_remarks" class="text-[var(--text-muted)]">
-                  <span class="block text-[10px] font-semibold uppercase tracking-wider">Payment Remarks:</span>
+                  <span class="block text-2xs font-semibold uppercase tracking-wider">Payment Remarks:</span>
                   <p class="text-[var(--text-main)] bg-[var(--bg-app)] p-1.5 rounded border border-[var(--border-color)] mt-0.5 whitespace-pre-wrap font-mono">{{ selectedEntry.payment_remarks }}</p>
                 </div>
-                <UiButton size="sm" variant="outline" class="w-full mt-1.5 text-[10px]" @click="openPaymentDetailsModal(selectedEntry)">
+                <UiButton size="sm" variant="outline" class="w-full mt-1.5 text-2xs" @click="openPaymentDetailsModal(selectedEntry)">
                   View Full Settlement Details &rarr;
                 </UiButton>
               </div>
@@ -423,7 +423,7 @@
       <form @submit.prevent="handleCreateJournalEntry" class="space-y-4">
         <!-- 1. Project Selection -->
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Project (Optional)</label>
+          <label class="form-label mb-1">Project (Optional)</label>
           <select v-model="newJournalEntry.project_id" class="input-field text-xs py-2 font-medium">
             <option :value="null">General Ledger (No Specific Project)</option>
             <option v-for="proj in selectableProjects" :key="proj.id" :value="proj.id">
@@ -434,41 +434,60 @@
 
         <!-- 2. Fund Source Account -->
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Source Account *</label>
+          <label class="form-label mb-1">Fund Source Account *</label>
           <select v-model="newJournalEntry.fund_account_id" required class="input-field text-xs py-2 font-medium">
             <option :value="undefined" disabled>-- Select Fund Account --</option>
             <option v-for="fund in selectableFundAccounts" :key="fund.id" :value="fund.id">
               {{ fund.fund_code }} - {{ fund.fund_name }} (Available: {{ currencyStore.formatCurrency(accounting.getFundAccountRemaining(fund.id)) }})
             </option>
           </select>
+          <!-- Global Ledger only: a fund created here is not linked to any project -->
+          <JournalQuickCreate
+            v-if="!newJournalEntry.project_id"
+            kind="fund"
+            class="mt-1"
+            :after-create="(id) => (newJournalEntry.fund_account_id = id)"
+          />
         </div>
 
         <!-- 3. Ledger Account -->
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Ledger Account *</label>
+          <label class="form-label mb-1">Ledger Account *</label>
           <select v-model="newJournalEntry.ledger_account_id" required class="input-field text-xs py-2 font-medium">
             <option :value="undefined" disabled>-- Select Ledger Account --</option>
             <option v-for="acc in accounting.ledgerAccounts.value" :key="acc.id" :value="acc.id">
               {{ acc.account_code }} - {{ acc.account_name }}
             </option>
           </select>
+          <JournalQuickCreate
+            kind="ledger"
+            class="mt-1"
+            :after-create="(id) => (newJournalEntry.ledger_account_id = id)"
+          />
         </div>
 
         <!-- 4. Ledger Account Item -->
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Ledger Account Item *</label>
+          <label class="form-label mb-1">Ledger Account Item *</label>
           <select v-model="newJournalEntry.account_item_id" required class="input-field text-xs py-2 font-medium">
             <option :value="undefined" disabled>-- Select Account Item --</option>
             <option v-for="item in filteredAccountItems" :key="item.id" :value="item.id">
               {{ item.item_code }} - {{ item.item_name }} ({{ item.transaction_type === 'credit' ? 'Inflow' : 'Outflow' }})
             </option>
           </select>
+          <JournalQuickCreate
+            kind="item"
+            class="mt-1"
+            :ledger-id="newJournalEntry.ledger_account_id"
+            :transaction-type="newJournalEntry.transaction_type"
+            :after-create="(id) => (newJournalEntry.account_item_id = id)"
+          />
         </div>
 
         <!-- 5. Amount & 6. Transaction Date -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Amount*</label>
+            <label class="form-label mb-1">Amount*</label>
             <input
               v-model.number="newJournalEntry.amount"
               type="number"
@@ -479,7 +498,7 @@
             />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Date *</label>
+            <label class="form-label mb-1">Transaction Date *</label>
             <input
               v-model="newJournalEntry.posting_date"
               type="date"
@@ -491,7 +510,7 @@
 
         <!-- 7. Note / Description -->
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Note / Description</label>
+          <label class="form-label mb-1">Note / Description</label>
           <textarea v-model="newJournalEntry.description" rows="2" placeholder="Record purpose of journal entry..." class="input-field text-xs"></textarea>
         </div>
 
@@ -500,7 +519,7 @@
           <div class="flex items-center justify-between">
             <div>
               <span class="text-xs font-semibold text-[var(--text-main)] block">Payment Status</span>
-              <span class="text-[10px] text-[var(--text-muted)] block">
+              <span class="text-2xs text-[var(--text-muted)] block">
                 {{ paymentStatusSubtitle }}
               </span>
             </div>

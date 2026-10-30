@@ -50,7 +50,7 @@
               <span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-mono text-xs font-bold">
                 {{ fund.fund_code }}
               </span>
-              <span class="text-[11px] text-[var(--text-muted)] font-mono">ID: #{{ fund.id }}</span>
+              <span class="text-2xs text-[var(--text-muted)] font-mono">ID: #{{ fund.id }}</span>
             </div>
 
             <h3 class="text-base font-bold text-[var(--text-main)] group-hover:text-emerald-500 transition-colors">
@@ -62,13 +62,13 @@
 
             <div class="mt-3 space-y-2">
               <div class="p-2 rounded-lg flex items-center justify-between">
-                <span class="text-[11px] text-[var(--text-muted)] font-semibold">Initial Capital:</span>
+                <span class="text-2xs text-[var(--text-muted)] font-semibold">Initial Capital:</span>
                 <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono font-bold text-xs">
                   {{ currencyStore.formatCurrency(fund.amount || 0) }}
                 </span>
               </div>
               <div class="p-2 rounded-lg flex items-center justify-between">
-                <span class="text-[11px] text-[var(--text-muted)] font-semibold">Available Balance:</span>
+                <span class="text-2xs text-[var(--text-muted)] font-semibold">Available Balance:</span>
                 <span class="px-2 py-0.5 rounded font-mono font-bold text-xs" :class="accounting.getFundAccountRemaining(fund.id) < 0 ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20 font-extrabold' : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'">
                   {{ currencyStore.formatCurrency(accounting.getFundAccountRemaining(fund.id)) }}
                 </span>
@@ -93,22 +93,22 @@
     <Modal :isOpen="isModalOpen" title="Create New Fund Account" @close="isModalOpen = false">
       <form @submit.prevent="handleCreateFund" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Code *</label>
+          <label class="form-label mb-1">Fund Code *</label>
           <input v-model="newFund.fund_code" type="text" required placeholder="FND-404" class="input-field font-mono" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Name *</label>
+          <label class="form-label mb-1">Fund Name *</label>
           <input v-model="newFund.fund_name" type="text" required placeholder="Special Operating & Liquidity Reserve" class="input-field" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Initial Fund Amount *</label>
+          <label class="form-label mb-1">Initial Fund Amount *</label>
           <input v-model.number="newFund.amount" type="number" step="1000" required placeholder="500000" class="input-field font-mono font-bold text-emerald-400" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <label class="form-label mb-1">Description</label>
           <textarea v-model="newFund.description" rows="3" placeholder="Specify purpose of this fund account..." class="input-field"></textarea>
         </div>
 
@@ -123,17 +123,17 @@
     <Modal :isOpen="isEditModalOpen" title="Edit Fund Account" @close="isEditModalOpen = false">
       <form @submit.prevent="handleUpdateFund" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Code *</label>
+          <label class="form-label mb-1">Fund Code *</label>
           <input v-model="editingFund.fund_code" type="text" required placeholder="FND-404" class="input-field font-mono" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Fund Name *</label>
+          <label class="form-label mb-1">Fund Name *</label>
           <input v-model="editingFund.fund_name" type="text" required placeholder="Special Operating & Liquidity Reserve" class="input-field" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Initial Capital / Fund Amount *</label>
+          <label class="form-label mb-1">Initial Capital / Fund Amount *</label>
           <input v-model.number="editingFund.amount" type="number" step="1000" required class="input-field font-mono font-bold text-emerald-400" />
         </div>
 
@@ -143,23 +143,23 @@
             <span>Adjustment Detected:</span>
             <span class="font-mono font-bold">{{ amountDifference > 0 ? '+' : '' }}{{ currencyStore.formatCurrency(amountDifference) }}</span>
           </div>
-          <p class="text-[11px] opacity-90">
+          <p class="text-2xs opacity-90">
             An automated journal entry (<strong>{{ amountDifference > 0 ? 'Credit / Fund Addition' : 'Debit / Fund Reduction' }}</strong>) will be posted for <strong>Update in Fund Amount</strong>.
           </p>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <label class="form-label mb-1">Description</label>
           <textarea v-model="editingFund.description" rows="3" placeholder="Specify purpose of this fund account..." class="input-field"></textarea>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status</label>
+          <label class="form-label mb-1">Status</label>
           <select v-model="editingFund.status" class="input-field text-xs py-1.5 font-medium">
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
           </select>
-          <p v-if="editingFund.status === 'inactive'" class="text-[11px] text-[var(--text-muted)] mt-1">
+          <p v-if="editingFund.status === 'inactive'" class="text-2xs text-[var(--text-muted)] mt-1">
             Inactive fund accounts are hidden from the fund source selection in projects.
           </p>
         </div>

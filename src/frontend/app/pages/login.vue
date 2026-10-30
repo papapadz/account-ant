@@ -3,7 +3,7 @@
     <!-- Header with Brand Logo -->
     <div class="flex flex-col items-center text-center space-y-3">
       <div class="w-14 h-14 rounded-2xl overflow-hidden shrink-0 shadow-lg shadow-emerald-500/20 border border-[var(--border-color)] bg-[var(--bg-surface)] p-1.5 flex items-center justify-center">
-        <img src="~/assets/img/logo.png" alt="Account-Ant Logo" class="w-full h-full object-contain" />
+        <img src="~/assets/img/logo.png" alt="Account-Ant Logo" width="56" height="56" decoding="async" class="w-full h-full object-contain" />
       </div>
       <div>
         <h1 class="text-2xl font-extrabold text-[var(--text-main)] tracking-tight">Account-Ant</h1>

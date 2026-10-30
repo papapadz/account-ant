@@ -36,7 +36,7 @@
       <!-- Badge Pill -->
       <span
         v-if="item.badge !== undefined"
-        class="ml-1 px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-full transition-colors"
+        class="ml-1 px-1.5 py-0.5 text-2xs font-mono font-bold rounded-full transition-colors"
         :class="modelValue === item.value ? activeBadgeClasses : inactiveBadgeClasses"
       >
         {{ item.badge }}

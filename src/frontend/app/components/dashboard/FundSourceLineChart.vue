@@ -9,7 +9,7 @@
           </svg>
           Fund Source Amount 
         </h3>
-        <p class="text-[11px] text-[var(--text-muted)] mt-0.5">
+        <p class="text-2xs text-[var(--text-muted)] mt-0.5">
           Monthly fund balance movement for the year
         </p>
       </div>
@@ -18,7 +18,7 @@
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
         <!-- Fund Account Filter -->
         <div class="flex items-center gap-1.5 w-full sm:w-auto sm:min-w-[180px]">
-          <span class="text-[11px] font-medium text-[var(--text-muted)] shrink-0">Account:</span>
+          <span class="text-2xs font-medium text-[var(--text-muted)] shrink-0">Account:</span>
           <select
             v-model="selectedFundId"
             class="input-field text-xs !py-1.5 !px-2.5 w-full font-medium"
@@ -36,7 +36,7 @@
 
         <!-- Year Filter -->
         <div class="flex items-center gap-1.5 w-full sm:w-auto sm:min-w-[110px]">
-          <span class="text-[11px] font-medium text-[var(--text-muted)] shrink-0">Year:</span>
+          <span class="text-2xs font-medium text-[var(--text-muted)] shrink-0">Year:</span>
           <select
             v-model="selectedYear"
             class="input-field text-xs !py-1.5 !px-2.5 w-full font-mono font-medium"
@@ -121,12 +121,12 @@
           class="absolute z-20 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-2 bg-slate-900/95 text-white p-2 rounded-lg shadow-xl border border-slate-700/80 text-xs font-mono transition-all duration-150"
           :style="{ left: `${(hoveredPoint.x / 600) * 100}%`, top: `${(hoveredPoint.y / 180) * 100}%` }"
         >
-          <div class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider mb-0.5">{{ hoveredPoint.month }} {{ selectedYear }}</div>
+          <div class="text-2xs text-emerald-400 font-bold uppercase tracking-wider mb-0.5">{{ hoveredPoint.month }} {{ selectedYear }}</div>
           <div class="text-xs font-bold">{{ currencyStore.formatCurrency(hoveredPoint.amount) }}</div>
         </div>
 
         <!-- Month X-Axis Labels -->
-        <div class="flex justify-between items-center px-1 pt-2 border-t border-[var(--border-color)]/60 text-[10px] font-mono text-[var(--text-muted)]">
+        <div class="flex justify-between items-center px-1 pt-2 border-t border-[var(--border-color)]/60 text-2xs font-mono text-[var(--text-muted)]">
           <span v-for="m in monthsList" :key="m" class="font-medium hover:text-[var(--text-main)] transition-colors">
             {{ m }}
           </span>

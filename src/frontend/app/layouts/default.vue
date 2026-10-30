@@ -3,7 +3,7 @@
     <slot />
   </div>
 
-  <div v-else class="flex h-screen w-screen overflow-hidden bg-[var(--bg-app)] text-[var(--text-main)] font-sans antialiased">
+  <div v-else class="flex h-dvh w-full overflow-hidden bg-[var(--bg-app)] text-[var(--text-main)] font-sans antialiased">
     <!-- Mobile Menu Backdrop -->
     <div
       v-if="isMobileMenuOpen"
@@ -13,7 +13,7 @@
 
     <!-- ─── Side Navigation Drawer (Fixed Desktop / Overlay Mobile) ────── -->
     <aside
-      class="fixed lg:static inset-y-0 left-0 z-50 w-72 bg-[var(--bg-sidebar)] border-r border-[var(--border-color)] flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0"
+      class="fixed lg:static inset-y-0 left-0 z-50 w-72 bg-[var(--bg-sidebar)] border-r border-[var(--border-color)] flex flex-col justify-between pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] transition-transform duration-300 ease-in-out lg:translate-x-0"
       :class="isMobileMenuOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'"
     >
       <!-- Top Brand Header -->
@@ -21,14 +21,14 @@
         <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--border-color)]">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl overflow-hidden shrink-0 shadow-lg shadow-emerald-500/20 border border-[var(--border-color)] bg-[var(--bg-surface)] flex items-center justify-center p-1">
-              <img src="~/assets/img/logo.png" alt="AccountAnt Logo" class="w-full h-full object-contain" />
+              <img src="~/assets/img/logo.png" alt="AccountAnt Logo" width="40" height="40" decoding="async" class="w-full h-full object-contain" />
             </div>
             <div>
               <h1 class="font-bold text-[var(--text-main)] tracking-tight text-base flex items-center gap-1.5 leading-tight">
                 {{ $config.public.name }}
-                <span class="text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-1.5 py-0.5 rounded-full uppercase tracking-wider">{{ $config.public.version }}</span>
+                <span class="text-2xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-1.5 py-0.5 rounded-full uppercase tracking-wider">{{ $config.public.version }}</span>
               </h1>
-              <p class="text-[11px] text-[var(--text-muted)]">{{ $config.public.description }}</p>
+              <p class="text-2xs text-[var(--text-muted)]">{{ $config.public.description }}</p>
             </div>
           </div>
           <!-- Close Mobile Menu Button -->
@@ -51,7 +51,7 @@
               </div>
               <div class="truncate">
                 <div class="text-xs font-semibold text-[var(--text-main)] truncate">{{ companyName }}</div>
-                <div class="text-[10px] text-[var(--text-muted)] capitalize">{{ companyScope }} Scope</div>
+                <div class="text-2xs text-[var(--text-muted)] capitalize">{{ companyScope }} Scope</div>
               </div>
             </div>
             <template #fallback>
@@ -63,8 +63,8 @@
         </div>
 
         <!-- Main Navigation Links -->
-        <nav class="p-3 space-y-0.5 overflow-y-auto max-h-[calc(100vh-220px)]">
-          <div class="px-3 py-2 text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">Main Ledger</div>
+        <nav class="p-3 space-y-0.5 overflow-y-auto max-h-[calc(100dvh-220px)]">
+          <div class="px-3 py-2 text-2xs font-bold text-[var(--text-muted)] uppercase tracking-wider">Main Ledger</div>
 
           <NuxtLink
             v-for="link in mainLinks"
@@ -82,7 +82,7 @@
             {{ link.label }}
           </NuxtLink>
 
-          <div class="px-3 pt-4 pb-2 text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">Management &amp; Chart</div>
+          <div class="px-3 pt-4 pb-2 text-2xs font-bold text-[var(--text-muted)] uppercase tracking-wider">Management &amp; Chart</div>
 
           <NuxtLink
             v-for="link in managementLinks"
@@ -100,7 +100,7 @@
             {{ link.label }}
           </NuxtLink>
 
-          <div class="px-3 pt-4 pb-2 text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">System</div>
+          <div class="px-3 pt-4 pb-2 text-2xs font-bold text-[var(--text-muted)] uppercase tracking-wider">System</div>
 
           <NuxtLink
             to="/settings"
@@ -129,7 +129,7 @@
               </div>
               <div class="truncate">
                 <div class="text-xs font-medium text-[var(--text-main)] truncate">{{ userName }}</div>
-                <div class="text-[10px] text-[var(--text-muted)] truncate">{{ userTitle }}</div>
+                <div class="text-2xs text-[var(--text-muted)] truncate">{{ userTitle }}</div>
               </div>
             </div>
             <UiButton
@@ -154,8 +154,8 @@
     <!-- ─── Main Content Container ────────────────────────────────────── -->
     <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
       <!-- Top Header Toolbar -->
-      <header class="h-14 bg-[var(--bg-sidebar)] border-b border-[var(--border-color)] flex items-center justify-between px-4 shrink-0">
-        <div class="flex items-center gap-3">
+      <header class="h-[calc(3.5rem+env(safe-area-inset-top))] pt-[env(safe-area-inset-top)] bg-[var(--bg-sidebar)] border-b border-[var(--border-color)] flex items-center justify-between gap-3 px-4 shrink-0">
+        <div class="flex items-center gap-3 min-w-0">
           <button
             class="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-surface)] lg:hidden"
             title="Open Menu"
@@ -166,9 +166,9 @@
             </svg>
           </button>
 
-          <div class="flex flex-col items-start leading-tight">
-            <span class="text-[10px] text-[var(--text-muted)] font-medium tracking-wide uppercase">{{ currentPageGroup }}</span>
-            <span class="text-sm font-bold text-[var(--text-main)] truncate">{{ pageTitle }}</span>
+          <div class="flex flex-col items-start leading-tight min-w-0">
+            <span class="text-2xs text-[var(--text-muted)] font-medium tracking-wide uppercase">{{ currentPageGroup }}</span>
+            <span class="text-base font-bold text-[var(--text-main)] truncate max-w-full">{{ pageTitle }}</span>
           </div>
         </div>
 
@@ -207,13 +207,13 @@
       </main>
 
       <!-- Bottom Navigation Bar for Mobile -->
-      <footer class="border-t border-[var(--border-color)] bg-[var(--bg-sidebar)]/90 backdrop-blur-xl sm:hidden shrink-0">
+      <footer class="border-t border-[var(--border-color)] bg-[var(--bg-sidebar)]/90 backdrop-blur-xl sm:hidden shrink-0 pb-[env(safe-area-inset-bottom)]">
         <nav class="flex items-center justify-around h-14 px-2 max-w-md mx-auto">
           <NuxtLink
             v-for="tab in tabs"
             :key="tab.href"
             :to="tab.href"
-            class="relative flex flex-col items-center justify-center flex-1 h-full py-1 gap-1 text-[11px] font-medium transition-all cursor-pointer select-none active:scale-95"
+            class="relative flex flex-col items-center justify-center flex-1 h-full py-1 gap-1 text-2xs font-medium transition-all cursor-pointer select-none active:scale-95"
             :class="isTabActive(tab.href)
               ? 'text-emerald-400 font-bold'
               : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'"

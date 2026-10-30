@@ -35,13 +35,13 @@
       </div>
       <!-- Status Filter Chips -->
       <div class="flex flex-wrap items-center gap-2">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">Filter:</span>
+        <span class="text-2xs font-bold uppercase tracking-wider text-[var(--text-muted)]">Filter:</span>
         <button
           v-for="chip in statusChips"
           :key="chip.value"
           type="button"
           @click="statusFilter = chip.value"
-          class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-all duration-150 cursor-pointer"
+          class="px-2.5 py-0.5 rounded-full text-2xs font-bold uppercase tracking-wider border transition-all duration-150 cursor-pointer"
           :class="statusFilter === chip.value
             ? 'bg-blue-500/20 text-blue-400 border-blue-500/30'
             : 'bg-[var(--bg-surface)] text-[var(--text-muted)] border-[var(--border-color)] hover:border-blue-500/30'"
@@ -66,7 +66,7 @@
               <span class="px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono text-xs font-bold">
                 {{ account.account_code }}
               </span>
-              <span class="text-[11px] text-[var(--text-muted)] font-mono">ID: #{{ account.id }}</span>
+              <span class="text-2xs text-[var(--text-muted)] font-mono">ID: #{{ account.id }}</span>
             </div>
 
             <h3 class="text-base font-bold text-[var(--text-main)] group-hover:text-blue-500 transition-colors">
@@ -78,13 +78,13 @@
           </div>
 
           <div class="pt-3 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-xs">
-            <span class="inline-flex items-center gap-1.5 text-[var(--text-muted)] text-[11px]">
+            <span class="inline-flex items-center gap-1.5 text-[var(--text-muted)] text-2xs">
               <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 11h.01M7 15h.01M11 7h7M11 11h7M11 15h7M4 5h16a1 1 0 011 1H4a1 1 0 01-1-1V6a1 1 0 011-1z" />
               </svg>
               {{ getAccountItemCount(account.id) }} Linked Item(s)
             </span>
-            <span class="inline-flex items-center gap-1 text-blue-400 font-semibold text-[11px] group-hover:underline">
+            <span class="inline-flex items-center gap-1 text-blue-400 font-semibold text-2xs group-hover:underline">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
               </svg>
@@ -108,17 +108,17 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Account Code *</label>
+          <label class="form-label mb-1">Account Code *</label>
           <input v-model="newAcc.account_code" type="text" required placeholder="1030-PREPAID" :disabled="isSubmitting" class="input-field font-mono" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Account Name *</label>
+          <label class="form-label mb-1">Account Name *</label>
           <input v-model="newAcc.account_name" type="text" required placeholder="Prepaid Software Subscriptions" :disabled="isSubmitting" class="input-field" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <label class="form-label mb-1">Description</label>
           <textarea v-model="newAcc.description" rows="3" placeholder="Account purpose..." :disabled="isSubmitting" class="input-field"></textarea>
         </div>
 
@@ -136,7 +136,7 @@
         <div class="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-xs flex items-center justify-between">
           <div class="flex items-center gap-2.5">
             <div>
-              <span class="text-[var(--text-muted)] font-semibold uppercase tracking-wider block text-[10px]">Ledger Account</span>
+              <span class="text-[var(--text-muted)] font-semibold uppercase tracking-wider block text-2xs">Ledger Account</span>
               <span class="font-bold text-[var(--text-main)] text-sm">{{ selectedAccountForItems.account_name }}</span>
             </div>
             <!-- Pencil Edit Button -->
@@ -192,7 +192,7 @@
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Code *</label>
+                  <label class="block text-2xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Code *</label>
                   <input
                     v-model="row.item_code"
                     type="text"
@@ -204,7 +204,7 @@
                 </div>
 
                 <div>
-                  <label class="block text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Name *</label>
+                  <label class="block text-2xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Item Name *</label>
                   <input
                     v-model="row.item_name"
                     type="text"
@@ -217,7 +217,7 @@
               </div>
 
               <div>
-                <label class="block text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type *</label>
+                <label class="block text-2xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Transaction Type *</label>
                 <div class="grid grid-cols-2 gap-2">
                   <UiButton
                     type="button"
@@ -245,7 +245,7 @@
               </div>
 
               <div>
-                <label class="block text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+                <label class="block text-2xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
                 <input
                   v-model="row.description"
                   type="text"
@@ -295,22 +295,22 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Account Code *</label>
+          <label class="form-label mb-1">Account Code *</label>
           <input v-model="editAccForm.account_code" type="text" required placeholder="1030-PREPAID" :disabled="isSubmittingEditAcc" class="input-field font-mono text-xs" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Account Name *</label>
+          <label class="form-label mb-1">Account Name *</label>
           <input v-model="editAccForm.account_name" type="text" required placeholder="Account Name" :disabled="isSubmittingEditAcc" class="input-field text-xs" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Description</label>
+          <label class="form-label mb-1">Description</label>
           <textarea v-model="editAccForm.description" rows="3" placeholder="Account purpose..." :disabled="isSubmittingEditAcc" class="input-field text-xs"></textarea>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1">Status</label>
+          <label class="form-label mb-1">Status</label>
           <select v-model="editAccForm.status" :disabled="isSubmittingEditAcc" class="input-field text-xs py-1.5 font-medium">
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
