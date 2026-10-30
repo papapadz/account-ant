@@ -384,7 +384,12 @@
               <div v-else class="pt-2 border-t border-[var(--border-color)]/60 space-y-1.5 text-2xs">
                 <div class="flex items-center justify-between text-[var(--text-muted)]">
                   <span>Payment Date:</span>
-                  <span class="font-mono text-[var(--text-main)] font-semibold">{{ selectedEntry.payment_date || selectedEntry.posting_date || 'N/A' }}</span>
+                  <input
+                    type="date"
+                    :value="selectedEntry.payment_date || selectedEntry.posting_date"
+                    class="bg-[var(--bg-app)] border border-[var(--border-color)] rounded px-1.5 py-0.5 text-[11px] text-[var(--text-main)] font-mono font-semibold focus:outline-none focus:border-emerald-500"
+                    @change="savePaymentDate($event)"
+                  />
                 </div>
                 <div v-if="selectedEntry.payment_remarks" class="text-[var(--text-muted)]">
                   <span class="block text-2xs font-semibold uppercase tracking-wider">Payment Remarks:</span>
@@ -947,16 +952,29 @@ const togglePaymentStatus = async () => {
   }
 }
 
+const savePaymentDate = async (e: Event) => {
+  const input = e.target as HTMLInputElement
+  if (!selectedEntry.value || !input.value) return
+  try {
+    await accounting.updateJournalEntryPaymentStatus(selectedEntry.value.id, true, { payment_date: input.value })
+    selectedEntry.value.payment_date = input.value
+  } catch (err: any) {
+    input.value = selectedEntry.value.payment_date || selectedEntry.value.posting_date || ''
+    alert(err?.data?.message || err?.message || 'Failed to update payment date')
+  }
+}
+
 const saveApName = async () => {
   if (!selectedEntry.value) return
   try {
-    const res = await accounting.updateJournalEntryPaymentStatus(selectedEntry.value.id, false, editApName.value)
+    const res = await accounting.updateJournalEntryPaymentStatus(selectedEntry.value.id, false, { accounts_payable_name: editApName.value })
     if (res?.accounts_payable) {
       selectedEntry.value.accounts_payable = res.accounts_payable
     }
     alert('Accounts Payable Name saved successfully!')
-  } catch (err) {
+  } catch (err: any) {
     console.error('Failed to save AP Name:', err)
+    alert(err?.data?.message || err?.message || 'Failed to save Accounts Payable name')
   }
 }
 

@@ -725,10 +725,15 @@
           </div>
 
           <!-- Payment Date & Remarks Display (if Paid) -->
-          <div v-if="selectedTransactionForItems.is_paid !== false && (selectedTransactionForItems.payment_date || selectedTransactionForItems.payment_remarks)" class="pt-3 mt-3 border-t border-[var(--border-color)]/50 space-y-1.5 text-xs">
-            <div v-if="selectedTransactionForItems.payment_date" class="flex items-center justify-between text-[var(--text-muted)]">
+          <div v-if="selectedTransactionForItems.is_paid !== false" class="pt-3 mt-3 border-t border-[var(--border-color)]/50 space-y-1.5 text-xs">
+            <div class="flex items-center justify-between text-[var(--text-muted)]">
               <span>Payment Settled On:</span>
-              <span class="font-mono font-bold text-emerald-400">{{ selectedTransactionForItems.payment_date }}</span>
+              <input
+                type="date"
+                :value="selectedTransactionForItems.payment_date || ''"
+                class="bg-[var(--bg-app)] border border-[var(--border-color)] rounded px-1.5 py-0.5 text-[11px] text-emerald-400 font-mono font-bold focus:outline-none focus:border-emerald-500"
+                @change="savePaymentDate($event)"
+              />
             </div>
             <div v-if="selectedTransactionForItems.payment_remarks" class="text-[var(--text-muted)]">
               <span class="block text-2xs font-bold uppercase tracking-wider">Payment Remarks:</span>
@@ -1355,6 +1360,19 @@ const openItemDetailsModal = (tx: any) => {
 const openMarkPaidModalFromProject = (tx: any) => {
   selectedEntryForMarkPaid.value = tx
   isMarkPaidModalOpen.value = true
+}
+
+const savePaymentDate = async (e: Event) => {
+  const input = e.target as HTMLInputElement
+  const tx = selectedTransactionForItems.value
+  if (!tx || !input.value) return
+  try {
+    await projectsStore.updateJournalEntryPaymentStatus(tx.id, true, { payment_date: input.value })
+    tx.payment_date = input.value
+  } catch (err: any) {
+    input.value = tx.payment_date || ''
+    alert(err?.data?.message || err?.message || 'Failed to update payment date.')
+  }
 }
 
 const unmarkPaidFromProject = async (tx: any) => {
